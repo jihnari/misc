@@ -7,6 +7,24 @@
 /* td, h1, h2, h3, h4, h5, p, ul, ol, li {
     page-break-inside: avoid; 
 } */
+img{
+    max-width:400px;
+    width:80%;
+    margin-left:20px;
+    border:solid black 1px;
+}
+
+.red{
+    color:red;
+
+}
+.green{
+    color:green;
+}
+.orange{
+    color:orange;
+    
+}
         </style>
       </head>
     <body>
@@ -57,8 +75,8 @@ hey guess what: an epub is just a zip file. inside you'll find:
 </ul>
 <p>&nbsp;</p>
 <p>below is an example of my own fic's EPUB/ZIP as downloaded from ao3:</p>
-<img max-width=400px src="epub-structure.png"/>
-<h1>let's craft your html-ified epub</h1>
+<img src="https://raw.githubusercontent.com/jihnari/misc/refs/heads/main/epub-guide/img/epub-structure.png"/>
+<h1>crafting your html-ified epub</h1>
 so, you want to make a fancy EPUB. at a simple, high level:
 <ul>
 <li>download EPUB from ao3</li>
@@ -75,6 +93,7 @@ so, you want to make a fancy EPUB. at a simple, high level:
 <li>done.</li>
 </ul>
 <p>and that's it!</p>
+<p>&nbsp;</p>
 <p>if that was too fast for you, here's the same thing again, with more details and some pictures:</p>
 <ul>
 <li>download the EPUB in question from ao3
@@ -84,7 +103,7 @@ so, you want to make a fancy EPUB. at a simple, high level:
 </ul>
 </li>
 </ul>
-<img src="epub-download-button.png"/>
+<img src="https://raw.githubusercontent.com/jihnari/misc/refs/heads/main/epub-guide/img/epub-download-button.png"/>
 <ul>
 <li><p>rename file.epub to file.zip</p>
 <ul>
@@ -97,9 +116,9 @@ so, you want to make a fancy EPUB. at a simple, high level:
 </ul>
 </li>
 </ul>
-<img src="epub-structure.png"/>
+<img src="https://raw.githubusercontent.com/jihnari/misc/refs/heads/main/epub-guide/img/epub-structure.png"/>
 <ul>
-<li>open file_002.xhtml (*if a multi chaptered work, see below &quot;chaptered works&quot; section)</li>
+<li>open file_002.xhtml (*if a multi chaptered work, see the below <b><a href="#chaptered-works">chaptered works</a></b> section)</li>
 <li>gut the middle html and replace with your own
 <ul>
 <li>leave alone from &quot;&lt;?xml version='1.0' encoding='utf-8'?&gt;&quot; to &quot;&lt;div class="userstuff2"&gt;&quot;</li>
@@ -109,31 +128,31 @@ so, you want to make a fancy EPUB. at a simple, high level:
 </ul>
 </li>
 </ul>
-<img src="epub-before.png"/>
+<img src="https://raw.githubusercontent.com/jihnari/misc/refs/heads/main/epub-guide/img/epub-before.png"/>
 <ul>
 <li>deleting unnecessary html:</li>
 </ul>
-<img src="epub-gutted.png"/>
+<img src="https://raw.githubusercontent.com/jihnari/misc/refs/heads/main/epub-guide/img/epub-gutted.png"/>
 <ul>
 <li>adding your html in its place:</li>
 </ul>
-<img src="epub-gutted2.png"/>
+<img src="https://raw.githubusercontent.com/jihnari/misc/refs/heads/main/epub-guide/img/epub-gutted2.png"/>
 <ul>
 <li>save, close</li>
 <li>open stylesheet.css (NOT page_styles.css)</li>
 <li>append your custom CSS (make sure to REMOVE all instances of &quot;#workskin&quot; if you're pulling the CSS directly from ao3)</li>
 </ul>
-<img src="epub-stylesheet-append"/> 
+<img src="https://raw.githubusercontent.com/jihnari/misc/refs/heads/main/epub-guide/img/epub-stylesheet-append.png"/> 
 <ul>
 <li>save, close</li>
-<li>if you have images, jump to the <a href=""><b>image</b></a> section</li>
+<li>if you have images, jump to the <a href="#images"><b>images</b></a> section</li>
 <li>zip the edited &quot;epub&quot; back up
 <ul>
 <li>if on windows 11 and using the built in zip tool, highlight all the contents of your current folder, right click, compress to... &gt; ZIP file</li>
 </ul>
 </li>
 </ul>
-<img src="epub-zippit.png"/>
+<img src="https://raw.githubusercontent.com/jihnari/misc/refs/heads/main/epub-guide/img/epub-zipit.png"/>
 <ul>
 <li><p>this is to make sure the files are at the first level of the zip. if the content is a level down, EPUB readers freak out.</p>
 </li>
@@ -150,7 +169,7 @@ so, you want to make a fancy EPUB. at a simple, high level:
 </ul>
 </li>
 </ul>
-<img src="epub-yay.png"/>
+<img src="https://raw.githubusercontent.com/jihnari/misc/refs/heads/main/epub-guide/img/epub-yay.png"/>
 <ul>
 <li>done.</li>
 </ul>
@@ -160,7 +179,7 @@ so, you want to make a fancy EPUB. at a simple, high level:
 <p>&nbsp;</p>
 
 <p><b>disclaimer:</b> the above is the super fast super hack version, and only works for oneshots. that being said:</p>
-<h2>chaptered works</h2> 
+<h2 id="chaptered-works">chaptered works</h2> 
 follow the above steps, with an exception: 
 <ul>
 <li>open the XHTML files 002 through 00[n = chapter count + 1]</li>
@@ -168,7 +187,7 @@ follow the above steps, with an exception:
 </ul>
 <p>&nbsp;</p>
 <p>now, not to scare you, but: did you use any images?</p>
-<h1>images</h1>
+<h1 id="images">images</h1>
 if you used, the epub may render the images using the external links, but it may not. and it won't be able to do so if the reading device is offline. 
 <p>another caveat: were the images in the CSS file or the HTML file?
 if they're in the HTML file, ao3 will download them to the epub for you and change out all img reference links/paths to &quot;img1.jpg&quot;, &quot;img2.jpg&quot;, etc. if they're in the CSS file, ao3 will ignore them. either way, it doesn't matter for you because YOU have the original HTML and CSS files, and have to do this all by hand anyway.</p>
@@ -185,11 +204,11 @@ there you have it, your very own custom html-ified offline fic.
 <p>this WILL (tentatively) work on: calibre, lithium, and reasily. (i'll come back to edit this with a full list of good epub readers, probably)</p>
 <h1>(possible) future goals</h1>
 <ul>
-<li>writing a script to automate part/all of this process (difficulty: medium)</li>
-<li>writing a script to fix the images (difficulty: medium or extreme, depending on file structure/image naming scheme)</li>
+<li>writing a script to automate part/all of this process (difficulty: <span class=orange>medium</span>)</li>
+<li>writing a script to fix the images (difficulty: <span class=orange>medium</span> or <span class=red>extreme</span>, depending on file structure/image naming scheme)</li>
 <li>turning that script into a browser plugin that can directly affect the epub as it's being downloaded from ao3  (difficulty: lol im not doing that, but <a href="https://archiveofourown.org/users/mystyrust/pseuds/mystyrust">mystyrust</a> might</li>
-<li>making epub from scratch (difficulty: medium. im halfway there, using ao3's was just so much easier)</li>
-<li>automate making epub from scratch (difficulty: ???. idk how to make my own epub yet, so who knows. would be nice for fic writers to generate epubs from their own works)</li>
+<li>making epub from scratch (difficulty: <span class=orange>medium</span>. im halfway there, using ao3's was just so much easier)</li>
+<li>automate making epub from scratch (difficulty: <b>???</b>. idk how to make my own epub yet, so who knows. would be nice for fic writers to generate epubs from their own works)</li>
 <li>idk other stuff maybe</li>
 </ul>
 <p>ok that's it, go forth and make epubs</p>
