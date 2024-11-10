@@ -9,10 +9,9 @@ todo:
 consider: putting chat in a pretty box - update; this is going bad
 consider: alt chat boxes (styles)
 + if possible, sibling class it up with the characters, so that they can be used for either to or from 
-emojis (2 options: hard code them all, or. dont dont do that. just one image class that formats whatever image it's given correctly)
-+ option 2: done
-option 1: broken, unsure. smth w bg images or. idk. 
-image attachements 
++ emojis (2 options: hard code them all, or. dont dont do that. just one image class that formats whatever image it's given correctly)(both are now available)
++ image attachements (ghetto but done)
+get a new x 
 
 
 */
@@ -26,12 +25,11 @@ image attachements
   margin:10px;
 }
 
-/* alt */
+/* hard-coded stickers */
 .pompom-heart{
   background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/7/71/Pom-Pom_Sticker_01.png") no-repeat;
   background-size:100px 100px;
 }
-
 .pompom-question{
   background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/a/aa/Pom-Pom_Sticker_15.png") no-repeat;
   background-size:100px 100px;
@@ -48,7 +46,7 @@ p {
 /* recent messages view? */
 .contacts-view{
   /* background-color:aliceblue; */
-  background-color: rgb(216, 223, 228);
+  background-color: #D8DDDE;
 }
 
 
@@ -56,44 +54,46 @@ p {
 .chat-header{
   border-radius: 0px 33px 0px 0px;
   border-bottom:rgb(174, 174, 174) solid 1px;
-  background-color: rgb(216, 223, 228);
+  background-color:#D8DDDE;
+  /* #D8DDDE; */
+  position:relative;
   /* padding:10px 10px 5px 20px; */
 
   /* for outside chat view  */
-  width:100%;
+  width:95%;
   max-width:400px;
   margin-left:10;
   /* margin-bottom:-5px; */
   font-family: "Paybooc OTF Medium", sans-serif;
 
+  /* z-index:2;  */
 
   /* for inside chat-view */
   /* position:sticky;
   top: 0;
-  z-index:2; */
+  /* box-shadow:-10px 10px 0px 0px #AD7B9A; */
+  /* box-shadow: -6px 14px 0px 0px #FFFFFF, 
+-10px 10px 0px 0px #D8DDDE; */
+
+
+
+  /* box-shadow: -4px 20px 0px 0px #FFFFFF,-5px 5px 0px -1px #FFFFFF, 
+-5px 5px 0px 0px #D8DDDE; */
+box-shadow:-5px 5px 0px -1px #FFFFFF, 
+-5px 5px 0px 0px #D8DDDE;
 
 }
-/* no idea why this isnt working */
 .chat-header::after{
-  /* that x */
-  position:absolute;
-  right:0;
-  width:50px;
-height:50px;
-background-color:pink;
-}
-.x{
+  content:'';
   position:absolute;
   right:10;
-  /* top:15; */
   bottom:5;
   width:35px;
-height:35px;
-background-color:pink;
+  height:35px;
 
-background: url("x") no-repeat;
+  /* swap this out */
+  background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/img/chat/new-x.png") no-repeat;
   background-size:35px 35px;
-
 }
 
 .chat-title{
@@ -117,12 +117,12 @@ background: url("x") no-repeat;
 
 
 /* chat window */
-/* consider chat messanger box */
 .chat-view{
-  background-color: rgb(216, 223, 228);
+  background-color: #D8DDDE;
   font-family: "Paybooc OTF Medium", sans-serif;
 
-  width:100%;
+  position: relative;
+  width:95%;
   max-width:400px;
   /* did i want this scrollable?? */
   height:80%;
@@ -141,27 +141,50 @@ background: url("x") no-repeat;
   margin-bottom: 3px; */
 
   margin-left:10px;
+  /* margin-right:20px; */
+
+  /* border attempt */
+    /* outline: 2px solid #D8DDDE; 
+    outline-offset:8px;
+  box-sizing: border-box; */
+  /* box-shadow: 0 -1px 0 #000; */
+/* box-shadow:-10px 10px 0px -3px #FFFFFF, 
+-10px 10px 0px 0px #D8DDDE; */
+
+box-shadow:-4px -0px 0px 0px #FFFFFF, 
+-5px 5px 0px -1px #FFFFFF, 
+-5px 5px 0px 0px #D8DDDE;
 
 }
 
+
+/* maybe do two */
 .pretty-line{
   position: absolute; 
-  /* left: -8px; 
-  bottom: -8px; */
+  top:0;
+  left:-10px;
+
+/* top: -10px;
+  left: -10px;
+  z-index: 10; */
+
+  /* left: -18px; */
+  /* bottom: -8px; */
   /* margin-left:-8px; */
   /* margin-bottom:-8px; */
   /* margin-top:10px; */
-  top:15px;
-  border: 2px solid rgb(216, 223, 228); 
-  border-radius: 0px 33px 0px 0px; 
+  /* top:15px; */
+  /* border: 2px solid #D8DDDE;  */
+  border:2px solid red;
+  /* border-radius: 0px 33px 0px 0px;  */
   box-sizing: border-box;
 
   width:100%;
-  max-width:400px;
+  /* max-width:400px; */
   /* did i want this scrollable?? */
   height:80%;
-  max-height:510px;
-  /* z-index:5; */
+  max-height:450px;
+  z-index:5;
 }
 
 /* containers for the message boxes */
@@ -176,14 +199,13 @@ background: url("x") no-repeat;
 
 .msg-right-container{
   justify-content: right; 
-  
   margin-right: 45px; 
 }
 .msg-left-container{
   justify-content: left; 
-  
   margin-left: 45px; 
 }
+/* this looks like nonsense but it's to align the username and pfp */
 .msg-left-container::before{
   margin-left:-45px;
 }
@@ -224,7 +246,7 @@ background: url("x") no-repeat;
 .msg-left{
   border-top-left-radius: 0;
   border-radius: 0px 13px 13px; 
-  background-color: rgba(235, 235, 235, 0.9); 
+  background-color: #EDEDED; 
   box-shadow: rgb(174, 174, 174) -1px 2px 0px;
 }
 
@@ -252,7 +274,7 @@ background: url("x") no-repeat;
 /* new character template */
 /* rename this class */
 .character::before{
-  /* replace this link/png with the character's pfp */
+  /* replace this link with a link to the character's pfp */
   background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/4/4e/Profile_Picture_Wanted_Poster.png") no-repeat;
   background-size:40px 40px;
 }
@@ -261,7 +283,6 @@ background: url("x") no-repeat;
   /* replace with the character's name */
   content:"character";
 }
-
 
 
 /* characters */
@@ -274,7 +295,7 @@ background: url("x") no-repeat;
 }
 
 .caelus::before{
-  background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/4/47/Profile_Picture_Dan_Heng_-_Welcome.png") no-repeat;
+  background: url("") no-repeat;
   background-size:40px 40px;
 }
 .caelus::after{
@@ -282,7 +303,7 @@ background: url("x") no-repeat;
 }
 
 .stelle::before{
-  background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/4/4e/Profile_Picture_Wanted_Poster.png") no-repeat;
+  background: url("") no-repeat;
   background-size:40px 40px;
 }
 .stelle::after{
@@ -291,7 +312,7 @@ background: url("x") no-repeat;
 
 
 .jing-yuan::before{
-  background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/0/07/Profile_Picture_Jing_Yuan_-_In_Leisure.png") no-repeat;
+  background: url("") no-repeat;
   background-size:40px 40px;
 }
 .jing-yuan::after{
@@ -299,26 +320,23 @@ background: url("x") no-repeat;
 }
 
 
+funny pfp alts 
+https://static.wikia.nocookie.net/houkai-star-rail/images/0/07/Profile_Picture_Jing_Yuan_-_In_Leisure.png
+https://static.wikia.nocookie.net/houkai-star-rail/images/4/4e/Profile_Picture_Wanted_Poster.png
+https://static.wikia.nocookie.net/houkai-star-rail/images/4/47/Profile_Picture_Dan_Heng_-_Welcome.png
+
 
 </style> 
 
 <body>
 
-  <div class="pretty-line">
-  </div>
-    <div class="chat-header">  
-      <p class="x"></p>
+
+<div class="chat-header">
       <p class="chat-title">Jing Yuan</p>
   <p class="chat-subtitle">I'm not at the Seat of Divine Foresight </p>
     </div>
 
   <div class="chat-view">
-
-    <!-- <div msg-container>
-    <p class="msg-right">
-  I will head over immediately 
-    </p>
-    </div> -->
 
     <p>&nbsp;</p>
 
@@ -332,21 +350,10 @@ background: url("x") no-repeat;
       </p>
     </div>
 
-    <div class="msg-right-container user stelle">
-      <p class="msg-right">
-    I will head over immediately thing with lots of text to see how it lays yay text 
-      </p>
-    </div>
-
-    <div class="msg-right-container right user stelle">
-    <img class="sticker" src="https://static.wikia.nocookie.net/houkai-star-rail/images/7/71/Pom-Pom_Sticker_01.png">
-  </img>
-    </div>
 
     <div class="msg-right-container right user stelle">
       <p class="sticker pompom-heart"></p>
-      </div>
-
+    </div>
 
 
 
@@ -354,18 +361,27 @@ background: url("x") no-repeat;
       <p class="sticker pompom-question"></p>
       </img>
     </div>
-
-    <div class="msg-right-container user jing-yuan">
-      <p class="msg-right">
-    [emoji]
+    
+    <div class="msg-left-container user jing-yuan">
+      <p class="msg-left">
+    You don't have to rush.
       </p>
     </div>
+
 
   <div class="msg-left-container user jing-yuan">
     <p class="msg-left">
       Haha, excellent. it wraps fine probably i dont actually know oh look see fine 
       </p>
   </div>
+
+  
+  <div class="msg-right-container right user stelle">
+    <img class="sticker" src="https://static.wikia.nocookie.net/houkai-star-rail/images/7/71/Pom-Pom_Sticker_01.png">
+  </img>
+    </div>
+
+  </div>
   </div>
 
 
@@ -376,7 +392,6 @@ background: url("x") no-repeat;
 
 
     </div>
-
   </div>
 
 

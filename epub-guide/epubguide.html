@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html>
+        <style type="text/css">
+            
+/* Avoid page breaks inside the most common attributes, especially for exports (i.e. PDF) */
+/* td, h1, h2, h3, h4, h5, p, ul, ol, li {
+    page-break-inside: avoid; 
+} */
+        </style>
+      </head>
+    <body>
+        <p>how to make a custom epub of your html-ified fanfiction: a hack-y solution.</p>
+<h1>introduction</h1>
+i figured this process out for my own benefit, but thought it might be useful to someone somewhere. today we're turning your fancy html fics into fancy html ebups. 
+<p>this guide is aimed at the ORIGINAL AUTHORS of html-ified fics, as my primary interest is in EPUB-ing my own works. if you're just a fan who wants an epub of an html-ified fic for personal offline reading, you can still do it. but you'll need to get ahold of 1) the original HTML chapter files, and 2) the original CSS, which is not discussed here.</p>
+<h1>suggested tools</h1>
+before we begin, these are the things you should have on hand. don't worry, the list is short and easy: 
+<ul>
+<li>unzipper of your choice (most computers have one built in. if you don't have one already, i like 7zip)</li>
+<li>notepad++ (or any other tool for editing text/html/css files; vscode, netbeans, vim, whatever)</li>
+<li>optional: calibre (epub reader for windows, mac, and linux)</li>
+</ul>
+<h1>anatomy of an EPUB</h1>
+hey guess what: an epub is just a zip file. inside you'll find:
+<p>toc.ncx</p>
+<ul>
+<li>tells the epub reader in what order to present the things to the user</li>
+</ul>
+<p>stylesheet.css</p>
+<ul>
+<li>CSS file telling the ereader how to present the file (font, header stylings, margin spacing, all sorts of stuff)</li>
+</ul>
+<p>page_styles.css</p>
+<ul>
+<li>CSS file telling the ereader specific instructions (if any) for the page view. (from ao3, this just has some additional top and bottom margin buffers)</li>
+</ul>
+<p>mimetype</p>
+<ul>
+<li>thing declaring the epub is an epub</li>
+</ul>
+<p>content.opf</p>
+<ul>
+<li>book details, ie summary and author, meta data stuff</li>
+</ul>
+<p>*.xhtml files</p>
+<ul>
+<li>this contains the meat of the book, the words themselves (and the html surrounding them). the files will number however many chapters there are, + summary and authors note.</li>
+</ul>
+<p>META-INF folder</p>
+<ul>
+<li>not super sure and uninterested to dig deeper</li>
+</ul>
+<p>img folder</p>
+<ul>
+<li>this contains all of the image resources for the book/html/epub</li>
+</ul>
+<p>&nbsp;</p>
+<p>below is an example of my own fic's EPUB/ZIP as downloaded from ao3:</p>
+<img max-width=400px src="epub-structure.png"/>
+<h1>let's craft your html-ified epub</h1>
+so, you want to make a fancy EPUB. at a simple, high level:
+<ul>
+<li>download EPUB from ao3</li>
+<li>rename file.epub to file.zip</li>
+<li>unzip</li>
+<li>open file_002.xhtml</li>
+<li>gut the middle html and replace with your own</li>
+<li>open stylesheet.css</li>
+<li>append your custom CSS</li>
+<li>if you have image references, do something about that</li>
+<li>zip the edited &quot;epub&quot; back up</li>
+<li>change the zip back to an epub</li>
+<li>(optional: test it in an EPUB reader)</li>
+<li>done.</li>
+</ul>
+<p>and that's it!</p>
+<p>if that was too fast for you, here's the same thing again, with more details and some pictures:</p>
+<ul>
+<li>download the EPUB in question from ao3
+<ul>
+<li>i told u this was hack-y</li>
+<li>if u dont know what im talking about, it's here:</li>
+</ul>
+</li>
+</ul>
+<img src="epub-download-button.png"/>
+<ul>
+<li><p>rename file.epub to file.zip</p>
+<ul>
+<li>this is so we can open it, ignore the warning your system gives you about renaming the file and the blah blah unstability. your system is a coward.</li>
+</ul>
+</li>
+<li><p>unzip</p>
+<ul>
+<li>should look something like this:</li>
+</ul>
+</li>
+</ul>
+<img src="epub-structure.png"/>
+<ul>
+<li>open file_002.xhtml (*if a multi chaptered work, see below &quot;chaptered works&quot; section)</li>
+<li>gut the middle html and replace with your own
+<ul>
+<li>leave alone from &quot;&lt;?xml version='1.0' encoding='utf-8'?&gt;&quot; to &quot;&lt;div class="userstuff2"&gt;&quot;</li>
+<li>delete until the closing div for &quot;userstuff&quot; (you'll know it bc it's followed by &quot;&lt;div id="afterword" class="calibre1"&gt;&quot;)</li>
+<li>put your html code directly in the middle</li>
+<li>before gutting:</li>
+</ul>
+</li>
+</ul>
+<img src="epub-before.png"/>
+<ul>
+<li>deleting unnecessary html:</li>
+</ul>
+<img src="epub-gutted.png"/>
+<ul>
+<li>adding your html in its place:</li>
+</ul>
+<img src="epub-gutted2.png"/>
+<ul>
+<li>save, close</li>
+<li>open stylesheet.css (NOT page_styles.css)</li>
+<li>append your custom CSS (make sure to REMOVE all instances of &quot;#workskin&quot; if you're pulling the CSS directly from ao3)</li>
+</ul>
+<img src="epub-stylesheet-append"/> 
+<ul>
+<li>save, close</li>
+<li>if you have images, jump to the <a href=""><b>image</b></a> section</li>
+<li>zip the edited &quot;epub&quot; back up
+<ul>
+<li>if on windows 11 and using the built in zip tool, highlight all the contents of your current folder, right click, compress to... &gt; ZIP file</li>
+</ul>
+</li>
+</ul>
+<img src="epub-zippit.png"/>
+<ul>
+<li><p>this is to make sure the files are at the first level of the zip. if the content is a level down, EPUB readers freak out.</p>
+</li>
+<li><p>if you're using a different zip tool, zipping the containing folder itself might result in the correct underlying folder structure. you'll have to check it out for yourself.</p>
+</li>
+<li><p>rename the new zip file from file_edited.zip to file_edited.epub</p>
+<ul>
+<li>tada, it's an epub now, just like magic. it might feel wrong, because you know it's literally just a zip file, but it's an epub.</li>
+</ul>
+</li>
+<li><p>optional: test it in an EPUB reader to make sure it's working (see: <a href="">epub reader tier list</a>, or just use <a href="https://calibre-ebook.com">calibre</a>)</p>
+<ul>
+<li>often times for this step i just send the file to my phone because it has a built in epub reader</li>
+</ul>
+</li>
+</ul>
+<img src="epub-yay.png"/>
+<ul>
+<li>done.</li>
+</ul>
+<p>&nbsp;</p>
+
+<p>warning about calibre: calibre tends to be VERY generous when it comes to opening epubs. any other epub reader, like the one on your phone, might crash instead of opening a poorly tampered epub. but if you follow the guide above, and you're using an epub reader from the Approved List (tm) (coming soon), then you should be fine. hopefully!</p>
+<p>&nbsp;</p>
+
+<p><b>disclaimer:</b> the above is the super fast super hack version, and only works for oneshots. that being said:</p>
+<h2>chaptered works</h2> 
+follow the above steps, with an exception: 
+<ul>
+<li>open the XHTML files 002 through 00[n = chapter count + 1]</li>
+<li>gut the files and replace with the corresponding chapter's html</li>
+</ul>
+<p>&nbsp;</p>
+<p>now, not to scare you, but: did you use any images?</p>
+<h1>images</h1>
+if you used, the epub may render the images using the external links, but it may not. and it won't be able to do so if the reading device is offline. 
+<p>another caveat: were the images in the CSS file or the HTML file?
+if they're in the HTML file, ao3 will download them to the epub for you and change out all img reference links/paths to &quot;img1.jpg&quot;, &quot;img2.jpg&quot;, etc. if they're in the CSS file, ao3 will ignore them. either way, it doesn't matter for you because YOU have the original HTML and CSS files, and have to do this all by hand anyway.</p>
+<p>to fix images, you'll have to:</p>
+<ul>
+<li>get ALL images</li>
+<li>put them in the &quot;img&quot; folder</li>
+<li>replace all references to the images (in both the XHTML files and the stylesheet.css file) from &quot;https://www.somehostingsite.com/filename.png&quot; to &quot;./img/filename.png&quot; (you're giving it a new path to find the image locally in the folder structure.)</li>
+</ul>
+<p>this might be very easy (if you used a single source for your images and used an intellegent file structure you can search and replace) or very annoying (if you didn't).</p>
+<h1>outro</h1> 
+there you have it, your very own custom html-ified offline fic. 
+<p>note that this file WILL NOT work on all epub readers. some of them have protections against this nonsense, or some of them just don't contain image support, etc.</p>
+<p>this WILL (tentatively) work on: calibre, lithium, and reasily. (i'll come back to edit this with a full list of good epub readers, probably)</p>
+<h1>(possible) future goals</h1>
+<ul>
+<li>writing a script to automate part/all of this process (difficulty: medium)</li>
+<li>writing a script to fix the images (difficulty: medium or extreme, depending on file structure/image naming scheme)</li>
+<li>turning that script into a browser plugin that can directly affect the epub as it's being downloaded from ao3  (difficulty: lol im not doing that, but <a href="https://archiveofourown.org/users/mystyrust/pseuds/mystyrust">mystyrust</a> might</li>
+<li>making epub from scratch (difficulty: medium. im halfway there, using ao3's was just so much easier)</li>
+<li>automate making epub from scratch (difficulty: ???. idk how to make my own epub yet, so who knows. would be nice for fic writers to generate epubs from their own works)</li>
+<li>idk other stuff maybe</li>
+</ul>
+<p>ok that's it, go forth and make epubs</p>
+
+    </body>
+</html>
+            

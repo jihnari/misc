@@ -7,28 +7,138 @@ idk if i want
 
 
 <style>
+
+  /* man maybe just make a full container view */
+  .yak-container{
+    width:100%;
+    max-width:500px;
+
+  }
+
+  .yak-topbar{
+    /* what if we just stole that image actually  */
+    width:95%;
+    height:55px;
+
+    background-color:#0CD5B1;
+    margin-bottom:-15px;
+    /* yeah just make a full container view */
+    padding-left:10px;
+
+
+    /* background: url("x") no-repeat; */
+  /* background-size:95% 70px; */
+
+  }
   
-  .yak{}
+  .yak{
+    border-bottom:1px solid #E0E0E0;
+    width:95%;
+
+    /* should be in the underlayers but ugh  */
+    /* could make an overarching view */
+    padding-left:10px;
+  
+    font-family: sans-serif;
+    /* background-color:pink; */
+  }
 
   .yak-tags{
     color:#0CD5B1;
+    font-weight:bold;
+    margin-bottom:0px;
+  }
+  .yak-text{
+    margin:7px 5px 7px 0px;
   }
   .yak-footer{
     color:#B9B9B9;
+    font-size:0.9em;
+    display: flex;
+  justify-content: space-between;
+
+  margin:0px 10px 5px 5px;
+  }
+  .yak-time{
+    color:#AFAFAF;
+  }
+  .yak-vote{
+    color:#757575;
+    position:relative;
+
+    /* margin-right:50px; */
   }
 
+  .yak-vote::before, .yak-vote::after{
+    content:"";
+    border-bottom-color: #757575;
+    border: solid #5F6266;
+    border-width: 0 1.5px 1.5px 0;
+    padding: 6px;
+    display: inline-block;
+    
+    /* absolute-ing should have fixed our shifting arrows issue but it did not for some reason  */
+    /* position:absolute; */
+  }  
+  /* up arrow(left) */
+  .yak-vote::before{
+    margin:0px 25px -5px 10px;
+    /* left:-35px;
+    bottom:-2px; */
+
+
+    transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+  }
+  /* down arrow(right) */
+  .yak-vote::after{
+    margin:0px 10px 3px 25px;
+    /* right:-35px;
+    bottom:6px; */
+
+    transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  }
+
+
+
+
 </style>
-<img width=100px src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia-cldnry.s-nbcnews.com%2Fimage%2Fupload%2Ft_fit-760w%2Cf_auto%2Cq_auto%3Abest%2Fstreams%2F2014%2FApril%2F140429%2F2D274905733172-yikyaksample.jpg"/>
+<img width="100%" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia-cldnry.s-nbcnews.com%2Fimage%2Fupload%2Ft_fit-760w%2Cf_auto%2Cq_auto%3Abest%2Fstreams%2F2014%2FApril%2F140429%2F2D274905733172-yikyaksample.jpg"/>
 
 
-<!-- make a table prob -->
-<!-- see:twitter? its uggo tho -->
+
+<!-- steal a high res img of the top bar -->
+<div class="yak-topbar"></div>
+
+
 <div class="yak">
   <p class="yak-tags">My GPA
   </p>
   <p class="yak-text">
 Help I've fallen and I can't get up
   </p>
-<p class="yak-footer"></p>
+<p class="yak-footer"> <span>59m ago</span> <span>2 replies</span><span class="yak-vote">32</span></p>
+
+</div>
+
+<div class="yak">
+  <p class="yak-text">
+I hate when profs get a sub instead of canceling class
+  </p>
+<p class="yak-footer"> <span>59m ago</span> <span class="yak-vote">32</span></p>
+</div>
+
+<div class="yak">
+  <p class="yak-text">
+Taking 2 hours to respond to every text doesnt make you seem cool and busy.. it's just annoying
+  </p>
+<p class="yak-footer"> <span>59m ago</span> <span class="yak-vote">100</span></p>
+</div>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 
 </div>
