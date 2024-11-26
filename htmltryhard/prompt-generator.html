@@ -1,0 +1,198 @@
+<!-- 
+
+NOTE:
+
+this is outdated.
+
+the one on the git webpage is the most current version.
+
+
+ -->
+
+<style>
+
+  button{
+    border: solid #008CBA 2px;
+  color: black;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 0px 30px 0px;
+  cursor: pointer;
+  background-color:white;
+  border-radius: 8px;
+  transition-duration: 0.4s;
+
+  }
+  button:hover{
+    background-color:#008CBA;
+    color:white;
+
+  }
+
+  table, tr, th {
+    /* border: 1px solid gray; */
+    /* border-collapse: collapse; */
+    border-spacing:0;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-style: normal;
+    font-weight:100;
+  }
+  tr, th {
+    border-bottom: 1px solid gray;
+    border-right:1px solid gray;
+  }
+
+  tr:first-of-type{
+    font-size:1.3em;
+    font-style:bold;
+    /* border: 1px solid black; */
+    border-bottom: 1px solid #008CBA;
+  }
+  th:first-of-type{
+    color:gray;
+    /* border-right: 1px solid #008CBA; */
+  }
+
+  table {
+    border-radius:8px;
+    border: solid #008CBA 2px;
+    /* border-collapse:separate; */
+  }
+  th{
+    /* padding-right:10px;
+    padding-left:10px; */
+    padding:5px 10px;
+    text-align:left;
+  } 
+
+  /* this works but isnt doing the th i think */
+  /* it might be obeying the table style already, but it doesnt have th at all somehow? unsure what js is doing over there */
+  .testtest {
+    border: 1px solid black;
+    border-radius:8px;
+    padding: 5px;
+  }
+
+
+  </style>
+
+<script>
+  const technical = ["reddit", "texting", "review website ", "social media", "personal blog ", "emails ", "CYOA", "newspaper articles"];
+  const vibes = ["public reveal", "online argument", "secret identity", "gamer AU", "wrong number", "college AU", "band AU", "outsider POV", "conspiracy theory"];
+
+
+  // version 1; hard coded
+  function displayGrid(){
+    //randomize arrays
+    //randomize technical
+    // for (let i = technical.length - 1; i >= 0; i--){
+    //   let j = (Math.floor(Math.random) * (i+1));
+    //   let k = technical [i];
+    //   technical[i] =technical[j];
+    //   technical[j]=k;
+    // }
+    technical.sort(function(){return 0.5 - Math.random()});
+    vibes.sort(function(){return 0.5 - Math.random()});
+
+
+    
+    //display arrays
+    document.getElementById("t0").innerHTML = technical[0];
+    document.getElementById("v0").innerHTML = vibes[0];
+    document.getElementById("t1").innerHTML = technical[1];
+    document.getElementById("v1").innerHTML = vibes[1];
+    document.getElementById("t2").innerHTML = technical[2];
+    document.getElementById("v2").innerHTML = vibes[2];
+    document.getElementById("t3").innerHTML = technical[3];
+    document.getElementById("v3").innerHTML = vibes[3];
+    document.getElementById("t4").innerHTML = technical[4];
+    document.getElementById("v4").innerHTML = vibes[4];
+  }
+
+
+
+  // version 2; programatic
+  function createTable(){
+    // delete old table?
+
+    // declare new table
+    var headers = ["technical prompt", "story prompt"];
+  var table = document.createElement("TABLE");  
+  
+  //style table how? 
+  table.setAttribute("class", "testtest");
+  // this breaks it for some reason
+  // th.setAttribute("class", "testtest");
+
+  //randomize arrays
+  // not true random, but 
+  technical.sort(function(){return 0.5 - Math.random()});
+  vibes.sort(function(){return 0.5 - Math.random()});
+
+      
+  for(var i = 0; i < technical.length; i++) {
+      var row = table.insertRow(i);
+      row.insertCell(0).innerHTML = technical[i];
+      row.insertCell(1).innerHTML = vibes[i];
+  }
+
+  var header = table.createTHead();
+  var headerRow = header.insertRow(0);
+  for(var i = 0; i < headers.length; i++) {
+      headerRow.insertCell(i).innerHTML = headers[i];
+  }
+
+  document.body.append(table);
+  }
+
+</script>
+
+<body>
+<button onclick="displayGrid()">generate prompt list</button>
+
+<table>
+<tr>
+  <th></th>
+<th>technical prompt</th>
+<th>story prompt</th>
+</tr>
+<tr>
+  <th>day 1</th>
+<th><span id="t0">&nbsp;</span></th>
+<th><span id="v0">&nbsp;</span></th>
+</tr>
+<tr>
+  <th>day 2</th>
+<th><span id="t1">&nbsp;</span></th>
+<th><span id="v1">&nbsp;</span></th>
+</tr>
+<tr>
+  <th>day 3</th>
+<th><span id="t2">&nbsp;</span></th>
+<th><span id="v2">&nbsp;</span></th>
+</tr>
+<tr>
+  <th>day 4</th>
+<th><span id="t3">&nbsp;</span></th>
+<th><span id="v3">&nbsp;</span></th>
+</tr>
+<tr>
+  <th>day 5</th>
+<th><span id="t4">&nbsp;</span></th>
+<th><span id="v4">&nbsp;</span></th>
+</tr>
+<!-- <th>bonus day</th>
+<th>html guide</span></th>
+<th>multi media</span></th>
+</tr> -->
+
+</table>
+
+<!-- <button onclick="createTable()">generate table (test)</button> -->
+
+
+
+</body>
