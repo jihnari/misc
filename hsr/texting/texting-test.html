@@ -11,7 +11,12 @@ consider: alt chat boxes (styles)
 + if possible, sibling class it up with the characters, so that they can be used for either to or from 
 + emojis (2 options: hard code them all, or. dont dont do that. just one image class that formats whatever image it's given correctly)(both are now available)
 + image attachements (ghetto but done)
-get a new x 
+get a new x (transparent)
++ compress and clean code 
+get better pfp rscs 
+align/size the pfps correctly
+alert box/line 
+"could not be delivered"? 
 
 
 */
@@ -55,34 +60,17 @@ p {
   border-radius: 0px 33px 0px 0px;
   border-bottom:rgb(174, 174, 174) solid 1px;
   background-color:#D8DDDE;
-  /* #D8DDDE; */
   position:relative;
-  /* padding:10px 10px 5px 20px; */
-
   /* for outside chat view  */
   width:95%;
   max-width:400px;
   margin-left:10;
-  /* margin-bottom:-5px; */
   font-family: "Paybooc OTF Medium", sans-serif;
-
-  /* z-index:2;  */
-
-  /* for inside chat-view */
-  /* position:sticky;
-  top: 0;
-  /* box-shadow:-10px 10px 0px 0px #AD7B9A; */
-  /* box-shadow: -6px 14px 0px 0px #FFFFFF, 
--10px 10px 0px 0px #D8DDDE; */
-
-
-
-  /* box-shadow: -4px 20px 0px 0px #FFFFFF,-5px 5px 0px -1px #FFFFFF, 
--5px 5px 0px 0px #D8DDDE; */
-box-shadow:-5px 5px 0px -1px #FFFFFF, 
+  box-shadow:-5px 5px 0px -1px #FFFFFF, 
 -5px 5px 0px 0px #D8DDDE;
 
 }
+/* the x button */
 .chat-header::after{
   content:'';
   position:absolute;
@@ -91,7 +79,7 @@ box-shadow:-5px 5px 0px -1px #FFFFFF,
   width:35px;
   height:35px;
 
-  /* swap this out */
+  /* swap this out for a transparent one if get the moxie */
   background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/img/chat/new-x.png") no-repeat;
   background-size:35px 35px;
 }
@@ -101,15 +89,12 @@ box-shadow:-5px 5px 0px -1px #FFFFFF,
   font-size:1.2em;
   font-weight:bold;
   position:relative;
-
-  /* padding:10px 10px 5px 20px; */
   padding-top:10px;
   padding-left:20px;
 }
 .chat-subtitle{
   color:gray;
   font-size:.7em;
-
   padding-top:5px;
   padding-bottom:5px;
   padding-left:20px;
@@ -124,7 +109,7 @@ box-shadow:-5px 5px 0px -1px #FFFFFF,
   position: relative;
   width:95%;
   max-width:400px;
-  /* did i want this scrollable?? */
+  /* currently scrollable but around here is the stuff to change if you don't want scrollable */
   height:80%;
   max-height:450px;
   
@@ -133,23 +118,7 @@ box-shadow:-5px 5px 0px -1px #FFFFFF,
   scrollbar-width: 5px;
   scrollbar-color:gray lightgray;
 
-  /* border-width: 1px;
-  border-radius: 15px;
-
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
-  margin-bottom: 3px; */
-
   margin-left:10px;
-  /* margin-right:20px; */
-
-  /* border attempt */
-    /* outline: 2px solid #D8DDDE; 
-    outline-offset:8px;
-  box-sizing: border-box; */
-  /* box-shadow: 0 -1px 0 #000; */
-/* box-shadow:-10px 10px 0px -3px #FFFFFF, 
--10px 10px 0px 0px #D8DDDE; */
 
 box-shadow:-4px -0px 0px 0px #FFFFFF, 
 -5px 5px 0px -1px #FFFFFF, 
@@ -158,36 +127,9 @@ box-shadow:-4px -0px 0px 0px #FFFFFF,
 }
 
 
-/* maybe do two */
-.pretty-line{
-  position: absolute; 
-  top:0;
-  left:-10px;
-
-/* top: -10px;
-  left: -10px;
-  z-index: 10; */
-
-  /* left: -18px; */
-  /* bottom: -8px; */
-  /* margin-left:-8px; */
-  /* margin-bottom:-8px; */
-  /* margin-top:10px; */
-  /* top:15px; */
-  /* border: 2px solid #D8DDDE;  */
-  border:2px solid red;
-  /* border-radius: 0px 33px 0px 0px;  */
-  box-sizing: border-box;
-
-  width:100%;
-  /* max-width:400px; */
-  /* did i want this scrollable?? */
-  height:80%;
-  max-height:450px;
-  z-index:5;
-}
 
 /* containers for the message boxes */
+/* also formats the username and pfp surroundings */
 .msg-right-container, .msg-left-container{
   display: flex; 
   align-items: flex-start; 
@@ -196,7 +138,6 @@ box-shadow:-4px -0px 0px 0px #FFFFFF,
   margin-top: 10px; 
   padding:0px 5px;
 }
-
 .msg-right-container{
   justify-content: right; 
   margin-right: 45px; 
@@ -205,19 +146,44 @@ box-shadow:-4px -0px 0px 0px #FFFFFF,
   justify-content: left; 
   margin-left: 45px; 
 }
+
+/* for the pfp */
+.msg-right-container::before, .msg-left-container::before{
+  margin-top:-12px;
+  content:'';
+  /* pfp size */
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  display: inline-block;
+  position:absolute;
+
+  /* in case of no/broken pfp image */
+  /* also just the default bg color for the transparent pfp pngs */
+  background-color: rgb(58, 58, 58) !important;
+  
+}
+/* for the username */
+.msg-right-container::after, .msg-left-container::after{
+  position:absolute;
+  font-size:.9em;
+  color:rgb(112, 114, 119);
+  margin-top:-10px;
+}
 /* this looks like nonsense but it's to align the username and pfp */
-.msg-left-container::before{
-  margin-left:-45px;
-}
-.msg-left-container::after{
-  margin-left:5px;
-}
 .msg-right-container::before{
   margin-right:-45px;
 }
 .msg-right-container::after{
-  margin-right:5px;
+  margin-right:10px;
 }
+.msg-left-container::before{
+  margin-left:-45px;
+}
+.msg-left-container::after{
+  margin-left:10px;
+}
+
 
 /* img attachment */
 /* currently designed for landscape, not portrait */
@@ -235,7 +201,7 @@ box-shadow:-4px -0px 0px 0px #FFFFFF,
   max-width: 75%;
   
   padding: 7px 14px;
-  margin:10px 5px;
+  margin:10px 10px;
 }
 .msg-right{
   border-top-right-radius: 0;
@@ -250,35 +216,17 @@ box-shadow:-4px -0px 0px 0px #FFFFFF,
   box-shadow: rgb(174, 174, 174) -1px 2px 0px;
 }
 
-/* for pfp */
-.user::before{
-  content:'';
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  display: inline-block;
-  position:absolute;
-
-  /* in case of no/broken pfp image */
-  background-color: rgb(58, 58, 58);
-}
-/* for username */
-.user::after{
-  position:absolute;
-  font-size:.9em;
-  color:rgb(112, 114, 119);
-  margin-top:-10px;
-}
 
 
 /* new character template */
-/* rename this class */
+/* rename this class to the character's name */
 .character::before{
   /* replace this link with a link to the character's pfp */
+  /* pfp must be a perfect square or stretching will occur */
   background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/4/4e/Profile_Picture_Wanted_Poster.png") no-repeat;
   background-size:40px 40px;
 }
-/* rename this class */
+/* rename this class to the character's name */
 .character::after{
   /* replace with the character's name */
   content:"character";
@@ -287,8 +235,9 @@ box-shadow:-4px -0px 0px 0px #FFFFFF,
 
 /* characters */
 .dan-heng::before{
-  background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/4/47/Profile_Picture_Dan_Heng_-_Welcome.png") no-repeat;
-  background-size:40px 40px;
+  /* background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/img/chat/pfp/danheng.webp") no-repeat; */
+  background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/1/1a/Character_Dan_Heng_Icon.png") no-repeat;
+  background-size:45px 45px;
 }
 .dan-heng::after{
   content:"Dan Heng";
@@ -296,34 +245,34 @@ box-shadow:-4px -0px 0px 0px #FFFFFF,
 
 .caelus::before{
   background: url("") no-repeat;
-  background-size:40px 40px;
+  background-size:45px 45px;
 }
 .caelus::after{
   content:"Caelus";
 }
 
 .stelle::before{
-  background: url("") no-repeat;
-  background-size:40px 40px;
+  background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/4/4e/Profile_Picture_Wanted_Poster.png") no-repeat;
+  background-size:45px 45px;
 }
 .stelle::after{
   content:"Stelle";
 }
 
-
 .jing-yuan::before{
   background: url("") no-repeat;
-  background-size:40px 40px;
+  background-size:45px 45px;
 }
 .jing-yuan::after{
   content:"Jing Yuan";
 }
 
-
+/* 
 funny pfp alts 
 https://static.wikia.nocookie.net/houkai-star-rail/images/0/07/Profile_Picture_Jing_Yuan_-_In_Leisure.png
 https://static.wikia.nocookie.net/houkai-star-rail/images/4/4e/Profile_Picture_Wanted_Poster.png
-https://static.wikia.nocookie.net/houkai-star-rail/images/4/47/Profile_Picture_Dan_Heng_-_Welcome.png
+https://static.wikia.nocookie.net/houkai-star-rail/images/4/47/Profile_Picture_Dan_Heng_-_Welcome.png 
+*/
 
 
 </style> 
@@ -340,43 +289,45 @@ https://static.wikia.nocookie.net/houkai-star-rail/images/4/47/Profile_Picture_D
 
     <p>&nbsp;</p>
 
-    <div class="msg-right-container user stelle">
+    <div class="msg-right-container stelle">
       <img class="attachment" src="https://static.wikia.nocookie.net/houkai-star-rail/images/3/3e/Shop_Ferdinand.png">
     </div>
     
-    <div class="msg-right-container user stelle">
+    <div class="msg-right-container stelle">
       <p class="msg-right">
     I will head over immediately
       </p>
     </div>
 
 
-    <div class="msg-right-container right user stelle">
+    <!-- i thiiink you dont need this floating 'right' but im not going to investigate rn -->
+    <div class="msg-right-container right stelle">
       <p class="sticker pompom-heart"></p>
     </div>
 
 
 
-    <div class="msg-left-container user dan-heng">
+    <div class="msg-left-container dan-heng">
       <p class="sticker pompom-question"></p>
       </img>
     </div>
     
-    <div class="msg-left-container user jing-yuan">
+    <div class="msg-left-container jing-yuan">
       <p class="msg-left">
     You don't have to rush.
       </p>
     </div>
 
 
-  <div class="msg-left-container user jing-yuan">
+  <div class="msg-left-container jing-yuan">
     <p class="msg-left">
       Haha, excellent. it wraps fine probably i dont actually know oh look see fine 
       </p>
   </div>
 
-  
-  <div class="msg-right-container right user stelle">
+
+  <!-- same here, that right seems superfluous -->
+  <div class="msg-right-container right stelle">
     <img class="sticker" src="https://static.wikia.nocookie.net/houkai-star-rail/images/7/71/Pom-Pom_Sticker_01.png">
   </img>
     </div>
