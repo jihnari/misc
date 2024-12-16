@@ -1,0 +1,71 @@
+<style>
+
+  body{ 
+    color: #000000;
+    font-family: "courier-std", courier, monospace;
+    font-weight: bold;
+    overflow-wrap: break-word;
+    background-color:#EFEFEF;
+  }
+
+.o_chat-container {
+  border: 1px dashed gray;
+  padding: 1px;
+}
+
+.o_chat-log{
+  padding-right: 15px;
+    padding-left: 15px;
+  font-size: 20px;
+  line-height: 1.35;
+}
+
+summary::-webkit-details-marker {display: none;}
+summary{
+  text-align:center;
+  text-decoration: none;
+  list-style: none;
+}
+.log-button{
+  cursor: pointer;
+  display:inline-block;
+  background-color:lightgray;
+  border:1px black solid;
+  border-radius:4px;
+  padding:2px 5px;
+
+}
+.log-button::after{
+  content:"Show Pester Log";
+}
+
+.log-button:hover{
+  background-color: #777777;
+}
+body:has(details.o_chat-log[open]) .log-button::after{
+    content:"Hide Pester Log";
+
+  }
+
+
+  </style>
+
+
+<html>
+
+<div class="o_chat-container">
+
+  <details class="o_chat-log">
+    <summary><span class=log-button></span></summary>
+
+    <br><span style="color: #e00707">TG: hey so what sort of insane loot did you rake in today</span>
+<br><span style="color: #0715cd">EB: i got a little monsters poster, it's so awesome. i'm going to watch it again today, the applejuice scene was so funny.</span>
+<br><span style="color: #e00707">TG: oh hell that is such a coincidence i just found an unopened container of apple juice in my closet it is like fucking christmas up in here</span>
+<br><span style="color: #0715cd">EB: ok thats fine, but i just have one question and then a word of caution. have you ever seen a movie called little monsters starring howie mandel and fred savage?</span>
+<br><span style="color: #e00707">TG: but </span>
+  </div>
+
+</div>
+
+
+</html>

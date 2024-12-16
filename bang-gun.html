@@ -1,0 +1,64 @@
+<style>
+  summary::-webkit-details-marker {display: none;}
+  img{
+    width:100%;
+  }
+  .gun summary{
+  background-color:darkgray;
+  list-style: none;
+  border: solid black 1px;
+  color: black;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  margin-left:120px;
+  }
+
+  body:has(details.gun[open]) .real-gun{
+  display:none;
+  }
+  body:has(details.gun[open]) summary.gun{
+  display:none;
+  }
+  .fake-gun{
+    display:none;
+  }
+  body:has(details.gun[open]) .fake-gun{
+  display:inline-block;
+  }
+</style>
+
+
+<html> 
+
+<p>"You'll have to do it. You'll have to shoot him."</p>
+
+<p>Sirius looks helplessly at the gun in his hands. "I..."</p>
+
+<p>"You know the drill by now, it isn't permenant, you just need to shake your system. Shoot him, Sirius."</p>
+
+<p>Sirius' hands shake but he raises the gun and puts his finger on the trigger.</p> 
+
+<p>Is this really the only way?</p>
+
+<p><b>Pull the trigger?</b></p>
+
+<details class="gun"> 
+  <summary class="gun">
+    yes.
+  </summary>
+</details>
+
+<img class="real-gun" src="https://cdn.britannica.com/96/176196-050-EFC5E6A6/Glock-pistol.jpg"/>
+<img class="fake-gun" src="https://as2.ftcdn.net/v2/jpg/02/04/10/29/1000_F_204102936_yuZpnfbyGBp3WakhsXlZWSWhTpbQi8eW.jpg"/>
+
+<div class="fake-gun">
+  <p>&nbsp;</p>
+  <p>The 'bang' flag that comes out of the gun is more startling than a bullet would have been, and Sirius finds himself dropping the gun entirely.</p>
+
+</div>
+</html>
