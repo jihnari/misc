@@ -11,12 +11,13 @@ consider: alt chat boxes (styles)
 + if possible, sibling class it up with the characters, so that they can be used for either to or from 
 + emojis (2 options: hard code them all, or. dont dont do that. just one image class that formats whatever image it's given correctly)(both are now available)
 + image attachements (ghetto but done)
-get a new x (transparent)
++ get a new x (transparent)
 + compress and clean code 
 get better pfp rscs 
 align/size the pfps correctly
-alert box/line 
-"could not be delivered"? 
++ alert box/line 
++ check margins on ao3
+
 
 
 */
@@ -38,6 +39,31 @@ alert box/line
 .pompom-question{
   background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/a/aa/Pom-Pom_Sticker_15.png") no-repeat;
   background-size:100px 100px;
+}
+
+/* alert */
+.alert{
+  color:#9C9C9D;
+  font-size:0.8em;
+  display: block;
+
+  margin:20px 0px;
+
+}
+.alert::before{ 
+  content:"";
+  display:inline-block;
+  background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/e/ed/Icon_Dialogue_Warning.png") no-repeat;
+  background-size:20px 20px;
+  width:20px;
+  height:20px;
+  vertical-align:bottom;
+
+  /* background-color:gray; */
+
+  padding-right:6px;
+  
+
 }
 
 
@@ -64,18 +90,20 @@ p {
   /* for outside chat view  */
   width:95%;
   max-width:400px;
-  margin-left:10;
   font-family: "Paybooc OTF Medium", sans-serif;
   box-shadow:-5px 5px 0px -1px #FFFFFF, 
--5px 5px 0px 0px #D8DDDE;
-
+  -5px 5px 0px 0px #D8DDDE;
+  
+  
+  /* ao3 ignores this which creates problems. so its been commented out both from here and from .chat-view */
+  /* margin-left:10px; */
 }
 /* the x button */
 .chat-header::after{
   content:'';
   position:absolute;
-  right:10;
-  bottom:5;
+  right:10px;
+  bottom:5px;
   width:35px;
   height:35px;
 
@@ -118,7 +146,8 @@ p {
   scrollbar-width: 5px;
   scrollbar-color:gray lightgray;
 
-  margin-left:10px;
+  /* commented out bc it messes with the layot on ao3 */
+  /* margin-left:10px; */
 
 box-shadow:-4px -0px 0px 0px #FFFFFF, 
 -5px 5px 0px -1px #FFFFFF, 
@@ -140,16 +169,16 @@ box-shadow:-4px -0px 0px 0px #FFFFFF,
 }
 .msg-right-container{
   justify-content: right; 
-  margin-right: 45px; 
+  margin-right: 55px; 
 }
 .msg-left-container{
   justify-content: left; 
-  margin-left: 45px; 
+  margin-left: 55px; 
 }
 
 /* for the pfp */
 .msg-right-container::before, .msg-left-container::before{
-  margin-top:-12px;
+  margin-top:-8px;
   content:'';
   /* pfp size */
   height: 45px;
@@ -198,7 +227,7 @@ box-shadow:-4px -0px 0px 0px #FFFFFF,
   color: black;
   width:fit-content;
   position:relative;
-  max-width: 75%;
+  max-width: 70%;
   
   padding: 7px 14px;
   margin:10px 10px;
@@ -244,7 +273,7 @@ box-shadow:-4px -0px 0px 0px #FFFFFF,
 }
 
 .caelus::before{
-  background: url("") no-repeat;
+  background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/4/4e/Profile_Picture_Wanted_Poster.png") no-repeat;
   background-size:45px 45px;
 }
 .caelus::after{
@@ -260,7 +289,7 @@ box-shadow:-4px -0px 0px 0px #FFFFFF,
 }
 
 .jing-yuan::before{
-  background: url("") no-repeat;
+  background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/0/07/Profile_Picture_Jing_Yuan_-_In_Leisure.png") no-repeat;
   background-size:45px 45px;
 }
 .jing-yuan::after{
@@ -279,6 +308,7 @@ https://static.wikia.nocookie.net/houkai-star-rail/images/4/47/Profile_Picture_D
 
 <body>
 
+  <figure>
 
 <div class="chat-header">
       <p class="chat-title">Jing Yuan</p>
@@ -299,6 +329,9 @@ https://static.wikia.nocookie.net/houkai-star-rail/images/4/47/Profile_Picture_D
       </p>
     </div>
 
+    <div class="alert" align="center">testing testing 123</div>
+
+
 
     <!-- i thiiink you dont need this floating 'right' but im not going to investigate rn -->
     <div class="msg-right-container right stelle">
@@ -306,6 +339,11 @@ https://static.wikia.nocookie.net/houkai-star-rail/images/4/47/Profile_Picture_D
     </div>
 
 
+    <div class="msg-right-container stelle">
+      <p class="msg-right">
+    I will head over immediately post hast very long message so i  can see the other end
+      </p>
+    </div>
 
     <div class="msg-left-container dan-heng">
       <p class="sticker pompom-question"></p>
@@ -345,6 +383,6 @@ https://static.wikia.nocookie.net/houkai-star-rail/images/4/47/Profile_Picture_D
     </div>
   </div>
 
-
+  </figure>
 
 </body>
