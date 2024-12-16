@@ -53,13 +53,21 @@ align/size the pfps correctly
 .alert::before{ 
   content:"";
   display:inline-block;
-  background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/e/ed/Icon_Dialogue_Warning.png") no-repeat;
-  background-size:20px 20px;
-  width:20px;
-  height:20px;
-  vertical-align:bottom;
 
-  /* background-color:gray; */
+  /* this image (from the wiki) works with vert align, my custom transparent png (more accurate than the wiki) does not */
+  /* background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/e/ed/Icon_Dialogue_Warning.png") no-repeat;  
+  vertical-align:bottom;
+  vertical-align:sub; */
+
+  background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/img/chat/hsr-alert-icon.png") no-repeat;
+  background-size:23px 23px;
+  width:23px;
+  height:23px;
+
+  /* ***havent checked with ao3 yet */
+  position:absolute;
+  margin-top:-4px;
+  margin-left:-25px;
 
   padding-right:6px;
   
@@ -108,7 +116,7 @@ p {
   height:35px;
 
   /* swap this out for a transparent one if get the moxie */
-  background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/img/chat/new-x.png") no-repeat;
+  background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/img/chat/hsr-x.png") no-repeat;
   background-size:35px 35px;
 }
 
