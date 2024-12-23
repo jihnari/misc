@@ -6,18 +6,19 @@ todo:
 + use inheritance to cut down on space 
 + alt, just use two? msg box then which character?
 + add in font somewhere at a master level 
-consider: putting chat in a pretty box - update; this is going bad
++ consider: putting chat in a pretty box - update; this is going bad
 consider: alt chat boxes (styles)
 + if possible, sibling class it up with the characters, so that they can be used for either to or from 
 + emojis (2 options: hard code them all, or. dont dont do that. just one image class that formats whatever image it's given correctly)(both are now available)
 + image attachements (ghetto but done)
 + get a new x (transparent)
 + compress and clean code 
-get better pfp rscs 
-align/size the pfps correctly
+- get better pfp rscs 
+- align/size the pfps correctly
+** fixed the sizing issue instead, the pfp imgs are fine now
 + alert box/line 
 + check margins on ao3
-
++ make it work without figure (it was that dumb ao3 parser delete empty p's function, changed them to spans it's fine now)
 
 
 */
@@ -32,6 +33,7 @@ align/size the pfps correctly
 }
 
 /* hard-coded stickers */
+/* you can find a full list of stickers here: https://honkai-star-rail.fandom.com/wiki/Category:Stickers */
 .pompom-heart{
   background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/7/71/Pom-Pom_Sticker_01.png") no-repeat;
   background-size:100px 100px;
@@ -47,7 +49,7 @@ align/size the pfps correctly
   font-size:0.8em;
   display: block;
 
-  margin:20px 0px;
+  margin:20px 20px 20px 40px;
 
 }
 .alert::before{ 
@@ -64,7 +66,6 @@ align/size the pfps correctly
   width:23px;
   height:23px;
 
-  /* ***havent checked with ao3 yet */
   position:absolute;
   margin-top:-4px;
   margin-left:-25px;
@@ -81,7 +82,7 @@ p {
   margin:0;
 }
 
-/* future project */
+/* potential future project */
 /* recent messages view? */
 .contacts-view{
   /* background-color:aliceblue; */
@@ -91,31 +92,29 @@ p {
 
 
 .chat-header{
+  width:95%;
+  max-width:400px;
+  margin:0 10px;
+  position:relative;
+  font-family: "Paybooc OTF Medium", sans-serif;
+
   border-radius: 0px 33px 0px 0px;
   border-bottom:rgb(174, 174, 174) solid 1px;
   background-color:#D8DDDE;
-  position:relative;
-  /* for outside chat view  */
-  width:95%;
-  max-width:400px;
-  font-family: "Paybooc OTF Medium", sans-serif;
+
+  /* pretty outline */
   box-shadow:-5px 5px 0px -1px #FFFFFF, 
   -5px 5px 0px 0px #D8DDDE;
-  
-  
-  /* ao3 ignores this which creates problems. so its been commented out both from here and from .chat-view */
-  /* margin-left:10px; */
 }
 /* the x button */
 .chat-header::after{
   content:'';
   position:absolute;
   right:10px;
-  bottom:5px;
+  bottom:10px;
   width:35px;
   height:35px;
 
-  /* swap this out for a transparent one if get the moxie */
   background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/img/chat/hsr-x.png") no-repeat;
   background-size:35px 35px;
 }
@@ -150,12 +149,12 @@ p {
   max-height:450px;
   
   overflow-y:scroll;
-  /* may not be supported */
+  /* may not be supported on all browsers */
   scrollbar-width: 5px;
   scrollbar-color:gray lightgray;
 
-  /* commented out bc it messes with the layot on ao3 */
-  /* margin-left:10px; */
+  margin:0 10px;
+  padding-top:10px;
 
 box-shadow:-4px -0px 0px 0px #FFFFFF, 
 -5px 5px 0px -1px #FFFFFF, 
@@ -195,8 +194,8 @@ box-shadow:-4px -0px 0px 0px #FFFFFF,
   display: inline-block;
   position:absolute;
 
-  /* in case of no/broken pfp image */
-  /* also just the default bg color for the transparent pfp pngs */
+  /* in case of no pfp image */
+  /* also the default bg color for the transparent pfp pngs */
   background-color: rgb(58, 58, 58) !important;
   
 }
@@ -261,7 +260,8 @@ box-shadow:-4px -0px 0px 0px #FFFFFF,
   /* replace this link with a link to the character's pfp */
   /* pfp must be a perfect square or stretching will occur */
   background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/4/4e/Profile_Picture_Wanted_Poster.png") no-repeat;
-  background-size:40px 40px;
+  background-size:45px 45px;
+  background-size:cover;
 }
 /* rename this class to the character's name */
 .character::after{
@@ -272,16 +272,18 @@ box-shadow:-4px -0px 0px 0px #FFFFFF,
 
 /* characters */
 .dan-heng::before{
-  /* background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/img/chat/pfp/danheng.webp") no-repeat; */
-  background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/1/1a/Character_Dan_Heng_Icon.png") no-repeat;
+  background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/img/chat/pfp/danheng.webp") no-repeat;
+  /* background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/1/1a/Character_Dan_Heng_Icon.png") no-repeat; */
+
   background-size:45px 45px;
+  background-size:cover;
 }
 .dan-heng::after{
   content:"Dan Heng";
 }
 
 .caelus::before{
-  background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/4/4e/Profile_Picture_Wanted_Poster.png") no-repeat;
+  background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/img/chat/pfp/caelusFire.webp") no-repeat;
   background-size:45px 45px;
 }
 .caelus::after{
@@ -291,18 +293,40 @@ box-shadow:-4px -0px 0px 0px #FFFFFF,
 .stelle::before{
   background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/4/4e/Profile_Picture_Wanted_Poster.png") no-repeat;
   background-size:45px 45px;
+  background-size:cover;
 }
 .stelle::after{
   content:"Stelle";
 }
 
 .jing-yuan::before{
-  background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/0/07/Profile_Picture_Jing_Yuan_-_In_Leisure.png") no-repeat;
+  background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/img/chat/pfp/jingyuan.webp") no-repeat;
   background-size:45px 45px;
+  background-size:cover;
 }
 .jing-yuan::after{
   content:"Jing Yuan";
 }
+
+.march::before{
+  background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/img/chat/pfp/march7th.webp") no-repeat;
+  background-size:45px 45px;
+  background-size:cover;
+}
+.march::after{
+  content:"March 7th";
+}
+
+.blade::before{
+  background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/img/chat/pfp/blade.webp") no-repeat;
+  background-size:45px 45px;
+  background-size:cover;
+}
+.blade::after{
+  content:"Blade";
+}
+
+
 
 /* 
 funny pfp alts 
@@ -316,7 +340,6 @@ https://static.wikia.nocookie.net/houkai-star-rail/images/4/47/Profile_Picture_D
 
 <body>
 
-  <figure>
 
 <div class="chat-header">
       <p class="chat-title">Jing Yuan</p>
@@ -324,12 +347,16 @@ https://static.wikia.nocookie.net/houkai-star-rail/images/4/47/Profile_Picture_D
     </div>
 
   <div class="chat-view">
-
-    <p>&nbsp;</p>
+    <div class="msg-left-container march">
+      <span class="sticker pompom-question"></span>
+    </div>
 
     <div class="msg-right-container stelle">
       <img class="attachment" src="https://static.wikia.nocookie.net/houkai-star-rail/images/3/3e/Shop_Ferdinand.png">
     </div>
+
+    
+    <div class="alert" align="center">The person you were trying to reach is unavailable. Please try again later.</div>
     
     <div class="msg-right-container stelle">
       <p class="msg-right">
@@ -340,10 +367,8 @@ https://static.wikia.nocookie.net/houkai-star-rail/images/4/47/Profile_Picture_D
     <div class="alert" align="center">testing testing 123</div>
 
 
-
-    <!-- i thiiink you dont need this floating 'right' but im not going to investigate rn -->
-    <div class="msg-right-container right stelle">
-      <p class="sticker pompom-heart"></p>
+    <div class="msg-right-container stelle">
+      <span class="sticker pompom-heart"></span>
     </div>
 
 
@@ -354,8 +379,7 @@ https://static.wikia.nocookie.net/houkai-star-rail/images/4/47/Profile_Picture_D
     </div>
 
     <div class="msg-left-container dan-heng">
-      <p class="sticker pompom-question"></p>
-      </img>
+      <span class="sticker pompom-question"></span>
     </div>
     
     <div class="msg-left-container jing-yuan">
@@ -373,7 +397,7 @@ https://static.wikia.nocookie.net/houkai-star-rail/images/4/47/Profile_Picture_D
 
 
   <!-- same here, that right seems superfluous -->
-  <div class="msg-right-container right stelle">
+  <div class="msg-right-container stelle">
     <img class="sticker" src="https://static.wikia.nocookie.net/houkai-star-rail/images/7/71/Pom-Pom_Sticker_01.png">
   </img>
     </div>
@@ -390,7 +414,5 @@ https://static.wikia.nocookie.net/houkai-star-rail/images/4/47/Profile_Picture_D
 
     </div>
   </div>
-
-  </figure>
 
 </body>
