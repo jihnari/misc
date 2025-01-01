@@ -1,3 +1,6 @@
+<!-- this is out of date but i cant find the up-to-date version and im scared. if you ever try to use this to update ao3, maybe back up the ao3 version first. -->
+
+<!-- YEAH THIS IS SUPER OUTDATED BRO the intro is completely different now. i dont know where the og is 😟 -->
 
 <!DOCTYPE html>
 <html>
@@ -179,7 +182,8 @@ so, you want to make a fancy EPUB. at a simple, high level:
 <p>&nbsp;</p>
 
 <p><b>disclaimer:</b> the above is the super fast super hack version, and only works for oneshots. that being said:</p>
-<h2 id="chaptered-works">chaptered works</h2> 
+
+<h4>chaptered works <a name="chaptered-works"></a></h4> 
 follow the above steps, with an exception: 
 <ul>
 <li>open the XHTML files 002 through 00[n = chapter count + 1]</li>
@@ -187,7 +191,7 @@ follow the above steps, with an exception:
 </ul>
 <p>&nbsp;</p>
 <p>now, not to scare you, but: did you use any images?</p>
-<h1 id="images">images</h1>
+<h1>images <a name="images"></h1>
 if you used, the epub may render the images using the external links, but it may not. and it won't be able to do so if the reading device is offline. 
 <p>another caveat: were the images in the CSS file or the HTML file?
 if they're in the HTML file, ao3 will download them to the epub for you and change out all img reference links/paths to &quot;img1.jpg&quot;, &quot;img2.jpg&quot;, etc. if they're in the CSS file, ao3 will ignore them. either way, it doesn't matter for you because YOU have the original HTML and CSS files, and have to do this all by hand anyway.</p>
