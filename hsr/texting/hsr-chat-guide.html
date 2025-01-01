@@ -1,0 +1,400 @@
+<!-- <link rel="stylesheet" type="text/css" href="..\css\qab2.css"> -->
+<link rel="stylesheet" href="hsr-chat-skin.html">
+<!-- honestly didnt expect the above to work lol  -->
+
+<!-- https://raw.githubusercontent.com/jihnari/misc/refs/heads/main/hsr/texting/hsr-chat-skin.html -->
+
+<style>
+
+/* remember to move this to the hsr skin  */
+pre{    
+  background:#F6F6F6;
+  display:block;
+  padding:15px;
+  white-space: pre-wrap;
+  word-wrap: break-word; 
+
+}
+
+  </style> 
+
+<html>
+    <body>
+        <p>How to Make Honkai: Star Rail Chat Messages</p>
+        <p>a/n: someone else has already made an hsr chat skin (and tutorial), but i didn't find out until AFTER i was done coding this. mine does a few things differently and caters to my neruotic need for modularity, so i decided to upload this anyway.</p>
+<p>This is a tutorial on how to mimic HSR chat messages on AO3.</p>
+//**figure out why it looks like that lol. might just be the way it was imported and it'll look fine on ao3. 
+
+<p>&nbsp;</p>
+
+<div class="chat-container">
+  <div class="chat-header" >
+        <p class="chat-title">Jing Yuan</p>
+    <p class="chat-subtitle">I'm not at the Seat of Divine Foresight </p>
+      </div>
+  
+    <div class="chat-view">
+  
+  
+      <div class="msg-left-container jing-yuan">
+        <p class="msg-left">
+          Pardon me, Stelle, but I wonder whether you have the time to come to the Seat of Divine Foresight right now for a game of Xianzhou starchess?
+        </p>
+      </div>
+  
+      <div class="msg-right-container stelle">
+        <p class="msg-right">
+          Can I even get inside the Seat of Divine Foresight?
+        </p>
+      </div>
+      <div class="msg-left-container jing-yuan">
+        <p class="msg-left">
+          I will simply let the Cloud Knights know.
+        </p>
+      </div>
+  
+      <div class="msg-right-container stelle">
+        <p class="msg-right">
+          Let me think...
+        </p>
+        <p class="msg-right">
+          I really don't know how to play. I don't want to ruin your mood, general
+        </p>
+      </div>
+  
+      <div class="msg-left-container jing-yuan">
+        <p class="msg-left">
+          I apologize. Did I scare you? In that case, I'll tell you the truth of what's happening without fear of you laughing at me, Stelle
+        </p>
+        <p class="msg-left">
+        The teahouse sent over a collection of new releases from Immortal's Delight, but I'm the only person in the Seat of Divine Foresight right now. I can't finish these teas, and I didn't want to refuse the teahouse's goodwill...
+        </p>
+      </div>
+  
+  
+          <div class="msg-right-container stelle">
+        <p class="msg-right">
+          I will head over immediately to help, general!
+        </p>
+        <p class="sticker pompom-heart"></p>
+      </div>
+  
+      <div class="alert" align="center">The person you were trying to reach is unavailable. Please try again later.</div>
+  
+      <div class="msg-right-container stelle">
+        <p class="sticker pompom-question"></p>
+        <p class="msg-right">
+          General?
+        </p>
+      </div>
+  
+      <div class="alert" align="center">The person you were trying to reach is unavailable. Please try again later.</div>
+  
+      <div class="msg-right-container stelle">
+        <p class="msg-right">
+          But what about the tea?
+        </p>
+      </div>
+  
+      <div class="alert" align="center">The person you were trying to reach is unavailable. Please try again later.</div>
+  
+      <div class="msg-right-container stelle">
+        <p class="sticker wubbaboo-cry"></p>
+      </div>
+    </div>
+</div>
+    
+    <p>&nbsp;</p>
+
+<p>This skin will likely require you to do some editing of the CSS yourself, but I'll do as much handholding as I can.</p>
+<p>If you just want to see the code for the above example and skip all the explainations, it can be found <a href="#example-code">at the bottom of this guide</a>.</p>
+<h3>Workskin <a name="workskin"></a></h3>
+<p>This tutorial is generally going to assume you know how to create/use a ao3 workskin. If you don't know what a workskin is or how to make one, this write-up by AO3 staff should help:</p>
+<p><a href="https://archiveofourown.org/admin_posts/1370">https://archiveofourown.org/admin_posts/1370</a></p>
+<p>Some things to keep in mind:</p>
+<p>When you start the work you want to use this skin with, don't forget to select it from the &quot;Select work skin&quot; dropdown menu in the draft view.</p>
+<p>Then, where you would normally put the text for your fic, you instead put the HTML for the chat window. make sure you set it to <b>HTML</b> and not the default <b>Rich Text</b> setting, as the HTML will not work if you leave it as the default.</p>
+<h3 id="html">HTML</h3>
+<p>Let's break down the code.</p>
+<p>First is the header.</p>
+
+<pre>
+&#60;div class="chat-header"&#62; <br/>
+  &#60;p class="chat-title"&#62;_chat_name_&#60;/p&#62; <br/>
+  &#60;p class="chat-subtitle"&#62;_tag_line_ &#60;/p&#62; <br/>
+&#60;/div&#62;
+</pre>
+
+<p>Replace the <code>chat_name</code> with the name of the person you're messaging, and the <code>tag_line</code> with their tagline. (for example, &quot;Jing Yuan&quot; and &quot;I'm not at the Seat of Divine Foresight&quot;)</p>
+<p>Next is the chat window. Outside of the header, everything else goes inside the div for the chat window. (messages, system alerts, images, stickers, etc.)</p>
+<pre>
+&#60;div class="chat-view"&#62; 
+
+&#60;/div&#62;
+</pre>
+
+Both of these should be wrapped inside the <code>chat-container</code> class, but all <code>chat-container</code> does is center the view and change the font. 
+
+Your current structure should look something like this: 
+
+<pre>
+&#60;div class="chat-container"&#62;
+  &#60;div class="chat-header" &#62;
+    &#60;p class="chat-title"&#62;Jing Yuan&#60;/p&#62;
+    &#60;p class="chat-subtitle"&#62;I'm not at the Seat of Divine Foresight &#60;/p&#62;
+  &#60;/div&#62;
+  
+  &#60;div class="chat-view"&#62;
+      &#60;!-- chat messages go here --&#62;
+  &#60;/div&#62;
+&#60;/div&#62;
+</pre>
+
+<p>The core of any chat skin is the messages. Below is an example of a right-side (sent by the current user) message. Change out stelle for the character you want (more on that later <hyperlink>) and the message contents you want.</p>
+<pre>
+&#60;div class="msg-right-container stelle"&#62;
+  &#60;p class="msg-right"&#62;
+    Default placeholder text.
+  &#60;/p&#62;
+&#60;/div&#62;
+</pre>
+<p>Left-side (recieved) messages are the same, but replace the class names from &quot;right&quot; to &quot;left&quot;. Again, change the character and the message text.
+</p>
+<pre>
+&#60;div class="msg-left-container jing-yuan"&#62;
+  &#60;p class="msg-left"&#62;
+    Default placeholder text.
+  &#60;/p&#62;
+&#60;/div&#62;
+</pre>
+<p>A quick note about consecutive messages: you can either repeat the profile picture/name of that character (which is how HSR currently does it) or you can omit the repeated profile picture/name (how I misremembered HSR doing it).</p>
+
+<!-- consecutive messages, no repeated pfp -->
+<div class="msg-left-container stelle">
+  <p class="msg-left">
+	General?
+  </p>
+  <p class="msg-left">
+	But what about the tea?
+  </p>
+</div>
+<div class="alert" align="center">The above version is how the HSR chat messaging does it in-game. The below is how my brain remembered it.</div>
+<!-- consecutive messages, repeated pfp (current canon version) -->
+<div class="msg-left-container stelle">
+  <p class="msg-left">
+	General? 
+  </p>
+</div>
+<div class="msg-left-container stelle">
+  <p class="msg-left">
+	But what about the tea?
+  </p>
+</div>
+<p>Just thought I'd leave both versions in, since it was already coded 🤡.</p>
+<p>Here's the HTML for the above messages:</p>
+<pre>
+&#60;!-- consecutive messages, no repeated pfp --&#62;
+&#60;div class="msg-left-container stelle"&#62;
+  &#60;p class="msg-left"&#62;
+  General?
+  &#60;/p&#62;
+  &#60;p class="msg-left"&#62;
+  But what about the tea?
+  &#60;/p&#62;
+&#60;/div&#62;
+
+&#60;!-- consecutive messages, repeated pfp (current canon version) --&#62;
+&#60;div class="msg-left-container stelle"&#62;
+  &#60;p class="msg-left"&#62;
+  General? 
+  &#60;/p&#62;
+&#60;/div&#62;
+&#60;div class="msg-left-container stelle"&#62;
+  &#60;p class="msg-left"&#62;
+  But what about the tea?
+  &#60;/p&#62;
+&#60;/div&#62;
+
+</pre>
+<p>Finally, there's stickers, images, and alerts.</p>
+<p>I've hard-coded a few of the stickers for my own benefit (and if you feel comfortable with css, you can copy those classes for additional stickers) but you might find sticker example 2 easier, as it takes a direct link to the sticker image in the html. Just swap out the SRC URL with a link to your desired sticker. (More about stickers can be found in the <a href="">stickers section</a> of this tutorial.)</p>
+<pre>
+/* sticker example 1 (hardcoded sticker in the CSS) */
+&#60;div class="msg-left-container dan-heng"&#62;
+  &#60;span class="sticker pompom-question"&#62;&#60;/span&#62;
+&#60;/div&#62;
+
+/* sticker example 2 (direct link to sticker image)*/
+&#60;div class="msg-left-container dan-heng"&#62;
+  &#60;img class="sticker" src="https://static.wikia.nocookie.net/houkai-star-rail/images/7/71/Pom-Pom_Sticker_01.png"/&#62;
+&#60;/div&#62;
+</pre>
+
+<p>As of the posting this tutorial, HSR sticker image resources can be found here: <a href="https://honkai-star-rail.fandom.com/wiki/Category:Stickers ">https://honkai-star-rail.fandom.com/wiki/Category:Stickers</a></p>
+<p>For alerts, swap in your custom message. For image attachements, swap in a link to your desired image.<br />
+
+<pre>
+/* alert example */
+&#60;div class="alert" align="center"&#62; Alert! &#60;/div&#62;
+
+/* image example */
+&#60;div class="msg-right-container stelle"&#62;
+  &#60;img class="attachment" src=_your_image_link_here_&#62;
+&#60;/div&#62;
+</pre>
+
+<p>The <code>attachment</code> class is currently coded for landscape images, not portrait (it will work for either, but the sizing might be strange). I might update this later, but currently I am feeling lazy.</p>
+<h3 id="css">CSS</h3>
+<p>Below is the full copy pasta what you need in your css/workskin file. Click the arrow to view it, it's long.</p>
+<details> <summary>The code: </summary>
+<pre>
+  //ill copy pasta this in later, when ive finalize the code
+</pre>
+</details> 
+
+<p>Alternatively, you can copy the code <a href="https://github.com/jihnari/misc/blob/main/hsr/texting/hsr-chat-skin.html">from github</a>. (May or may not be more up-to-date than the above code.) </p>
+
+<p>Note that I have excluded <code>#workskin</code> before each class, as AO3's parser will add that in for you, and having the raw, un-<code>#workskin</code>-ed CSS file makes it easier to test the skin on other platforms (codepen, vscode, etc).</p>
+<p>For this skin to be fully usable, you'll probably have to add some things.</p>
+<h4 id="adding-characters">Adding Characters</h4>
+<p>I'll update this skin <a href="https://github.com/jihnari/misc/blob/main/hsr/texting/hsr-chat-skin.html">on my github</a> with additional characters as I use them in my own fics, but there's too many HSR characters for me to add them all myself (not to mention when new characters get added).</p>
+<blockquote><p>&quot;Why did you do this? Couldn't you have just left it in the HTML so anyone could edit only that and not have to bother with the CSS?&quot; </p></blockquote>
+<p> Yes, I could have done that. But this skin is first and foremost for ME and I'm sick and tired of looking at all that HTML. If at all possible, I am always going to shove any and all code into the CSS so I never have to look at it again.</p>
+<p>This has the added benefit of, when you need to make a change, you can change it in one place instead of in every instance you used it in the HTML. Your hosted image for Jing Yuan's pfp die? Have fun swapping that URL out for <em>every instance he talks over the course of 33 chapters</em>. And then <em><strong>reuploading every single one of those chapters</strong></em>. I talk from experience: it's better this way. Learn some CSS. Save your future self.</p>
+<p>Anyway, here's Jing Yuan's character code:
+  <!-- didnt html encode the css sections, might come back to bite me -->
+<pre>
+.jing-yuan::before{
+  background: url(&quot;https://raw.githubusercontent.com/jihnari/misc/main/hsr/img/chat/pfp/jingyuan.webp&quot;) no-repeat;
+  background-size:45px 45px;
+  background-size:cover;
+}
+
+.jing-yuan::after{
+  content:&quot;Jing Yuan&quot;;
+}
+</pre></p>
+<p>You need to do the following three things:</p>
+<ul>
+<li>Change the two instances of &quot;jing-yuan&quot; to your character's name. (Remember, no spaces, only dashes and underscores. Spaces will break your code.)</li>
+<li>Change the URL in <code>background: url(&quot;_url_&quot;)</code> to your character's profile picture.</li>
+<li>Change <code>content:&quot;Jing Yuan&quot;;</code> to be your character's name.</li>
+</ul>
+<p>And that's it! Additionally, within the CSS there's a dummy class called <code>.character</code> that goes over these three steps.
+<pre>
+/* new character template */
+/* rename this class to the character's name */
+.character::before{
+  /* replace this link with a link to the character's pfp */
+  background: url(&quot;https://static.wikia.nocookie.net/houkai-star-rail/images/4/4e/Profile_Picture_Wanted_Poster.png&quot;) no-repeat;
+  background-size:45px 45px;
+  background-size:cover;
+}
+
+/* rename this class to the character's name */
+.character::after{
+  /* replace with the character's name */
+  content:&quot;character&quot;;
+}
+</pre></p>
+<p>Now, onto stickers.</p>
+<h4 id="stickers">Stickers</h4>
+<p>As mentioned previously, you can either use the base sticker class to provide your own image URL within the HTML... or you can edit the CSS. Below is the class for the Pompom heart sticker.</p>
+
+<pre>
+.pompom-heart{
+  background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/7/71/Pom-Pom_Sticker_01.png") no-repeat;
+  background-size:100px 100px;
+}
+</pre>
+
+<p>To add your own hard-coded sticker, you simply need to rename the class and swap out the URL. Easy!</p>
+<p>Once again:</p>
+<p>As of the posting this tutorial, HSR sticker image resources can be found here: <a href="https://honkai-star-rail.fandom.com/wiki/Category:Stickers ">https://honkai-star-rail.fandom.com/wiki/Category:Stickers</a></p>
+<h3 id="putting-it-all-together">Putting it all together</h3>
+<p>In case it's helpful, here's the HTML for the chat shown at the beginning of this tutorial.</p>
+<details> <summary>HTML code for the introduction example: <a name="example-code"></a></summary>
+<pre>
+&#60;div class="chat-container"&#62;
+  &#60;div class="chat-header" &#62;
+    &#60;p class="chat-title"&#62;Jing Yuan&#60;/p&#62;
+    &#60;p class="chat-subtitle"&#62;I'm not at the Seat of Divine Foresight &#60;/p&#62;
+  &#60;/div&#62;
+
+  &#60;div class="chat-view"&#62;
+
+    &#60;div class="msg-left-container jing-yuan"&#62;
+      &#60;p class="msg-left"&#62;
+        Pardon me, Stelle, but I wonder whether you have the time to come to the Seat of Divine Foresight right now for a game of Xianzhou starchess?
+      &#60;/p&#62;
+    &#60;/div&#62;
+
+    &#60;div class="msg-right-container stelle"&#62;
+      &#60;p class="msg-right"&#62;
+        Can I even get inside the Seat of Divine Foresight?
+      &#60;/p&#62;
+    &#60;/div&#62;
+    &#60;div class="msg-left-container jing-yuan"&#62;
+      &#60;p class="msg-left"&#62;
+        I will simply let the Cloud Knights know.
+      &#60;/p&#62;
+    &#60;/div&#62;
+
+    &#60;div class="msg-right-container stelle"&#62;
+      &#60;p class="msg-right"&#62;
+        Let me think...
+      &#60;/p&#62;
+      &#60;p class="msg-right"&#62;
+        I really don't know how to play. I don't want to ruin your mood, general
+      &#60;/p&#62;
+    &#60;/div&#62;
+
+    &#60;div class="msg-left-container jing-yuan"&#62;
+      &#60;p class="msg-left"&#62;
+        I apologize. Did I scare you? In that case, I'll tell you the truth of what's happening without fear of you laughing at me, Stelle
+      &#60;/p&#62;
+      &#60;p class="msg-left"&#62;
+      The teahouse sent over a collection of new releases from Immortal's Delight, but I'm the only person in the Seat of Divine Foresight right now. I can't finish these teas, and I didn't want to refuse the teahouse's goodwill...
+      &#60;/p&#62;
+    &#60;/div&#62;
+
+
+        &#60;div class="msg-right-container stelle"&#62;
+      &#60;p class="msg-right"&#62;
+        I will head over immediately to help, general!
+      &#60;/p&#62;
+      &#60;p class="sticker pompom-heart"&#62;&#60;/p&#62;
+    &#60;/div&#62;
+
+    &#60;div class="alert" align="center"&#62;The person you were trying to reach is unavailable. Please try again later.&#60;/div&#62;
+
+    &#60;div class="msg-right-container stelle"&#62;
+      &#60;p class="sticker pompom-question"&#62;&#60;/p&#62;
+      &#60;p class="msg-right"&#62;
+        General?
+      &#60;/p&#62;
+    &#60;/div&#62;
+
+    &#60;div class="alert" align="center"&#62;The person you were trying to reach is unavailable. Please try again later.&#60;/div&#62;
+
+    &#60;div class="msg-right-container stelle"&#62;
+      &#60;p class="msg-right"&#62;
+        But what about the tea?
+      &#60;/p&#62;
+    &#60;/div&#62;
+
+    &#60;div class="alert" align="center"&#62;The person you were trying to reach is unavailable. Please try again later.&#60;/div&#62;
+
+    &#60;div class="msg-right-container stelle"&#62;
+      &#60;p class="sticker wubbaboo-cry"&#62;&#60;/p&#62;
+    &#60;/div&#62;
+  &#60;/div&#62;
+&#60;/div&#62;
+</pre>
+</details> 
+<h3 id="outro">Outro</h3>
+<p>Hopefully that was clear enough, go forth and write HSR chat fics. And if you ever go crazy and write classes for all the stickers and characters and want to make them available to the world by pushing them to the master <a href="https://github.com/jihnari/misc/blob/main/hsr/texting/hsr-chat-skin.html">github file</a>, you know where to find me.</p>
+
+    </body>
+</html>
+            

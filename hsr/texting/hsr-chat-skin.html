@@ -19,61 +19,12 @@ consider: alt chat boxes (styles)
 + alert box/line 
 + check margins on ao3
 + make it work without figure (it was that dumb ao3 parser delete empty p's function, changed them to spans it's fine now)
-
++ consider centering
++ make cleaner example 
 
 */
 
 
-
-/* img class */
-.sticker{
-  width:100px;
-  height:100px;
-  margin:10px;
-}
-
-/* hard-coded stickers */
-/* you can find a full list of stickers here: https://honkai-star-rail.fandom.com/wiki/Category:Stickers */
-.pompom-heart{
-  background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/7/71/Pom-Pom_Sticker_01.png") no-repeat;
-  background-size:100px 100px;
-}
-.pompom-question{
-  background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/a/aa/Pom-Pom_Sticker_15.png") no-repeat;
-  background-size:100px 100px;
-}
-
-/* alert */
-.alert{
-  color:#9C9C9D;
-  font-size:0.8em;
-  display: block;
-
-  margin:20px 20px 20px 40px;
-
-}
-.alert::before{ 
-  content:"";
-  display:inline-block;
-
-  /* this image (from the wiki) works with vert align, my custom transparent png (more accurate than the wiki) does not */
-  /* background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/e/ed/Icon_Dialogue_Warning.png") no-repeat;  
-  vertical-align:bottom;
-  vertical-align:sub; */
-
-  background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/img/chat/hsr-alert-icon.png") no-repeat;
-  background-size:23px 23px;
-  width:23px;
-  height:23px;
-
-  position:absolute;
-  margin-top:-4px;
-  margin-left:-25px;
-
-  padding-right:6px;
-  
-
-}
 
 
 
@@ -90,13 +41,20 @@ p {
 }
 
 
+/* chat container for font and centering */
+.chat-container{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  font-family: "Paybooc OTF Medium", sans-serif;
+}
 
+/* chat header stuff */
 .chat-header{
   width:95%;
   max-width:400px;
   margin:0 10px;
   position:relative;
-  font-family: "Paybooc OTF Medium", sans-serif;
 
   border-radius: 0px 33px 0px 0px;
   border-bottom:rgb(174, 174, 174) solid 1px;
@@ -117,6 +75,7 @@ p {
 
   background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/img/chat/hsr-x.png") no-repeat;
   background-size:35px 35px;
+  cursor:pointer;
 }
 
 .chat-title{
@@ -139,7 +98,6 @@ p {
 /* chat window */
 .chat-view{
   background-color: #D8DDDE;
-  font-family: "Paybooc OTF Medium", sans-serif;
 
   position: relative;
   width:95%;
@@ -155,11 +113,11 @@ p {
 
   margin:0 10px;
   padding-top:10px;
+  padding-bottom:50px;
 
-box-shadow:-4px -0px 0px 0px #FFFFFF, 
--5px 5px 0px -1px #FFFFFF, 
--5px 5px 0px 0px #D8DDDE;
-
+  box-shadow:-4px -0px 0px 0px #FFFFFF, 
+  -5px 5px 0px -1px #FFFFFF, 
+  -5px 5px 0px 0px #D8DDDE;
 }
 
 
@@ -170,12 +128,15 @@ box-shadow:-4px -0px 0px 0px #FFFFFF,
   display: flex; 
   align-items: flex-start; 
   position: relative; 
+  flex-direction:column;
 
-  margin-top: 10px; 
-  padding:0px 5px;
+  /* margin-top: 10px;  */
+  /* margin-bottom:15px; */
+  padding:15px 5px;
 }
 .msg-right-container{
-  justify-content: right; 
+  /* justify-content: right;  */
+  align-items:flex-end;
   margin-right: 55px; 
 }
 .msg-left-container{
@@ -204,7 +165,7 @@ box-shadow:-4px -0px 0px 0px #FFFFFF,
   position:absolute;
   font-size:.9em;
   color:rgb(112, 114, 119);
-  margin-top:-10px;
+  margin-top:-18px;
 }
 /* this looks like nonsense but it's to align the username and pfp */
 .msg-right-container::before{
@@ -221,13 +182,6 @@ box-shadow:-4px -0px 0px 0px #FFFFFF,
 }
 
 
-/* img attachment */
-/* currently designed for landscape, not portrait */
-.attachment{
-  padding:0 !important;
-  max-height:300px;
-}
-
 /* message box */
 .msg-right, .msg-left, .attachment{
   display:flex;
@@ -237,7 +191,7 @@ box-shadow:-4px -0px 0px 0px #FFFFFF,
   max-width: 70%;
   
   padding: 7px 14px;
-  margin:10px 10px;
+  margin:3px 10px;
 }
 .msg-right{
   border-top-right-radius: 0;
@@ -253,12 +207,73 @@ box-shadow:-4px -0px 0px 0px #FFFFFF,
 }
 
 
+/* img attachment */
+/* currently designed for landscape, not portrait */
+.attachment{
+  padding:0 !important;
+  max-height:300px;
+}
+
+
+/* alert */
+.alert{
+  color:#9C9C9D;
+  font-size:0.8em;
+  display: block;
+
+  margin:5px 20px 20px 40px;
+
+}
+.alert::before{ 
+  content:"";
+  display:inline-block;
+
+  /* this image (from the wiki) works with vert align, my custom transparent png (more accurate than the wiki) does not */
+  /* background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/e/ed/Icon_Dialogue_Warning.png") no-repeat;  
+  vertical-align:bottom;
+  vertical-align:sub; */
+
+  background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/img/chat/hsr-alert-icon.png") no-repeat;
+  background-size:23px 23px;
+  width:23px;
+  height:23px;
+
+  position:absolute;
+  margin-top:-4px;
+  margin-left:-25px;
+  padding-right:6px;
+}
+
+
+/* stickers */
+/* img class */
+.sticker{
+  width:100px;
+  height:100px;
+  margin:10px;
+}
+
+/* hard-coded stickers */
+/* you can find a full list of stickers here: https://honkai-star-rail.fandom.com/wiki/Category:Stickers */
+.pompom-heart{
+  background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/7/71/Pom-Pom_Sticker_01.png") no-repeat;
+  background-size:100px 100px;
+}
+.pompom-question{
+  background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/a/aa/Pom-Pom_Sticker_15.png") no-repeat;
+  background-size:100px 100px;
+}
+.wubbaboo-cry{
+  background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/b/bb/Sticker_PPG_05_Wubbaboo_01.png") no-repeat;
+  background-size:100px 100px;
+}
+
+
 
 /* new character template */
 /* rename this class to the character's name */
 .character::before{
   /* replace this link with a link to the character's pfp */
-  /* pfp must be a perfect square or stretching will occur */
   background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/4/4e/Profile_Picture_Wanted_Poster.png") no-repeat;
   background-size:45px 45px;
   background-size:cover;
@@ -327,7 +342,6 @@ box-shadow:-4px -0px 0px 0px #FFFFFF,
 }
 
 
-
 /* 
 funny pfp alts 
 https://static.wikia.nocookie.net/houkai-star-rail/images/0/07/Profile_Picture_Jing_Yuan_-_In_Leisure.png
@@ -340,13 +354,119 @@ https://static.wikia.nocookie.net/houkai-star-rail/images/4/47/Profile_Picture_D
 
 <body>
 
-
-<div class="chat-header">
+<div class="chat-container">
+<div class="chat-header" >
       <p class="chat-title">Jing Yuan</p>
   <p class="chat-subtitle">I'm not at the Seat of Divine Foresight </p>
     </div>
 
   <div class="chat-view">
+
+
+    <div class="msg-left-container jing-yuan">
+      <p class="msg-left">
+        Pardon me, Stelle, but I wonder whether you have the time to come to the Seat of Divine Foresight right now for a game of Xianzhou starchess?
+      </p>
+    </div>
+
+        <div class="msg-right-container stelle">
+      <p class="msg-right">
+        Can I even get inside the Seat of Divine Foresight?
+      </p>
+    </div>
+    <div class="msg-left-container jing-yuan">
+      <p class="msg-left">
+        I will simply let the Cloud Knights know.
+      </p>
+    </div>
+
+        <div class="msg-right-container stelle">
+      <p class="msg-right">
+        Let me think...
+      </p>
+      <p class="msg-right">
+        I really don't know how to play. I don't want to ruin your mood, general
+      </p>
+    </div>
+
+    <div class="msg-left-container jing-yuan">
+      <p class="msg-left">
+        I apologize. Did I scare you? In that case, I'll tell you the truth of what's happening without fear of you laughing at me, Stelle
+      </p>
+      <p class="msg-left">
+      The teahouse sent over a collection of new releases from Immortal's Delight, but I'm the only person in the Seat of Divine Foresight right now. I can't finish these teas, and I didn't want to refuse the teahouse's goodwill...
+      </p>
+    </div>
+
+
+        <div class="msg-right-container stelle">
+      <p class="msg-right">
+        I will head over immediately to help, general!
+      </p>
+      <p class="sticker pompom-heart"></p>
+    </div>
+
+    <div class="alert" align="center">The person you were trying to reach is unavailable. Please try again later.</div>
+
+    <div class="msg-right-container stelle">
+      <p class="sticker pompom-question"></p>
+      <p class="msg-right">
+        General?
+      </p>
+    </div>
+
+    <div class="alert" align="center">The person you were trying to reach is unavailable. Please try again later.</div>
+
+    <div class="msg-right-container stelle">
+      <p class="msg-right">
+        But what about the tea?
+      </p>
+    </div>
+
+    <div class="alert" align="center">The person you were trying to reach is unavailable. Please try again later.</div>
+
+    <div class="msg-right-container stelle">
+      <p class="sticker wubbaboo-cry"></p>
+    </div>
+
+
+    <div class="msg-left-container jing-yuan">
+      <p class="msg-left">
+        Hahaha, excellent.
+      </p>
+    </div>
+
+    
+    <!-- subsequent messages, repeated pfp (current canon version)  -->
+    <div class="msg-right-container stelle">
+      <p class="msg-right">
+      General? 
+      </p>
+    </div>
+    <div class="msg-right-container stelle">
+      <p class="msg-right">
+      But what about the tea?
+      </p>
+    </div>
+
+    <div class="alert" align="center">The above version is how the HSR chat messaging does it in-game. The below is how my brain remembered it.</div>
+
+  
+    <!-- subsequent messages, no repeated pfp -->
+    <div class="msg-right-container stelle">
+      <p class="msg-right">
+      General?
+      </p>
+      <p class="msg-right">
+      But what about the tea?
+      </p>
+    </div>
+    
+
+
+
+
+
     <div class="msg-left-container march">
       <span class="sticker pompom-question"></span>
     </div>
@@ -360,12 +480,9 @@ https://static.wikia.nocookie.net/houkai-star-rail/images/4/47/Profile_Picture_D
     
     <div class="msg-right-container stelle">
       <p class="msg-right">
-    I will head over immediately
+    I will head over immediately.
       </p>
     </div>
-
-    <div class="alert" align="center">testing testing 123</div>
-
 
     <div class="msg-right-container stelle">
       <span class="sticker pompom-heart"></span>
@@ -411,8 +528,5 @@ https://static.wikia.nocookie.net/houkai-star-rail/images/4/47/Profile_Picture_D
 
 
 
-
-    </div>
-  </div>
 
 </body>
