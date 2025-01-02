@@ -1,0 +1,119 @@
+<style>
+
+pre{
+  white-space: pre-wrap;
+  word-wrap: break-word; 
+  }
+  
+  /* this capitalizes every word in the span, so it doesnt work for "the farmer" */
+.upper{
+  text-transform: capitalize;
+}
+/* .upper::first-letter{
+  text-transform: uppercase;
+} */
+
+body:has(details.male[open]) .personal::after{
+  content: "he";
+}
+body:has(details.male[open]) .possessive::after{
+  content: "him";
+}
+body:has(details.male[open]) .object::after{
+  content: "his";
+}
+
+body:has(details.male[open]) .farmer::after{ 
+  content: "the farmer";
+}
+/* not a fan of this but needs must */
+body:has(details.male[open]) .farmer-upper::after{ 
+  content: "The farmer";
+}
+
+body:has(details.male[open]) .hide {
+  display: none;
+}
+
+summary::-webkit-details-marker {display: none;}
+
+summary {
+  list-style: none;
+  cursor: pointer;
+  transition-duration: 1.4s;
+  width:35px;
+  height:35px;
+}
+
+.male, .female{
+  width:35px;
+  height:35px;
+
+  background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/img/chat/hsr-x.png") no-repeat;
+  background-size:35px 35px;
+  
+  background-color:pink;
+  
+}
+
+body:has(details.male[open]) .female {
+  display: none;
+}
+body:has(details.male[open]) .male {
+  background-color:blue;
+  display: block;
+}
+
+
+  </style>
+
+<p>The default is female farmer. If you would like to switch to male farmer, please click the button below.</p>
+<details class="male"><summary>&nbsp;</summary></details>
+
+
+
+<p>testing 123 <span class="personal"><span class="hide">she</span></span> has <span class="possessive"><span class="hide">her</span></span> cat. <span class="upper farmer"></span><span class="hide">She</span> has <span class="possessive upper"></span><span class="hide">Her</span> cat. </p>
+
+<pre>
+
+It's Saturday, which means Sebastian is at Sam's house. He hadn't wanted to get out of bed this morning, especially because mornings are *cold* now that the season is edging into winter. But he also couldn't let Sam down, so here he is. At 'band practice'. They both kind of suck (Sebastian more so than Sam), but it makes Sam happy. 
+
+Sebastian's currently trying to feel out a chord on the borrowed keyboard to go in the next verse between the F major and the D diminished minor chords that isn't just something dumb and basic like C major, and Sam is riffing over top of his messy attempts, because at his core Sam just likes to make noise. It sounds kind of cool, actually, and it's not that distracting from Sebastian's chord hunt, so Sebastian lets him have at it. He's almost decided that maybe he has to go with the C anyway, and maybe he'll spice it up by playing the chord twice but the second time adding a seventh note and transition into... some other chord, when the door to Sam's room opens. 
+
+The door to Sam's room never opens during band practice. Sam's mom is always out on Saturday afternoons because the noise makes her head hurt, and Sebasian saw Vincent playing by himself in the town square on his way over. The two of them stop, frozen in place with the last discordant sound they played bouncing off the walls. 
+
+Standing at the door with a hand on the knob is the farmer. <span class="personal upper"><span class="hide">She</span></span> stares at them despondently. They stare blankly back. 
+
+Sebastian recovers first. "Oh, hey. Uh. What's up?" 
+
+<span class="farmer-upper"><span class="hide">She</span></span> takes this as some sort of invitation and comes into the room until <span class="personal"><span class="hide">she</span></span>'s standing in front of them. 
+
+"Um," says Sebastian at the same time Sam says, "What." They both stop speaking when the farmer pulls out something shiny from <span class="object"><span class="hide">her</span></span> pocket and holds it out towards Sebastian. It's a rock. A Frozen Tear. 
+
+When he realizes what it is, Sebastian says, "Oh!" and reaches out to take it. She drops it in his hand. "Thank you." 
+
+<span class="farmer-upper"><span class="hide">She</span></span> gives him a thumbs up, and as almost an after-thought, waves at Sam. Sam says, "Uh, yeah, hi?" 
+
+Then <span class="personal"><span class="hide">she</span></span> turns around and leaves, not closing the door behind <span class="possessive"><span class="hide">her</span></span>. Sebastian, used to that, gets up to close it just in case anyone from Sam's family comes back home and is annoyed by the noise. When he turns back around, ready to get back to practice, Sam is staring at him. 
+
+Sebastian stares back. "...What?"  
+
+Sam raises both eyebrows. 
+
+Sebastian scowls. "*What*?" 
+
+"You know what." Sebastian raises his eyebrows to mirror Sam's, and Sam groans. "Dude. Don't pretend you don't know. What was that? With the," —Sam gestures at the closed door— "And" —He gestures at Sebastian— "Whatever that was."
+
+Sebastian feels his face get warm but pretends he doesn't. "It's no big deal. <span class="personal upper"><span class="hide">She</span></span> just... does that sometimes." 
+
+<span class="personal upper"><span class="hide">She</span></span> just casually has a precise and psychic knowledge of where you are at all times and shows up to *hand you a rock*?" 
+
+When he puts it like that it does sound weird, but that's just because Sam doesn't know her. Sebastian has stopped wondering how it is exactly that the farmer seems to know exactly where everyone is without asking. 
+
+"It's not always a rock," he says instead of confronting the psychic thing. "Sometimes it's like—sashimi or whatever."
+
+Sam's expression becomes deeply confused. "Where is <span class="personal"><span class="hide">she</span></span> getting—you know what? Nevermind, I don't care. Can we go back to practicing now?" 
+
+"Sure," says Sebastian with some relief. 
+</pre>
+</html>
