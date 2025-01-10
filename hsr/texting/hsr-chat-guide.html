@@ -1,3 +1,12 @@
+<!-- todo: 
+- upload updated css file to github
+- change html links to css links (in the guide) 
+- update ao3 workskin  
+- get a beta
+-->
+
+
+
 <!-- <link rel="stylesheet" type="text/css" href="..\css\qab2.css"> -->
 <link rel="stylesheet" href="hsr-chat-skin.html">
 <!-- honestly didnt expect the above to work lol  -->
@@ -13,7 +22,6 @@ pre{
   padding:15px;
   white-space: pre-wrap;
   word-wrap: break-word; 
-
 }
 
   </style> 
@@ -23,7 +31,6 @@ pre{
         <p>How to Make Honkai: Star Rail Chat Messages</p>
         <p>a/n: someone else has already made an hsr chat skin (and tutorial), but i didn't find out until AFTER i was done coding this. mine does a few things differently and caters to my neruotic need for modularity, so i decided to upload this anyway.</p>
 <p>This is a tutorial on how to mimic HSR chat messages on AO3.</p>
-//**figure out why it looks like that lol. might just be the way it was imported and it'll look fine on ao3. 
 
 <p>&nbsp;</p>
 
@@ -169,16 +176,6 @@ Your current structure should look something like this:
 </pre>
 <p>A quick note about consecutive messages: you can either repeat the profile picture/name of that character (which is how HSR currently does it) or you can omit the repeated profile picture/name (how I misremembered HSR doing it).</p>
 
-<!-- consecutive messages, no repeated pfp -->
-<div class="msg-left-container stelle">
-  <p class="msg-left">
-	General?
-  </p>
-  <p class="msg-left">
-	But what about the tea?
-  </p>
-</div>
-<div class="alert" align="center">The above version is how the HSR chat messaging does it in-game. The below is how my brain remembered it.</div>
 <!-- consecutive messages, repeated pfp (current canon version) -->
 <div class="msg-left-container stelle">
   <p class="msg-left">
@@ -190,19 +187,23 @@ Your current structure should look something like this:
 	But what about the tea?
   </p>
 </div>
+
+<div class="alert" align="center">The above version is how the HSR chat messaging does it in-game. The below is how my brain remembered it.</div>
+
+<!-- consecutive messages, no repeated pfp -->
+<div class="msg-left-container stelle">
+  <p class="msg-left">
+	General?
+  </p>
+  <p class="msg-left">
+	But what about the tea?
+  </p>
+</div>
+
+
 <p>Just thought I'd leave both versions in, since it was already coded 🤡.</p>
 <p>Here's the HTML for the above messages:</p>
 <pre>
-&#60;!-- consecutive messages, no repeated pfp --&#62;
-&#60;div class="msg-left-container stelle"&#62;
-  &#60;p class="msg-left"&#62;
-  General?
-  &#60;/p&#62;
-  &#60;p class="msg-left"&#62;
-  But what about the tea?
-  &#60;/p&#62;
-&#60;/div&#62;
-
 &#60;!-- consecutive messages, repeated pfp (current canon version) --&#62;
 &#60;div class="msg-left-container stelle"&#62;
   &#60;p class="msg-left"&#62;
@@ -215,6 +216,15 @@ Your current structure should look something like this:
   &#60;/p&#62;
 &#60;/div&#62;
 
+&#60;!-- consecutive messages, no repeated pfp --&#62;
+&#60;div class="msg-left-container stelle"&#62;
+  &#60;p class="msg-left"&#62;
+  General?
+  &#60;/p&#62;
+  &#60;p class="msg-left"&#62;
+  But what about the tea?
+  &#60;/p&#62;
+&#60;/div&#62;
 </pre>
 <p>Finally, there's stickers, images, and alerts.</p>
 <p>I've hard-coded a few of the stickers for my own benefit (and if you feel comfortable with css, you can copy those classes for additional stickers) but you might find sticker example 2 easier, as it takes a direct link to the sticker image in the html. Just swap out the SRC URL with a link to your desired sticker. (More about stickers can be found in the <a href="">stickers section</a> of this tutorial.)</p>
@@ -257,7 +267,7 @@ Your current structure should look something like this:
 <p>Note that I have excluded <code>#workskin</code> before each class, as AO3's parser will add that in for you, and having the raw, un-<code>#workskin</code>-ed CSS file makes it easier to test the skin on other platforms (codepen, vscode, etc).</p>
 <p>For this skin to be fully usable, you'll probably have to add some things.</p>
 <h4 id="adding-characters">Adding Characters</h4>
-<p>I'll update this skin <a href="https://github.com/jihnari/misc/blob/main/hsr/texting/hsr-chat-skin.html">on my github</a> with additional characters as I use them in my own fics, but there's too many HSR characters for me to add them all myself (not to mention when new characters get added).</p>
+<p>I'll update this skin <a href="https://github.com/jihnari/misc/blob/main/hsr/texting/hsr-chat-skin.html">on my github</a> with additional characters as I use them in my own fics, but there's too many HSR characters for me to add them all myself (not to mention teh additional characters that will be added in over time).</p>
 <blockquote><p>&quot;Why did you do this? Couldn't you have just left it in the HTML so anyone could edit only that and not have to bother with the CSS?&quot; </p></blockquote>
 <p> Yes, I could have done that. But this skin is first and foremost for ME and I'm sick and tired of looking at all that HTML. If at all possible, I am always going to shove any and all code into the CSS so I never have to look at it again.</p>
 <p>This has the added benefit of, when you need to make a change, you can change it in one place instead of in every instance you used it in the HTML. Your hosted image for Jing Yuan's pfp die? Have fun swapping that URL out for <em>every instance he talks over the course of 33 chapters</em>. And then <em><strong>reuploading every single one of those chapters</strong></em>. I talk from experience: it's better this way. Learn some CSS. Save your future self.</p>
@@ -276,7 +286,7 @@ Your current structure should look something like this:
 </pre></p>
 <p>You need to do the following three things:</p>
 <ul>
-<li>Change the two instances of &quot;jing-yuan&quot; to your character's name. (Remember, no spaces, only dashes and underscores. Spaces will break your code.)</li>
+<li>Change the two instances of <code>jing-yuan</code> to your character's name. (Remember, no spaces, only dashes and underscores. Spaces will break your code.)</li>
 <li>Change the URL in <code>background: url(&quot;_url_&quot;)</code> to your character's profile picture.</li>
 <li>Change <code>content:&quot;Jing Yuan&quot;;</code> to be your character's name.</li>
 </ul>
