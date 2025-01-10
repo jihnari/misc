@@ -9,6 +9,13 @@
 
 <style>
 /* mine  */
+
+.note-container-container{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
 .note-container{
   max-width: 100%;
   width:400px;
@@ -20,21 +27,27 @@
 
 .note-header{
   /* height:35px; */
-  padding:12px 20px 12px 20px;
+  padding:12px 10px 12px 20px;
   background: gray;
   color:black;
 
   font-size:1.2em;
 }
 .note-header::after{
-  /* switch out for image */
-  content:"...";
-  font-size:1.5rem;
-  /* position:absolute;
-  right:0; */
-
+  content:"";
   float:right;
-  padding-right:20px;
+  margin-top:-5px;
+
+  /* content:'';
+  position:absolute;
+  right:10px;
+  bottom:10px; */
+  width:90px;
+  height:30px;
+
+  background: url("https://raw.githubusercontent.com/jihnari/misc/main/notes-app/img/note-icons.png") no-repeat;
+  background-size:90px 30px;
+  cursor:pointer;
 }
 
 .note-body{
@@ -75,6 +88,7 @@ float:right;
 
 <!-- test -->
 
+<div class="note-container-container">
 <div class="note-container">
 <div class="note-header">note title
 </div>
@@ -93,7 +107,11 @@ float:right;
     </div>
     
     </div>
-
+    
+  </div>
 </div>
+
+  <p></p>
+  <img width=100px src="https://raw.githubusercontent.com/jihnari/misc/main/notes-app/img/note-icons.png">
 
 

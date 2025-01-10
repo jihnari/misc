@@ -1,0 +1,365 @@
+<style>
+
+
+/* default to cae */
+body:not(:has(:target)) .character::after {
+  content: 'Caelus';
+}
+body:not(:has(:target)) .pronoun1::after {
+  content: 'his';
+}
+body:not(:has(:target)) .pronoun2::after {
+  content: 'he';
+}
+.hide {
+  display: none;
+}
+
+/* if toggled, switch to stelle */
+body:has(details.stelle[open]) .character::after {
+  content: "Stelle";
+}
+body:has(details.stelle[open]) .pronoun1::after {
+  content: "her";
+}
+body:has(details.stelle[open]) .pronoun2::after {
+  content: "she";
+}
+
+.upper{
+  text-transform: capitalize;
+}
+/* .upper::first-letter{
+  text-transform:uppercase;
+} */
+
+
+/* toggle button */
+summary::-webkit-details-marker {display: none;}
+.stelle summary {
+  list-style: none;
+  /* border: solid #008CBA 2px; */
+  color: white;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 0px 30px 0px;
+  cursor: pointer;
+  background-color:red;
+  border-radius: 8px;
+  transition-duration: 0.4s;
+}
+
+  /* summary:hover{
+    background-color:green;
+    color:white;
+  } */
+
+  body:has(details.stelle[open]) .stelle summary{
+    background-color:green;
+  }
+
+
+
+  /* attempt at male female/toggle switch  */
+  /* idea would be to highlight which one the user is on */
+  /* *****hey... if youre expecting this to do something it probably doesnt? theres only detail toggle, not summary toggle. review later. */
+  /* oh its doin smth?  */
+  .toggle summary{
+  background-color:darkgray;
+  list-style: none;
+  border: solid #008CBA 2px;
+  color: gray;
+  /* padding: 10px 15px; */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 0px 30px 0px;
+  padding:0 2;
+  cursor: pointer;
+  border-radius: 8px;
+  transition-duration: 0.4s;
+
+}
+
+
+
+/* .male, .female{
+    border: solid #008CBA 2px;
+    color: black !important;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 0px 30px 0px;
+  padding: 10px 15px;
+  cursor: pointer;
+  background-color:red;
+  border-radius: 8px;
+
+} */
+.male, .female{
+  display:inline-block;
+  border-radius: 8px;
+  transition-duration: 0.4s;
+  padding: 20px 25px;
+}
+.female:hover, .male:hover{
+  background-color:teal;
+}
+.male{
+  margin-right:5px;
+}
+
+
+
+body:has(details.toggle[open]) .female{
+    background-color:teal;
+    color:lightgray;
+  }
+  body:has(details.toggle) .male{
+    background-color:teal;
+    color:lightgray;
+  }
+  body:has(details.toggle[open]) .male{
+    background-color:inherit;
+    color:inherit;
+    border:none;
+  }
+
+  body:has(details.toggle[open]) .male:hover{
+    background-color:teal;
+  }
+
+  .male::after{
+    content:"Male";
+    /* padding: 20px 25px; */
+    /* display:inline-block; */
+  }
+  .female::after{
+    content:"Female";
+    /* padding: 20px 25px; */
+    /* display:inline-block; */
+  }
+
+  /* body:not(:has(:target)) .male {
+  background-color:blue;
+} */
+
+
+
+  </style>
+
+<figure>
+
+
+  <p>The default character is Caelus. If you would like to switch to Stelle, please click the button below.</p>
+  <details class="stelle"><summary>Stelle</summary></details>
+
+  <details class="toggle"><summary><p class="male"></p><p class="female"></p></summary></details>
+
+  <p>
+    Your character is currently: <span class="character"><span class="hide">default</span></span>
+  </p>
+
+  <!-- epub friendly version -->
+  <p><span class="character"><span class="hide">Caelus</span></span> turns on <span class="pronoun1"><span class="hide">his</span></span> heels and walks away. <span class="pronoun2 upper"><span class="hide">He</span></span> doesn't look back</p>
+
+  <p>&nbsp;</p>
+
+  <!-- epub unfriendly version -->
+  <p><span class="character"></span> turns on <span class="pronoun1"></span> heels and walks away. <span class="pronoun2 upper"></span> doesn't look back.</p>
+  
+
+  <!-- ?? -->
+<!-- part 1 -->
+<!--<div class="expandable hidden">-->
+
+<p class="fake_details dialogue selectable collapsed">About Danheng's room...</p>
+<div>
+
+"Danheng's room?" says Pom-pom blankly, like the question doesn't compute. "Oh, you mean the Archives! He's just sorta... living in there, I guess?" He's what? "I can't be bothered getting him out." 
+
+Okay. Well. That's weird. Or maybe it's not? What would you know, you're talking to a sentient talking rabbit who drives a space train. 
+
+So the man you need to confront is living in the Archives, and the Archives are down the hall, first door to your left. That's easy enough. 
+
+The confrontation is going to suck, but this ship isn't big enough to avoid him forever. Not to mention, the worst case scenario—where you end up having to work with him directly—seems distressingly likely. If that does happen, you're better off getting this over with now rather than later.
+
+You go into the hall and as promised, there are doors to your left. You go up to the first one, but before you've even knocked a voice calls out from the other side.
+
+"Who's there?" 
+
+  <p class="fake_details option">It's me, <span class="character"><span class="hide">Caelus</span></span>.</p>
+  <p class="fake_details option selected selectable collapsed">I haven't even knocked...</p>
+<div>
+
+"I haven't even knocked yet," you say, disturbed.
+
+The muffled voice—Danheng, if you had to guess—says, "I learned to sense incoming visitors after people kept barging in so frequently." 
+
+'Learned to sense'? Sense <em>how</em>? Is this guy psychic or—no, don't get distracted, you're here for a reason. 
+
+It takes an awkwardly long moment of standing in front of the closed door before you realize you're not going to get an invitation. Fine, then. 
+
+The door slides open to reveal the Archives. Despite your best efforts to have no expectations about anything, the interior takes you by surprise. Danheng doesn't acknowledge you as you walk in and look around. 
+
+There are old-fashioned paper books in shelves built into the walls on either side of you and on the far wall is some sort of detailed star map that spans from floor to ceiling. In front of the map is a desk with some terminals, and some more books. 
+
+There's also a sleeping mat on the ground, with a rumpled bedspread. So the rabbit was right. Danheng is apparently living in here. 
+
+<p class="fake_details dialogue selectable collapsed">Danheng</p>
+<div>
+
+After a few more moments of silence, you get tired of being ignored and walk up to Danheng. 
+
+He finally looks up. "Can I help you?"
+
+You open your mouth. But as you try to sort through what you need to say, an extremely unhelpful apprehension bubbles up. Having to talk bring this topic up at all is not your idea of a good time, and the words fail to organize themselves correctly in your head. So what actually comes out is, "...No." 
+
+Danheng looks at you expectantly. It feels judgmental, which you maybe deserve a little. 
+
+When it becomes apparent that you're really not going to say anything else, he says, "Well, alright then. You should probably know, the Archive houses our data bank. It can be viewed using the terminal over there." He gestures towards the desk.  
+
+You watch him make the gesture but don't take your eyes off of him. He looks back, waiting for whatever you're going to say. This is it. You're going to say it. 
+
+You're going to open your mouth and say your piece and.
+
+You still can't figure out the words. They curdle inside of you before they even form a single coherent thought from the sheer mortification of trying to bring them out into the world. 
+
+Reluctantly looking away, you instead walk up the single step to the desk with the terminals.
+
+<p class="fake_details interact selectable collapsed">Data Bank</p>
+<div>
+You force yourself to look down at the screen and page through the information, not so much reading as stalling. There's a lot here—extensive files on Aeons and Light Cones and Factions. Related files are interlinked in what must be a complex backend database structure, and some files include impressive three-dimensional renders. This could be really useful information, especially for someone like you who's missing a lot of key memories about the world you live in. 
+
+You're too distracted to absorb any useful information whatsoever. 
+
+This is stupid. Why are you putting it off like a coward? He's right in front of you, and you're just standing here pretending to read. 
+
+You steel yourself and look over at him, mouth opening to say—<em>something</em>, but Danheng's not paying any attention to you. His head is tilted down as he reads something off of the mobile device in his hand. 
+
+The sickening apprehension wells back up and you chicken out. 
+
+You turn on your heel without a word and march yourself back to the door, mad mostly about how pathetic you are. But when you read for the handle of the door, your own self loathing stops you from opening it. Are you really this pathetic? You may not know much about yourself, but you know that's not the kind of person you want to be.
+
+Besides, why should you be the one who's embarrassed? Danheng is the one in the wrong. 
+
+But it's also complicated. You're stuck with these people now, these total strangers who picked you up off a random space station and gave you a chance. If you piss them off it's not like you have anywhere else to go. Maybe keeping the peace is the right thing to do.  
+
+Yeah, maybe it is—but that won't stop this feeling from festering inside of you forever until you combust. Only confronting Danheng will fix that. 
+
+You turn away from the closed door and look at him. After a moment, he seems to sense you staring and he looks up, one eyebrow raised. "Did you need something else?" 
+
+It's a clear dismissal, but you've made up your mind now. 
+
+<p class="fake_details dialogue selectable collapsed">About when we met...</p>
+<div>
+"What were you trying to do?" you ask, fists clenched. "Back on Herta Sation." 
+
+"I'm not sure what you're referring to," he says dryly. "Could you be a bit more specific?" 
+
+Like he doesn't know. It's such an asshole move, to force you to say it, but you've made up your mind. You're not letting him get out of this.  
+
+"You tried to—" You feel your face go warm and it's mortifying as hell but you power through. "You tried to kiss me." 
+
+Danheng blinks, eyes going wide. "I tried to...?" 
+
+Really? Is he really doing this right now? Are you going to have to beat this asshole up? 
+
+But a second later, his face lights with realization, then twists into faint amusement. "I suppose that is what it would look like, from your point of view."
+
+"What it would <em>look like</em>?" you ask, getting angrier. 
+
+"If you'll recall, you were unconscious."
+
+He does in fact recall correctly. Meaning, he tried to molest you <em>in your sleep</em> and he knows it. "That's not better." 
+
+Danheng rolls his eyes. "Your pulse was weak but March didn't want to perform CPR, so I was going to do it." 
+
+CPR? Is he serious? Does he think you're going to fall for that? Your face goes hot, but this time with anger instead of embarrassment. 
+
+Danheng takes a step towards you, and you square your shoulders and even your stance, in case you do end up having to punch him. It'll be his own fault for getting within range. 
+
+Danheng is maybe taller than you, but not by enough to be intimidating. Still, he looks down his nose at you with a condescending amusement. "Looks like maybe you were expecting something," he says, and his voice is still calm and even, but it's clearly a taunt. "Sorry for depriving you." 
+
+Your teeth clench so hard your jaw hurts and you keep your hands pinned to your side so you won't do anything you'll regret with them. 
+
+"Memory loss doesn't make me stupid," you say through gritted teeth, trying to breathe slowly to calm your swelling anger. 
+
+The corner of his mouth twitches, like he's suppressing a smile. "Are you sure?" 
+
+So much for calm. "Did I look like I was drowning to you?" you snap, taking a step forward to get in up in his space. "Maybe <em>you're</em> the stupid one. What was CPR supposed to solve?"
+
+He frowns. "CPR isn't just for drowning, you know." 
+
+That gives you pause, because that... doesn't sound right. CPR is for blocked airways and incorrectly functioning lungs, not unconsciousness. But you can't say whether or not you've ever specifically been taught how to do it and when. 
+
+The abrupt change in conversational direction leaves you off-balance and your anger struggles to find purchase. You give it a shot anyway. "I'm... pretty sure it is, though?" Okay, well, you'll give that a four out of ten for effort. 
+
+He shakes his head. "Your pulse was weak enough that I wasn’t sure enough oxygen was getting to your brain. You could have been experiencing an asthmatic episode, or some elemental effect could have been negatively affecting your heart or lungs."
+
+That sounds reasonable but also fake at the same time. You're not sure how to feel about it. But if he really did think he was trying to help, then you're the one in the wrong for being pissed off about it. 
+
+"You did wake up extremely quickly for how faint your heart beat was," Danheng says, looking thoughtful. "I wonder if... May I?" he asks, but doesn't wait for a reply. 
+
+He reaches towards you and it's only when his hand is at your neck that you realize you're kind of boxed in, with the closed door at your back. You're effectively trapped unless you want to try opening the door blind and risk falling through the entrance like a moron. His fingers press into your neck and your breathing stutters to a halt. 
+
+This close you can see the sharp lines of the red eyeliner outlining the bottom corner of his eye. You have an inappropriate, impulsive urge to touch it with your thumb and see if it will smudge. 
+
+Danheng hums. "Like I thought. Your pulse is abnormally weak. You might want to get that checked out." He frowns again as he presses more firmly against your neck and for no particular reason your heart rate picks up. "Oh, that feels more..." He stops and looks, making direct eye contact. His face seems awfully close, all of the sudden. "Are you <em>embarrassed</em>?" 
+
+"No," you deny automatically. 
+
+"I think maybe you are." 
+
+"And I think you're projecting." 
+
+Amusement flickers across his face again and he moves the hand on your neck to cup your jaw like you're in some kind of romance book. He's making fun of you and you know it, but your body is not getting the memo and the heat on your face radiates all the way to your ears. He leans in and says softly, "I'm not the one whose face is red."
+
+His breath tickles your neck in a way that's both tingly and claustrophobic and your stomach tightens with something you very carefully label as nerves. 
+
+"I wonder," he says, in that same quiet voice that the butterflies in your stomach do not like at all, "how much more embarrassed you'd be if I had actually kissed you."
+
+<div class=collapsed>
+  <p class="fake_details selected selectable option">Rise to the bait.</p>
+  <p class="fake_details exit">Don't rise to the bait.</p>
+ <!-- part 6 -->
+</div>
+<div>
+
+And that's it. It's official, you've <em>had it</em> with this guy. You don't stop to think as you grab the back of his neck and yank him in close and mash your lips against his. 
+
+It isn't a good kiss, by any measure. By some extremely unfortunate stroke of bad luck—or maybe just your utter lack of foresight—your mouths are both open, and when your teeth clack together the pain reverberates through your skull. You think you might have chipped something. Still, you hold him there for a good handful of seconds, making it count, before pulling back. 
+
+"There," you say, panting, hand still fisted in his hair. "Who's embarrassed now?" 
+
+He stares at you, a perfect picture of shock and disbelief. But then he breaks out into a grin—the first real smile you've ever seen on him. "Pretty sure it's still you," he says. His lower lip is bleeding. "You're pretty interesting, you know that? Did you really just kiss me to prove a point?" 
+
+Face radiating heat, you realize that did not work out at all how you'd planned. Not that you'd had a plan, exactly, but you had somehow thought that you could even the score by kissing him and you had apparently been very, very wrong. 
+
+He leans in until his nose brushes against yours and his hand settles on your hip by your belt, underneath your open jacket. You can feel the warmth from his skin through your shirt.
+
+"Were you going to let me go," he says slowly, "or were you planning on kissing me again?" His eyes dart down then back up, meaningfully. The cold steel-blue of his irises are piercing and make you feel even more painfully self-aware than his words. Your breath stutters and heat shudders up your spine. 
+
+  <p class="fake_details option">Take his offer.</p>
+  <p class="fake_details exit selected selectable collapsed">Take your leave.</p>
+ <!-- part 7 -->
+<div>
+
+You jerk your hand away from the back of his head. 
+
+"I wasn't—You're—!" you start, and then realize you have nothing. You toss out, "That's still not how CPR works!" as you fumble behind you for the door. When it opens with a whoosh of air you just barely catch yourself before you fall on your ass and you use the momentum to dart through the opening and take off down the hall. 
+
+Danheng doesn't follow you, but his laughter does. 
+
+<div class="whitespace-destroyer"></div>
+
+<!--seven of these -->
+</div></div></div></div></div></div></div>
+<p class="whitespace">&nbsp;</p>
+</figure>

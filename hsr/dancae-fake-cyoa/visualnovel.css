@@ -1,0 +1,142 @@
+/* universal  */
+figure {
+  margin: 0px;
+}
+
+.whitespace {
+height:1000px;
+}
+.whitespace-destroyer{
+  margin-bottom:-1000px;
+}
+
+/* collapsed nonsense */
+/* hide the arrow */
+.expanded::after, .collapsed::after{
+  display:none;
+}
+
+.summary_block{
+  display:block;
+  text-decoration: none;
+  list-style: none;
+  background-color: pink;
+}
+.summary_block::marker{
+  content: "";
+  list-style: none;
+}
+.summary_block::before{
+  content: ">";
+  /* list-style: none; */
+}
+
+details summary::before { 
+  content:"🡒"; 
+  /*use background-image instead */
+  padding-right:10px;
+
+}
+details[open] summary::before { 
+  /* content:"🡑";  */
+  content:"🡒"; 
+  /* translate 90 degrees? */
+  transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+}
+
+summary {list-style: none}
+summary::-webkit-details-marker {display: none; }
+
+/* 
+ * faking the details tag 
+ */
+.fake_details{
+  /* for ao3 */
+  padding:7px 3px 7px 5px;
+  /* this works fine on ao3 mobile */
+  /* padding:5px 3px 3px 5px; */
+  line-height:1;
+
+  /* if using the collapse trick on a P tag, need to zero out the margins to get it to stop being centered */
+  margin:0;
+  margin-top:10px;
+
+  /* for everyone else */
+  /* padding:2px 3px 4px 5px; */
+  
+  max-width:300px;
+  color:white;
+  background: linear-gradient(to right, rgba(0,0,0,.4) 67%, rgba(255,255,255,0) 100%);
+  border-top-left-radius: 8px;
+  border: 0px;
+
+  display:block;
+  text-decoration: none;
+}
+.fake_details::before { 
+  padding-right:22px;
+  margin-right:7px;
+  content: '';
+  height:18px;
+  width:18px;
+  /* background-size:18px 18px; */
+  vertical-align: middle;
+  /* works fine on mobile but looks weird on pc */
+  /* vertical-align: text-bottom; */
+  border-right:1px solid rgb(128,128,128,.6);
+}
+
+.selected{
+background: linear-gradient(to right, rgba(0,0,0,.8) 73%, rgba(255,255,255,0) 100%);
+border-width: 0px;
+}
+
+.selectable{
+  /* border-radius: 3px; */
+  cursor: pointer;
+  display:block;
+}
+.selectable:hover{
+background: linear-gradient(to right, rgba(0,0,0,.8) 73%, rgba(255,255,255,0) 100%);
+border-top-left-radius: 8px;
+box-shadow: -1px 0px 1px 0.3px rgba(0,255,0,.7);
+}
+.unselectable:hover{
+  text-decoration: line-through;
+}
+
+.multiple-choice{
+/* fix the offset */
+  margin-bottom:10px;
+}
+
+
+/* details icons  */
+.dialogue::before{
+  background: url("https://github.com/jihnari/misc/raw/main/hsr/img/talk.png") no-repeat;
+  background-size:18px 18px;
+}
+.option::before{ 
+  background: url("https://github.com/jihnari/misc/raw/main/hsr/img/option.png") no-repeat;
+  background-size:18px 18px;
+}
+.exit::before{ 
+  background: url("https://github.com/jihnari/misc/raw/main/hsr/img/exit.png") no-repeat;
+  background-size:18px 18px;
+}
+.interact::before{
+  background: url("https://github.com/jihnari/misc/raw/main/hsr/img/interact.png") no-repeat;
+  background-size:18px 18px;
+}
+
+
+
+
+
+
+
+
+
+/* name change stuff  */
+

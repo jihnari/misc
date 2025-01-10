@@ -1,0 +1,149 @@
+
+  /* leftover, delete later */
+pre{
+  white-space: pre-wrap;
+  word-wrap: break-word; 
+}
+
+h3{
+  font-size: 1.286em;
+  line-height: 1;
+  margin: 0.5375em 0;
+  font-family: Georgia, serif;
+  border-bottom: 0.25em solid #333;
+  margin:1.5em 3em;
+}
+blockquote {
+  line-height: 1.5;
+  /* margin-inline-start: 0; */
+  padding: 0;
+  border:0;
+}
+
+/* this capitalizes every word in the span, so it doesnt work for "the farmer" */
+.upper{
+  text-transform: capitalize;
+}
+/* this doesnt work, idk why. not gonna troubleshoot, im tired. */
+/* .upper::first-letter{
+  text-transform: uppercase;
+} */
+
+/* gender swaps */
+/* swap the figure for #workskin */
+figure:has(details.male[open]) .personal::after{
+  content: "he";
+}
+figure:has(details.male[open]) .possessive::after{
+  content: "his";
+}
+figure:has(details.male[open]) .object::after{
+  content: "him";
+}
+
+figure:has(details.male[open]) .farmer::after{ 
+  content: "the farmer";
+}
+/* not a fan of this but needs must */
+figure:has(details.male[open]) .farmer-upper::after{ 
+  content: "The farmer";
+}
+figure:has(details.male[open]) .boy::after{
+  content: "boy";
+}
+
+figure:has(details.male[open]) .hide {
+  display: none;
+}
+
+
+/* extra swaps  */
+figure:has(details.male[open]) .clint::after{
+  content: "Clint";
+}
+figure:has(details.male[open]) .clint1::after{
+  content:"An asshole";
+}
+
+
+figure:has(details.male[open]) .gay1::after{
+  /* mean abby */
+  content:"What the fuck? Are you into him";
+}
+figure:has(details.male[open]) .gay1-1::after{
+  content:". Sebastian hasn't let himself think about it too deeply for fear of an identity crisis, but he might be... a little bit into the farmer. Or, well, a lot. But he's never dated anyone, much less someone from outside of Pelican Town, and";
+}
+figure:has(details.male[open]) .gay1-2::after{
+  content:"Especially when he's not even sure if that's what's happening between them.";
+}
+figure:has(details.male[open]) .gay1-3::after{
+  content:'Who cares?&quot; Sam complains. &quot;Can we get back to me losing at pool?';
+} 
+
+figure:has(details.male[open]) .gay2::after{
+  content:"He's not sure how he feels about that, about looking like he's holding hands with a guy. It makes his skin feel prickly, like he's on the edge of a panic attack. But a larger part of him ";
+}
+figure:has(details.male[open]) .gay3::after{
+  content:"Abigail doesn't have any say with who he hangs out with—or who he dates. He knows she's just joking but suddenly, he wants to set her straight. He wants to tell her exactly how he feels about the farmer so she can't make fun of it anymore. ";
+}
+
+figure:has(details.male[open]) .gay3-1::after{
+  content:"What the hell, dude?";
+}
+figure:has(details.male[open]) .gay3-2::after{
+  content:"Sebastian tries to project silently with his glare.";
+}
+figure:has(details.male[open]) .gay3-3::after{
+  content:" Crap, bro, I'm sorry,";
+}
+figure:has(details.male[open]) .gay3-4::after{
+  content:"Sam's look says back, and he looks petrified.";
+}
+figure:has(details.male[open]) .gay3-5::after{
+  content:' But when he goes to say the words, he finds his mouth oddly dry. &quot;We’re not—dating. But I’m... I... &quot; He has to swallow hard before he can continue, but he finds himself hesitating. ';
+}
+
+figure:has(details.male[open]) .gay4::after{
+  content:"He's not even sure he's ready for something like that, with—with a guy. Not that he doesn't want to, it's just... For now, h";
+}
+figure:has(details.male[open]) .gay5::after{
+  content:'especially not with—&quot; A guy, he doesn’t say. No one needs to know exactly how many sleepless nights he spent wondering if he’d really be okay with this if it ever happened, especially not now, at the moment when it’s really happening. He’s going to be cool about this. &quot;But';
+}
+
+
+figure:has(details.male[open]) .gay6::after{
+  content:"The farmer is a bit taller than him when they're both standing, but now Sebastian feels possitively engulfed. Sebastian's nose bumps up against the farmers chest, and Sebastian feels securely bracketed by his frame—assuming someone can feel secure and delerious levels of flushed at the same time, anyway. He smells like grass and clean sweat and Sebastian can only hope he smells half as good. ";
+}
+
+
+
+
+/* style the details/summary */
+summary::-webkit-details-marker {display: none;}
+
+summary {
+  list-style: none;
+  cursor: pointer;
+  transition-duration: 1.4s;
+  width:90px;
+  height:50px;
+}
+
+
+/* toggle switch  */
+.male, .female{
+  width:90px;
+  height:50px;
+
+  background: url("https://raw.githubusercontent.com/jihnari/misc/main/stardew/seb-pronouns-fic/img/female.png") no-repeat;
+  background-size:90px 50px;  
+}
+
+figure:has(details.male[open]) .female {
+  display: none;
+}
+figure:has(details.male[open]) .male {
+  background: url("https://raw.githubusercontent.com/jihnari/misc/main/stardew/seb-pronouns-fic/img/male.png") no-repeat;
+  background-size:90px 50px;
+  display: block;
+}
