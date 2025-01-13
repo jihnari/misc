@@ -195,14 +195,27 @@ pre{
 .alert{
   color:#9C9C9D;
   font-size:0.8em;
-  display: block;
-
-  margin:5px 20px 20px 40px;
-
+  text-align:center;
+  margin:5px 30px 20px 40px;
 }
-.alert::before{ 
+.alert-icon{
+  background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/chat-skin/img/hsr-alert-icon.png") no-repeat;
+  background-size:23px 23px;
+  width:23px;
+  height:23px;
+
+  position:absolute;
+  margin-top:-4px;
+  margin-left:-25px;
+  padding-right:5px;
+}
+
+/* this isnt working like i want it to (on ao3. on everthing else it works fine.) but someday maybe ill get it to function. if ur not me, ignore this. */
+.alert2::before{ 
   content:"";
-  display:inline-block;
+  /* display:inline-block; */
+  /* display: inline-flex; */
+  /* display:inline; */
 
   background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/chat-skin/img/hsr-alert-icon.png") no-repeat;
   background-size:23px 23px;
@@ -212,9 +225,8 @@ pre{
   position:absolute;
   margin-top:-4px;
   margin-left:-25px;
-  padding-right:6px;
+  padding-right:5px;
 }
-
 
 /* stickers */
 /* img class */
@@ -245,6 +257,7 @@ pre{
 /* rename this class to the character's name */
 .character::before{
   /* replace this link with a link to the character's pfp */
+  /* most of these can be found on the hsr wiki (though some are on my github repository */
   /* AO3 doesn't accept WEBP images, so watch out for that */
   background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/4/4e/Profile_Picture_Wanted_Poster.png") no-repeat;
   background-size:45px 45px;

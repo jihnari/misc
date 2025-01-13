@@ -1,17 +1,13 @@
 <!-- todo: 
-- upload updated css file to github
+- + upload updated css file to github
 - change html links to css links (in the guide) 
 - update ao3 workskin  
-- get a beta
+- + get a beta
 -->
 
 
+<link rel="stylesheet" href="hsr-chat.css">
 
-<!-- <link rel="stylesheet" type="text/css" href="..\css\qab2.css"> -->
-<link rel="stylesheet" href="hsr-chat-skin.html">
-<!-- honestly didnt expect the above to work lol  -->
-
-<!-- https://raw.githubusercontent.com/jihnari/misc/refs/heads/main/hsr/texting/hsr-chat-skin.html -->
 
 <style>
 
@@ -49,7 +45,7 @@ pre{
         </p>
       </div>
   
-      <div class="msg-right-container stelle">
+          <div class="msg-right-container stelle">
         <p class="msg-right">
           Can I even get inside the Seat of Divine Foresight?
         </p>
@@ -60,7 +56,7 @@ pre{
         </p>
       </div>
   
-      <div class="msg-right-container stelle">
+          <div class="msg-right-container stelle">
         <p class="msg-right">
           Let me think...
         </p>
@@ -86,7 +82,7 @@ pre{
         <p class="sticker pompom-heart"></p>
       </div>
   
-      <div class="alert" align="center">The person you were trying to reach is unavailable. Please try again later.</div>
+      <div class="alert"><i class="alert-icon"></i> The person you were trying to reach is unavailable. Please try again later.</div>
   
       <div class="msg-right-container stelle">
         <p class="sticker pompom-question"></p>
@@ -95,7 +91,7 @@ pre{
         </p>
       </div>
   
-      <div class="alert" align="center">The person you were trying to reach is unavailable. Please try again later.</div>
+      <div class="alert"><i class="alert-icon"></i> The person you were trying to reach is unavailable. Please try again later.</div>
   
       <div class="msg-right-container stelle">
         <p class="msg-right">
@@ -103,17 +99,17 @@ pre{
         </p>
       </div>
   
-      <div class="alert" align="center">The person you were trying to reach is unavailable. Please try again later.</div>
+      <div class="alert"><i class="alert-icon"></i> The person you were trying to reach is unavailable. Please try again later.</div>
   
       <div class="msg-right-container stelle">
         <p class="sticker wubbaboo-cry"></p>
       </div>
     </div>
-</div>
+  </div>
     
     <p>&nbsp;</p>
 
-<p>This skin will likely require you to do some editing of the CSS yourself, but I'll do as much handholding as I can.</p>
+<p>This skin will require you to do some minor editing of the CSS yourself, but I'll do as much handholding as I can.</p>
 <p>If you just want to see the code for the above example and skip all the explainations, it can be found <a href="#example-code">at the bottom of this guide</a>.</p>
 <h3>Workskin <a name="workskin"></a></h3>
 <p>This tutorial is generally going to assume you know how to create/use a ao3 workskin. If you don't know what a workskin is or how to make one, this write-up by AO3 staff should help:</p>
@@ -188,7 +184,7 @@ Your current structure should look something like this:
   </p>
 </div>
 
-<div class="alert" align="center">The above version is how the HSR chat messaging does it in-game. The below is how my brain remembered it.</div>
+<div class="alert"><i class="alert-icon"></i> The above version is how the HSR chat messaging does it in-game. The below is how my brain remembered it.</div>
 
 <!-- consecutive messages, no repeated pfp -->
 <div class="msg-left-container stelle">
@@ -245,7 +241,8 @@ Your current structure should look something like this:
 
 <pre>
 /* alert example */
-&#60;div class="alert" align="center"&#62; Alert! &#60;/div&#62;
+&#60;div class="alert"&#62; Alert! &#60;/div&#62;
+&lt;div class&#x3D;&quot;alert&quot;&gt;&lt;i class&#x3D;&quot;alert-icon&quot;&gt;&lt;&#x2F;i&gt; Alert! &lt;&#x2F;div&gt;
 
 /* image example */
 &#60;div class="msg-right-container stelle"&#62;
@@ -257,17 +254,304 @@ Your current structure should look something like this:
 <h3 id="css">CSS</h3>
 <p>Below is the full copy pasta what you need in your css/workskin file. Click the arrow to view it, it's long.</p>
 <details> <summary>The code: </summary>
-<pre>
-  //ill copy pasta this in later, when ive finalize the code
+<pre>&#x2F;* kill the default p margins *&#x2F;
+  .chat-header p {
+    margin:0;
+  }
+  
+  &#x2F;* chat container for font and centering *&#x2F;
+  .chat-container{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    font-family: &quot;Paybooc OTF Medium&quot;, sans-serif;
+  }
+  
+  &#x2F;* chat header stuff *&#x2F;
+  .chat-header{
+    width:95%;
+    max-width:400px;
+    margin:0 10px;
+    position:relative;
+  
+    border-radius: 0px 33px 0px 0px;
+    border-bottom:rgb(174, 174, 174) solid 1px;
+    background-color:#D8DDDE;
+  
+    &#x2F;* pretty outline *&#x2F;
+    box-shadow:-5px 5px 0px -1px #FFFFFF, 
+    -5px 5px 0px 0px #D8DDDE;
+  }
+  &#x2F;* the x button *&#x2F;
+  .chat-header::after{
+    content:&#39;&#39;;
+    position:absolute;
+    right:10px;
+    bottom:10px;
+    width:35px;
+    height:35px;
+  
+    background: url(&quot;https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jihnari&#x2F;misc&#x2F;main&#x2F;hsr&#x2F;chat-skin&#x2F;img&#x2F;hsr-x.png&quot;) no-repeat;
+    background-size:35px 35px;
+    cursor:pointer;
+  }
+  
+  .chat-title{
+    color:black;
+    font-size:1.2em;
+    font-weight:bold;
+    position:relative;
+    padding-top:10px;
+    padding-left:20px;
+  }
+  .chat-subtitle{
+    color:gray;
+    font-size:.7em;
+    padding-top:5px;
+    padding-bottom:5px;
+    padding-left:20px;
+  }
+  
+  
+  &#x2F;* chat window *&#x2F;
+  .chat-view{
+    background-color: #D8DDDE;
+  
+    position: relative;
+    width:95%;
+    max-width:400px;
+    &#x2F;* currently scrollable but around here is the stuff to change if you don&#39;t want scrollable *&#x2F;
+    height:80%;
+    max-height:450px;
+    
+    overflow-y:scroll;
+    &#x2F;* may not be supported on all browsers *&#x2F;
+    scrollbar-width: 5px;
+    scrollbar-color:gray lightgray;
+  
+    margin:0 10px;
+    padding-top:10px;
+    padding-bottom:50px;
+  
+    box-shadow:-4px -0px 0px 0px #FFFFFF, 
+    -5px 5px 0px -1px #FFFFFF, 
+    -5px 5px 0px 0px #D8DDDE;
+  }
+  
+  
+  
+  &#x2F;* containers for the message boxes *&#x2F;
+  &#x2F;* also formats the username and pfp surroundings *&#x2F;
+  .msg-right-container, .msg-left-container{
+    display: flex; 
+    align-items: flex-start; 
+    position: relative; 
+    flex-direction:column;
+    padding:15px 5px;
+  }
+  .msg-right-container{
+    align-items:flex-end;
+    margin-right: 55px; 
+  }
+  .msg-left-container{
+    justify-content: left; 
+    margin-left: 55px; 
+  }
+  
+  &#x2F;* for the pfp *&#x2F;
+  .msg-right-container::before, .msg-left-container::before{
+    margin-top:-8px;
+    content:&#39;&#39;;
+    &#x2F;* pfp size *&#x2F;
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    display: inline-block;
+    position:absolute;
+  
+    &#x2F;* in case of no pfp image *&#x2F;
+    &#x2F;* also the default bg color for the transparent pfp pngs *&#x2F;
+    background-color: rgb(58, 58, 58) !important;
+    
+  }
+  &#x2F;* for the username *&#x2F;
+  .msg-right-container::after, .msg-left-container::after{
+    position:absolute;
+    font-size:.9em;
+    color:rgb(112, 114, 119);
+    margin-top:-18px;
+  }
+  &#x2F;* this looks like nonsense but it&#39;s to align the username and pfp *&#x2F;
+  .msg-right-container::before{
+    margin-right:-45px;
+  }
+  .msg-right-container::after{
+    margin-right:10px;
+  }
+  .msg-left-container::before{
+    margin-left:-45px;
+  }
+  .msg-left-container::after{
+    margin-left:10px;
+  }
+  
+  
+  &#x2F;* message box *&#x2F;
+  .msg-right, .msg-left, .attachment{
+    display:flex;
+    color: black;
+    width:fit-content;
+    position:relative;
+    max-width: 70%;
+    
+    padding: 7px 14px;
+    margin:3px 10px;
+  }
+  .msg-right{
+    border-top-right-radius: 0;
+    border-radius: 13px 0px 13px 13px; 
+    background-color: rgb(212, 186, 138); 
+    box-shadow: rgb(174, 174, 174) 2px 2px 0px;
+  }
+  .msg-left{
+    border-top-left-radius: 0;
+    border-radius: 0px 13px 13px; 
+    background-color: #EDEDED; 
+    box-shadow: rgb(174, 174, 174) -1px 2px 0px;
+  }
+  
+  
+  &#x2F;* img attachment *&#x2F;
+  &#x2F;* currently designed for landscape, not portrait *&#x2F;
+  .attachment{
+    padding:0 !important;
+    max-height:300px;
+  }
+  
+  
+  &#x2F;* alert *&#x2F;
+  .alert{
+    color:#9C9C9D;
+    font-size:0.8em;
+    text-align:center;
+    margin:5px 30px 20px 40px;
+  }
+  .alert-icon{
+    background: url(&quot;https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jihnari&#x2F;misc&#x2F;main&#x2F;hsr&#x2F;chat-skin&#x2F;img&#x2F;hsr-alert-icon.png&quot;) no-repeat;
+    background-size:23px 23px;
+    width:23px;
+    height:23px;
+  
+    position:absolute;
+    margin-top:-4px;
+    margin-left:-25px;
+    padding-right:5px;
+  }
+  
+  &#x2F;* stickers *&#x2F;
+  &#x2F;* img class *&#x2F;
+  .sticker{
+    width:100px;
+    height:100px;
+    margin:10px;
+  }
+  
+  &#x2F;* hard-coded stickers *&#x2F;
+  &#x2F;* you can find a full list of stickers here: https:&#x2F;&#x2F;honkai-star-rail.fandom.com&#x2F;wiki&#x2F;Category:Stickers *&#x2F;
+  .pompom-heart{
+    background: url(&quot;https:&#x2F;&#x2F;static.wikia.nocookie.net&#x2F;houkai-star-rail&#x2F;images&#x2F;7&#x2F;71&#x2F;Pom-Pom_Sticker_01.png&quot;) no-repeat;
+    background-size:100px 100px;
+  }
+  .pompom-question{
+    background: url(&quot;https:&#x2F;&#x2F;static.wikia.nocookie.net&#x2F;houkai-star-rail&#x2F;images&#x2F;a&#x2F;aa&#x2F;Pom-Pom_Sticker_15.png&quot;) no-repeat;
+    background-size:100px 100px;
+  }
+  .wubbaboo-cry{
+    background: url(&quot;https:&#x2F;&#x2F;static.wikia.nocookie.net&#x2F;houkai-star-rail&#x2F;images&#x2F;b&#x2F;bb&#x2F;Sticker_PPG_05_Wubbaboo_01.png&quot;) no-repeat;
+    background-size:100px 100px;
+  }
+  
+  
+  
+  &#x2F;* new character template *&#x2F;
+  &#x2F;* rename this class to the character&#39;s name *&#x2F;
+  .character::before{
+    &#x2F;* replace this link with a link to the character&#39;s pfp *&#x2F;
+    &#x2F;* most of these can be found on the hsr wiki (though some are on my github repository *&#x2F;
+    &#x2F;* AO3 doesn&#39;t accept WEBP images, so watch out for that *&#x2F;
+    background: url(&quot;https:&#x2F;&#x2F;static.wikia.nocookie.net&#x2F;houkai-star-rail&#x2F;images&#x2F;4&#x2F;4e&#x2F;Profile_Picture_Wanted_Poster.png&quot;) no-repeat;
+    background-size:45px 45px;
+    background-size:cover;
+  }
+  &#x2F;* rename this class to the character&#39;s name *&#x2F;
+  .character::after{
+    &#x2F;* replace with the character&#39;s name *&#x2F;
+    content:&quot;character&quot;;
+  }
+  
+  
+  &#x2F;* characters *&#x2F;
+  .dan-heng::before{
+    background: url(&quot;https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jihnari&#x2F;misc&#x2F;main&#x2F;hsr&#x2F;chat-skin&#x2F;img&#x2F;pfp&#x2F;danheng.png&quot;) no-repeat;
+    background-size:45px 45px;
+    background-size:cover;
+  }
+  .dan-heng::after{
+    content:&quot;Dan Heng&quot;;
+  }
+  
+  .caelus::before{
+    background: url(&quot;https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jihnari&#x2F;misc&#x2F;main&#x2F;hsr&#x2F;chat-skin&#x2F;img&#x2F;pfp&#x2F;caelusFire.png&quot;) no-repeat;
+    background-size:45px 45px;
+  }
+  .caelus::after{
+    content:&quot;Caelus&quot;;
+  }
+  
+  .stelle::before{
+    background: url(&quot;https:&#x2F;&#x2F;static.wikia.nocookie.net&#x2F;houkai-star-rail&#x2F;images&#x2F;4&#x2F;4e&#x2F;Profile_Picture_Wanted_Poster.png&quot;) no-repeat;
+    background-size:45px 45px;
+    background-size:cover;
+  }
+  .stelle::after{
+    content:&quot;Stelle&quot;;
+  }
+  
+  .jing-yuan::before{
+    background: url(&quot;https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jihnari&#x2F;misc&#x2F;main&#x2F;hsr&#x2F;chat-skin&#x2F;img&#x2F;pfp&#x2F;jingyuan.png&quot;) no-repeat;
+    background-size:45px 45px;
+    background-size:cover;
+  }
+  .jing-yuan::after{
+    content:&quot;Jing Yuan&quot;;
+  }
+  
+  .march::before{
+    background: url(&quot;https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jihnari&#x2F;misc&#x2F;main&#x2F;hsr&#x2F;chat-skin&#x2F;img&#x2F;pfp&#x2F;march7th.png&quot;) no-repeat;
+    background-size:45px 45px;
+    background-size:cover;
+  }
+  .march::after{
+    content:&quot;March 7th&quot;;
+  }
+  
+  .blade::before{
+    background: url(&quot;https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jihnari&#x2F;misc&#x2F;main&#x2F;hsr&#x2F;chat-skin&#x2F;img&#x2F;pfp&#x2F;blade.png&quot;) no-repeat;
+    background-size:45px 45px;
+    background-size:cover;
+  }
+  .blade::after{
+    content:&quot;Blade&quot;;
+  }
 </pre>
 </details> 
 
-<p>Alternatively, you can copy the code <a href="https://github.com/jihnari/misc/blob/main/hsr/texting/hsr-chat-skin.html">from github</a>. (May or may not be more up-to-date than the above code.) </p>
+<p>Alternatively, you can copy the code <a href="https://github.com/jihnari/misc/blob/main/hsr/chat-skin/hsr-chat.css">from github</a>. (May or may not be more up-to-date than the above code.) </p>
 
 <p>Note that I have excluded <code>#workskin</code> before each class, as AO3's parser will add that in for you, and having the raw, un-<code>#workskin</code>-ed CSS file makes it easier to test the skin on other platforms (codepen, vscode, etc).</p>
 <p>For this skin to be fully usable, you'll probably have to add some things.</p>
 <h4 id="adding-characters">Adding Characters</h4>
-<p>I'll update this skin <a href="https://github.com/jihnari/misc/blob/main/hsr/texting/hsr-chat-skin.html">on my github</a> with additional characters as I use them in my own fics, but there's too many HSR characters for me to add them all myself (not to mention teh additional characters that will be added in over time).</p>
+<p>I'll update this skin <a href="https://github.com/jihnari/misc/blob/main/hsr/chat-skin/hsr-chat.css">on my github</a> with additional characters as I use them in my own fics, but there's too many HSR characters for me to add them all myself (not to mention teh additional characters that will be added in over time).</p>
 <blockquote><p>&quot;Why did you do this? Couldn't you have just left it in the HTML so anyone could edit only that and not have to bother with the CSS?&quot; </p></blockquote>
 <p> Yes, I could have done that. But this skin is first and foremost for ME and I'm sick and tired of looking at all that HTML. If at all possible, I am always going to shove any and all code into the CSS so I never have to look at it again.</p>
 <p>This has the added benefit of, when you need to make a change, you can change it in one place instead of in every instance you used it in the HTML. Your hosted image for Jing Yuan's pfp die? Have fun swapping that URL out for <em>every instance he talks over the course of 33 chapters</em>. And then <em><strong>reuploading every single one of those chapters</strong></em>. I talk from experience: it's better this way. Learn some CSS. Save your future self.</p>
@@ -275,7 +559,7 @@ Your current structure should look something like this:
   <!-- didnt html encode the css sections, might come back to bite me -->
 <pre>
 .jing-yuan::before{
-  background: url(&quot;https://raw.githubusercontent.com/jihnari/misc/main/hsr/img/chat/pfp/jingyuan.webp&quot;) no-repeat;
+  background: url(&quot;https://raw.githubusercontent.comhttps://raw.githubusercontent.com/jihnari/misc/main/hsr/chat-skin/img/pfp/jingyuan.webp&quot;) no-repeat;
   background-size:45px 45px;
   background-size:cover;
 }
@@ -325,85 +609,87 @@ Your current structure should look something like this:
 <p>In case it's helpful, here's the HTML for the chat shown at the beginning of this tutorial.</p>
 <details> <summary>HTML code for the introduction example: <a name="example-code"></a></summary>
 <pre>
-&#60;div class="chat-container"&#62;
-  &#60;div class="chat-header" &#62;
-    &#60;p class="chat-title"&#62;Jing Yuan&#60;/p&#62;
-    &#60;p class="chat-subtitle"&#62;I'm not at the Seat of Divine Foresight &#60;/p&#62;
-  &#60;/div&#62;
+&lt;div class&#x3D;&quot;chat-container&quot;&gt;
+&lt;div class&#x3D;&quot;chat-header&quot; &gt;
+  &lt;p class&#x3D;&quot;chat-title&quot;&gt;Jing Yuan&lt;&#x2F;p&gt;
+&lt;p class&#x3D;&quot;chat-subtitle&quot;&gt;I&#39;m not at the Seat of Divine Foresight &lt;&#x2F;p&gt;
+  &lt;&#x2F;div&gt;
 
-  &#60;div class="chat-view"&#62;
-
-    &#60;div class="msg-left-container jing-yuan"&#62;
-      &#60;p class="msg-left"&#62;
-        Pardon me, Stelle, but I wonder whether you have the time to come to the Seat of Divine Foresight right now for a game of Xianzhou starchess?
-      &#60;/p&#62;
-    &#60;/div&#62;
-
-    &#60;div class="msg-right-container stelle"&#62;
-      &#60;p class="msg-right"&#62;
-        Can I even get inside the Seat of Divine Foresight?
-      &#60;/p&#62;
-    &#60;/div&#62;
-    &#60;div class="msg-left-container jing-yuan"&#62;
-      &#60;p class="msg-left"&#62;
-        I will simply let the Cloud Knights know.
-      &#60;/p&#62;
-    &#60;/div&#62;
-
-    &#60;div class="msg-right-container stelle"&#62;
-      &#60;p class="msg-right"&#62;
-        Let me think...
-      &#60;/p&#62;
-      &#60;p class="msg-right"&#62;
-        I really don't know how to play. I don't want to ruin your mood, general
-      &#60;/p&#62;
-    &#60;/div&#62;
-
-    &#60;div class="msg-left-container jing-yuan"&#62;
-      &#60;p class="msg-left"&#62;
-        I apologize. Did I scare you? In that case, I'll tell you the truth of what's happening without fear of you laughing at me, Stelle
-      &#60;/p&#62;
-      &#60;p class="msg-left"&#62;
-      The teahouse sent over a collection of new releases from Immortal's Delight, but I'm the only person in the Seat of Divine Foresight right now. I can't finish these teas, and I didn't want to refuse the teahouse's goodwill...
-      &#60;/p&#62;
-    &#60;/div&#62;
+&lt;div class&#x3D;&quot;chat-view&quot;&gt;
 
 
-        &#60;div class="msg-right-container stelle"&#62;
-      &#60;p class="msg-right"&#62;
-        I will head over immediately to help, general!
-      &#60;/p&#62;
-      &#60;p class="sticker pompom-heart"&#62;&#60;/p&#62;
-    &#60;/div&#62;
+  &lt;div class&#x3D;&quot;msg-left-container jing-yuan&quot;&gt;
+  &lt;p class&#x3D;&quot;msg-left&quot;&gt;
+    Pardon me, Stelle, but I wonder whether you have the time to come to the Seat of Divine Foresight right now for a game of Xianzhou starchess?
+  &lt;&#x2F;p&gt;
+  &lt;&#x2F;div&gt;
 
-    &#60;div class="alert" align="center"&#62;The person you were trying to reach is unavailable. Please try again later.&#60;/div&#62;
+    &lt;div class&#x3D;&quot;msg-right-container stelle&quot;&gt;
+  &lt;p class&#x3D;&quot;msg-right&quot;&gt;
+    Can I even get inside the Seat of Divine Foresight?
+  &lt;&#x2F;p&gt;
+  &lt;&#x2F;div&gt;
+  &lt;div class&#x3D;&quot;msg-left-container jing-yuan&quot;&gt;
+  &lt;p class&#x3D;&quot;msg-left&quot;&gt;
+    I will simply let the Cloud Knights know.
+  &lt;&#x2F;p&gt;
+  &lt;&#x2F;div&gt;
 
-    &#60;div class="msg-right-container stelle"&#62;
-      &#60;p class="sticker pompom-question"&#62;&#60;/p&#62;
-      &#60;p class="msg-right"&#62;
-        General?
-      &#60;/p&#62;
-    &#60;/div&#62;
+    &lt;div class&#x3D;&quot;msg-right-container stelle&quot;&gt;
+  &lt;p class&#x3D;&quot;msg-right&quot;&gt;
+    Let me think...
+  &lt;&#x2F;p&gt;
+  &lt;p class&#x3D;&quot;msg-right&quot;&gt;
+    I really don&#39;t know how to play. I don&#39;t want to ruin your mood, general
+  &lt;&#x2F;p&gt;
+  &lt;&#x2F;div&gt;
 
-    &#60;div class="alert" align="center"&#62;The person you were trying to reach is unavailable. Please try again later.&#60;/div&#62;
+  &lt;div class&#x3D;&quot;msg-left-container jing-yuan&quot;&gt;
+  &lt;p class&#x3D;&quot;msg-left&quot;&gt;
+    I apologize. Did I scare you? In that case, I&#39;ll tell you the truth of what&#39;s happening without fear of you laughing at me, Stelle
+  &lt;&#x2F;p&gt;
+  &lt;p class&#x3D;&quot;msg-left&quot;&gt;
+  The teahouse sent over a collection of new releases from Immortal&#39;s Delight, but I&#39;m the only person in the Seat of Divine Foresight right now. I can&#39;t finish these teas, and I didn&#39;t want to refuse the teahouse&#39;s goodwill...
+  &lt;&#x2F;p&gt;
+  &lt;&#x2F;div&gt;
 
-    &#60;div class="msg-right-container stelle"&#62;
-      &#60;p class="msg-right"&#62;
-        But what about the tea?
-      &#60;/p&#62;
-    &#60;/div&#62;
 
-    &#60;div class="alert" align="center"&#62;The person you were trying to reach is unavailable. Please try again later.&#60;/div&#62;
+    &lt;div class&#x3D;&quot;msg-right-container stelle&quot;&gt;
+  &lt;p class&#x3D;&quot;msg-right&quot;&gt;
+    I will head over immediately to help, general!
+  &lt;&#x2F;p&gt;
+  &lt;div class&#x3D;&quot;sticker pompom-heart&quot;&gt;&lt;&#x2F;div&gt;
+  &lt;&#x2F;div&gt;
 
-    &#60;div class="msg-right-container stelle"&#62;
-      &#60;p class="sticker wubbaboo-cry"&#62;&#60;/p&#62;
-    &#60;/div&#62;
-  &#60;/div&#62;
-&#60;/div&#62;
+  &lt;div class&#x3D;&quot;alert&quot;&gt;&lt;i class&#x3D;&quot;alert-icon&quot;&gt;&lt;&#x2F;i&gt; The person you were trying to reach is unavailable. Please try again later.&lt;&#x2F;div&gt;
+  
+
+  &lt;div class&#x3D;&quot;msg-right-container stelle&quot;&gt;
+  &lt;div class&#x3D;&quot;sticker pompom-question&quot;&gt;&lt;&#x2F;div&gt;
+  &lt;p class&#x3D;&quot;msg-right&quot;&gt;
+    General?
+  &lt;&#x2F;p&gt;
+  &lt;&#x2F;div&gt;
+
+  &lt;div class&#x3D;&quot;alert&quot;&gt;&lt;i class&#x3D;&quot;alert-icon&quot;&gt;&lt;&#x2F;i&gt; The person you were trying to reach is unavailable. Please try again later.&lt;&#x2F;div&gt;
+
+  &lt;div class&#x3D;&quot;msg-right-container stelle&quot;&gt;
+  &lt;p class&#x3D;&quot;msg-right&quot;&gt;
+    But what about the tea?
+  &lt;&#x2F;p&gt;
+  &lt;&#x2F;div&gt;
+
+  &lt;div class&#x3D;&quot;alert&quot;&gt;&lt;i class&#x3D;&quot;alert-icon&quot;&gt;&lt;&#x2F;i&gt; The person you were trying to reach is unavailable. Please try again later.&lt;&#x2F;div&gt;
+
+  &lt;div class&#x3D;&quot;msg-right-container stelle&quot;&gt;
+  &lt;div class&#x3D;&quot;sticker wubbaboo-cry&quot;&gt;&lt;&#x2F;div&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
 </pre>
 </details> 
 <h3 id="outro">Outro</h3>
-<p>Hopefully that was clear enough, go forth and write HSR chat fics. And if you ever go crazy and write classes for all the stickers and characters and want to make them available to the world by pushing them to the master <a href="https://github.com/jihnari/misc/blob/main/hsr/texting/hsr-chat-skin.html">github file</a>, you know where to find me.</p>
+<p>Hopefully that was clear enough, go forth and write HSR chat fics. And if you ever go crazy and write classes for all the stickers and characters and want to make them available to the world by pushing them to the master <a href="https://github.com/jihnari/misc/blob/main/hsr/chat-skin/hsr-chat.css">github file</a>, you know where to find me.</p>
 
     </body>
 </html>
