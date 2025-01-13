@@ -5,20 +5,32 @@ pre{
   word-wrap: break-word; 
 }
 
-h3{
+/* fake notes styling */
+/* tried to do a fancy single class and type cast by scope or whatever but it. went bad. it went real bad. */
+.fake-notes-block{
+  line-height: 1.5;
+  padding: 0;
+  border:0 !important;
+}
+.fake-notes-header{
   font-size: 1.286em;
   line-height: 1;
   margin: 0.5375em 0;
   font-family: Georgia, serif;
-  border-bottom: 0.25em solid #333;
-  margin:1.5em 3em;
+  border-bottom: 1px solid;
 }
-blockquote {
-  line-height: 1.5;
-  /* margin-inline-start: 0; */
-  padding: 0;
-  border:0;
+.fake-notes-container{
+  margin: 0 0.643em 4em 0.643em;
+  /* padding: 0.643em 0.643em 0; */
 }
+/* hijack the top author's note class and hide it, but DON'T hide the end notes */
+.notes{
+  display:none;
+}
+.end{
+  display:block !important;
+}
+
 
 /* this capitalizes every word in the span, so it doesnt work for "the farmer" */
 .upper{
@@ -30,7 +42,6 @@ blockquote {
 } */
 
 /* gender swaps */
-/* swap the figure for #workskin */
 figure:has(details.male[open]) .personal::after{
   content: "he";
 }
@@ -55,8 +66,20 @@ figure:has(details.male[open]) .boy::after{
 figure:has(details.male[open]) .hide {
   display: none;
 }
+.hide{
+  background:lightpink;
+}
+
+.gay {
+  display: none;
+}
+figure:has(details.male[open]) .gay {
+  display:inline;
+  background:lightblue;
+}
 
 
+/* outdated */
 /* extra swaps  */
 figure:has(details.male[open]) .clint::after{
   content: "Clint";
@@ -77,7 +100,7 @@ figure:has(details.male[open]) .gay1-2::after{
   content:"Especially when he's not even sure if that's what's happening between them.";
 }
 figure:has(details.male[open]) .gay1-3::after{
-  content:'Who cares?&quot; Sam complains. &quot;Can we get back to me losing at pool?';
+  content:"Who cares?” Sam complains. “Can we get back to me losing at pool?";
 } 
 
 figure:has(details.male[open]) .gay2::after{
@@ -100,16 +123,15 @@ figure:has(details.male[open]) .gay3-4::after{
   content:"Sam's look says back, and he looks petrified.";
 }
 figure:has(details.male[open]) .gay3-5::after{
-  content:' But when he goes to say the words, he finds his mouth oddly dry. &quot;We’re not—dating. But I’m... I... &quot; He has to swallow hard before he can continue, but he finds himself hesitating. ';
+  content:" But when he goes to say the words, he finds his mouth oddly dry. We're not—dating. But I'm... I...”  He has to swallow hard before he can continue, but he finds himself hesitating. ";
 }
 
 figure:has(details.male[open]) .gay4::after{
   content:"He's not even sure he's ready for something like that, with—with a guy. Not that he doesn't want to, it's just... For now, h";
 }
 figure:has(details.male[open]) .gay5::after{
-  content:'especially not with—&quot; A guy, he doesn’t say. No one needs to know exactly how many sleepless nights he spent wondering if he’d really be okay with this if it ever happened, especially not now, at the moment when it’s really happening. He’s going to be cool about this. &quot;But';
+  content:'especially not with—" A guy, he doesn’t say. No one needs to know exactly how many sleepless nights he spent wondering if he’d really be okay with this if it ever happened, especially not now, at the moment when it’s really happening. He’s going to be cool about this. "But';
 }
-
 
 figure:has(details.male[open]) .gay6::after{
   content:"The farmer is a bit taller than him when they're both standing, but now Sebastian feels possitively engulfed. Sebastian's nose bumps up against the farmers chest, and Sebastian feels securely bracketed by his frame—assuming someone can feel secure and delerious levels of flushed at the same time, anyway. He smells like grass and clean sweat and Sebastian can only hope he smells half as good. ";
