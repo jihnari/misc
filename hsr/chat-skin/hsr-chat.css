@@ -1,8 +1,15 @@
-/* most uptodate is still the html file */
+/* used for the tutorial, not needed for the chat skin  */
+pre{    
+  background:#F6F6F6;
+  display:block;
+  padding:15px;
+  white-space: pre-wrap;
+  word-wrap: break-word; 
+}
 
 
 /* kill the default p margins */
-p {
+.chat-header p {
   margin:0;
 }
 
@@ -46,7 +53,7 @@ p {
   width:35px;
   height:35px;
 
-  background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/img/chat/hsr-x.png") no-repeat;
+  background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/chat-skin/img/hsr-x.png") no-repeat;
   background-size:35px 35px;
   cursor:pointer;
 }
@@ -102,13 +109,9 @@ p {
   align-items: flex-start; 
   position: relative; 
   flex-direction:column;
-
-  /* margin-top: 10px;  */
-  /* margin-bottom:15px; */
   padding:15px 5px;
 }
 .msg-right-container{
-  /* justify-content: right;  */
   align-items:flex-end;
   margin-right: 55px; 
 }
@@ -201,12 +204,7 @@ p {
   content:"";
   display:inline-block;
 
-  /* this image (from the wiki) works with vert align, my custom transparent png (more accurate than the wiki) does not */
-  /* background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/e/ed/Icon_Dialogue_Warning.png") no-repeat;  
-  vertical-align:bottom;
-  vertical-align:sub; */
-
-  background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/img/chat/hsr-alert-icon.png") no-repeat;
+  background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/chat-skin/img/hsr-alert-icon.png") no-repeat;
   background-size:23px 23px;
   width:23px;
   height:23px;
@@ -247,6 +245,7 @@ p {
 /* rename this class to the character's name */
 .character::before{
   /* replace this link with a link to the character's pfp */
+  /* AO3 doesn't accept WEBP images, so watch out for that */
   background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/4/4e/Profile_Picture_Wanted_Poster.png") no-repeat;
   background-size:45px 45px;
   background-size:cover;
@@ -260,9 +259,7 @@ p {
 
 /* characters */
 .dan-heng::before{
-  background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/img/chat/pfp/danheng.webp") no-repeat;
-  /* background: url("https://static.wikia.nocookie.net/houkai-star-rail/images/1/1a/Character_Dan_Heng_Icon.png") no-repeat; */
-
+  background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/chat-skin/img/pfp/danheng.png") no-repeat;
   background-size:45px 45px;
   background-size:cover;
 }
@@ -271,7 +268,7 @@ p {
 }
 
 .caelus::before{
-  background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/img/chat/pfp/caelusFire.webp") no-repeat;
+  background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/chat-skin/img/pfp/caelusFire.png") no-repeat;
   background-size:45px 45px;
 }
 .caelus::after{
@@ -288,7 +285,7 @@ p {
 }
 
 .jing-yuan::before{
-  background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/img/chat/pfp/jingyuan.webp") no-repeat;
+  background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/chat-skin/img/pfp/jingyuan.png") no-repeat;
   background-size:45px 45px;
   background-size:cover;
 }
@@ -297,7 +294,7 @@ p {
 }
 
 .march::before{
-  background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/img/chat/pfp/march7th.webp") no-repeat;
+  background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/chat-skin/img/pfp/march7th.png") no-repeat;
   background-size:45px 45px;
   background-size:cover;
 }
@@ -306,7 +303,7 @@ p {
 }
 
 .blade::before{
-  background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/img/chat/pfp/blade.webp") no-repeat;
+  background: url("https://raw.githubusercontent.com/jihnari/misc/main/hsr/chat-skin/img/pfp/blade.png") no-repeat;
   background-size:45px 45px;
   background-size:cover;
 }
