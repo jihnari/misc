@@ -1,0 +1,596 @@
+<!-- thoughts:
+
+table cells prob make the most sense, tho u could prob flex box it if u want
+idk if i want
+
+todo: 
+- remove distance indicator? 
+- pfps? or just colors 
+- if just colors, make more (name more specifically?)
+- figure out where delete is 
+- remove references to yikyak?
+
+ -->
+
+
+<style>
+
+  /* centers the full view */
+  .yak-container-container{
+    display:flex;
+    justify-content:center;
+  }
+  /* container for the full view */
+  .yak-container{
+    width:100%;
+    max-width:500px;
+    font-family: sans-serif;
+    /* background-color:teal; */
+  }
+
+  /* container for a single post */
+  .yak{
+    border-bottom:1px solid #E0E0E0;
+    width:95%;
+    margin-left:10px;
+    font-family: sans-serif;
+    font-size:1.5em;
+  }
+
+
+  /* top bar for main view */
+  .yak-topbar{
+    width:100%;
+    height:70px;
+
+    background-color:#0CD5B1;
+    /* padding-left:10px; */
+    font-size:1.5em;
+
+    display:flex;
+    justify-content: space-around;
+    align-items:center;
+    color:white;
+  }
+  /* code to make the [new | hot] box in the main view topbar */
+  .yak-center{
+    text-align:center;
+    padding-top:15px;
+  }
+  .yak-center-box{
+    border: 1px solid white;
+    border-radius:6px;
+    display:inline-block;
+  }
+  .yak-toggle-box{
+    display:flex;
+    justify-content:space-around;
+  }
+  .yak-toggle-new, .yak-toggle-hot{
+    color:white;
+    display:inline-block;
+    font-size:1.2rem;
+    padding: 10px 35px;
+
+    border: 1px solid white;
+    border-radius:6px;
+  }
+  .yak-toggle-hot{
+    border-left:none;
+    border-top-left-radius:0;
+    border-bottom-left-radius:0;
+  }
+  .yak-toggle-new{
+    border-right:none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .yak-toggle-active{
+    color:#0CD5B1;
+    background-color:white;
+  }
+
+
+  /* main view bottom bar (yakarma) */
+  .yak-bottombar{
+    font-family: sans-serif;
+    background-color:#E2EBFE;
+    border-top:2px solid #C6CDD5;
+    color:#0CD5B1;
+    font-size:2em;
+    padding:10px 0px;
+    width:100%;
+  }
+
+  /* tag for main view post (largely unused? phased out later?) */
+  .yak-tags{
+    color:#0CD5B1;
+    font-weight:bold;
+    margin-bottom:0px;
+  }
+  /* text for main view post */
+  .yak-text{
+    margin:7px 5px 7px 0px;
+  }
+  /* post footer, containing time, replies, and votes */
+  .yak-footer{
+    color:#B9B9B9;
+    font-size:0.9em;
+    display: flex;
+  justify-content: space-between;
+
+  margin:0px 10px 5px 5px;
+  }
+  /* unused class for time */
+  .yak-time{
+    /* color:#AFAFAF; */
+  }
+
+  /* vote on mainscreen post */
+  .yak-vote{
+    color:#ACACAC;
+    position:relative;
+  }
+  .yak-vote::before, .yak-vote::after{
+    content:"";
+    border-bottom-color: #757575;
+    border: solid #ACACAC;
+    border-width: 0 2px 2px 0;
+    padding: 6px;
+    display: inline-block;
+    cursor:pointer;
+  }  
+  /* up arrow(left) */
+  .yak-vote::before{
+    margin:0px 25px -5px 10px;
+    /* left:-35px;
+    bottom:-2px; */
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+  }
+  /* down arrow(right) */
+  .yak-vote::after{
+    margin:0px 10px 3px 25px;
+    /* right:-35px;
+    bottom:6px; */
+
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }
+
+  /* code for details view */
+  .yak-details{
+    font-size:2rem;
+    margin:0 10px;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+  }
+  .yak-details-text{
+    flex-grow:9;
+  }
+
+  /* details view topbar text */
+  .yak-details-header{
+    font-size:1.6rem;
+    font-weight:bold;
+  }
+  /* details view topbar back button */
+  .yak-back-button{
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    padding: 8px;
+    transform: rotate(135deg);
+   -webkit-transform: rotate(135deg);
+    margin-left:-15px;
+    cursor:pointer;
+  }
+
+  /* details view time stamp for all posts (larger than main screen) */
+  p.yak-details-time{
+    color:#B9B9B9;
+    font-size:1.3rem;
+    margin:10px;
+  }
+  .yak-line{
+    border-bottom:1px solid #E0E0E0;
+  }
+  /* seeing if i can replace yak-line */
+  div.yak-details-time{
+    color:#B9B9B9;
+    font-size:1.3rem;
+    /* margin:0; */
+    padding:0 0 10px 10px;
+    border-bottom:1px solid #E0E0E0;
+  }
+  /* details view location text (same as time class tbh) */
+  .yak-details-location{
+    color:#B9B9B9;
+    font-size:1.3rem;
+    margin:10px;
+  }
+  /* details view, under the main post, comments count box */
+  .yak-details-comment-header{
+    background-color:#FAFAFA;
+    color:#AAAAAA;
+    padding:10px;
+    font-size:1.3rem;
+    font-weight:bold;
+  }
+  
+  /* for scores of zero (grayed out, not green) */
+  .yak-null{
+    color:#E4E4E4;
+  }
+
+
+
+  /* details view, formats the layout for comments under the main post  */
+  .yak-details-comment{
+    display:flex;
+    justify-content:space-around;
+  }
+  
+  /* details view, comments text */
+  .yak-details-comment-text{
+    font-size:1.2rem;
+    flex-grow:9;
+    margin-left:50px;
+    margin-top:10px;
+  }
+  /* user pfp, base class */
+  .yak-details-comment-text::before{
+    content:"";
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: #bbb;
+    font-size:2em;
+
+    /* this only centers the icon text, faking a pfp */
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    
+
+    /* hardcode align pfp to the left of the comment text */
+    position:absolute;
+    
+    margin: 0px 10px 0px -50px;
+    /* margin: 5px 10px 0px 0px; */
+
+    /* left:20px; */
+  }
+  /* OP for main post, affects pfp only */
+  .yak-op::before{
+    font-size:1em;
+
+    content:"OP";
+    color:white;
+    font-weight:bold;
+    background-color: #0CD5B1;
+  }
+  /* other pfps  */
+  .yak-pink::before{
+    background-color: pink; 
+    color:maroon;
+    content:"◇"; 
+  }
+  .yak-blue::before{
+    background-color: lightblue;
+    content:"◉";
+    color:darkblue;
+  
+  }
+  .yak-yellow::before{
+    background-color: yellow;
+    content:"◬";
+    color:brown;
+  }
+  /* pot.: 
+  △
+  ☆
+  ☎
+  ☏
+  ☘
+  ☮
+  ♖
+  ♡
+  ♬
+  ⚐
+  ⚠
+  ⚅
+  ⛈
+
+   */
+
+  
+
+
+  .yak-score-container{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    float:right;
+    margin-right:20px;
+  }
+  .yak-score-number{
+    color:#0CD5B1;
+    font-weight:bold;
+  }
+
+  /* .yak-score-number::before, .yak-score-number::after{ */
+    .up, .down{
+    /* content:"";
+    border-bottom-color: #757575;
+    border: solid #E4E4E4;
+    border-width: 0 6px 6px 0;
+    padding: 12px;
+    display: inline-block;
+    border-radius:3px; */
+    width:50px;
+  height:30px;
+
+  background: url("https://raw.githubusercontent.com/jihnari/misc/main/yikyak/img/yak-down-arrow.png") no-repeat;
+  background-size:50px 30px;
+  cursor:pointer;
+
+  }  
+
+  .yak-details-score{
+    color:#0CD5B1;
+    position:relative;
+
+    /* flex-grow:1; */
+    font-size:25px;
+    font-weight:bold;
+    text-align:center;
+    margin-left:10px;
+  }
+  /* arrows */
+  .yak-details-score::before, .yak-details-score::after{ 
+    display:flex;
+    content:"";
+    width:50px;
+    height:30px;
+
+    background: url("https://raw.githubusercontent.com/jihnari/misc/main/yikyak/img/yak-down-arrow.png") no-repeat;
+    background-size:50px 30px;
+    cursor:pointer;
+
+  }
+  /* up arrow */
+  .yak-details-score::before{
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+  }
+  .yak-details-score:hover::before{
+    /* change out for green image */
+    background: url("https://raw.githubusercontent.com/jihnari/misc/main/yikyak/img/yak-down-arrow-voted.png") no-repeat;
+  background-size:50px 30px;
+
+    /* opacity:40%; */
+
+  }
+
+  /* voted */
+  /* has to be wrapped INSIDE the voted class */
+  .voted > .yak-details-score::before{
+    background: url("https://raw.githubusercontent.com/jihnari/misc/main/yikyak/img/yak-down-arrow-voted.png") no-repeat;
+    background-size:50px 30px;
+  }
+
+
+  /* i dont think this is in use */
+  .up{
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  }
+
+
+  .yak-op{
+    color:#0CD5B1;
+  }
+
+
+</style>
+<img width="100%" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia-cldnry.s-nbcnews.com%2Fimage%2Fupload%2Ft_fit-760w%2Cf_auto%2Cq_auto%3Abest%2Fstreams%2F2014%2FApril%2F140429%2F2D274905733172-yikyaksample.jpg"/>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<div class="yak-container-container">
+<div class="yak-container">
+<div class="yak-topbar">
+  <div>[edit]</div>
+  <div class="yak-toggle-box"><div class="yak-toggle-new yak-toggle-active">New</div> <div class="yak-toggle-hot">Hot</div></div>
+  <div>...</div>  
+</div>
+
+
+<div class="yak">
+  <!-- <p class="yak-tags">My GPA
+  </p> -->
+  <p class="yak-text">
+Help I've fallen and I can't get up
+  </p>
+<p class="yak-footer"> <span>59m ago</span> <span>2 replies</span><span class="yak-vote">32</span></p>
+</div>
+
+<div class="yak">
+  <p class="yak-text">
+I hate when profs get a sub instead of canceling class
+  </p>
+<p class="yak-footer"> <span>59m ago</span> <span class="yak-vote">32</span></p>
+</div>
+
+<div class="yak">
+  <p class="yak-text">
+Taking 2 hours to respond to every text doesnt make you seem cool and busy.. it's just annoying
+  </p>
+<p class="yak-footer"> <span>59m ago</span> <span class="yak-vote">100</span></p>
+</div>
+
+<div class="yak-bottombar" align="center">
+  Yakarma Score: 100
+</div>
+</div>
+</div>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<div class="yak-topbar">
+    <div>[edit]</div>
+    <div class="yak-toggle-box"><div class="yak-toggle-new yak-toggle-active">New</div> <div class="yak-toggle-hot">Hot</div></div>
+    <div>...</div>  
+</div>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<img width="100%" src="https://helios-i.mashable.com/imagery/articles/015IuyBNcIvR8YR3K6uOeOC/images-222.fill.size_2000x1160.v1629224709.png"/>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+
+<!-- i think ill get rid of the distance indicator -->
+
+<div class="yak-container-container">
+  <div class="yak-container">
+
+    <div class="yak-topbar">
+      <div class="yak-back-button"></div>
+      <div class="yak-details-header">Yak Details</div>
+      <div>&nbsp;</div>  
+    </div>
+    
+  <!-- individual post view -->
+  <div class="yak-details">
+    <div class="yak-details-text">The real mpvs were on this app 7 years ago </div>
+
+    <div class=voted><div class="yak-details-score">10</div></div>
+    <!-- <div class="yak-details-score">10</div> -->
+  </div>
+
+    <p class="yak-details-time">10h</p>
+    <!-- <p class="yak-details-location">📍 Around 2 miles away</p> -->
+    <div class="yak-details-comment-header">2 Comments</div>
+
+  
+    <!-- comment -->
+  <div class="yak-details-comment">
+    <div class="yak-details-comment-text">
+      comment text, testing 123  </div>
+      <div class="yak-details-score">15</div>
+  </div>
+  <p class="yak-details-time">2h</p>
+  <!-- <p class="yak-details-location">📍 Nearby</p> -->
+  <div class="yak-line"></div>
+
+      <!-- comment -->
+      <div class="yak-details-comment">
+        <div class="yak-details-comment-text blue">
+          comment text, testing 123  </div>
+          <!-- <div class="yak-details-score">29</div> -->
+    <div class=voted><div class="yak-details-score">29</div></div>
+
+      </div>
+      <p class="yak-details-time">5s</p>
+      <!-- <p class="yak-details-location">📍 Nearby</p> -->
+      <div class="yak-line"></div>
+
+      
+      <!-- comment -->
+      <div class="yak-details-comment">
+        <div class="yak-details-comment-text pink">
+          another comment 123 is it the length of the oh yes it is. thats. sucky. ok. cool. ok. maybe no flex box 4 u. hardcode and absolute and margin the space off.  </div>
+          <div class="yak-details-score">2</div>
+
+        </div>
+      <p class="yak-details-time">🪄 Now</p>
+      <!-- <p class="yak-details-location">📍 Less than a mile away</p> -->
+      <div class="yak-line"></div>
+
+          <!-- op comment -->
+  <div class="yak-details-comment">
+    <div class="yak-details-comment-text yak-op">
+      comment from op  </div>
+      <div class="yak-details-score">3</div>
+  </div>
+  <p class="yak-details-time">23m</p>
+  <!-- <p class="yak-details-location">📍 Nearby</p> -->
+  <div class="yak-line"></div>
+
+</div></div>
+</div>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+
+<!-- yak details template  -->
+<div class="yak-container-container">
+<div class="yak-container">
+
+<div class="yak-topbar">
+  <div class="yak-back-button"></div>
+  <div class="yak-details-header">Yak Details</div>
+  <div>&nbsp;</div>  
+</div>
+
+<!-- individual post view -->
+<div class="yak-details">
+<div class="yak-details-text">_main_post_</div>
+
+<div class=voted><div class="yak-details-score">10</div></div>
+<!-- <div class="yak-details-score">10</div> -->
+</div>
+
+<p class="yak-details-time">1h</p>
+<div class="yak-details-comment-header">2 Comments</div>
+
+<!-- comment -->
+<div class="yak-details-comment">
+  <div class="yak-details-comment-text yak-blue">
+    _comment_
+  </div>
+  <div class="voted"><div class="yak-details-score">5</div></div>
+</div>
+<div class="yak-details-time">5m</div>
+
+<!-- op comment -->
+<div class="yak-details-comment">
+  <div class="yak-details-comment-text yak-op">
+    _comment_from_op_  
+  </div>
+  <div class="yak-details-score">5</div>
+</div>
+<div class="yak-details-time">5m</div>
+
+
+</div></div>
+</div>
+
+
+
+
+  
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+
+
+</div>
