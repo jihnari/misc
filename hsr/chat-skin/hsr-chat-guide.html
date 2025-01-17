@@ -9,28 +9,7 @@
 <link rel="stylesheet" href="hsr-chat.css">
 
 
-<style>
-
-/* remember to move this to the hsr skin  */
-pre{    
-  background:#F6F6F6;
-  display:block;
-  padding:15px;
-  white-space: pre-wrap;
-  word-wrap: break-word; 
-}
-
-  </style> 
-
-<html>
-    <body>
-        <p>How to Make Honkai: Star Rail Chat Messages</p>
-        <p>a/n: someone else has already made an hsr chat skin (and tutorial), but i didn't find out until AFTER i was done coding this. mine does a few things differently and caters to my neruotic need for modularity, so i decided to upload this anyway.</p>
-<p>This is a tutorial on how to mimic HSR chat messages on AO3.</p>
-
-<p>&nbsp;</p>
-
-<div class="chat-container">
+  <div class="chat-container">
   <div class="chat-header" >
         <p class="chat-title">Jing Yuan</p>
     <p class="chat-subtitle">I'm not at the Seat of Divine Foresight </p>
@@ -79,13 +58,14 @@ pre{
         <p class="msg-right">
           I will head over immediately to help, general!
         </p>
-        <p class="sticker pompom-heart"></p>
+        <div class="sticker pompom-heart"></div>
       </div>
   
       <div class="alert"><i class="alert-icon"></i> The person you were trying to reach is unavailable. Please try again later.</div>
+      
   
       <div class="msg-right-container stelle">
-        <p class="sticker pompom-question"></p>
+        <div class="sticker pompom-question"></div>
         <p class="msg-right">
           General?
         </p>
@@ -102,11 +82,11 @@ pre{
       <div class="alert"><i class="alert-icon"></i> The person you were trying to reach is unavailable. Please try again later.</div>
   
       <div class="msg-right-container stelle">
-        <p class="sticker wubbaboo-cry"></p>
+        <div class="sticker wubbaboo-cry"></div>
       </div>
     </div>
   </div>
-    
+
     <p>&nbsp;</p>
 
 <p>This skin will require you to do some minor editing of the CSS yourself, but I'll do as much handholding as I can.</p>
@@ -153,7 +133,7 @@ Your current structure should look something like this:
 &#60;/div&#62;
 </pre>
 
-<p>The core of any chat skin is the messages. Below is an example of a right-side (sent by the current user) message. Change out stelle for the character you want (more on that later <hyperlink>) and the message contents you want.</p>
+<p>The core of any chat skin is the messages. Below is an example of a right-side (sent by the current user) message. Change out Stelle for the character you want (more on that later) and the message contents you want.</p>
 <pre>
 &#60;div class="msg-right-container stelle"&#62;
   &#60;p class="msg-right"&#62;
@@ -223,11 +203,11 @@ Your current structure should look something like this:
 &#60;/div&#62;
 </pre>
 <p>Finally, there's stickers, images, and alerts.</p>
-<p>I've hard-coded a few of the stickers for my own benefit (and if you feel comfortable with css, you can copy those classes for additional stickers) but you might find sticker example 2 easier, as it takes a direct link to the sticker image in the html. Just swap out the SRC URL with a link to your desired sticker. (More about stickers can be found in the <a href="">stickers section</a> of this tutorial.)</p>
+<p>I've hard-coded a few of the stickers for my own benefit (and if you feel comfortable with css, you can copy those classes for additional stickers) but you might find sticker example 2 easier, as it takes a direct link to the sticker image in the html. Just swap out the SRC URL with a link to your desired sticker. (More about stickers can be found in the <a href="#stickers">stickers section</a> of this tutorial.)</p>
 <pre>
 /* sticker example 1 (hardcoded sticker in the CSS) */
 &#60;div class="msg-left-container dan-heng"&#62;
-  &#60;span class="sticker pompom-question"&#62;&#60;/span&#62;
+  &#60;div class="sticker pompom-question"&#62;&#60;/div&#62;
 &#60;/div&#62;
 
 /* sticker example 2 (direct link to sticker image)*/
@@ -551,10 +531,10 @@ Your current structure should look something like this:
 <p>Note that I have excluded <code>#workskin</code> before each class, as AO3's parser will add that in for you, and having the raw, un-<code>#workskin</code>-ed CSS file makes it easier to test the skin on other platforms (codepen, vscode, etc).</p>
 <p>For this skin to be fully usable, you'll probably have to add some things.</p>
 <h4 id="adding-characters">Adding Characters</h4>
-<p>I'll update this skin <a href="https://github.com/jihnari/misc/blob/main/hsr/chat-skin/hsr-chat.css">on my github</a> with additional characters as I use them in my own fics, but there's too many HSR characters for me to add them all myself (not to mention teh additional characters that will be added in over time).</p>
+<p>I'll update the HSR chat skin <a href="https://github.com/jihnari/misc/blob/main/hsr/chat-skin/hsr-chat.css">on my github</a> with additional characters as I use them in my own fics, but there's too many HSR characters for me to add them all myself (not to mention the additional characters that will be added in over time).</p>
 <blockquote><p>&quot;Why did you do this? Couldn't you have just left it in the HTML so anyone could edit only that and not have to bother with the CSS?&quot; </p></blockquote>
 <p> Yes, I could have done that. But this skin is first and foremost for ME and I'm sick and tired of looking at all that HTML. If at all possible, I am always going to shove any and all code into the CSS so I never have to look at it again.</p>
-<p>This has the added benefit of, when you need to make a change, you can change it in one place instead of in every instance you used it in the HTML. Your hosted image for Jing Yuan's pfp die? Have fun swapping that URL out for <em>every instance he talks over the course of 33 chapters</em>. And then <em><strong>reuploading every single one of those chapters</strong></em>. I talk from experience: it's better this way. Learn some CSS. Save your future self.</p>
+<p>This has the added benefit of: when you need to make a change, you can change it in one place instead of in every instance you used it in the HTML. Your hosted image for Jing Yuan's pfp die? Have fun swapping that URL out for <em>every instance he talks over the course of 33 chapters</em>. And then <em><strong>reuploading every single one of those chapters</strong></em>. I talk from experience: it's better this way. Learn some CSS. Save your future self.</p>
 <p>Anyway, here's Jing Yuan's character code:
   <!-- didnt html encode the css sections, might come back to bite me -->
 <pre>
@@ -592,7 +572,7 @@ Your current structure should look something like this:
 }
 </pre></p>
 <p>Now, onto stickers.</p>
-<h4 id="stickers">Stickers</h4>
+<h4>Stickers <a name="stickers"></a></h4>
 <p>As mentioned previously, you can either use the base sticker class to provide your own image URL within the HTML... or you can edit the CSS. Below is the class for the Pompom heart sticker.</p>
 
 <pre>
@@ -605,9 +585,9 @@ Your current structure should look something like this:
 <p>To add your own hard-coded sticker, you simply need to rename the class and swap out the URL. Easy!</p>
 <p>Once again:</p>
 <p>As of the posting this tutorial, HSR sticker image resources can be found here: <a href="https://honkai-star-rail.fandom.com/wiki/Category:Stickers ">https://honkai-star-rail.fandom.com/wiki/Category:Stickers</a></p>
-<h3 id="putting-it-all-together">Putting it all together</h3>
+<h3 id="putting-it-all-together">Putting it all together<a name="example-code"></a></h3>
 <p>In case it's helpful, here's the HTML for the chat shown at the beginning of this tutorial.</p>
-<details> <summary>HTML code for the introduction example: <a name="example-code"></a></summary>
+<details> <summary>HTML code for the introduction example: </summary>
 <pre>
 &lt;div class&#x3D;&quot;chat-container&quot;&gt;
 &lt;div class&#x3D;&quot;chat-header&quot; &gt;
@@ -690,7 +670,3 @@ Your current structure should look something like this:
 </details> 
 <h3 id="outro">Outro</h3>
 <p>Hopefully that was clear enough, go forth and write HSR chat fics. And if you ever go crazy and write classes for all the stickers and characters and want to make them available to the world by pushing them to the master <a href="https://github.com/jihnari/misc/blob/main/hsr/chat-skin/hsr-chat.css">github file</a>, you know where to find me.</p>
-
-    </body>
-</html>
-            

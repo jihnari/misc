@@ -1,0 +1,1404 @@
+  /* universal */
+  .dm-container {
+    display: table;
+    margin: auto;
+    /* i actually think this would be fine as 100 now? iirc the issue was line and the speech bubble danglies */
+    max-width: 95%;
+    /* this used to be 100 and for what?? to make me cry?? idk but we're gonna see if changing it breaks everything */
+    min-width: 95%;
+  }
+    
+    
+  /*sms*/
+  .sms-box-left, .sms-box-right{
+    border-width: 1px;
+    border-radius: 18px;
+    padding: 10px 15px 8px 15px;
+    max-width: 75%;
+    margin-top: 10px;
+    clear: both;
+    position: relative;
+  }
+  .sms-box-left {
+    color: black;
+    background: #f2f3f5;
+    float: left;
+  }
+  .sms-box-right {
+    color: #174ea3;
+    background: #d2e4fb;
+    float: right;
+  }
+  .sms-time {
+    text-align: center;
+    color: #5f6267;
+    clear: both;
+    padding-top: 10px;
+    margin-bottom: -10px;
+  }
+  .sms-border {
+    box-shadow: 0px 8px 10px -10px #888888;
+    padding-bottom: 10px;
+    background: white;
+  }
+  .sms-name-header {
+    font-size: 1.2em;
+    font-weight: bold;
+    padding-left:10px;
+    color: #424242;
+  }
+  .sms-not-delivered-text{
+    color:red;
+    font-size: .8em;
+  
+    float: right;
+    margin-top: 5px;
+    clear: both;
+    position: relative;
+  }
+  .sms-view-all{
+    padding-top: 10px;
+    border-top: #5f6267 solid 1px;
+  }
+  .sms-block-container{
+    text-align: center;
+    margin-top:30px;
+    margin-bottom: 20px;
+  }
+  .sms-block{
+    color:black;
+    font-size: 1em;
+    border:#000 solid 1px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 5px 14px;
+  }
+  .zero-out{
+    margin:0;
+  }
+  
+  
+  
+  
+  
+  /*signal*/
+  /*
+  todo:
+  - could be a good person, but you wont.
+  - more name colors? eh
+  - im tempted to rename the colors 1-6
+  */
+  .signal-dot {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+    background-color: #bbb;
+  }
+  /* the ellipse collapse here only works if you wrap it in the "inline" class first, inexpliclably. fortunately, the updates dont break previous instances, they just also dont wrap. */
+  .signal-name{
+    font-size:1.1em;
+    margin-bottom: 2px;
+    
+    display: inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width:100%;
+  }
+  .signal-name-line{
+    padding-bottom:5px;
+    box-shadow: 0px 8px 8px -10px #888888;
+    white-space: nowrap;
+  }
+  .signal-arrow {
+    display: inline-block;
+    /* has this grayscale EVER done anything */
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    height: 30px;
+    width: 30px;
+    margin:0 10px 0 10px;
+  }
+  .signal-box-left0, .signal-box-left1, .signal-box-left2, .signal-box-left3 {
+    background: #e9e9e9;
+    border-width: 1px;
+    border-radius: 15px;
+    padding: 7px 14px 7px 14px;
+    color: black;
+    float: left;
+    max-width: 75%;
+    clear: both;
+    position: relative;
+  }
+  .signal-box-left1 {
+    margin-top: 10px;
+    border-bottom-left-radius: 0;
+    margin-bottom: 3px;
+  }
+  .signal-box-left2 {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    margin-bottom: 3px;
+  }
+  .signal-box-left3 {
+    border-top-left-radius: 0;
+    margin-bottom: 10px;
+  }
+  .signal-box-left0{
+    margin-top: 10px;
+  }
+  
+  .signal-box-right0, .signal-box-right1, .signal-box-right2,.signal-box-right3 {
+    border-width: 1px;
+    color: white;
+    background: #2c6bee;
+    border-radius: 15px;
+    padding: 7px 14px 7px 14px;
+    margin-bottom: 3px;
+    float: right;
+    max-width: 75%;
+    clear: both;
+    position: relative;
+  }
+  .signal-box-right1 {
+    margin-top: 10px;
+    border-bottom-right-radius: 0;
+    margin-bottom: 3px;
+  }
+  .signal-box-right2 {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    margin-bottom: 3px;
+  }
+  .signal-box-right3 {
+    border-top-right-radius: 0;
+    margin-bottom: 3px;
+  }
+  .signal-box-right0 {
+    margin-top: 10px;
+  }
+  
+  
+  
+  
+  /* testing */
+  .signal-box-right {
+    border-width: 1px;
+    color: white;
+    background: #2c6bee;
+    border-radius: 15px;
+    padding: 7px 14px 7px 14px;
+    margin-bottom: 3px;
+    float: right;
+    max-width: 75%;
+    clear: both;
+    position: relative;
+    
+    margin-top: 10px;
+    border-bottom-right-radius: 0;
+    margin-bottom: 3px;
+  }
+  
+  /* .signal-box-right ~ .signal-box-right{
+    margin-top: 10px;
+    border-bottom-right-radius: 0;
+    margin-bottom: 3px;
+    background:pink;
+  } */
+  
+  /* sibling selector your way to success...? */
+  .signal-box-right + .signal-box-right{
+    margin-top:0;
+    border-top-right-radius: 0;
+    /* border-bottom-right-radius: 15px; */
+    margin-bottom: 3px;
+  }
+  /* this could work for future attempts but not the current structure */
+  /* .signal-box-right:first-of-type{
+    background:green;
+  } */
+  
+  
+  .signal-box-left {
+    background: #e9e9e9;
+    border-width: 1px;
+    border-radius: 15px;
+    padding: 7px 14px 7px 14px;
+    color: black;
+    float: left;
+    max-width: 75%;
+    clear: both;
+    position: relative;
+    margin-top: 10px;
+    border-bottom-left-radius: 0;
+    margin-bottom: 3px;
+  }
+  .signal-box-left + .signal-box-left{
+    margin-top:0;
+    /* border-bottom-left-radius: 15px; */
+    border-top-left-radius: 0;
+    /* margin-bottom: 10px; */
+  }
+  
+  /* tmp */
+  .signal-emote{ 
+    font-size:2.5em;
+    /* margin-top:-5px; */
+    /* margin-bottom:0px; */
+  }
+  .emote{
+    font-size:2.5em;
+    background:none;
+  }
+  
+  
+  
+  .signal-time-right, .signal-time-left {
+    float: right;
+    font-size: .7em;
+    position: relative;
+    color: #8eb4fd;
+    padding: 5px 0 0 0;
+    clear: both;
+  }
+  .signal-time-left {
+    color: #979797;
+  }
+  
+  .signal-img-left {
+    /* background: #2c6bee; */
+    border-radius: 15px;
+    border:2px solid #F6F6F6;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    /* margin-top: 10px; */
+    float: left;
+    max-width: 75%;
+    max-height:400px;
+    clear: both;
+    position: relative;
+  }
+  .signal-img-right {
+    /* margin-top: 10px; */
+    border:2px solid #F6F6F6;
+    border-radius: 15px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    margin-bottom: 3px;
+    float: right;
+    max-width: 75%;
+    max-height:400px;
+    clear: both;
+    position: relative;
+  }
+  .signal-date {
+    padding: 30px 0 5px 0;
+    color: gray;
+    font-size:.8em;
+    text-align:center;
+    clear: both;
+    position: relative;
+  }
+  .signal-call {
+    padding: 0 0 0 0;
+    color: gray;
+    font-size:.8em;
+    text-align:center;
+    clear: both;
+    position: relative;
+  }
+  .signal-call-icon{
+    height:2em;
+    margin-bottom:-5px;
+  }
+  .signal-header {
+    /* padding: 2px 0 5px 0; */
+    margin-top:-5px;
+    font-size: 1.5em;
+    text-align:center;
+    position: relative;
+  }
+  .signal-subheader {
+    /* padding: 5px 0 5px 0; */
+    margin-top:-15px;
+    font-size:.8em;
+    text-align:center;
+    position: relative;
+  }
+  .signal-big-dot {
+    margin-top: 30px;
+    position: relative;
+    /* actual irl black magic */
+    /* left: 50%;
+    transform: translate(-50%); */
+    /* nvm, the above works on everything but ao3. ao3 demands just left. */
+    /* left: 50%; */
+    /* NVM?? THE BEHAVIOR HAS CHANGED AGAIN?? IT JUST CENTERS ALL BY ITSELF NOW??? */
+  
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    background-color: #bbb;
+  }
+  .signal-misc-space{
+    height:30px;
+  }
+  .signal-unread{
+    border-top: #404040 solid 1px;
+    font-size: .8em;
+    text-align: center;
+    padding-top: 5px;
+    margin-top: 20px;
+    margin-bottom:20px;
+  }
+  
+  /*signal group chat*/
+  /*top bar is fixed in this version, legit works in this version. should fix og version also, but... probably wont.*/
+  /* hotfixed og version and i should just convert it to all use the same classes but thats too much work */
+  .signal-gc-arrow {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    height: 30px;
+    width: 30px;
+    margin:0px 10px 5px 10px;
+    display: inline-block;
+  }
+  .inline{
+    display:inline-block;
+    max-width:70%;
+  }
+  .signal-gc-dot {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom:5px;
+    background-color: #bbb;
+  }
+  .signal-gc-name{
+    font-size:1.1em;
+    margin-top:5px;
+    display: block;
+  }
+  .signal-gc-subname{
+    font-size:.9em;
+    display:block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .signal-gc-name-line{
+    padding-bottom:5px;
+    box-shadow: 0px 8px 8px -10px #888888;
+    white-space: nowrap;
+    /* text-overflow: ellipsis; */
+    overflow: hidden;
+  }
+  .sgc-name{
+    display:block;
+    font-size:0.8em;
+    font-weight:bold;
+  }
+  .sgc-cyno{
+    color:#9A82BA;
+  }
+  .sgc-collei{
+    color:#787B38;
+  }
+  .sgc-tighnari{
+    color:#2A385B;
+  }
+  
+  .signal-at-right {
+    border-radius: 5px;
+    padding: 0px 5px 0px 2px;
+    color: white !important;
+    background: #1248B2;
+    text-decoration: none !important;
+    cursor: pointer;
+  }
+  .signal-at-left {
+    border-radius: 5px;
+    color: black !important;
+    padding: 0px 5px 0px 2px;
+    background: #C6C6C6;
+    text-decoration: none !important;
+    cursor: pointer;
+  }
+  
+  
+  
+  /* phone screen; notifs, alarms */
+  
+  .phone-container-container{
+    display:flex;
+    justify-content:center;
+  }
+  .phone-container {
+    /* border-top: 1px solid #b1b1b3;
+    border-bottom: 1px solid #b1b1b3; */
+    max-width:400px;
+    width:100%;
+    height:600px;
+    max-height:100%;
+    display:flex;
+    /* justify-content:center; */
+    align-items:center;
+    flex-direction:column;
+    /* background-color:#bbb; */
+    background: linear-gradient(gray, #bbb);
+    color:white;
+  }
+  .phone-off{
+    background: linear-gradient(gray, #bbb);
+  
+  }
+  .phone-on{
+    background: linear-gradient(#e5e5e5, #e5e5e5);
+    color:black;
+  }
+  
+  /* change this lots, center it also */
+  .phone-alarm-x{
+    /* content:""; */
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color:white;
+    color:black;
+    text-align:center;
+    font-size:35px;
+    margin-top:auto;
+    margin: auto 0 50px 0;
+  }
+  .phone-alarm-x:hover{
+    background-color:#bbb;
+    transition:1s;
+  
+  }
+  .phone-snooze{
+    background-color:rgb(203, 201, 201);
+    border-radius:15px;
+    padding:4px 15px;
+    margin-bottom:30px;
+  }
+  .phone-snooze:hover{
+    background-color:gray;
+  }
+  
+  .phone-time {
+    font-size: 4rem;
+    margin:0;
+  }
+  .phone-date {
+    font-size: 0.8rem;
+  }
+  .phone-alarm-name {
+    font-size: 0.8rem;
+    margin-top:-10px;
+  }
+  
+  .phone-notif{
+    max-width:390px;
+  
+    width:80%;
+    background-color:white;
+    border-radius:15px;
+    color:black;
+    padding:10px 20px;
+    padding-left:40px;
+    margin:5px;
+  }
+  .phone-notif{
+  
+  }
+  
+  /* overflow none, ... out */
+  .phone-notif-header{
+    font-weight:bold;
+    overflow:hidden;
+  }
+  .phone-notif-header::before{
+    content:"";
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background-color:gray;
+  
+    display:inline-block;
+    position:absolute;
+    /* margin-top:1px; */
+    margin-left:-35px;
+  }
+  .phone-notif-subheader{
+    color:rgb(150, 150, 150);
+    font-size:.8rem;
+    font-weight:normal;
+    margin-left:5px;
+    /* overflow behavior  */
+  }
+  
+  .phone-notif-time{
+    color:lightgray;
+    font-size:.8rem;
+    font-weight:normal;
+    margin-left:5px;
+  }
+  .phone-notif-header-email{
+    font-size:.8rem;
+  }
+  /* hack fix */
+  .phone-notif p{
+    margin:5px;
+    /* display:flex; */
+    /* justify-content:space-around; */
+  }
+  .phone-notif p span{
+    /* justify-content:space-around; */
+  }
+  .phone-weather-icons{
+    justify-content:space-between;
+    display:flex;
+  }
+  
+  .phone-notif-podcast-info::before{
+    content:"";
+    height: 35px;
+    width: 35px;
+    border-radius: 20%;
+    background-color:gray;
+  
+    display:inline-block;
+    position:absolute;
+    /* margin-top:1px; */
+    margin-left:-45px;
+  }
+  .phone-notif-podcast-info{
+    /* float:left; */
+    margin-left:15px;
+  }
+  .phone-notif-podcast-info::after{
+    content:"⏮	▶	⏭";
+    font-size:2rem;
+    overflow:hidden;
+    /* display:inline-block; */
+    /* position:absolute; */
+    /* margin-left:auto; */
+  
+    /* justify-content:right; */
+    float:right;
+    /* top:0; */
+    /* position:absolute; */
+    /* margin-left:auto; */
+    /* margin-bottom:auto; */
+    /* margin-top:auto; */
+    /* align-self:flex-start; */
+    /* display:flex; */
+    /* top:0; */
+  }
+  
+  .phone-notif-podcast-buttons{
+    font-size:2rem;
+    /* float:right; */
+    /* align-self:flex-end; */
+    /* margin-left:auto; */
+    /* display:inline-flex; */
+    position:absolute;
+    display:block;
+    /* margin-right:10px; */
+    /* margin-right:auto; */
+  }
+  
+  
+  
+  /* .dc-green-line-50, .dc-green-line-20, .dc-green-line-85{
+  } */
+  .phone-update-progress-50 {
+    border-bottom: 3px solid transparent;
+    /* padding-left: 5px; */
+    padding-top: 5px;
+    /* padding-bottom:10px; */
+    margin-bottom:10px;
+    margin-left:5px;
+  
+  
+    border-image: linear-gradient(to right, #0481FF 50%, #DADBDC 50%);
+    border-image-slice: 1;
+  }
+
+
+
+  /* yikyak */
+    /* centers the full view */
+    .yak-container-container{
+      display:flex;
+      justify-content:center;
+    }
+    /* container for the full view */
+    .yak-container{
+      width:100%;
+      max-width:500px;
+      font-family: sans-serif;
+      /* background-color:teal; */
+    }
+  
+    /* container for a single post */
+    .yak{
+      border-bottom:1px solid #E0E0E0;
+      width:95%;
+      margin-left:10px;
+      font-family: sans-serif;
+      font-size:1.5em;
+    }
+  
+  
+    /* top bar for main view */
+    .yak-topbar{
+      width:100%;
+      height:70px;
+  
+      background-color:#0CD5B1;
+      /* padding-left:10px; */
+      font-size:1.5em;
+  
+      display:flex;
+      justify-content: space-around;
+      align-items:center;
+      color:white;
+    }
+    /* code to make the [new | hot] box in the main view topbar */
+    .yak-center{
+      text-align:center;
+      padding-top:15px;
+    }
+    .yak-center-box{
+      border: 1px solid white;
+      border-radius:6px;
+      display:inline-block;
+    }
+    .yak-toggle-box{
+      display:flex;
+      justify-content:space-around;
+    }
+    .yak-toggle-new, .yak-toggle-hot{
+      color:white;
+      display:inline-block;
+      font-size:1.2rem;
+      padding: 10px 35px;
+  
+      border: 1px solid white;
+      border-radius:6px;
+    }
+    .yak-toggle-hot{
+      border-left:none;
+      border-top-left-radius:0;
+      border-bottom-left-radius:0;
+    }
+    .yak-toggle-new{
+      border-right:none;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    .yak-toggle-active{
+      color:#0CD5B1;
+      background-color:white;
+    }
+  
+  
+    /* main view bottom bar (yakarma) */
+    .yak-bottombar{
+      font-family: sans-serif;
+      background-color:#E2EBFE;
+      border-top:2px solid #C6CDD5;
+      color:#0CD5B1;
+      font-size:2em;
+      padding:10px 0px;
+      width:100%;
+    }
+  
+    /* tag for main view post (largely unused? phased out later?) */
+    .yak-tags{
+      color:#0CD5B1;
+      font-weight:bold;
+      margin-bottom:0px;
+    }
+    /* text for main view post */
+    .yak-text{
+      margin:7px 5px 7px 0px;
+    }
+    /* post footer, containing time, replies, and votes */
+    .yak-footer{
+      color:#B9B9B9;
+      font-size:0.9em;
+      display: flex;
+    justify-content: space-between;
+  
+    margin:0px 10px 5px 5px;
+    }
+    /* unused class for time */
+    .yak-time{
+      /* color:#AFAFAF; */
+    }
+  
+    /* vote on mainscreen post */
+    .yak-vote{
+      color:#ACACAC;
+      position:relative;
+    }
+    .yak-vote::before, .yak-vote::after{
+      content:"";
+      border-bottom-color: #757575;
+      border: solid #ACACAC;
+      border-width: 0 2px 2px 0;
+      padding: 6px;
+      display: inline-block;
+      cursor:pointer;
+    }  
+    /* up arrow(left) */
+    .yak-vote::before{
+      margin:0px 25px -5px 10px;
+      /* left:-35px;
+      bottom:-2px; */
+      transform: rotate(-135deg);
+      -webkit-transform: rotate(-135deg);
+    }
+    /* down arrow(right) */
+    .yak-vote::after{
+      margin:0px 10px 3px 25px;
+      /* right:-35px;
+      bottom:6px; */
+  
+      transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+    }
+  
+    /* code for details view */
+    .yak-details{
+      font-size:2rem;
+      margin:0 10px;
+      display:flex;
+      justify-content:space-around;
+      align-items:center;
+    }
+    .yak-details-text{
+      flex-grow:9;
+    }
+  
+    /* details view topbar text */
+    .yak-details-header{
+      font-size:1.6rem;
+      font-weight:bold;
+    }
+    /* details view topbar back button */
+    .yak-back-button{
+      border: solid white;
+      border-width: 0 3px 3px 0;
+      padding: 8px;
+      transform: rotate(135deg);
+     -webkit-transform: rotate(135deg);
+      margin-left:-15px;
+      cursor:pointer;
+    }
+  
+    /* details view time stamp for all posts (larger than main screen) */
+    p.yak-details-time{
+      color:#B9B9B9;
+      font-size:1.3rem;
+      margin:10px;
+    }
+    .yak-line{
+      border-bottom:1px solid #E0E0E0;
+    }
+    /* seeing if i can replace yak-line */
+    div.yak-details-time{
+      color:#B9B9B9;
+      font-size:1.3rem;
+      padding:0 0 10px 10px;
+      border-bottom:1px solid #E0E0E0;
+    }
+    /* details view location text (same as time class tbh) */
+    .yak-details-location{
+      color:#B9B9B9;
+      font-size:1.3rem;
+      margin:10px;
+    }
+    /* details view, under the main post, comments count box */
+    .yak-details-comment-header{
+      background-color:#FAFAFA;
+      color:#AAAAAA;
+      padding:10px;
+      font-size:1.3rem;
+      font-weight:bold;
+    }
+    
+    /* for scores of zero (grayed out, not green) */
+    .yak-null{
+      color:#E4E4E4;
+    }
+  
+  
+  
+    /* details view, formats the layout for comments under the main post  */
+    .yak-details-comment{
+      display:flex;
+      justify-content:space-around;
+    }
+    
+    /* details view, comments text */
+    .yak-details-comment-text{
+      font-size:1.2rem;
+      flex-grow:9;
+      margin-left:50px;
+      margin-top:10px;
+    }
+    /* user pfp, base class */
+    .yak-details-comment-text::before{
+      content:"";
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      background-color: #bbb;
+      font-size:2em;
+  
+      /* this only centers the icon text, faking a pfp */
+      display:flex;
+      align-items: center;
+      justify-content: center;
+      
+  
+      /* hardcode align pfp to the left of the comment text */
+      position:absolute;
+      
+      margin: 0px 10px 0px -50px;
+      /* margin: 5px 10px 0px 0px; */
+  
+      /* left:20px; */
+    }
+    /* OP for main post, affects pfp only */
+    .yak-op::before{
+      font-size:1em;
+  
+      content:"OP";
+      color:white;
+      font-weight:bold;
+      background-color: #0CD5B1;
+    }
+    /* other pfps  */
+    .yak-pink::before{
+      background-color: pink; 
+      color:maroon;
+      content:"◇"; 
+    }
+    .yak-blue::before{
+      background-color: lightblue;
+      content:"◉";
+      color:darkblue;
+    
+    }
+    .yak-yellow::before{
+      background-color: yellow;
+      content:"◬";
+      color:brown;
+    }
+    /* pot.: 
+    △
+    ☆
+    ☎
+    ☏
+    ☘
+    ☮
+    ♖
+    ♡
+    ♬
+    ⚐
+    ⚠
+    ⚅
+    ⛈
+  
+     */
+  
+    
+  
+  
+    .yak-score-container{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      float:right;
+      margin-right:20px;
+    }
+    .yak-score-number{
+      color:#0CD5B1;
+      font-weight:bold;
+    }
+  
+    /* .yak-score-number::before, .yak-score-number::after{ */
+      .up, .down{
+      /* content:"";
+      border-bottom-color: #757575;
+      border: solid #E4E4E4;
+      border-width: 0 6px 6px 0;
+      padding: 12px;
+      display: inline-block;
+      border-radius:3px; */
+      width:50px;
+    height:30px;
+  
+    background: url("https://raw.githubusercontent.com/jihnari/misc/main/yikyak/img/yak-down-arrow.png") no-repeat;
+    background-size:50px 30px;
+    cursor:pointer;
+  
+    }  
+  
+    .yak-details-score{
+      color:#0CD5B1;
+      position:relative;
+      margin-left:10px;
+
+  
+      /* flex-grow:1; */
+      font-size:25px;
+      font-weight:bold;
+      text-align:center;
+    }
+    /* arrows */
+    .yak-details-score::before, .yak-details-score::after{ 
+      display:flex;
+      content:"";
+      width:50px;
+    height:30px;
+  
+    background: url("https://raw.githubusercontent.com/jihnari/misc/main/yikyak/img/yak-down-arrow.png") no-repeat;
+    background-size:50px 30px;
+    cursor:pointer;
+  
+    }
+    /* up arrow */
+    .yak-details-score::before{
+      transform: rotate(180deg);
+      -webkit-transform: rotate(180deg);
+    }
+    .yak-details-score:hover::before{
+      /* change out for green image */
+      background: url("https://raw.githubusercontent.com/jihnari/misc/main/yikyak/img/yak-down-arrow-voted.png") no-repeat;
+    background-size:50px 30px;
+  
+      /* opacity:40%; */
+  
+    }
+  
+    /* voted */
+    /* has to be wrapped INSIDE the voted class */
+    .voted > .yak-details-score::before{
+      background: url("https://raw.githubusercontent.com/jihnari/misc/main/yikyak/img/yak-down-arrow-voted.png") no-repeat;
+      background-size:50px 30px;
+    }
+  
+  
+    /* i dont think this is in use */
+    .up{
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    }
+  
+  
+    .yak-op{
+      color:#0CD5B1;
+    }
+
+  
+/*discord*/
+/*
+todo:
+* we finally centered the header text, but at what cost
+* consider going mad and replacing the hamberger w compound images
+* i fixed the spacing but broke the reply boxes. so its possible, itll just take tweaking.
+*/
+.dc-font{
+  font-family: 'Uni sans', 'Whitney', sans-serif;
+  /* line-height: 160% !important; */
+  
+  /* for the orange bg */
+  margin-left:7px;
+}
+/* this breaks things */
+div.dc-font > p
+{
+  /* line-height: 160% !important;   */
+  /*ignore this*/
+  /* this breaks things; also, change to margin bottom and fix stuff, probably. margin top is sketch. */
+
+  /* this fixes the spacing issue, but its an ao3 specific fix. it looks bad everywhere else. */
+  margin-bottom:-6px;
+}
+.dc-middle-line-red {
+  text-align: center;
+  border-bottom: 1px solid red;
+  line-height: 0.1em;
+  /* fix these margins */
+  /* margin: 10px 0 20px; */
+  margin:20px 0 30px;
+  color:red;
+  font-size:.9em;
+}
+.dc-middle-line-gray {
+  text-align: center;
+  border-bottom: 1px solid #8A8E93;
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+  color:#737F8C;
+  font-size:.9em;
+}
+.dc-gc-change{
+  font-size:1.1em;
+
+  letter-spacing: .4px;
+  /* -webkit-text-stroke:royalblue  */
+  /* -webkit-text-stroke:1px; */
+
+  padding-left:35px;
+  position:relative;
+}
+.dc-gc-namechange{
+  font-weight:bold;
+  /* color:black; */
+}
+.dc-gc-edit, .dc-gc-add{
+  display: inline-flex;
+  position:absolute;
+  width: 25px;
+  height: 25px;
+  left:0;
+  background: url("https://github.com/jihnari/QAB/raw/main/img/dc-edit.png") no-repeat;
+  background-size:25px 25px;
+}
+.dc-gc-add{
+  background: url("https://github.com/jihnari/QAB/raw/main/img/dc-add.png") no-repeat;
+  background-size:25px 25px;
+}
+
+.dc-time-stamp {
+  font-size:0.8rem !important;
+  /* font-size:10px !important; */
+  color: #757F8B;
+
+  /* testing */
+  /* -webkit-text-stroke-width: 0; */
+  -webkit-text-stroke:0;
+  letter-spacing:normal;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  vertical-align: bottom;
+  display: inline-block;
+  margin-bottom: 2px;
+}
+.dc-border-top {
+  /*border-top: 1px solid black;*/
+  /*check this*/
+  box-shadow: 0px 8px 10px -10px #888888;
+}
+.dc-border-bottom {
+  /*border-bottom: 1px solid black;*/
+  padding-bottom:5px;
+}
+.dc-reply-text2:hover{
+  /* color: black; */
+  font-style: bold;
+  /* -webkit-text-stroke-width: thin; */
+  -webkit-text-stroke:.3px;
+
+}
+.dc-reply-text2{
+  /* a lot of this is ao3 specific */
+  margin-bottom:-17px !important;
+  margin-top: 17px;
+  margin-left: 3px;
+  padding-left: 25px;
+
+/* this fixes the ao3 erasing issue */
+  padding-bottom: 3px;
+
+  max-width: 90%;
+  max-height: 4em;
+
+  font-size: .8em !important;
+  color: #797D80;
+
+  display:block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* not allowed on ao3 :( */
+  /* display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; */
+
+  position: relative;
+}
+.dc-reply-text2::before{
+  content: '';
+  border-left: 3px solid #76808C;
+  border-top: 3px solid #76808C;
+  border-top-left-radius: 8px;
+  left: 0px;
+  top: 7px;
+  height: 100%;
+  width: 20px;
+  display: inline-block;
+  position: absolute;
+}
+.dc-reply-wrapper {
+  margin-bottom:-15px;
+  overflow: auto;
+}
+.dc-blockquote{
+  padding:0px 0 0px 7px;
+  margin:12px 0 2px 0;
+  border-left: 3px solid #76808C;
+}
+.dc-locked-channel-icon{
+  display: inline-flex;
+  width: 35px;
+  height: 35px;
+  vertical-align: -35%;
+  margin-right:5px;
+  background: url("https://github.com/jihnari/QAB/raw/main/img/dc-locked.png") no-repeat;
+  background-size:35px 35px;
+}
+.dc-hamberger { /*yes im aware this is mispelled, its too late now*/
+  height: 35px;
+  width: 50px;
+  padding-top:10px;
+  margin-bottom:-11px;
+  margin-left:-12px;
+
+/* check this later, no internet now  */
+  /* background-size:50px 35px;
+  background: url("https://github.com/jihnari/QAB/raw/main/img/dc-hamburger.jpg") no-repeat;
+  display: inline-block;
+  background-color: pink; */
+}
+.dc-header-buffer{
+  margin-top:10px;
+  margin-left:10px;
+  overflow: auto;
+}
+.dc-header{
+  /* font-size:35px; */
+  font-size: 1.3em;
+  font-weight:bold;
+
+  /* was previously 5 */
+  margin-left:0px; 
+  overflow: auto;
+}
+.dc-emotebox {
+  border-radius: 4px;
+  background: #F6F6F6;
+  color: #C2C5C9;
+  border:1.5px solid #F6F6F6;
+  /* padding: 2px; */
+  padding: 2px 5px 2px 3px;
+  margin: 5px 5px 5px 0px;
+  display: inline-block;
+  cursor: pointer;
+}
+.dc-emotebox:hover {
+background: #FFFFFF;
+border:1.5px solid #BCBCBC;
+}
+.dc-myemotebox {
+  border-radius: 6px;
+  border:1.5px solid #5865F2;
+  background: #E7E9FD;
+  color: #5865F2;
+  padding: 2px 5px 2px 3px;
+}
+
+
+/* unsure if needed  */
+.rounded-corners {
+  border-radius:2px;
+}
+.dc-name{
+  font-weight:bold;
+  font-size:1.1rem;
+  /* font-size:1.1em; */
+  /* font-size:15px; */
+
+  letter-spacing: 0px;
+  color:#060607;
+  cursor: pointer;
+  /* -webkit-text-stroke-width: 0; */
+  letter-spacing:normal;
+  -webkit-text-stroke:0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 70%;
+  display: inline-block;
+  vertical-align: bottom;
+}
+.dc-name:hover{
+  text-decoration: underline;
+}
+
+.color-red{
+  color:red;
+}
+.color-yellow{
+  color:#FFC72C;
+}
+.color-orange{
+  color:orange;
+}
+.color-blue{
+  color:blue;
+}
+.color-lblue{
+  color:#add8e6;
+}
+.color-pink{
+  color:pink;
+}
+.color-lpink{
+  color:#FEC9CD;
+}
+.color-purple{
+  color:purple;
+}
+.color-green{
+  color:#78bf9f;
+}
+.color-forest{
+  color:#228b22;
+}
+.color-default{
+  color:#060607;
+}
+
+.dc-just-emote{ /*dont forget to shift the below element up*/
+  font-size:2.5em;
+  margin-top:-5px;
+  margin-bottom:0px;
+}
+.dc-welcome{
+  font-size:2em;
+  font-weight:bold;
+  margin-bottom:-15px;
+}
+.dc-link {
+  border-radius: 3px;
+  color: #5865EF;
+  background: #E7EAFD;
+  padding:0 2px;
+  cursor: pointer;
+}
+.dc-link:hover {
+  color:#FFFFFF;
+  background: #5865F2;
+  text-decoration: underline #FFFFFF;
+}
+.dc-spoiler {
+  color: #B9BBBE;
+  background-color: #B9BBBE;
+  border-radius: 3px;
+  cursor: pointer;
+  -webkit-transition: all 0s 400s;
+  -moz-transition: all 0s 400s;
+  -ms-transition: all 0s 400s;
+  -o-transition: all 0s 400s;
+  transition: all 0s 400s;
+}
+.dc-spoiler:active {
+  color: black;
+  background-color: #E5E5E5;
+  -webkit-transition: all 0.1s;
+  -moz-transition: all 0.1s;
+  -ms-transition: all 0.1s;
+  -o-transition: all 0.1s;
+  transition: all 0.1s;
+}
+.dc_bot {
+  background:#5865F2;
+  color:white;
+  font-size:.5em;
+  padding: 2px 4px 2px 4px;
+  border-radius:3px;
+  vertical-align: middle;
+}
+.dc_code {
+  background:#f9f9f9;
+  color:#4F555D;
+  padding:1.5px;
+  font-family: "Lucida Console", Monaco, monospace;
+}
+
+/* this does nothing */
+.dc_image_container{
+  max-width: 95%;
+}
+
+/* portrait */
+.dc_image{
+  max-width:95%;
+  /* max-width: 350px; */
+  /* width: 350px; */
+  /* width: 95%; */
+  max-height: 350px;
+  /* height: auto; */
+  /* object-fit: contain; */
+
+  display:table;
+  border: 1px solid #DDDEDF;
+  border-radius: 6px;
+  line-height: 1.4em;
+}
+
+.dc_image_landscape{
+  max-width:95%;
+  width: 400px;
+  /* width: 350px; */
+  /* width: 95%; */
+  /* max-height: 350px; */
+  height: auto;
+  /* object-fit: contain; */
+  display:table;
+  border: 1px solid #DDDEDF;
+  border-radius: 6px;
+  line-height: 1.4em;
+}
+
+.dc-new-msg-bar{
+  background:#5865F2;
+  color:white;
+  padding: 8px 10px 8px 15px;
+  font-weight:bold;
+  /* this value feels wrong but looks correct in atom */
+  margin-top:20px;
+  border-radius: 10px;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  /* width: 90%; */
+
+  /* doesnt quite fix the issue but comes close */
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.dc-blue-x{
+  position: absolute;
+  right:0;
+  margin-right:12px;
+  /* margin-top:-3px; */
+  vertical-align: middle;
+  height:1.4em;
+}
+
+.middle-box {
+  background: #fff;
+  padding: 0 10px;
+}
