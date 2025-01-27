@@ -1,0 +1,424 @@
+<!-- todo: 
+- podcast notif 
+- overflow on words 
+- make notif screen scrollable? 
+- fix X button 
+- alarm gif? 
+- able to turn off alarm? (details on X, turn view to black)
+- 
+ -->
+ 
+ 
+ <!doctype html>
+
+
+
+
+
+<style> 
+/* centers the phone view */
+.phone-container-container{
+  display:flex;
+  justify-content:center;
+}
+.phone-container {
+  /* border-top: 1px solid #b1b1b3;
+  border-bottom: 1px solid #b1b1b3; */
+  max-width:400px;
+    width:100%;
+    height:600px;
+    max-height:100%;
+    display:flex;
+    /* justify-content:center; */
+    align-items:center;
+    flex-direction:column;
+    /* background-color:#bbb; */
+    background: linear-gradient(gray, #bbb);
+    color:white;
+}
+.pphone-notif-container{
+  /* this does make it scroll in the right place, but the absolute'd icons dont move with the rest of the view */
+  overflow:scroll;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.phone-notif-container::-webkit-scrollbar {
+  display: none;
+}
+
+.phone-off{
+  background: linear-gradient(gray, #bbb);
+
+}
+.phone-on{
+  background: linear-gradient(#e5e5e5, #e5e5e5);
+  color:black;
+}
+
+/* change this lots, center it also */
+.phone-alarm-x{
+    /* content:"🞨 🞩 ☓ ❌ ⨯"; */
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color:white;
+    color:black;
+    text-align:center;
+    font-size:40px;
+    margin-top:auto;
+    margin: auto 0 50px 0;
+}
+.phone-alarm-x:hover{
+  background-color:#bbb;
+  transition:1s;
+
+}
+.phone-snooze{
+  background-color:rgb(203, 201, 201);
+  border-radius:15px;
+  padding:4px 15px;
+  margin-bottom:30px;
+}
+.phone-snooze:hover{
+  background-color:gray;
+}
+
+.phone-time {
+  font-size: 4rem;
+  margin:0;
+}
+.phone-date {
+  font-size: 0.8rem;
+}
+.phone-alarm-name {
+  font-size: 0.8rem;
+  margin-top:-10px;
+}
+
+.phone-notif{
+  max-width:390px;
+
+  width:80%;
+  background-color:white;
+  border-radius:15px;
+  color:black;
+  padding:10px 20px;
+  padding-left:40px;
+  margin:5px;
+}
+
+
+/* overflow none, ... out */
+.phone-notif-header{
+  font-weight:bold;
+
+  /* trying to get ... to work  */
+  /* the white-space no wrap breaks things real bad  */
+  /* display:inline-block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden; */
+}
+.phone-notif-header::before{
+  content:"";
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background-color:gray;
+  
+    display:inline-block;
+    position:absolute;
+    /* margin-top:1px; */
+    margin-left:-35px;
+
+}
+.phone-notif-subheader{
+  color:lightgray;
+  font-size:.8rem;
+  font-weight:normal;
+  margin-left:5px;
+  /* overflow behavior  */
+  /* display:block; */
+  /* display:inline-block; */
+
+  /* white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden; */
+}
+
+.phone-notif-time{
+  color:lightgray;
+  font-size:.8rem;
+  font-weight:normal;
+  margin-left:5px;
+  /* display:inline-block; */
+  /* display:inline; */
+}
+.phone-notif-header-email{
+  font-size:.8rem;
+}
+/* hack fix */
+.phone-notif p{
+  margin:5px;
+  /* display:flex; */
+  /* justify-content:space-around; */
+}
+.phone-notif p span{
+  /* justify-content:space-around; */
+}
+.phone-weather-icons{
+  justify-content:space-between;
+  display:flex;
+}
+
+.phone-notif-podcast-info::before{
+  content:"";
+  height: 35px;
+  width: 35px;
+  border-radius: 20%;
+  background-color:gray;
+
+  display:inline-block;
+  position:absolute;
+  /* margin-top:1px; */
+  margin-left:-45px;
+}
+.phone-notif-podcast-info{
+  /* float:left; */
+  margin-left:15px;
+}
+.phone-notif-podcast-info::after{
+  content:"⏮	▶	⏭";
+  font-size:2rem;
+  overflow:hidden;
+  /* display:inline-block; */
+  /* position:absolute; */
+  /* margin-left:auto; */
+
+  /* justify-content:right; */
+  float:right;
+  /* top:0; */
+  /* position:absolute; */
+  /* margin-left:auto; */
+  /* margin-bottom:auto; */
+  /* margin-top:auto; */
+  /* align-self:flex-start; */
+  /* display:flex; */
+  /* top:0; */
+}
+
+.phone-notif-podcast-buttons{
+  font-size:2rem;
+  /* float:right; */
+  /* align-self:flex-end; */
+  /* margin-left:auto; */
+  /* display:inline-flex; */
+  position:absolute;
+  display:block;
+  /* margin-right:10px; */
+  /* margin-right:auto; */
+}
+
+
+
+/* .dc-green-line-50, .dc-green-line-20, .dc-green-line-85{
+} */
+.phone-update-progress-50 {
+  border-bottom: 3px solid transparent;
+  /* padding-left: 5px; */
+  padding-top: 5px;
+  /* padding-bottom:10px; */
+  margin-bottom:10px;
+  margin-left:5px;
+
+
+  border-image: linear-gradient(to right, #0481FF 50%, #DADBDC 50%);
+  border-image-slice: 1;
+}
+
+
+
+/* signal test  */
+
+.signal-gc-name{
+  font-size:1.1em;
+  margin-top:5px;
+  display: block;
+}
+.signal-gc-subname{
+  font-size:.9em;
+  display:block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.signal-gc-name-line{
+  padding-bottom:5px;
+  box-shadow: 0px 8px 8px -10px #888888;
+  white-space: nowrap;
+  /* text-overflow: ellipsis; */
+  overflow: hidden;
+}
+.signal-gc-arrow {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  height: 30px;
+  width: 30px;
+  margin:0px 10px 5px 10px;
+  display: inline-block;
+}
+.inline{
+  display:inline-block;
+  max-width:70%;
+}
+
+</style> 
+
+
+
+<!-- test  -->
+
+<p class=signal-gc-name-line><img src="https://github.com/jihnari/QAB/raw/main/img/signal-arrow.jpg" class="signal-gc-arrow"><span class="signal-gc-dot"></span><span class=inline><span class="signal-gc-name">Labradors or Violence</span><span class=signal-gc-subname>Shigaraki, Dabi, Mr. Compress, spinner, Magne, jIN, You test test etst </span></span><span class="phone-notif-time">10:10</span> </p>
+<p>
+
+
+<!-- phone notifs -->
+<div class="phone-container-container">
+  <div class="phone-container phone-on">
+    <p class="phone-time">[9:22]</p>
+    <p class="phone-date">[Tue, Jan 14]</p>
+  
+    <!-- <div class="phone-notif-container"> -->
+    <!-- weather notif -->
+    <div class="phone-notif">
+      <p>28° — Sumeru City </p>
+      <p class="phone-weather-icons"><span>Feels like: 34°</span> <span>30°/38°</span></p>
+      <!-- <div class="phone-weather-icons"><div>☴ 8 mph</div><div>🜄 60%</div><div>☀ ☼ 0??</div><div>🜁 21</div></div> -->
+      <p class="phone-weather-icons"><span>☴ 8 mph</span><span>🜄 60%</span><span>☼ 3</span><span>🜁 21</span></p>
+    </div>
+
+        <!-- app update notif -->
+        <div class="phone-notif">
+          <p style:"display:inline-block;"><span class="phone-notif-header">Yikyak: Version 12.14562 123123123123</span><span class="phone-notif-subheader">Downloading downloading</span><span class="phone-notif-time">10:10</span> 
+        </p>
+          <div class="phone-update-progress-50"></div>
+        </div>
+    
+    <!-- app update notif -->
+    <div class="phone-notif">
+      <p class="phone-notif-header">Yikyak: Version 12.14562 123123123123</p><p class="phone-notif-subheader">Downloading downloading</p><p class="phone-notif-time">10:10</p> 
+      <div class="phone-update-progress-50"></div>
+    </div>
+    
+    <!-- text notif -->
+    <div class="phone-notif">
+      <p class="phone-notif-header">Cyno <span class="phone-notif-time">10:10</span></p>
+      <p>Call me </p>
+    </div>
+
+    <!-- calendar notif -->
+    <div class="phone-notif">
+      <p class="phone-notif-header">Forestry Hike </p>
+      <p>Today 1:00 PM</p>
+    </div>
+
+    <!-- email notif -->
+    <div class="phone-notif">
+      <p class="phone-notif-header">Email <span class="phone-notif-time">10:10</span></p>
+      <p><b>Archive of Our Own</b> [AO3] Comment on the victim in between</p>
+    </div>
+
+
+    <!-- podcast notif -->
+    <div class="phone-notif">
+      <div class="phone-notif-podcast-info">
+        <small>This phone</small> <br/>
+        [podcast episode name]<br/>
+        [podcast name] &middot; 6/18  
+      </div> 
+
+    <!-- </div> -->
+
+    </div>
+
+    <!-- <small>This phone</small>
+    [podcast episode name]
+    [podcast name] &middot; 6/18  
+
+  <div class="phone-notif-podcast-buttons">⏮ &nbsp; &nbsp;▶ &nbsp; ⏭</div> -->
+  
+
+    <!-- ⯈ ▶ -->
+  
+  </div>
+  </div>
+
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+
+
+<!-- phone:alarm -->
+<div class="phone-container-container">
+<div class="phone-container phone-off">
+  <p>&nbsp;</p>
+  <p class="phone-time">[9:22]</p>
+  <p class="phone-date">[Tue, Jan 14]</p>
+  <p class="phone-alarm-name">[alarm name but]</p>
+
+  <div class=phone-alarm-x>🞨</div>
+  
+  <div class="phone-snooze">Snooze 5 mins</div>
+</div>
+</div>
+
+
+
+
+
+
+
+<!-- old  -->
+
+<!-- phone:incoming call -->
+<!-- <div align="center">
+<p class="phone-div">&nbsp;</p>
+<p class="phone-incoming">Incoming call</p>
+<p>&nbsp;</p>
+<p class="phone-caller">Iida Tensei</p>
+<p class="phone-number">[SMART] +81 xxx-xxx-xxx</p>
+<p><image class=phone-answer src="https://github.com/jihnari/QAB/raw/main/img/phone-answer.png"/></p>
+<p align=center class="phone-short-line"></p>
+<p class=phone-send-message>Send Message</p>
+<p class="phone-div">&nbsp;</p>
+</div> -->
+
+
+
+<!-- phone:notifications -->
+<!-- <div>
+  <p class="phone-div">&nbsp;</p>
+  <p align="center">
+  <span align="center" class="phone-time">0:31</span><br/>
+  <span align=center class="phone-date">Friday, August 13</span></p>
+  
+  <p class=phone-notif-top>
+  <span class="padding-left-20">MESSAGES <span class="right">1m ago</span>
+  </p>
+  <p class=phone-notif-bottom>
+  <b>88888</b><br/>
+  PublicAlerts: Police activity near north Kamino ward. Stay indoors. To report anything unusual call 110. Reply with YES to confirm receipt.
+  </p>
+  <p class="clear">&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
+  <p align=center class="phone-short-line">Swipe up to open </p>
+  <p>&nbsp;</p>
+  <p class="phone-div">&nbsp;</p>
+  
+  </p>
+</div> -->
+
+
+
+
+   
+<p>&nbsp;</p><p>&nbsp;</p>
+<hr/>
