@@ -24,6 +24,39 @@
     width:30px;
   }
 
+
+  /* window stuff  */
+
+  /* base window class */
+  .window{
+    /* horizontal lines */
+  background: linear-gradient(to bottom,lightgray 24px,white 1px);
+  /* decides the width of the lines, that 200 might be a mistake idk  */
+  background-size: 200px 25px;
+
+  /* decides the width of the whole box  */
+  height:200px;
+  width:200px;
+  position:relative;
+
+  /* white border around the whole window */
+  border:solid 2px white;
+
+  /* black border around the white border  */
+  box-shadow:3px 3px black, -3px -3px black, -3px 3px black, 3px -3px black;
+}
+/* overlaying window, provides vertical lines */
+.window2{
+  background: linear-gradient(to right,rgba(128, 128, 128, 0.125) 24px,rgb(255, 255, 255) 1px);
+  /* note this is flipped, to account for we're doing vertical lines now not horizontal */
+  background-size: 25px 200px;
+  height:200px;
+  width:200px;
+  /* lay directly on top of the other window  */
+  position:absolute;
+}
+
+
   </style>
 
   <div class=chapter>
@@ -32,3 +65,24 @@
   <div class=chapter-arrow>
     >>
   </div>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+
+  window test 
+
+<p>&nbsp;</p>
+
+
+<div class="window">
+  <div class="window2">
+</div>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+

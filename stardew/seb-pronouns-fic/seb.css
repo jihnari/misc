@@ -16,6 +16,7 @@ figure{
   line-height: 1.5;
   padding: 0;
   border:0 !important;
+  margin:0.643em;
 }
 .fake-notes-header{
   font-size: 1.286em;

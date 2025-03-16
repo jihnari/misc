@@ -23,7 +23,8 @@ todo:
   /* container for the full view */
   .yak-container{
     width:100%;
-    max-width:500px;
+    /* to be the same as the phone view */
+    max-width:400px;
     font-family: sans-serif;
     /* background-color:teal; */
   }
@@ -220,7 +221,10 @@ todo:
   
   /* for scores of zero (grayed out, not green) */
   .yak-null{
-    color:#E4E4E4;
+    color:#E4E4E4 !important;
+  }
+  .yak-negative{
+    color:#ED5050 !important;
   }
 
 
@@ -287,6 +291,14 @@ todo:
     content:"◬";
     color:brown;
   }
+  .yak-purple::before{
+    font-size:1.5em;
+
+    background-color: purple;
+    content:"☎";
+    color:yellow;
+  }
+  
   /* pot.: 
   △
   ☆
@@ -331,7 +343,7 @@ todo:
     width:50px;
   height:30px;
 
-  background: url("https://raw.githubusercontent.com/jihnari/misc/main/yikyak/img/yak-down-arrow.png") no-repeat;
+  background: url("https://raw.githubusercontent.com/jihnari/misc/main/_reusable/yikyak/img/yak-down-arrow.png") no-repeat;
   background-size:50px 30px;
   cursor:pointer;
 
@@ -354,7 +366,7 @@ todo:
     width:50px;
     height:30px;
 
-    background: url("https://raw.githubusercontent.com/jihnari/misc/main/yikyak/img/yak-down-arrow.png") no-repeat;
+    background: url("https://raw.githubusercontent.com/jihnari/misc/main/_reusable/yikyak/img/yak-down-arrow.png") no-repeat;
     background-size:50px 30px;
     cursor:pointer;
 
@@ -366,7 +378,7 @@ todo:
   }
   .yak-details-score:hover::before{
     /* change out for green image */
-    background: url("https://raw.githubusercontent.com/jihnari/misc/main/yikyak/img/yak-down-arrow-voted.png") no-repeat;
+    background: url("https://raw.githubusercontent.com/jihnari/misc/main/_reusable/yikyak/img/yak-down-arrow-voted.png") no-repeat;
   background-size:50px 30px;
 
     /* opacity:40%; */
@@ -376,7 +388,7 @@ todo:
   /* voted */
   /* has to be wrapped INSIDE the voted class */
   .voted > .yak-details-score::before{
-    background: url("https://raw.githubusercontent.com/jihnari/misc/main/yikyak/img/yak-down-arrow-voted.png") no-repeat;
+    background: url("https://raw.githubusercontent.com/jihnari/misc/main/_reusable/yikyak/img/yak-down-arrow-voted.png") no-repeat;
     background-size:50px 30px;
   }
 
@@ -485,7 +497,7 @@ Taking 2 hours to respond to every text doesnt make you seem cool and busy.. it'
   
     <!-- comment -->
   <div class="yak-details-comment">
-    <div class="yak-details-comment-text">
+    <div class="yak-details-comment-text yak-purple">
       comment text, testing 123  </div>
       <div class="yak-details-score">15</div>
   </div>
@@ -495,7 +507,7 @@ Taking 2 hours to respond to every text doesnt make you seem cool and busy.. it'
 
       <!-- comment -->
       <div class="yak-details-comment">
-        <div class="yak-details-comment-text blue">
+        <div class="yak-details-comment-text yak-blue">
           comment text, testing 123  </div>
           <!-- <div class="yak-details-score">29</div> -->
     <div class=voted><div class="yak-details-score">29</div></div>
@@ -505,10 +517,22 @@ Taking 2 hours to respond to every text doesnt make you seem cool and busy.. it'
       <!-- <p class="yak-details-location">📍 Nearby</p> -->
       <div class="yak-line"></div>
 
+            <!-- comment -->
+            <div class="yak-details-comment">
+              <div class="yak-details-comment-text yak-yellow">
+                comment text, testing 123  </div>
+                <!-- <div class="yak-details-score">29</div> -->
+          <div class=voted><div class="yak-details-score">29</div></div>
+      
+            </div>
+            <p class="yak-details-time">5s</p>
+            <!-- <p class="yak-details-location">📍 Nearby</p> -->
+            <div class="yak-line"></div>
+
       
       <!-- comment -->
       <div class="yak-details-comment">
-        <div class="yak-details-comment-text pink">
+        <div class="yak-details-comment-text yak-pink">
           another comment 123 is it the length of the oh yes it is. thats. sucky. ok. cool. ok. maybe no flex box 4 u. hardcode and absolute and margin the space off.  </div>
           <div class="yak-details-score">2</div>
 
@@ -530,6 +554,43 @@ Taking 2 hours to respond to every text doesnt make you seem cool and busy.. it'
 </div></div>
 </div>
 
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<!-- yikyak main screen template -->
+<!-- i put 4 per -->
+<div class="yak-container-container">
+  <div class="yak-container">
+  <div class="yak-topbar">
+    <div></div>
+    <div class="yak-toggle-box"><div class="yak-toggle-new yak-toggle-active">New</div> <div class="yak-toggle-hot">Hot</div></div>
+    <div>...</div>  
+  </div>
+  
+  
+  <div class="yak">
+    <!-- <p class="yak-tags">
+    </p> -->
+    <p class="yak-text">
+    </p>
+    <p class="yak-footer"> <span>15m ago</span> <span>2 replies</span><span class="yak-vote">14</span></p>
+  </div>
+  
+  <div class="yak">
+    <p class="yak-text">
+    </p>
+    <p class="yak-footer"> <span>59m ago</span> <span class="yak-vote">32</span></p>
+  </div>
+  
+  
+  <div class="yak-bottombar" align="center">
+    Yakarma Score: 100
+  </div>
+</div>
+</div>
+
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -549,7 +610,7 @@ Taking 2 hours to respond to every text doesnt make you seem cool and busy.. it'
 <div class="yak-details">
 <div class="yak-details-text">_main_post_</div>
 
-<div class=voted><div class="yak-details-score">10</div></div>
+<div class="voted"><div class="yak-details-score">10</div></div>
 <!-- <div class="yak-details-score">10</div> -->
 </div>
 

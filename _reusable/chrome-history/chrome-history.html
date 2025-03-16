@@ -1,0 +1,141 @@
+<!-- rewritten from the qab version to get rid of tables and move all images to background properties -->
+
+<style>
+  /* extra stuff */
+.fadeout {
+  position: relative;
+}
+.fadeout::before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: linear-gradient(to bottom, rgba(255,255,255, 0), white);
+}
+
+/* smth like this? */
+.dm-container {
+  display:block;
+  margin:auto;
+  position:relative;
+  max-width:400px;
+  width:100%;
+}
+
+
+/*chrome history*/
+.ch-header{
+  font-family: 'Uni sans', 'Whitney', sans-serif; 
+  border-bottom: 1px solid #E0E0E0;
+  margin-bottom:20px;
+}
+.ch-title{
+  font-size:1.3em;
+  margin-bottom:20px;
+}
+.ch-title::after{
+  content:"";
+  width:70px;
+  height:30px;
+  position:absolute;
+  right:10px;
+  background: url("https://github.com/jihnari/QAB/raw/main/img/ch-search.png") no-repeat;
+  background-size:70px 30px;
+  cursor:pointer;
+}
+.ch-sub-header{
+  color: #1A72E8;
+  font-size:.9em;
+  margin: auto !important;
+  padding-bottom:12px;
+  cursor:pointer;
+}
+.ch-date{
+  color: #5f6267;
+  font-size:0.8em;
+}
+.ch-entry{
+  margin:20px 0;
+  width:100%;
+}
+.ch-site-link{
+  font-size: 0.7em;
+  color: #5f6267;
+  margin:3px 50px 0px 45px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.ch-site-name{
+  font-size:0.9em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin:10px 50px 0 45px;
+}
+.ch-site-name::after{
+  content:"";
+  width:20px;
+  height:20px;
+  position:absolute;
+  right:10px;
+  margin-top:3px;
+  background: url("https://github.com/jihnari/QAB/raw/main/img/ch-x.png") no-repeat;
+  background-size:20px 20px;
+  cursor:pointer;
+}
+.ch-site-name::before{
+  content:"";
+  background-color: #F2F3F5;
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  display: inline-block;
+  position:absolute;
+  left:2px;
+  margin-top:3px;
+}
+
+
+</style>
+
+
+
+
+
+<!-- throw it in a dm-container to center/give it a max size -->
+
+<div class="dm-container">
+
+<div class="ch-header">
+  <div class="ch-title">History</div>
+  <div class="ch-sub-header">Clear browsing data...</div>
+</div>
+
+<div class="ch-date">
+  Today - Sept _x_, 20X4
+</div>
+
+<!-- fadeout gimmick -->
+<div class="fadeout">
+
+<!-- history element -->
+<div class="ch-entry">
+    <p class="ch-site-name">
+  Box Breathing: Getting Started with Box Breathing, How to Do It ... -
+    </p>
+    <p class="ch-site-link">
+  https://www.webmd.com/balance/what-is-box-breathing
+    </p>
+</div>
+
+<!-- history element -->
+<div class="ch-entry">
+  <p class="ch-site-name">
+  </p>
+  <p class="ch-site-link">
+  </p>
+</div>
+
+
+</div>

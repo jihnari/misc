@@ -1,11 +1,38 @@
-  /* universal */
+figure {
+  margin: 0px;
+}
+
+
+/* universal */
   .dm-container {
     display: table;
     margin: auto;
-    /* i actually think this would be fine as 100 now? iirc the issue was line and the speech bubble danglies */
-    max-width: 95%;
-    /* this used to be 100 and for what?? to make me cry?? idk but we're gonna see if changing it breaks everything */
-    min-width: 95%;
+    /* check for bubble danglies */
+    width: 100%;
+    max-width:400px;
+  }
+
+  /* rename this, or make it default */
+  /* i think the float nature of chat skins make block  break things  */
+  .dm-container2{
+    display:block;
+    margin:auto;
+    max-width:400px;
+    width:100%;
+    position: relative;
+  }
+  /* this is causing weird stuff */
+  .fadeout {
+    position: relative;
+    margin:0;
+    padding:0;
+  }
+  .fadeout::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: linear-gradient(to bottom, rgba(255,255,255, 0), white);
   }
     
     
@@ -408,7 +435,7 @@
   .sgc-collei{
     color:#787B38;
   }
-  .sgc-tighnari{
+  .sgc-tigh{
     color:#2A385B;
   }
   
@@ -432,7 +459,6 @@
   
   
   /* phone screen; notifs, alarms */
-  
   .phone-container-container{
     display:flex;
     justify-content:center;
@@ -461,23 +487,29 @@
     color:black;
   }
   
-  /* change this lots, center it also */
   .phone-alarm-x{
-    /* content:""; */
     height: 50px;
     width: 50px;
     border-radius: 50%;
     background-color:white;
-    color:black;
-    text-align:center;
-    font-size:35px;
-    margin-top:auto;
-    margin: auto 0 50px 0;
+    margin: auto 0 50px 0;   
+    position:relative;
   }
+  .phone-alarm-x::after{
+    /* &times; */
+    content:'×';
+
+    color:black;
+    font-size:60px;
+    /* centered, but at what cost  */
+    position:absolute;
+    top:-10px;
+    left:8;
+  }
+
   .phone-alarm-x:hover{
     background-color:#bbb;
     transition:1s;
-  
   }
   .phone-snooze{
     background-color:rgb(203, 201, 201);
@@ -511,9 +543,6 @@
     padding:10px 20px;
     padding-left:40px;
     margin:5px;
-  }
-  .phone-notif{
-  
   }
   
   /* overflow none, ... out */
@@ -630,384 +659,431 @@
   }
 
 
+  /* centers the full view */
+  .yak-container-container{
+    display:flex;
+    justify-content:center;
+  }
+  /* container for the full view */
+  .yak-container{
+    width:100%;
+    max-width:400px;
+    font-family: sans-serif;
+    /* background-color:teal; */
+  }
 
-  /* yikyak */
-    /* centers the full view */
-    .yak-container-container{
-      display:flex;
-      justify-content:center;
-    }
-    /* container for the full view */
-    .yak-container{
-      width:100%;
-      max-width:500px;
-      font-family: sans-serif;
-      /* background-color:teal; */
-    }
+  /* container for a single post */
+  .yak{
+    border-bottom:1px solid #E0E0E0;
+    width:95%;
+    margin-left:10px;
+    font-family: sans-serif;
+    font-size:1.5em;
+  }
+
+
+  /* top bar for main view */
+  .yak-topbar{
+    width:100%;
+    height:70px;
+
+    background-color:#0CD5B1;
+    /* padding-left:10px; */
+    font-size:1.5em;
+
+    display:flex;
+    justify-content: space-around;
+    align-items:center;
+    color:white;
+  }
+  /* code to make the [new | hot] box in the main view topbar */
+  .yak-center{
+    text-align:center;
+    padding-top:15px;
+  }
+  .yak-center-box{
+    border: 1px solid white;
+    border-radius:6px;
+    display:inline-block;
+  }
+  .yak-toggle-box{
+    display:flex;
+    justify-content:space-around;
+  }
+  .yak-toggle-new, .yak-toggle-hot{
+    color:white;
+    display:inline-block;
+    font-size:1.2rem;
+    padding: 10px 35px;
+
+    border: 1px solid white;
+    border-radius:6px;
+  }
+  .yak-toggle-hot{
+    border-left:none;
+    border-top-left-radius:0;
+    border-bottom-left-radius:0;
+  }
+  .yak-toggle-new{
+    border-right:none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .yak-toggle-active{
+    color:#0CD5B1;
+    background-color:white;
+  }
+
+
+  /* main view bottom bar (yakarma) */
+  .yak-bottombar{
+    font-family: sans-serif;
+    background-color:#E2EBFE;
+    border-top:2px solid #C6CDD5;
+    color:#0CD5B1;
+    font-size:2em;
+    padding:10px 0px;
+    width:100%;
+  }
+
+  /* tag for main view post (largely unused? phased out later?) */
+  .yak-tags{
+    color:#0CD5B1;
+    font-weight:bold;
+    margin-bottom:0px;
+  }
+  /* text for main view post */
+  .yak-text{
+    margin:7px 5px 7px 0px;
+  }
+  /* post footer, containing time, replies, and votes */
+  .yak-footer{
+    color:#B9B9B9;
+    font-size:0.9em;
+    display: flex;
+  justify-content: space-between;
+
+  margin:0px 10px 5px 5px;
+  }
+  /* unused class for time */
+  .yak-time{
+    /* color:#AFAFAF; */
+  }
+
+  /* vote on mainscreen post */
+  .yak-vote{
+    color:#ACACAC;
+    position:relative;
+  }
+  .yak-vote::before, .yak-vote::after{
+    content:"";
+    border-bottom-color: #757575;
+    border: solid #ACACAC;
+    border-width: 0 2px 2px 0;
+    padding: 6px;
+    display: inline-block;
+    cursor:pointer;
+  }  
+  /* up arrow(left) */
+  .yak-vote::before{
+    margin:0px 25px -5px 10px;
+    /* left:-35px;
+    bottom:-2px; */
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+  }
+  /* down arrow(right) */
+  .yak-vote::after{
+    margin:0px 10px 3px 25px;
+    /* right:-35px;
+    bottom:6px; */
+
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }
+
+  /* code for details view */
+  .yak-details{
+    font-size:2rem;
+    margin:0 10px;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+  }
+  .yak-details-text{
+    flex-grow:9;
+  }
+
+  /* details view topbar text */
+  .yak-details-header{
+    font-size:1.6rem;
+    font-weight:bold;
+  }
+  /* details view topbar back button */
+  .yak-back-button{
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    padding: 8px;
+    transform: rotate(135deg);
+   -webkit-transform: rotate(135deg);
+    margin-left:-15px;
+    cursor:pointer;
+  }
+
+  /* details view time stamp for all posts (larger than main screen) */
+  p.yak-details-time{
+    color:#B9B9B9;
+    font-size:1.3rem;
+    margin:10px;
+  }
+  .yak-line{
+    border-bottom:1px solid #E0E0E0;
+  }
+  /* seeing if i can replace yak-line */
+  div.yak-details-time{
+    color:#B9B9B9;
+    font-size:1.3rem;
+    /* margin:0; */
+    padding:0 0 10px 10px;
+    border-bottom:1px solid #E0E0E0;
+  }
+  /* details view location text (same as time class tbh) */
+  .yak-details-location{
+    color:#B9B9B9;
+    font-size:1.3rem;
+    margin:10px;
+  }
+  /* details view, under the main post, comments count box */
+  .yak-details-comment-header{
+    background-color:#FAFAFA;
+    color:#AAAAAA;
+    padding:10px;
+    font-size:1.3rem;
+    font-weight:bold;
+  }
   
-    /* container for a single post */
-    .yak{
-      border-bottom:1px solid #E0E0E0;
-      width:95%;
-      margin-left:10px;
-      font-family: sans-serif;
-      font-size:1.5em;
-    }
+  /* for scores of zero (grayed out, not green) */
+  .yak-null{
+    color:#E4E4E4 !important;
+  }
+  .yak-negative{
+    color:#ED5050 !important;
+  }
+
+
+
+  /* details view, formats the layout for comments under the main post  */
+  .yak-details-comment{
+    display:flex;
+    justify-content:space-around;
+  }
   
-  
-    /* top bar for main view */
-    .yak-topbar{
-      width:100%;
-      height:70px;
-  
-      background-color:#0CD5B1;
-      /* padding-left:10px; */
-      font-size:1.5em;
-  
-      display:flex;
-      justify-content: space-around;
-      align-items:center;
-      color:white;
-    }
-    /* code to make the [new | hot] box in the main view topbar */
-    .yak-center{
-      text-align:center;
-      padding-top:15px;
-    }
-    .yak-center-box{
-      border: 1px solid white;
-      border-radius:6px;
-      display:inline-block;
-    }
-    .yak-toggle-box{
-      display:flex;
-      justify-content:space-around;
-    }
-    .yak-toggle-new, .yak-toggle-hot{
-      color:white;
-      display:inline-block;
-      font-size:1.2rem;
-      padding: 10px 35px;
-  
-      border: 1px solid white;
-      border-radius:6px;
-    }
-    .yak-toggle-hot{
-      border-left:none;
-      border-top-left-radius:0;
-      border-bottom-left-radius:0;
-    }
-    .yak-toggle-new{
-      border-right:none;
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-    }
-    .yak-toggle-active{
-      color:#0CD5B1;
-      background-color:white;
-    }
-  
-  
-    /* main view bottom bar (yakarma) */
-    .yak-bottombar{
-      font-family: sans-serif;
-      background-color:#E2EBFE;
-      border-top:2px solid #C6CDD5;
-      color:#0CD5B1;
-      font-size:2em;
-      padding:10px 0px;
-      width:100%;
-    }
-  
-    /* tag for main view post (largely unused? phased out later?) */
-    .yak-tags{
-      color:#0CD5B1;
-      font-weight:bold;
-      margin-bottom:0px;
-    }
-    /* text for main view post */
-    .yak-text{
-      margin:7px 5px 7px 0px;
-    }
-    /* post footer, containing time, replies, and votes */
-    .yak-footer{
-      color:#B9B9B9;
-      font-size:0.9em;
-      display: flex;
-    justify-content: space-between;
-  
-    margin:0px 10px 5px 5px;
-    }
-    /* unused class for time */
-    .yak-time{
-      /* color:#AFAFAF; */
-    }
-  
-    /* vote on mainscreen post */
-    .yak-vote{
-      color:#ACACAC;
-      position:relative;
-    }
-    .yak-vote::before, .yak-vote::after{
-      content:"";
-      border-bottom-color: #757575;
-      border: solid #ACACAC;
-      border-width: 0 2px 2px 0;
-      padding: 6px;
-      display: inline-block;
-      cursor:pointer;
-    }  
-    /* up arrow(left) */
-    .yak-vote::before{
-      margin:0px 25px -5px 10px;
-      /* left:-35px;
-      bottom:-2px; */
-      transform: rotate(-135deg);
-      -webkit-transform: rotate(-135deg);
-    }
-    /* down arrow(right) */
-    .yak-vote::after{
-      margin:0px 10px 3px 25px;
-      /* right:-35px;
-      bottom:6px; */
-  
-      transform: rotate(45deg);
-      -webkit-transform: rotate(45deg);
-    }
-  
-    /* code for details view */
-    .yak-details{
-      font-size:2rem;
-      margin:0 10px;
-      display:flex;
-      justify-content:space-around;
-      align-items:center;
-    }
-    .yak-details-text{
-      flex-grow:9;
-    }
-  
-    /* details view topbar text */
-    .yak-details-header{
-      font-size:1.6rem;
-      font-weight:bold;
-    }
-    /* details view topbar back button */
-    .yak-back-button{
-      border: solid white;
-      border-width: 0 3px 3px 0;
-      padding: 8px;
-      transform: rotate(135deg);
-     -webkit-transform: rotate(135deg);
-      margin-left:-15px;
-      cursor:pointer;
-    }
-  
-    /* details view time stamp for all posts (larger than main screen) */
-    p.yak-details-time{
-      color:#B9B9B9;
-      font-size:1.3rem;
-      margin:10px;
-    }
-    .yak-line{
-      border-bottom:1px solid #E0E0E0;
-    }
-    /* seeing if i can replace yak-line */
-    div.yak-details-time{
-      color:#B9B9B9;
-      font-size:1.3rem;
-      padding:0 0 10px 10px;
-      border-bottom:1px solid #E0E0E0;
-    }
-    /* details view location text (same as time class tbh) */
-    .yak-details-location{
-      color:#B9B9B9;
-      font-size:1.3rem;
-      margin:10px;
-    }
-    /* details view, under the main post, comments count box */
-    .yak-details-comment-header{
-      background-color:#FAFAFA;
-      color:#AAAAAA;
-      padding:10px;
-      font-size:1.3rem;
-      font-weight:bold;
-    }
+  /* details view, comments text */
+  .yak-details-comment-text{
+    font-size:1.2rem;
+    flex-grow:9;
+    margin-left:50px;
+    margin-top:10px;
+  }
+  /* user pfp, base class */
+  .yak-details-comment-text::before{
+    content:"";
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: #bbb;
+    font-size:1.5em;
+
+    /* this only centers the icon text, faking a pfp */
+    display:flex;
+    align-items: center;
+    justify-content: center;
     
-    /* for scores of zero (grayed out, not green) */
-    .yak-null{
-      color:#E4E4E4;
-    }
-  
-  
-  
-    /* details view, formats the layout for comments under the main post  */
-    .yak-details-comment{
-      display:flex;
-      justify-content:space-around;
-    }
+
+    /* hardcode align pfp to the left of the comment text */
+    position:absolute;
     
-    /* details view, comments text */
-    .yak-details-comment-text{
-      font-size:1.2rem;
-      flex-grow:9;
-      margin-left:50px;
-      margin-top:10px;
-    }
-    /* user pfp, base class */
-    .yak-details-comment-text::before{
-      content:"";
-      height: 40px;
-      width: 40px;
-      border-radius: 50%;
-      background-color: #bbb;
-      font-size:2em;
+    margin: 0px 10px 0px -50px;
+    /* margin: 5px 10px 0px 0px; */
+
+    /* left:20px; */
+  }
+  /* OP for main post, affects pfp only */
+  .yak-op::before{
+    font-size:1em;
+
+    content:"OP";
+    color:white;
+    font-weight:bold;
+    background-color: #0CD5B1;
+  }
+  /* other pfps  */
+  .yak-pink::before{
+    font-size:2em;
+    background-color: pink; 
+    color:maroon;
+    content:"◇"; 
+  }
+  .yak-blue::before{
+    font-size:2em;
+    background-color: lightblue;
+    content:"◉";
+    color:darkblue;
+  }
+  .yak-yellow::before{
+    font-size:2em;
+    background-color: yellow;
+    content:"◬";
+    color:brown;
+  }
+
+  .yak-1::before{
+    background-color: pink;
+    content:"🕶️";
+  }
+  .yak-2::before{
+    background-color: rgb(183, 251, 183);
+    content:"🌻";
+  }
+  .yak-3::before{
+    background-color: rgb(125, 43, 43);
+    content:"🚒";
+  }
+  .yak-4::before{
+    background-color: yellow;
+    content:"🐒";
+  }
+  .yak-5::before{
+    background-color: orange;
+    content:"🍋‍🟩";
+  }
+
+  .yak-6::before{
+    background-color: rgb(101, 42, 101);
+    content:"🕷️";
+  }
+
+
+
+
+
+  .yak-ajax::before{
+    background-color: rgb(143, 166, 255);
+    content:"🐳";
+  }
+  .yak-collei::before{
+    background-color: rgb(13, 59, 13);
+    content:"🍂";
+  }
+  /* pot.: 
+  △
+  ☆
+  ☎
+  ☏
+  ☘
+  ☮
+  ♖
+  ♡
+  ♬
+  ⚐
+  ⚠
+  ⚅
+  ⛈
+
+   */
+
   
-      /* this only centers the icon text, faking a pfp */
-      display:flex;
-      align-items: center;
-      justify-content: center;
-      
-  
-      /* hardcode align pfp to the left of the comment text */
-      position:absolute;
-      
-      margin: 0px 10px 0px -50px;
-      /* margin: 5px 10px 0px 0px; */
-  
-      /* left:20px; */
-    }
-    /* OP for main post, affects pfp only */
-    .yak-op::before{
-      font-size:1em;
-  
-      content:"OP";
-      color:white;
-      font-weight:bold;
-      background-color: #0CD5B1;
-    }
-    /* other pfps  */
-    .yak-pink::before{
-      background-color: pink; 
-      color:maroon;
-      content:"◇"; 
-    }
-    .yak-blue::before{
-      background-color: lightblue;
-      content:"◉";
-      color:darkblue;
-    
-    }
-    .yak-yellow::before{
-      background-color: yellow;
-      content:"◬";
-      color:brown;
-    }
-    /* pot.: 
-    △
-    ☆
-    ☎
-    ☏
-    ☘
-    ☮
-    ♖
-    ♡
-    ♬
-    ⚐
-    ⚠
-    ⚅
-    ⛈
-  
-     */
-  
-    
-  
-  
-    .yak-score-container{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      float:right;
-      margin-right:20px;
-    }
-    .yak-score-number{
-      color:#0CD5B1;
-      font-weight:bold;
-    }
-  
-    /* .yak-score-number::before, .yak-score-number::after{ */
-      .up, .down{
-      /* content:"";
-      border-bottom-color: #757575;
-      border: solid #E4E4E4;
-      border-width: 0 6px 6px 0;
-      padding: 12px;
-      display: inline-block;
-      border-radius:3px; */
-      width:50px;
+
+
+  .yak-score-container{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    float:right;
+    margin-right:20px;
+  }
+  .yak-score-number{
+    color:#0CD5B1;
+    font-weight:bold;
+  }
+
+  /* .yak-score-number::before, .yak-score-number::after{ */
+    .up, .down{
+    /* content:"";
+    border-bottom-color: #757575;
+    border: solid #E4E4E4;
+    border-width: 0 6px 6px 0;
+    padding: 12px;
+    display: inline-block;
+    border-radius:3px; */
+    width:50px;
+  height:30px;
+
+  background: url("https://raw.githubusercontent.com/jihnari/misc/main/_reusable/yikyak/img/yak-down-arrow.png") no-repeat;
+  background-size:50px 30px;
+  cursor:pointer;
+
+  }  
+
+  .yak-details-score{
+    color:#0CD5B1;
+    position:relative;
+
+    /* flex-grow:1; */
+    font-size:25px;
+    font-weight:bold;
+    text-align:center;
+    margin-left:10px;
+  }
+  /* arrows */
+  .yak-details-score::before, .yak-details-score::after{ 
+    display:flex;
+    content:"";
+    width:50px;
     height:30px;
-  
-    background: url("https://raw.githubusercontent.com/jihnari/misc/main/yikyak/img/yak-down-arrow.png") no-repeat;
+
+    background: url("https://raw.githubusercontent.com/jihnari/misc/main/_reusable/yikyak/img/yak-down-arrow.png") no-repeat;
     background-size:50px 30px;
     cursor:pointer;
-  
-    }  
-  
-    .yak-details-score{
-      color:#0CD5B1;
-      position:relative;
-      margin-left:10px;
 
-  
-      /* flex-grow:1; */
-      font-size:25px;
-      font-weight:bold;
-      text-align:center;
-    }
-    /* arrows */
-    .yak-details-score::before, .yak-details-score::after{ 
-      display:flex;
-      content:"";
-      width:50px;
-    height:30px;
-  
-    background: url("https://raw.githubusercontent.com/jihnari/misc/main/yikyak/img/yak-down-arrow.png") no-repeat;
-    background-size:50px 30px;
-    cursor:pointer;
-  
-    }
-    /* up arrow */
-    .yak-details-score::before{
-      transform: rotate(180deg);
-      -webkit-transform: rotate(180deg);
-    }
-    .yak-details-score:hover::before{
-      /* change out for green image */
-      background: url("https://raw.githubusercontent.com/jihnari/misc/main/yikyak/img/yak-down-arrow-voted.png") no-repeat;
-    background-size:50px 30px;
-  
-      /* opacity:40%; */
-  
-    }
-  
-    /* voted */
-    /* has to be wrapped INSIDE the voted class */
-    .voted > .yak-details-score::before{
-      background: url("https://raw.githubusercontent.com/jihnari/misc/main/yikyak/img/yak-down-arrow-voted.png") no-repeat;
-      background-size:50px 30px;
-    }
-  
-  
-    /* i dont think this is in use */
-    .up{
+  }
+  /* up arrow */
+  .yak-details-score::before{
     transform: rotate(180deg);
     -webkit-transform: rotate(180deg);
-    }
-  
-  
-    .yak-op{
-      color:#0CD5B1;
-    }
+  }
+  .yak-details-score:hover::before{
+    /* change out for green image */
+    background: url("https://raw.githubusercontent.com/jihnari/misc/main/_reusable/yikyak/img/yak-down-arrow-voted.png") no-repeat;
+  background-size:50px 30px;
+
+    /* opacity:40%; */
+
+  }
+
+  /* voted */
+  /* has to be wrapped INSIDE the voted class */
+  .voted > .yak-details-score::before{
+    background: url("https://raw.githubusercontent.com/jihnari/misc/main/_reusable/yikyak/img/yak-down-arrow-voted.png") no-repeat;
+    background-size:50px 30px;
+  }
+
+
+  /* i dont think this is in use */
+  .up{
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  }
+
+
+  .yak-op{
+    color:#0CD5B1;
+  }
+
+
+
+
+
 
   
 /*discord*/
@@ -1019,7 +1095,7 @@ todo:
 */
 .dc-font{
   font-family: 'Uni sans', 'Whitney', sans-serif;
-  /* line-height: 160% !important; */
+  line-height: 160% !important;
   
   /* for the orange bg */
   margin-left:7px;
@@ -1093,7 +1169,7 @@ div.dc-font > p
   text-overflow: ellipsis;
   overflow: hidden;
   vertical-align: bottom;
-  display: inline-block;
+  /* display: inline-block; */
   margin-bottom: 2px;
 }
 .dc-border-top {
@@ -1174,6 +1250,7 @@ div.dc-font > p
   padding-top:10px;
   margin-bottom:-11px;
   margin-left:-12px;
+  cursor:pointer;
 
 /* check this later, no internet now  */
   /* background-size:50px 35px;
@@ -1291,13 +1368,22 @@ border:1.5px solid #BCBCBC;
   margin-bottom:-15px;
 }
 .dc-link {
+  /* dark mode */
+  /* color: #00AAFC; */
+  color: #1F7DE9;
+  cursor: pointer;
+}
+.dc-link:hover{
+  text-decoration: underline;
+}
+.dc-at{
   border-radius: 3px;
   color: #5865EF;
   background: #E7EAFD;
   padding:0 2px;
   cursor: pointer;
 }
-.dc-link:hover {
+.dc-at:hover {
   color:#FFFFFF;
   background: #5865F2;
   text-decoration: underline #FFFFFF;
@@ -1342,30 +1428,18 @@ border:1.5px solid #BCBCBC;
   max-width: 95%;
 }
 
-/* portrait */
-.dc_image{
+.dc_image_landscape{
   max-width:95%;
-  /* max-width: 350px; */
-  /* width: 350px; */
-  /* width: 95%; */
-  max-height: 350px;
-  /* height: auto; */
-  /* object-fit: contain; */
-
+  width: 400px;
+  height: auto;
   display:table;
   border: 1px solid #DDDEDF;
   border-radius: 6px;
   line-height: 1.4em;
 }
-
-.dc_image_landscape{
-  max-width:95%;
-  width: 400px;
-  /* width: 350px; */
-  /* width: 95%; */
-  /* max-height: 350px; */
-  height: auto;
-  /* object-fit: contain; */
+.dc_image_portrait{
+  max-width:90%;
+  max-height: 350px;
   display:table;
   border: 1px solid #DDDEDF;
   border-radius: 6px;
@@ -1398,7 +1472,342 @@ border:1.5px solid #BCBCBC;
   height:1.4em;
 }
 
+.dc-orange-bg{
+  background: #FFF6E7;
+  border-left: 3px solid #AA7212;
+  color:black;
+  
+  /* might need to fix this */
+  margin-left:-7px;
+  /* padding-bottom:-5px; */
+  padding-left:7px;
+  margin-bottom:-10px;
+  }
+  
+  .dc-orange-bg:hover{
+  background:#FEEED1;
+  }
+
+
 .middle-box {
   background: #fff;
   padding: 0 10px;
 }
+
+
+
+
+
+
+/* gmail */
+div.gmail-font > a
+{
+  color: #2372DB;
+  text-decoration: none !important;
+}
+
+/* replacement of the hover hack  */
+/* is no classes a mistake? probably  */
+details summary::after { 
+  content:""; 
+  vertical-align:middle;
+  top:-5px;
+  border: solid #5F6266;
+  border-width: 0 1.5px 1.5px 0;
+  display: inline-block;
+  padding: 2px;
+  margin-left:2px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+details[open] summary::after { 
+  content:"";
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+summary {
+  list-style: none; 
+  white-space: nowrap;
+  margin-bottom:10px;
+  cursor:pointer;
+}
+summary::-webkit-details-marker {display: none; }
+
+
+
+/* lmao idk */
+.gmail-reply-button{
+  height: 30px;
+  display: inline-block;
+  float: right;
+  overflow: hidden;
+}
+.gmail-font{
+  font-family: 'Roboto', sans-serif;
+}
+.gmail-weak-text{
+color:#5F6266;
+}
+.gmail-tail{
+color:#878787;
+}
+.gmail-info-left{
+color:#5F6266;
+padding-right: 10px;
+}
+.gmail-sender, .gmail-sender-draft{
+font-weight:bold;
+font-size:1.1em;
+}
+.gmail-sender-draft{
+  color:red;
+  }
+.gmail-reciever{
+font-size:.8em;
+color:#5F6266;
+}
+.gmail-stub{
+color:#5F6266;
+display:inline-block;
+max-width: 80%;
+/* white-space: nowrap; */
+height:2.2em;
+/* text-overflow: ellipsis; */
+margin-left:55px;
+overflow: hidden;
+}
+.gmail-send-time{
+color:#5F6266;
+font-size:.7em;
+padding-left:7px;
+}
+.gmail-indent{
+padding-left:50px;
+}
+.gmail-tag{
+  border-radius: 4px;
+  background: #EEEEEE;
+  color: #363636;
+  padding: 4px;
+  font-size:.8em;
+}
+.gmail-info-box{
+  border: 1px solid #DBDCDF;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: .8em;
+  margin-bottom: 10px;
+  width:100%;
+}
+.gmail-subject-buffer {
+  margin-bottom: 20px;
+  margin-top: -10px;
+}
+.gmail-subject {
+  font-size: 1.5em;
+}
+.gmail-hr{
+  border-bottom: 1px solid #EDEEEF;
+}
+.gmail-link{
+  color: #2372DB;
+  text-decoration: none;
+  cursor: pointer;
+}
+.gmail-quoted-text{
+  color: #2372DB;
+  font-size:.8em;
+  cursor: pointer;
+}
+.gmail-dot{
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 15px;
+  background-color: #EDEEEF;
+  margin-bottom: -15px;
+  float: left;
+}
+.gmail-red{
+  color:red;
+  font-size:1.4em;
+}
+.gmail-secret{
+  font-family: Tahoma,Verdana,Segoe,sans-serif;
+}
+.red-top{
+  border-top: 2.5px solid #CF3F3D;
+  /* the offset is off, its fine, i give up */
+  /* margin-right: -1px; */
+}
+.blue-top{
+  border-top: 2.5px solid #5281D8;
+  /* margin-left: -3px; */
+}
+.yellow-top{
+  border-top: 2.5px solid #EDC151;
+}
+.gmail-sig{
+  display:inline-block;
+  max-width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+
+/*chrome history*/
+.ch-header{
+  font-family: 'Uni sans', 'Whitney', sans-serif; 
+  border-bottom: 1px solid #E0E0E0;
+  margin-bottom:20px;
+}
+.ch-title{
+  font-size:1.3em;
+  margin-bottom:20px;
+}
+.ch-title::after{
+  content:"";
+  width:70px;
+  height:30px;
+  position:absolute;
+  right:10px;
+  background: url("https://github.com/jihnari/QAB/raw/main/img/ch-search.png") no-repeat;
+  background-size:70px 30px;
+  cursor:pointer;
+}
+.ch-sub-header{
+  color: #1A72E8;
+  font-size:.9em;
+  margin: auto !important;
+  padding-bottom:12px;
+  cursor:pointer;
+}
+.ch-date{
+  color: #5f6267;
+  font-size:0.8em;
+}
+.ch-entry{
+  margin:20px 0;
+  width:100%;
+}
+.ch-site-link{
+  font-size: 0.7em;
+  color: #5f6267;
+  margin:3px 50px 0px 45px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.ch-site-name{
+  font-size:0.9em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin:10px 50px 0 45px;
+}
+.ch-site-name::after{
+  content:"";
+  width:20px;
+  height:20px;
+  position:absolute;
+  right:10px;
+  margin-top:3px;
+  background: url("https://github.com/jihnari/QAB/raw/main/img/ch-x.png") no-repeat;
+  background-size:20px 20px;
+  cursor:pointer;
+}
+.ch-site-name::before{
+  content:"";
+  background-color: #F2F3F5;
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  display: inline-block;
+  position:absolute;
+  left:2px;
+  margin-top:3px;
+}
+
+
+
+
+/* notes  */ 
+.note-container{
+  display:block;
+  margin:auto;
+  max-width: 100%;
+  width:400px;
+  height: 500px;
+  /* max-height:100%; */
+  overflow: hidden;
+  font-family: helvetica, arial, sans-serif;
+}
+.note-header{
+  /* height:35px; */
+  padding:12px 10px 12px 20px;
+  background: gray;
+  color:black;
+
+  font-size:1.2em;
+}
+.note-header::after{
+  content:"";
+  float:right;
+  margin-top:-5px;
+  width:90px;
+  height:30px;
+
+  background: url("https://raw.githubusercontent.com/jihnari/misc/main/_reusable/notes-app/img/note-icons.png") no-repeat;
+  background-size:90px 30px;
+  cursor:pointer;
+}
+
+.note-body{
+  background: linear-gradient(to bottom,lightgray 24px,rgb(183, 182, 182) 1px);
+  background-size: 100% 25px;
+  height:100%;
+}
+.note-text{
+  padding-top:5px;
+  margin-left: 15px;
+  font-size: 17px;
+  line-height: 25px;
+  color: black;
+}
+.note-date{
+  background:lightgray;
+  font-size: .8rem;
+  color:gray;
+  margin:0;
+  padding:5px 10px;
+}
+.note-time{
+float:right;
+}
+
+/* different colored notes */
+/* default is gray */
+.purple-note .note-body{
+  background: linear-gradient(to bottom,#EDDDFD 24px,#D0B5E8 1px);
+  background-size: 100% 25px;
+}
+.purple-note .note-header{
+background:#B387DE;
+}
+.purple-note .note-date{
+  background: #EDDDFD;
+}
+
+.blue-note .note-body{
+  background: linear-gradient(to bottom,#E8E9FE 24px,#BAC6F6 1px);
+  background-size: 100% 25px;
+}
+.blue-note .note-header{
+background:#83A5FF;
+}
+.blue-note .note-date{
+  background: #E8E9FE;
+}
+

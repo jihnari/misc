@@ -1,22 +1,14 @@
 <!-- todo 
-- check on ao3 
-- get those icons 
-- thats about it 
-
+- more colors if you're feeling daring
 -->
 
 
 
 <style>
-/* mine  */
-
-.note-container-container{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-}
-
+/* notes  */ 
 .note-container{
+  display:block;
+  margin:auto;
   max-width: 100%;
   width:400px;
   height: 500px;
@@ -24,7 +16,6 @@
   overflow: hidden;
   font-family: helvetica, arial, sans-serif;
 }
-
 .note-header{
   /* height:35px; */
   padding:12px 10px 12px 20px;
@@ -37,35 +28,26 @@
   content:"";
   float:right;
   margin-top:-5px;
-
-  /* content:'';
-  position:absolute;
-  right:10px;
-  bottom:10px; */
   width:90px;
   height:30px;
 
-  background: url("https://raw.githubusercontent.com/jihnari/misc/main/notes-app/img/note-icons.png") no-repeat;
+  background: url("https://raw.githubusercontent.com/jihnari/misc/main/_reusable/notes-app/img/note-icons.png") no-repeat;
   background-size:90px 30px;
   cursor:pointer;
 }
 
 .note-body{
   background: linear-gradient(to bottom,lightgray 24px,rgb(183, 182, 182) 1px);
-  /* margin: 10px auto; */
   background-size: 100% 25px;
   height:100%;
 }
-
 .note-text{
   padding-top:5px;
   margin-left: 15px;
   font-size: 17px;
   line-height: 25px;
   color: black;
-
 }
-
 .note-date{
   background:lightgray;
   font-size: .8rem;
@@ -77,8 +59,29 @@
 float:right;
 }
 
+/* different colored notes */
+/* default is gray */
+.purple-note .note-body{
+  background: linear-gradient(to bottom,#EDDDFD 24px,#D0B5E8 1px);
+  background-size: 100% 25px;
+}
+.purple-note .note-header{
+background:#B387DE;
+}
+.purple-note .note-date{
+  background: #EDDDFD;
+}
 
-
+.blue-note .note-body{
+  background: linear-gradient(to bottom,#E8E9FE 24px,#BAC6F6 1px);
+  background-size: 100% 25px;
+}
+.blue-note .note-header{
+background:#83A5FF;
+}
+.blue-note .note-date{
+  background: #E8E9FE;
+}
 
 </style>
 
@@ -86,10 +89,8 @@ float:right;
 <p>&nbsp;</p>
 
 
-<!-- test -->
-
-<div class="note-container-container">
-<div class="note-container">
+<!-- example note -->
+<div class="note-container blue-note">
 <div class="note-header">note title
 </div>
   <div class="note-body">
@@ -107,9 +108,7 @@ float:right;
     </div>
     
     </div>
-    
   </div>
-</div>
 
   <p></p>
-  <img width=100px src="https://raw.githubusercontent.com/jihnari/misc/main/notes-app/img/note-icons.png">
+    <p></p>
