@@ -1,16 +1,14 @@
 <!-- todo: 
 - podcast notif 
 - overflow on words 
-- make notif screen scrollable? 
-- fix X button 
+- - this is a lot harder than it looks 
 - alarm gif? 
 - able to turn off alarm? (details on X, turn view to black)
 - transition the clear? 
-- move the email icon 
-- add more notif icons 
-- podcast still 
-- make it stop y overflowing? 
-- fix whatever's happening to the flex direction? when the clear happens 
+- check on ao3 
+- + make private tab notif die-able (details/summary)
+- clean up code
+
  -->
  
  
@@ -31,6 +29,8 @@
     display:flex;
     align-items:center;
     flex-direction:column;
+
+    /* defaults are for alarm mode? might want to change this. */
     background: linear-gradient(gray, #bbb);
     color:white;
   }
@@ -59,6 +59,8 @@
     margin-left:10px;
     margin-bottom:5px;
     max-width:400px;
+    /* addressing the odd scrollbar overflow, not perfect  */
+    margin-right:5px;
     width:100%;
 
     max-height:450px;
@@ -69,6 +71,9 @@
     scrollbar-color:gray lightgray;
 
     position:relative;
+
+    font-family: sans-serif;
+    font-size:.9em;
   }
 
   /* holds the "settings" and "clear" buttons that live after the notifications list  */
@@ -106,22 +111,18 @@
     background-color:#c5c5c5ac;
     color:rgb(133, 133, 133);
     display:none;
-    /* display:block; */
-
-    /* absolute this?  */
-    /* float:right; */
     right:14;
     margin-top:-19px;
     position:absolute;
-    /* this works on vs code but who knows on ao3. might want to z-index trickery. */
-    /* to do it: just take this class, gut it, turn it into a slightly larger box, make that box have a bg color of nothing. then take the clear button and change the color of it, as you did before.  */
+    /* if you ever want to switch to z-index trickery: take this class, gut it, turn it into a slightly larger box, make that box have a bg color of invisible. then take the clear button and change the color of it instead of display:none-ing it.  */
   }
 
 
-
+  /* phone styles */
+  /* used for alarm */
   .phone-off{
     background: linear-gradient(gray, #bbb);
-  
+    color:white;
   }
   .phone-on{
     background: linear-gradient(#e5e5e5, #e5e5e5);
@@ -137,9 +138,23 @@
     background-color:#1f2024;
   }
   .phone-bg-pic{
-    background: url("https://cdna.artstation.com/p/assets/images/images/062/237/438/large/brendan-rodriguez-don-quixote.jpg?1682650401") no-repeat;
+    /* background: url("https://cdna.artstation.com/p/assets/images/images/062/237/438/large/brendan-rodriguez-don-quixote.jpg?1682650401") no-repeat; */
+    
+    background: url("https://raw.githubusercontent.com/jihnari/misc/main/genshin/uni/img/phone-bgs/tighs-bg.png") no-repeat;
+
+    /* failsafe */
+    background-color:#e5e5e5;
+
     /* toss this out if it makes your image squish funny, but it WILL just be whatever size it wants to and overflow into nothing  */
   background-size:400px 600px;
+  }
+  .phone-bg-pic-tigh{
+    background: url("https://raw.githubusercontent.com/jihnari/misc/main/genshin/uni/img/phone-bgs/tighs-bg.png") no-repeat;
+
+    /* failsafe */
+    background-color:#e5e5e5;
+    background-size:400px 600px;
+    color:#3258c2;
   }
   
   .phone-alarm-x{
@@ -149,6 +164,7 @@
     background-color:white;
     margin: auto 0 50px 0;   
     position:relative;
+    cursor:pointer;
   }
   .phone-alarm-x::after{
     /* &times; */
@@ -171,6 +187,7 @@
     border-radius:15px;
     padding:4px 15px;
     margin-bottom:30px;
+    cursor:pointer;
   }
   .phone-snooze:hover{
     background-color:gray;
@@ -189,14 +206,12 @@
   }
   
   .phone-notif{
-    max-width:390px;
-    width:80%;
+    /* this has to have a width if you take it out of phone-notif-container, but otherwise is fine. */
     background-color:white;
     border-radius:15px;
     color:black;
-    padding:10px 20px;
-    padding-left:40px;
-    margin:5px;
+    padding:10px 20px 10px 40px;
+    margin:5px 10px 5px 5px;
   }
   
   /* overflow none, ... out */
@@ -247,6 +262,17 @@
   .weather-notif p{
     margin-left:-10px;
   }
+
+  .phone-update-progress-50 {
+    border-bottom: 3px solid transparent;
+    /* padding-left: 5px; */
+    padding-top: 5px;
+    /* padding-bottom:10px; */
+    margin-bottom:10px;
+    margin-left:5px;
+    border-image: linear-gradient(to right, #0481FF 50%, #DADBDC 50%);
+    border-image-slice: 1;
+  }
   
   .phone-notif-podcast-info::before{
     content:"";
@@ -296,6 +322,7 @@
     /* margin-right:auto; */
   }
 
+  /* notif icons */
   .notif-email .phone-notif-header::before{
     /* change out for gmail-icon.png */
     background: url("https://img.icons8.com/?size=100&id=rUgzXdXFnhmg&format=png&color=FFFFFF") no-repeat;
@@ -322,7 +349,7 @@
     background-position: center;
   }
   .notif-outlook-overflow{
-    max-height: 2.5em;
+    max-height: 2.4em;
     display:block;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -359,10 +386,80 @@
     background-size:15px 15px;
     background-position: center;
   }
+
+
+/* clear gimmick button  */
+summary::-webkit-details-marker {display: none;}
+summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+/* not in use? what is this  */
+/* .clear-button-dupe{
+  font-size:.8em;
+  color:white;
+  display:none;
+  border-radius: 10px;
+  background-color:#4d4c4cac;
+  padding: 4px 9px;
+  margin:0px 10px;
+  cursor:pointer;
+  background-color:#c5c5c5ac;
+  color:rgb(133, 133, 133);
+} */
+.clear-button{ 
+  /* content:"Clear"; */
+  font-size:.8em;
+  color:white;
+  border-radius: 10px;
+  background-color:#4d4c4cac;
+  padding: 4px 9px;
+  margin:0px 14px;
+  cursor:pointer;
+
+  right:10;
+  margin-top:-18px;
+  position:absolute;
+}
+/* re-enable if you want to use z-index instead  */
+/* figure:has(details.clear[open])  .clear-button{
+cursor:default;
+background-color:#c5c5c5ac;
+color:rgb(133, 133, 133);
+display:block;
+} */
+/* shows disabled clear button */
+.phone-container:has(details.clear-function[open]) .phone-notif-settings::after{
+display:block;
+}
+/* disappears usable clear button */
+.phone-container:has(details.clear-function[open]) .clear-function{
+display:none;
+}
+
+/* if clear button pressed, delete notifications  */
+.phone-container:has(details.clear-function[open]) .phone-notif{
+  /* transition: scale(0); */
+  display:none;
+}
+/* except for the weather notif, which is immortal  */
+.phone-container:has(details.clear-function[open]) .immortal-notif{
+  display:inherit;
+}
+/* special case for individually killable notifs */
+.phone-container:has(details.notif-die[open]) .mortal-notif{
+  display:none;
+}
+
+
+
+
+  /* all attempts to make text overflow, not working at all.  */
   .stay{
     /* width:100%; */
-    display:inline-block;
-    white-space: nowrap;
+    /* display:inline-block; */
+    /* white-space: nowrap; */
 
     /* white-space: nowrap; */
     /* text-overflow: ellipsis; */
@@ -373,7 +470,7 @@
     /* white-space: nowrap;
     /* width:100px;  */
     /* display:inline-block; */
-    float:left;
+    /* float:left; */
   }
   .squish{
     /* text-overflow: ellipsis;
@@ -390,83 +487,6 @@
   }
 
 
-/* clear gimmick button  */
-summary::-webkit-details-marker {display: none;}
-summary {
-  list-style: none;
-  cursor: pointer;
-  /* this does nothing  */
-  transition-duration: 1.4s;
-  width:90px;
-  height:50px;
-}
-.clear-button-dupe{
-  font-size:.8em;
-  color:white;
-  display:none;
-  /* float:right; */
-  border-radius: 10px;
-  background-color:#4d4c4cac;
-  padding: 4px 9px;
-  margin:0px 10px;
-  cursor:pointer;
-  background-color:#c5c5c5ac;
-  color:rgb(133, 133, 133);
-}
-.clear-button{ 
-  /* content:"Clear"; */
-  font-size:.8em;
-  color:white;
-/* display:block; */
-  /* float:right; */
-  border-radius: 10px;
-  background-color:#4d4c4cac;
-  padding: 4px 9px;
-  margin:0px 10px;
-  cursor:pointer;
-}
-/* figure:has(details.clear[open])  .clear-button{
-cursor:default;
-background-color:#c5c5c5ac;
-color:rgb(133, 133, 133);
-display:block;
-} */
-.phone-container:has(details.clear[open]) .phone-notif-settings::after{
-display:block;
-}
-.phone-container:has(details.clear[open]) .clear{
-/* display:none; */
-}
-
-/* if clear button pressed, delete notifications  */
-.phone-container:has(details.clear[open]) .phone-notif{
-  /* transition: scale(0); */
-  display:none;
-  /* height:0; */
-}
-/* .phone-container:has(details.clear[open]) .phone-notif-container{
-  display:flex;
-  flex-direction:row;
-} */
-/* except for the weather notif, which is immortal  */
-.phone-container:has(details.clear[open]) .immortal-notif{
-  display:inherit;
-}
-.phone-container:has(details.clear[open]) .delete-me{
-  display:none;
-}
-
-.clear{
-  /* width:100%; */
-  /* float:right; */
-  /* background:blue; */
-  right:-10;
-  /* top:-10; */
-  margin-top:-18px;
-  position:absolute;
-}
-
-
 </style> 
 
 
@@ -481,9 +501,9 @@ display:block;
   <figure>
 
 <!-- phone notifs -->
-<div class="phone-container phone-on phone-bg-pic">
-  <p class="phone-time">[9:22]</p>
-  <p class="phone-date">[Tue, Jan 14]</p>
+<div class="phone-container phone-on phone-bg-pic-tigh">
+  <p class="phone-time">9:22</p>
+  <p class="phone-date">Tue, Jan 14</p>
 
   <div class="phone-notif-container">
     
@@ -497,20 +517,20 @@ display:block;
 
   <!-- app update notif -->
   <div class="phone-notif notif-download">
-    <p class="phone-notif-header stay"><span class="squish">Yikyak: Version 12.14562</span> <span class=stay2><span class="phone-notif-subheader">Downloading</span><span class="phone-notif-time">4:31 PM</span></span> </p>
+    <p class="phone-notif-header">Yikyak: Version 12.14562 <span class="phone-notif-subheader">Downloading</span><span class="phone-notif-time">4:31 PM</span> </p>
     <div class="phone-update-progress-50"></div>
   </div>
 
   
   <!-- text notif -->
   <div class="phone-notif notif-sms">
-    <p class="phone-notif-header">Cyno <span class="phone-notif-time">10:10</span></p>
+    <p class="phone-notif-header">Cyno <span class="phone-notif-time">10:10 AM</span></p>
     <p>Call me </p>
   </div>
 
     <!-- signal notif -->
     <div class="phone-notif notif-signal">
-      <p class="phone-notif-header">Lunch Plans <span class="phone-notif-time">10:10</span></p>
+      <p class="phone-notif-header">Lunch Plans <span class="phone-notif-time">10:12 AM</span></p>
       <p><strong>Collei</strong> ok but are you sure  </p>
     </div>
 
@@ -535,21 +555,26 @@ display:block;
 
     <!-- outlook notif --> 
     <div class="phone-notif notif-outlook">
-      <p class="phone-notif-header">Naphis <span class="phone-notif-subheader">tighnari27@u-sumeru.edu</span><span class="phone-notif-time">5:20 PM</span></p>
+      <p class="phone-notif-header">Naphis <span class="phone-notif-subheader">tighnari27@u-sumeru.edu</span><span class="phone-notif-time">5:22 PM</span></p>
       <p class="notif-outlook-overflow">Re: Avidya Hike &nbsp;&bull;&nbsp; Tighnari, That should be fine. We can discuss further details during the meeting today, but I have concerns regarding the upperclassmen's ability to lead the hike.  </p>
     </div> 
 
+    <!-- <div class="mortal-notif"> -->
+<details class="notif-die mortal-notif">
+  <summary>
+    <div class="phone-notif notif-private-browser">
+      <p class="phone-notif-header ">Close private tabs? <span class="phone-notif-time">1:23 PM</span></p>
+      <p>Tap or swipe this notification to close private tabs.</p>
+    </div>
+  </summary>  
+</details>
+    <!-- </div> -->
 
-  <div class="phone-notif notif-private-browser">
-    <p class="phone-notif-header">Close private tabs? <span class="phone-notif-time">10:10</span></p>
-    <p>Tap or swipe this notification to close private tabs.</p>
+
+
+
   </div>
-
-
-
-
-  </div>
-  <div class="phone-notif-settings"> <details class="clear"><summary><span class="clear-button">Clear</span></summary></details> </div>
+  <div class="phone-notif-settings"> <details class="clear-function"><summary><span class="clear-button">Clear</span></summary></details> </div>
 
   
 
@@ -610,7 +635,7 @@ display:block;
 
   </div>
   <!-- <div class="phone-notif-settings"></div> -->
-  <div class="phone-notif-settings delete-me"> <details class="clear"><summary><span class="clear-button">Clear</span></summary></details> </div>
+  <div class="phone-notif-settings"> <details class="clear-function"><summary><span class="clear-button">Clear</span></summary></details> </div>
 
   <!-- <small>This phone</small>
   [podcast episode name]
