@@ -642,9 +642,6 @@ figure {
   }
   
   
-  
-  /* .dc-green-line-50, .dc-green-line-20, .dc-green-line-85{
-  } */
   .phone-update-progress-50 {
     border-bottom: 3px solid transparent;
     /* padding-left: 5px; */
@@ -652,8 +649,6 @@ figure {
     /* padding-bottom:10px; */
     margin-bottom:10px;
     margin-left:5px;
-  
-  
     border-image: linear-gradient(to right, #0481FF 50%, #DADBDC 50%);
     border-image-slice: 1;
   }
