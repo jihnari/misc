@@ -1,12 +1,27 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <style>
 
   /* could title it one thing and then change it to "the peanut gallary" when the flip is switched  */
+
+  #workskin:has(details.pg-function[open]) .preface.group .title {
+  visibility: hidden;
+  line-height: 0;
+}
+
+#workskin:has(details.pg-function[open]) .preface.group .title::after {
+  content: "The Peanut Gallery";
+  visibility: visible;
+  line-height: 1em;
+  display: block;
+}
+
 
   /* type 1 */
   .pg{
     color:rgb(156, 156, 156);
     padding-left:30px;
-    /* display:none; */
+    display:none;
     font-style: italic;
   }
 
@@ -75,6 +90,13 @@ body:has(details.pg-function[open]) .button::after{
   content:"Hide hidden text";
 }
 
+#workskin:has(details.pg-function[open]) .pg{
+display:block;
+}
+#workskin:has(details.pg-function[open]) .button::after{
+  content:"Hide hidden text";
+}
+
 </style>
 
 <body>
@@ -103,7 +125,7 @@ body:has(details.pg-function[open]) .button::after{
 
 <p>But underneath Heathcliff's blood soaked hands, Hong Lu isn't moving. Nothing else matters.</p>
 <p>Heathcliff knows this is just what death is like, senseless and random and unpredictable. All you can do is keep going despite it all, until it comes for you. He knows this. He can't accept it.</p>
-<p>Heathcliff is the replaceable one—Sinclair, even. Anyone can be taught to shoot a gun, but where would they be without Hong Lu? Even if they could somehow manage to get enough funding, neither he nor Sinclair can lead an office, find jobs, navigate the politics of the City. They'd be dead in the water. And Heathcliff—he knows where he'd be without Hong Lu. He'd still be sleeping in the streets, going from one shite mercenary job to the next. And that's assuming he hadn't already pissed off the wrong person and bled out in an alley.</p>
+<p>Heathcliff is the replaceable one—Sinclair, even. Anyone can be taught to shoot a gun, but where would they be without Hong Lu? Even if they could somehow manage to get enough funding, neither he nor Sinclair can lead an office, find jobs, navigate the politics of the City. They'd be dead in the water. And Heathcliff—he knows where he'd be without Hong Lu. He'd still be sleeping in hourly hotels and abandoned buildings, going from one shite mercenary job to the next. And that's assuming he hadn't already crossed the wrong sod and bled out in an alley.</p>
 <p>Before Hong Lu had found him, had taken him in like some stray, he'd been living every day angry and short-sighted. He never thought about things like what he'd like to do tomorrow, or where they should go for dinner. Before he'd realised it, Hong Lu had made him think about the future.</p>
 <p>Hong Lu can't be dead. Not on some nameless battlefield Heathcliff doesn't remember preparing for, not from some wound Heathcliff didn't see him get. This can't be happening. There has to be something he can do.</p>
 <p>Heathcliff keeps pressing down on the wound, long past the point of any sense. Hong Lu may be still and cold with his blood spreading out across the hard concrete, but Heathcliff can't bring himself to think that this is the end.</p>
@@ -126,8 +148,9 @@ body:has(details.pg-function[open]) .button::after{
 <div class="pg hidden">
   <p>&quot;Will he... be okay? Should we separate them?&quot;</p>
 <p>&quot;I mean, Heathcliff wouldn't hurt him, right? It's probably fine.&quot;</p>
-<p>&quot;In this state, it is uncertain what Heathcliff may or may not do.&quot;</p>
 <p>&quot;I suspect Heathcliff would react poorly to any attempted interference.&quot;</p>
+<p>&quot;See? So, we should leave them alone.&quot;</p>
+<p>&quot;It may be equally unwise to leave them. Terminating the overlay on the PDA had no affect. In this state, it is uncertain what Heathcliff may or may not do.&quot;</p>
 
 </div>
 
@@ -151,7 +174,7 @@ body:has(details.pg-function[open]) .button::after{
   <p>&quot;That is <strong>highly</strong> inappropriate!&quot;</p>
   <p>&quot;Forsooth, their comradery shant be tainted by trivial matters of the flesh!&quot;</p>
   <p>&quot;But Donqui, what if it deepens their, ah, chivalric bond?&quot;</p>
-  <p>&quot;Oh?! W-well. Ahem. When you put it that way, w-who would we be to come between such a heartfelt display?!&quot;</p>
+  <p>&quot;Oh?! W-well. Ahem. When you put it that way, w-who would we be to come between such a heartfelt display of chivalry?!&quot;</p>
   <p>&quot;It'd be hilarious, right?&quot;</p>
   </div>
   
@@ -171,7 +194,7 @@ body:has(details.pg-function[open]) .button::after{
 
 
 <div class="pg hidden">
-  <p>&quot;This has gone too far, fraternization between employees is clearly improper. Executive Manager, I shall take measures to resolve this!&quot;</p>
+  <p>&quot;This has gone too far, such blatent fraternization between employees is clearly out of line. Executive Manager, I shall take measures to resolve this!&quot;</p>
   <p>&quot;&lt;Wait, hold on, it looks like it might be resolving itself?&gt;&quot;</p>
   <p>&quot;...As you wish, Executive Manager. I shall stay my hand.&quot;</p>
 </div>
@@ -191,8 +214,9 @@ body:has(details.pg-function[open]) .button::after{
 <div class="pg hidden">
   <p>&quot;Now that the matter is resolved, Dante, we must get moving.&quot;</p>
   <p>&quot;&lt;Yeah, but...&gt;&quot;</p>
-  <p>&quot;It is heartening to espy that such brotherly bonds transcend universes!&quot;</p>
-  <p>&quot;'Brotherly', huh?&quot;</p>
+  <p>&quot;Yeah, come on Fau, this is just getting good.&quot;</p>
+  <p>&quot;Verily! It is heartening to espy that such brotherly bonds transcend universes!&quot;</p>
+  <p>&quot;...'Brotherly', huh...?&quot;</p>
   </div>
 
 <p>As always, memories from the other Identity are fuzzy. He thinks maybe he'd seen one of theirs collapsed, and gone to check on them. On Hong Lu? That must be right.</p>
