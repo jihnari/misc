@@ -1,0 +1,237 @@
+<style>
+/* change this behavior; have deliberate class to open takumi?  */
+/* last dialogue box of eito's has been triggered. hide all eito elements and open all takumi elements. */
+
+/* :has(details[open].eito-last) .takumi-element{
+  display:block;
+}
+:has(details[open].eito-last) .eito-element{
+  display:none;
+}
+
+:has(details[open].takumi-last) .eito-element{
+  display:block;
+}
+:has(details[open].takumi-last) .takumi-element{
+  display:none;
+  transition-duration: 250ms;
+}
+ */
+
+
+/* :has(details[open].pov-open) .pov-element{
+  display:block;
+}
+:has(details[open].pov-open) .target-element{
+  display:none;
+}
+
+:has(details[open].pov-close) .pov-element{
+  display:none;
+  transition-duration: 250ms;
+}
+:has(details[open].pov-close) .target-element{
+  display:block;
+} */
+
+
+/* og (n + 1) {*/
+/* :has(details[open].pov-open + details:not([open])) .pov-element{
+  display:block;
+}
+:has(details[open].pov-open + details:not([open])) .target-element{
+  display:none;
+}
+
+:has(details[open].pov-close + details:not([open])) .pov-element{
+  display:none;
+  transition-duration: 250ms;
+}
+:has(details[open].pov-close + details:not([open])) .target-element{
+  display:block;
+} */
+
+
+
+  /* placeholder, swap this out for real classes */
+  :has(details[open].eito-last) .character {
+      margin-left:50px;
+      transition-duration: 250ms;
+  }
+  :has(details[open].takumi-last) .character {
+    margin-left:110px;
+  }
+
+
+  
+/* swap out the character png */
+/* :has(details[open].eito-smile) .eito{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/eito2.png');
+} */
+/* i think this should be just character ? */
+:has(details[open].eito-talk) .eito{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/eito.png');
+}
+
+/* should this be character instead? */
+:has(details[open].yugamu-smile) .yugamu{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/yugamu2.png');
+}
+:has(details[open].yugamu-talk) .yugamu{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/yugamu.png');
+}
+
+
+
+
+/* no idea lol  */
+/* :has(details[open].target-char) .pov-element{
+  display:block;
+}
+:has(details[open].target-char) .target-element{
+  display:none;
+}
+
+:has(details[open].pov-char) .target-element{
+  display:block;
+}
+:has(details[open].pov-char) .pov-element{
+  display:none;
+  transition-duration: 250ms;
+} */
+
+
+
+/* if previous details is closed, open next details? hide current details forever?  */
+/* body:has(details[closed]) ~ details[closed]{
+  display:none;
+} */
+
+/* details[closed] summary{
+  display:none;
+} */
+/* details[open] ~ details[open] {
+  display:none;
+} */
+
+
+
+</style>
+
+
+    <!-- working, but weird  -->
+    <div class="main-box room1">
+      <p class="location">Classroom 
+      </p>
+      
+      <!-- <p class="date">002 DAY</p> -->
+      
+      
+      
+      <!-- keeps it aligned and at the bottom -->
+      <div class="anchor">
+      
+        <!-- takumi's here now  -->
+        <!-- <div class="takumi-box">
+          <div class="takumi-insert"></div>
+        </div> -->
+      
+        <div class="character eito"></div>
+        <div class="name-box eito-element">Eito Aotsuki</div>
+      
+        <!-- test -->
+        <div class="takumi-box takumi-element">
+          <div class="takumi-insert"></div>
+        </div>
+        <div class="name-box right takumi-element">Takumi Sumino</div>
+      
+      
+        <!-- <div class="text-box">
+          <p class="text">Hello, Takumi.</p>
+        </div> -->
+      
+        <div class="text-box">
+          <details>
+          <summary>Hello, Takumi.</summary>
+          </details>
+      
+          <details>
+          <summary>I had something I wanted to talk to you about.</summary>
+          </details>
+      
+          <!-- set eito to smile after this is open  -->
+          <!-- also set takumi to pop open here? and have an expression? man idk, might need three states. -->
+          <details class="eito-last eito-smile">
+          <summary>Do you have a minute?</summary>
+          </details>
+      
+      
+          <!-- takumi speaking now -->
+          <details class="takumi-last eito-talk">
+            <summary>
+              ...
+            </summary>
+            </details>
+      
+      
+            <!-- eito's turn  -->
+            <details class="eito-last takumi-talk eito-smile">
+              <summary>
+                Don't worry, I won't try anything.
+              </summary>
+              </details>
+      
+                  <!-- takumi speaking now -->
+          <details class="">
+            <summary>
+              Yeah, I really don't believe you. 
+            </summary>
+            </details>
+      
+            <details class="takumi-last yugamu-talk">
+              <summary>
+                I'd much rather speak to Yugamu. 
+              </summary>
+              </details>
+      
+            <!-- character switch somehow -->
+            <!-- yugamu time? -->
+            <details class="">
+              <summary>
+                Did I hear my name? 
+              </summary>
+              </details>
+          
+        </div>
+      
+        </div>
+      </div>
+      
+      </div>
+
+
+
+<div class="main-box room1">
+  <p class="location">Classroom 
+  </p>
+  
+  
+  <!-- keeps it aligned and at the bottom -->
+  <div class="anchor">
+  
+    <!-- takumi's here now  -->
+    <div class="takumi-box">
+      <div class="takumi-insert"></div>
+    </div>
+  
+    <div class="character eito2"></div>
+
+    <div class="name-box right">Takumi Sumino</div>
+    <div class="text-box">
+  
+      <p class="text">...</p>
+  
+    </div>
+  </div>
+  
+  </div>
