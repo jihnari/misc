@@ -1,0 +1,775 @@
+/* 
+  limitations: 
+  - only one soft choice and one hard choice per view 
+  - (currently) soft choices must go in order
+  - 
+
+
+  todo:
+- REMOVE location...? doesnt exist in chat view, only in transitory views.
+- - maybe have location remove itself after arrival
+- fix shadow on location 
+- **fix takumi skew for ao3 
+- fix logic for soft choices 
+- **clean up your code (in progress) 
+- pick better names for classes? 
+- make text not selectable? keeps getting highlighted funny 
+- text across the board should maybe be a bit bigger? 
+- move to a new view (without a hard choice)
+- disappear the location after few dialogues? 
+- icons lower res?
+
+
+
+potential todo: 
+- clair de lune?
+- - get an mp3, put on github 
+- do we want days counter? would be uggo 
+- have a separate interface for selecting characters to talk to? seems like work. 
+
+
+
+PROBLEMS: 
+- main-box is too big, idk what happened. cap differently?  
+- some weirdness after an overlay (text-box margin-right increases or smth)
+- shion doesnt have a name at this point. could just leave him ??? the whole time? 
+
+
+done: 
+- + get bg images 
+- + takumi inject should shift character left
+- + fix whatever's happening with the bg size shifting around 
+- + details/summary nonsense 
+- + more details summary nonsense (new character dialogue, hide old)
+- + keep last text-box showing? -kinda nixed, creates problems. but doable.
+- + make two kinds of takumi elements, semi permanent and disposable? 
+- + blur the bg
+- + ZOOM the bg? (when characters are focused on, the bg is zoomed)
+- + character images 
+- + thought box - different colors? 
+- + choices should be a bit lower (top one starts at middle of screen)
+- / back and forth capabilities? no
+- + make chat window grid 
+- + need a choice overlay
+- / have selectable characters in a room...? i think not.  
+- + pin icon for location 
+- + fix: eito being too tall (.character top/margin-top no flexibility)
+- + shift character position to account for height 
+- + make soft choices and hard choices? (stay in current view, move to new view)
+- + fix the math with selections and new views
+- + replace dialogue next arrow
+
+
+THOUGHTS: 
+- for the script, consider a spreadsheet? text in one box, speaker/expression/etc in other box(es)
+- then if the transfer goes wrong, easier to fix the source file (easier than gdocs anyway)
+
+
+NOTE TO SELF: 
+you CANNOT have more than one of these on the screen at a time. they MUST be zero'd out or deleted in some way. due to the way the combinators work, all views will be affected by all state changes and are not limited to their current view. can i change this? maybe. sounds hard. ill think about it. might not matter though, why would we have more than one at a time? 
+its something to consider for tab view though.
+
+rooms: (if you're desperate)
+https://www.tumblr.com/reblogablename/783668993201471488/if-you-were-ever-curious-heres-every
+ */
+
+
+/* get rid of summary markers in all cases  */
+summary::-webkit-details-marker {display: none;}
+summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+
+/* move to next view */
+:has(details.move-to-next[open]) > .next-view{
+  display:flex;
+}
+
+
+
+/* dialogue is held in text-box. the entire box is selectable by user to continue to the next dialogue. */
+.text-box summary{
+  height:85%;
+  color:white;
+  padding: 10px 100px 0px 100px;
+  overflow-y:scroll;
+}
+::-webkit-scrollbar {
+    width: 0px;
+    /* make scrollbar transparent */
+    background: transparent; 
+}
+
+
+/* handles text rotation  */
+/* if CLOSED box follows other CLOSED box, do not show box */
+.text-box details:not([open]) + details{
+  display:none;
+}
+/* NOTE: the above might be causing takumi to close during a choice-time? */
+
+
+/* box starts CLOSED. when box OPENS, remove from existence */
+.text-box details[open] {display: none;}
+
+/* keeps the last dialogue box from closing (not currently in use) */
+.text-box details[open].last {display: inline-block;}
+
+
+/* open and close pop-out; toggle name boxes */
+/* initial state: do not display takumi (should this be handled with hidden instead? maybe. */
+/* update: the popout displays regardless of hidden, this MUST be set. idk why. probably some details open rules im not taking into consideration.  */
+.pov-element{
+  /* toggle this back**** */
+  display:none;
+}
+:has(details[open] + details:not([open]).pov-open) .pov-element{
+  display:block;
+}
+:has(details[open] + details:not([open]).pov-open) .target-element{
+  display:none;
+}
+
+:has(details[open] + details:not([open]).pov-close) .pov-element{
+  display:none;
+  transition-duration: 250ms;
+}
+:has(details[open] + details:not([open]).pov-close) .target-element{
+  display:block;
+}
+
+/* if pov-open: shift target character left. if pov-closed: return target character to center.(? not sure ive tested that second part) */
+:has(details[open] + details:not([open]).pov-open) .character{
+  margin-left:5%;
+}
+
+
+
+/* THOUGHTS TOGGLE */
+:has(details[open] + details:not([open]).thoughts) .name-box{
+display:none;
+}
+details.thoughts summary{
+  color:rgb(149, 236, 255) !important;
+}
+
+/* "important" text */
+/* rename this? */
+.important{
+  color:#BC4D50;
+}
+
+
+/* ALL CHARACTER PNG TOGGLES HERE  */
+:has(details[open] + details:not([open]).eito-smile) .character{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/eito2.png');
+} 
+:has(details[open] + details:not([open]).eito-talk) .character{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/eito.png');
+} 
+:has(details[open] + details:not([open]).yugamu-smile) .character{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/yugamu.png');
+} 
+:has(details[open] + details:not([open]).yugamu-talk) .character{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/yugamu2.png');
+} 
+
+
+/* TAKUMI STATES (also a character png toggle, in spirit (but not in class) */
+:has(details[open] + details:not([open]).takumi-talk) .takumi-insert{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/takumi-talk.png');
+}
+
+/* more takumi here (in the future) */
+
+
+
+
+
+
+/* BOX TO HOLD ALL THE THINGS */
+/* this is a container for the bg, character, takumi, location, text-box, choice-button, etc. everything lives in this box. only one box is shown at a time. */
+  .main-box{
+    width:960px;
+    max-width:100%;
+    background:rgb(119, 105, 131);
+    z-index:2;
+
+    height:540px;
+    max-height:100%; 
+
+    position:relative;
+    display:flex;
+    flex-direction:row !important;
+    font-family:Courier, monospace;  
+
+    overflow:hidden;
+  }
+
+  /* BACKGROUNDS */
+  /* base class for a room. add-ons just hold the room png. */
+  .room{
+    width:100%;
+    height:100%;
+    background-repeat: no-repeat;
+    background-size: auto 540px;
+    position:absolute;
+    z-index:-1;
+
+    /* background:black; */
+  }
+  /* when talking to a character, the background is zoomed out of focus */
+  /* call this something else? focused or smth?  */
+  .blur{
+    filter: blur(1px);
+    -webkit-filter: blur(1px);
+    transform:scale(3);
+
+    /* might want to left/right/bottom some things in the future. this zoom doesnt look good on every png.  */
+  }
+
+  .cafeteria{
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/bg/Cafeteria.png');
+  }
+  .biolab{
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/bg/Bio_Lab.png');
+
+  }
+  .hallway{
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/bg/Connected_hallway.png');
+
+  }
+  .courtyard{
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/bg/Courtyard.png');
+  }
+  .library{
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/bg/Library.png');
+  }
+  /* for thinking scenes or transitions  */
+  .black{
+    background: black;
+  }
+
+  /* could use some of those clouds also */
+
+
+
+  /* LOCATION */
+  /* if you continue to use this, replace the icon  */
+  .location::before{
+    /* content:"📍"; */
+    content:'';
+    padding-left:30px;
+    margin-left:5px;
+    /* bottom:5px; */
+
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/icon/thl-gps.png');
+    background-repeat: no-repeat;
+
+    /* maybe bigger */
+    height:27px;
+    width:27px;
+    background-size: 27px 27px;
+  }
+  .location{
+    width:240px;
+    height:1.5em;
+    font-size:1.4em;
+    color:white;
+    border:white solid 1px;
+    border-bottom:white solid 2px;
+    /* this isnt quite right */
+    box-shadow: 2px 1px 2px 1px rgb(41, 41, 111);
+    margin-top:10px;
+    /* vertical-align:bottom; */
+    padding-top:5px;
+
+    position:absolute;
+  }
+
+
+  /* DATE */
+  /* extremely poor attempt at date */
+  .date{
+    width:240px;
+    font-size:2em;
+    color:white;
+
+    /* this isnt quite right */
+    margin-top:10px;
+
+    position:absolute;
+    right:0;
+  }
+  .date::after{
+    content:"";
+    border:white solid 1px;
+    border-radius:20px;
+    width:40px;
+    height:40px;
+  }
+
+
+
+  /* TEXT BOX */
+  /* contains all the things for dialogue */
+  /* dialogue logic toggles are currently at the top of the css file, but should maybe be moved here later.  */
+
+  /* "anchor" for the text box and everything attached to it (mostly just the name box) */
+  /* !!!pay attention to flex direction.  */
+  .anchor{
+    align-self: flex-end;
+    width:100%;
+    margin-bottom:30px;
+  }
+  .name-box{
+    color:white;
+    background-color:#3F5F6F;
+    opacity: .8;
+    width:fit-content;
+    margin-left:40px;
+    padding:3px 5px;
+    /* box-shadow: 0px 0px 2px 2px #B7E1EF; */
+    box-shadow: 0px 0px 2px 1px white;
+
+  }
+  /* reuse name-box for the current pov character by shifting name-box to the right. usecase: class="right name-box" */
+  /* this could be named better */
+  .right {
+    margin-left:auto;
+    margin-right:80px;
+  }
+
+  .text-box{
+    color:white;
+    background-color:#3F5F6F;
+    opacity: .9;
+    padding:5px 0px;
+    height:70px;
+    border:solid white 1px;
+    margin-left:30px;
+    margin-right:30px;
+
+    box-shadow: 0px 0px 2px 2px #B7E1EF;
+
+    /* the grid  */
+    /* horizontal */
+    background: 
+    linear-gradient(to bottom,#3F5F6F 7px,#456778 1px); 
+    background-size: 100% 8px;
+  
+    z-index:2;
+    position:relative;
+  }
+  /* the only purpose of this is for the grid in the bg */
+  .text-box::before{
+    content:"";
+
+    /* vertical (grid)  */
+    background: 
+    linear-gradient(to right,#3F5F6F 7px,#456778 1px); 
+    background-size: 8px 100%;
+    width:100%;
+    height:100%;
+    position:absolute;
+    opacity:.5;
+    top:0;
+    z-index:-1;
+  }
+
+  /* text box "next" arrow */
+  .text-box::after{
+    content:"";
+    /* border: solid #5E7683;
+    border-width: 0 2px 2px 0;
+    padding: 4px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    box-shadow: 1px 1px 0px 0px white; 
+    margin-left: 5px; */
+    
+    display: inline-block;
+    position:absolute;
+    right:25px;
+    bottom:10px;
+
+
+    background-image: url("https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/icon/thl-arrow.png");
+    background-repeat: no-repeat;
+    height:19px;
+    width:19px;
+    background-size: 19px 19px;
+  }
+
+
+
+
+  /* CHARACTER */
+  /* specifically the character that pov is talking to  */
+  /* problem: the setup only works for eito. he's too tall. it leaves everyone else falling out of the scene.  */
+  .character{
+    background-repeat: no-repeat;
+    background-size: 550px auto;
+    width:100%;
+    /* if this number isnt big enough, weird crap happens */
+    height: 200vh;
+
+    position:absolute;
+    /* there should be a real way to center this but i cant find it */
+    margin-left:15%;
+    top:-110px;
+    transition-duration: 250ms;
+  }
+  /* !!!seed heights here!!! default is top:-110px */
+  /* each of these base images should be a character png at a neutral state ? */
+  .eito{
+    /* swap this out for eito smile?  */
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/eito.png');
+    top:-90px;
+  }
+  .yugamu{
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/yugamu.png');
+    top:-120px;
+  }
+
+  .kyoshika{
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/kyoshika/t_pic_chr013_1011.png');
+  }
+
+
+  /* POV CHARACTER */
+  /* should i rename these to be more generic? pov-character and all that  */
+  .takumi-box{
+    height:390px;
+    width:420px;
+    background-size:300px 400px;
+    transform: perspective(15px) rotatey(-1deg) skew(-20deg);
+
+    /* transform: perspective(10px);
+    transform: rotatey(-1deg);
+    transform: skew(-20deg); */
+    
+    border:solid white 3px;
+    border-top:solid white 6px;
+    border-bottom:solid white 6px;
+    box-shadow: 0px 0px 7px 3px #54B5BE;
+     /* #B7E1EF; */
+
+
+    background:rgb(156, 157, 186);
+    
+
+    position:absolute;
+    right:-130px;
+    top:60px;
+
+    overflow:hidden;
+
+    z-index:0;
+  }
+
+  /* can this be... less classes */
+  /* in fact i think it needs to be more classes :/  */
+  /* this class needs to exist solely to unskew the images (both bg and takumi)  */
+  /* potentially: can we use "afters" */
+  .takumi-bg{
+    /* having a default png here means nothing can override it i think. might be order based  */
+    /* background-color:#5E7683; */
+    height:700px;
+    width:1000px;
+    background-size:auto;
+
+    /* ao3 doesnt like this (mainly perspective) */
+    transform:  rotatey(1deg) skew(20deg) perspective(none);
+
+    margin-left:-110px;
+  }
+
+  .takumi-insert{
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/takumi.png');
+    background-repeat: no-repeat;
+
+    height:1000px;
+    background-size: auto 1150px;
+    margin-top:-170px;
+
+    /* toggle these back if u remove the takumi-bg */
+    /* margin-left:-100px; */
+    /* transform:  rotatey(1deg) skew(20deg) perspective(none); */
+    /* transform: perspective(none);
+    transform: rotatey(1deg);
+    transform: skew(20deg); */
+  }
+
+
+
+  /* ****CLEANED CODE TO HERE */
+  /* the choice logic stuff scares me, esp since its not even working properly  */
+  /* i think we need to get choice code relatively functional before we can clean anything. */
+
+
+  /* CHOICE SCREEN STUFF */
+  /* ideally would like a soft-choice and a hard-choice to use for toggles, and choice-screen is just what it looks like  */
+  .choice-screen{
+    /* this replaces overlay  */
+    /* should this be .8 */
+    background-color:rgb(69 103 120 /.5);
+
+    height:100%;
+    width:100%;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    justify-content:center;
+
+    position:absolute;
+    z-index:3;
+
+    /* make this number really big */
+    /* we're no longer using infinite active hack. might need a transition for other reasons later. */
+    /* transition: all 0s 400s; */
+  }
+
+  /* rename to button? */
+  .choice-button{
+    /* this is darker actually  */
+    background-color:rgba(63, 95, 111, .8);
+    border:solid #B7E1EF 1px;
+    /* opacity: .8; */
+
+    /* font-weight:bold; */
+    color:white;
+    font-size:1em;
+    padding:3px 0px;
+    margin:3px;
+     width: 50%;
+    text-align:center;
+    cursor:pointer;
+  }
+  .choice-button:hover{
+    background:white;
+    color:black;
+    opacity: 1;
+    width: 51%;
+    box-shadow: 0px 0px 1px 1px #B7E1EF;
+  }
+
+
+  /* logic is: when choice is selected, sibling select related view and display. until choice is selected, all (future choice) views should be hidden. */
+  /* 
+  HARD CHOICE:
+  - present choice screen overlay 
+  - user makes hard-choiceN (new view/screen)
+  - choice screen AND current view set to: hidden
+  - next view, resultN, set to: flex/block (only affect next!resultN)
+
+  SOFT CHOICE: 
+  - present choice screen overlay
+  - user makes soft-choiceN (dialogue)
+  - choice screen set to: hidden
+  - dialogueN set to: display open? hm. hm. hmm. 
+  */
+
+
+  /* .result1, .result2, .result3{
+    display:none;
+  } */
+
+
+   .main-box:has(details.soft-choice-time[open]) > .soft-choice, .main-box:has(details.hard-choice-time[open]) > .hard-choice{
+    display:flex; 
+   }
+
+
+  /* can i make this more modular? have a maximum amount of choices and look for the next sibling to open?  */
+  /* just added >s, hoping that grabs ONLY the next instance. */
+  /* this is for hard choices  */
+  /* with the removal of init-view logic, this currently isnt working.  */
+  :has(details.choice1[open]) > .result1{
+    display:flex;
+  }
+  :has(details.choice2[open]) > .result2{
+    display:flex;
+  }
+
+
+  /* what was this supposed to do...?  */
+  /* scared to delete it. does it disapear the item after chosen? */
+  /* this is currently doing NOTHING. ok. cool.  */
+  /* .choice-button details:not([open]) ~ details{
+  display:none;
+  } */
+  /* details.choice-button:not([open]) ~ details{
+    display:none;
+  } */
+
+  /* moved from above. delete after stuff is working?   */
+  /* hack, fix later */
+/* unfortunately this is working fine and idk why its labeled a hack fix. it'll probably live forever now. such is the life span of hack fixes (eternity) */
+/* i dont think this gets triggered, seeing as the choice menu lives outside of the text-box */
+/* .text-box details:not([open]) +details.choice-button{
+  display:block;
+} */
+
+
+  /* fix this; current view should disappear. shouldnt have to name every view. */
+  /* should just be able to say .main-box:has(blah) .main-box{die}? */
+  /* :has(details.choice-button[open]) .init-view{
+    display:none; 
+  } */
+  /* test */
+  .main-box:has(.hard-choice details.choice-button[open]){
+    display:none; 
+  }
+  /* .hard-choice:has(details.choice-button[open]) .main-box{
+    display:none; 
+  } */
+  /* .main-view:not(:has(.hard-choice details.choice-button:not([open]))) { display: none;} */
+
+  /* ok we may have to name every single view, which would. kind of suck. but its better than nothing? hm. is it.  */
+  /* thought:  */
+  /* [class^="main-box"] */
+  /* this doesnt work  */
+  /* :has(details.choice-button[open]) .main-box{
+    display:none; 
+  } */
+
+
+
+
+  /* open corresponding dialogue for selected choice*/
+  .main-box:has(details.branch1[open]) .dialogue1, .main-box:has(details.branch2[open]) .dialogue2, .main-box:has(details.branch3[open]) .dialogue3, .main-box:has(details.branch4[open]) .dialogue4{
+    display:block;
+  }
+
+  /* hide choice-button of already selected choice  */
+  .main-box:has(details.branch1[open]) .branch1, .main-box:has(details.branch2[open]) .branch2, .main-box:has(details.branch3[open]) .branch3, .main-box:has(details.branch4[open]) .branch4{ 
+    display:none;
+  }
+
+    /* brief thought about making an overlay for each choice-button to make it grayed out and unselectable. could return to later.*/
+    :has(details.branch1[open]) .branch1::after{
+      /* make inactive */
+      /* content:"testing123";
+      background:gray;
+      opacity: 0.5;
+      width:100%;
+      height:100%;
+      position:absolute; */
+    }
+
+
+
+  /* :///// */
+  /* toggles the menu */
+  /* removed the importants, doing my best  */
+  /* later, add a class specifier here. ".main-box:has" so that it only grabs the current context. not doing rn bc i think i can make this code better.  */
+  /* oh also you could chain these lol save space  */
+  /* UPDATE: you cannot. this is entirely dependant on rule order. this is also probably why it breaks in fun and exciting ways.  */
+
+  /* ***this logic ONLY works if the user chooses the boxes 1-4 in order. fix later. */
+  /* i think if these were hyper specific, the code would atually work */
+  .main-box:has(details.branch1[open]) > .soft-choice{
+    display:none;
+  }
+  .main-box:has(details.choice-unlock1[open]) > .soft-choice{
+    display:flex;
+  } 
+  .main-box:has(details.branch2[open]) > .soft-choice{
+    display:none;
+  }     
+  .main-box:has(details.choice-unlock2[open]) > .soft-choice{
+    display:flex;
+  }   
+  .main-box:has(details.branch3[open]) > .soft-choice{
+    display:none;
+  }
+  .main-box:has(details.choice-unlock3[open]) > .soft-choice{
+    display:flex;
+  }
+  .main-box:has(details.branch4[open]) > .soft-choice{
+    display:none;
+  }
+  .main-box:has(details.choice-unlock4[open]) > .soft-choice{
+    display:flex;
+  }
+
+  /* could do it backwards? might be more stable? */
+  /* .soft-choice:has(.branch1[open]){
+    display:none;
+  } */
+
+/* more specific, more stable? */
+/* THIS works but u really do have to be sooo specific about everything  */
+    /* .main-box:has(.branch1[open]):has(.choice-unlock1[open]) > .soft-choice{
+      display:flex;
+    } */
+
+  /* this is what gifbot is doing to close the menu */
+  /* .hub:not(:has(details:not([open]))) { display: none;} */
+  /* so? */
+  /* this doesnt work, not specific enough? */
+  /* .soft-choice:has(details.choice-button[open]) { display: none;} */
+  /* .soft-choice:not(.choice-button:has(details:not([open]))) { display: none;} */
+
+    
+    
+
+  /* thought */
+  /* (gifbot) "if hub has its second details open and has a second sibling whose .closer is not opened yet..." Repeat for n children and n siblings. */
+  /* .hub:has(details:nth-child-of-type(2)[open]):has(+*+* .closer:not([open])) */
+  /* .main-box:has(choice-button.details:nth-child-of-type(2)[open]):has(+*+* .choice-toggle:not([open])){} */
+
+
+
+  /* final toggle, youve unlocked the mutex */
+  /* display final unlocked dialogue */
+  .main-box:has(details.choice-unlock1[open]):has(details.choice-unlock2[open]):has(details.choice-unlock3[open]):has(details.choice-unlock4[open]) .dialogue-final {
+    display:block;
+  }
+  /* hide choice menu  */
+  .main-box:has(details.choice-unlock1[open]):has(details.choice-unlock2[open]):has(details.choice-unlock3[open]):has(details.choice-unlock4[open]) .soft-choice{
+    display:none;
+  } 
+
+
+
+  /* notes: 
+  - test-choice is a div. in that div is also the class hidden. hidden is display:none. 
+  - test-choice-time is (in) a details class that triggers when opened 
+  - when opened, test-choice becomes displayed (display:block) 
+  - transition ignores display none and display hidden. doesn't ignore height or width. 
+  - active is ONLY active when mouse during active click
+  - :active CAN be used to target things inside the active element, but each individual element needs it's own transition delay set up
+  - :active CANNOT be used to target something that's not sibling selectable. possibly the structure has to come after the after (and not in another parent?) in order to be caught. edit: nope that didn't work. 
+  - im back to thinking this isnt going to work 
+  - opacity works on everything in the div 
+  - im back i think it can work 
+  - THOUGHT:
+  - initial trigger choice-time on details open, displays choice menu
+  - next trigger on choice-menu:active, opacity 0s choice-menu
+  - next trigger on [end dialogue, display choice menu again]:active, displays choice-menu
+  - each item deletes itself until list is exhausted 
+  - unsure how to get to next dialogue line easily, could use a bunch of details toggles at the end of each dialogue branch, check all open, display next dialogue 
+  - active seems to apply on half press, details[open] on full press. this is creating problems. if the structure is told to die on the half press, the full press never activates the next structure. 
+  - max height sort of does something but doesnt delay properly (and suffers from half press)
+  - top/bottom is similar, doesnt delay properly (and suffers from half press)
+  - thought: create a new structure, overlay(2) that sits on top of a perma menu and makes things unclickab nvm same issue, how do i tell it to die? i dont. 
+ */
+
+
+
+
+
+
+
+
+/* universal (hack) class to not display stuff by default. ao3 uses the same class name, will this cause problems? idk. it'll probably be fine. if its not fine, rename this. */
+/* this HAS to be at the bottom, because fifo rules. */
+.hidden{
+  display:none;
+}

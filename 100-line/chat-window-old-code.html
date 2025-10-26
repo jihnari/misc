@@ -116,6 +116,298 @@
 
 
 
+
+
+
+  /* lots of nonsense to possibly replace the skew thing that doesnt work on ao3 */
+
+  /* this isnt stickied properly, in practice.  */
+  .box-holder{
+    height:400px;
+    width:500px;
+    margin-top:100px;
+    /* margin-left:50px; */
+    /* i... truly thought that would help me in some way. i think maybe. i need to go to bed. */
+
+
+
+    position:absolute;
+    /* right:-100px; */
+    left:450px;
+
+    /* overflow:hidden; */
+
+    z-index:0;
+    /* background:blue; */
+  }
+
+  .box1{
+    height:300px;
+    width:400px;
+    background:pink;
+    position:relative;
+    rotate: 12deg;
+
+    margin-left:20px;
+
+    border:solid white 3px;
+    border-top:solid white 6px;
+    border-bottom:solid white 6px;
+    box-shadow: 0px 0px 7px 5px #54B5BE;
+
+  }
+  .box2{
+    height:300px;
+    width:300px;
+    background:pink;
+    rotate: 70deg;
+    position:absolute;
+
+    top:-64px;
+    right:57px;
+
+    border-left:solid white 6px;
+    box-shadow: -6px -6px 7px -1px #54B5BE;
+    z-index:-1
+  }
+
+  .box5{
+    /* overflow-x: hidden; */
+    height:500px;
+    background:green;
+    rotate:12deg;
+
+
+  }
+  .box3{
+    height:300px;
+    width:300px;
+    background:orange;
+
+    rotate:12deg;
+
+    /* overflow-x: hidden; */
+    /* overflow-y:visible; */
+    margin-left:40px;
+    position:absolute;
+    left:-100px;
+
+
+  }
+  .box4{
+    height:300px;
+    width:300px;
+    background:red;
+
+    rotate:70deg;
+
+    /* position:absolute;
+    top:-62px;
+    right:58px; */
+
+
+  }
+  
+  /* this is just a test, not in prod. delete once u figure out the polygon. */
+  .takumi-insert2{
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/takumi.png');
+    background-repeat: no-repeat;
+
+    height:420px;
+    background-size: auto 1000px;
+    margin-top:-120px;
+    rotate: -12deg;
+    margin-left:-100px;
+  }
+
+
+
+
+
+    /* all this does is darken the bg when a choice screen is up */
+  /* trying to use transparency instead  */
+  .overlay{
+    display:none;
+    background:#456778;
+    opacity:.3;
+    height:100%;
+    width:100%;
+    position:absolute;
+    z-index:2;
+  }
+
+
+
+
+
+
+  /* A BUNCH OF OLD STUFF ABOUT SOFT-CHOICE */
+    /* soft choice screen logic using active */
+  /* this does not work. it almost works, but due to half presses doesnt function properly i think. */
+  /* THOUGHT: half baked but can we reverse it...? toggle the text with active and hide the menu with details...? i think probably not. */
+  :has(details.soft-choice-time[open]) > .soft-choice-screen{
+    display:flex; 
+   }
+ 
+   /* choice menu's long transition on default state catches this after its not active, idk its magic  */
+   .choice-toggle:active ~ .ssoft-choice-screen{
+   /* background-color: rgba(255, 0, 0, 1); */
+   top:-600;
+   background-color:blue;
+   transition: all 1s 0s;
+   }
+   /* this WAS working, idk what happened  */
+   /* .choice-toggle:active ~ .soft-choice-screen .choice-box{
+    background-color:rgba(63, 95, 111, 1);
+    color:white;
+    transition: all 0s 0s;
+   } */
+
+   /* .choice-toggle:active ~ .choice-box{
+
+    background-color: rgba(221, 37, 227, 1);
+   transition: all 0s 0s;
+   } */
+   
+   /* affect the buttons if u need to  */
+   /* this does... nothing? */
+   /* .soft-choice:active .choice-box{
+     background-color:gray; 
+   } */
+ 
+   .ssoft-choice-screen:active{
+     /* height:0px; */
+     /* background-color: rgba(221, 37, 227, 0.5); */
+     /* this should have a small delay? no wait choice time should be the thing with the delay  */
+     /* man, idk */
+     /* max-height:0; */
+     /* overflow:hidden; */
+     top:300;
+
+     transition: all 1s 0s;
+   }
+   /* this isnt wroking at all (grabs it but doesnt disappear it)  */
+   .ssoft-choice-screen:active .choice-box{
+    /* background-color: rgba(221, 37, 227, .1);
+    color:rgba(221, 37, 227, 0); */
+    /* height:0px; */
+    /* background-color:green;  */
+    /* transition: all 0s 0s; */
+  }
+  .choice-box{
+    /* transition: all 0s 100s;  */
+    /* height:50px; */
+  }
+   .ssoft-choice-screen{
+     /* cursor:pointer;
+     position:absolute;
+     right:50%;
+     top:50%;
+     width:50px;
+     height:50px; */
+     /* background-color:blue; */
+     /* make this number big */
+     /* transition-delay:4s; */
+     /* height:400px; */
+
+     /* keep */
+     max-height:100%;
+     transition: all 0s 100s; 
+     top:-300;
+   }
+ 
+
+     /* initial open */
+  :has(details.test-choice-time[open]) > .test-choice{
+   display:block; 
+  }
+
+  .test-choice-after:active ~ .test-choice{
+  background-color: rgba(255, 0, 0, 1);
+  /* height:50px !important; */
+  z-index:2;
+  transition: all 0s 0s;
+  }
+
+  /* active has too many problems, relying on detailed selectors instead ig  */
+  .test-choice:active{
+    /* display:none; */
+    /* display:hidden; */
+    /* height:1px; */
+    /* opacity:50%; */
+    /* background-color:pink; */
+
+
+    background-color: rgba(221, 37, 227, 0.5);
+    z-index:-2;
+    transition: all 0s 0s;
+  }
+  .test-choice{
+    cursor:pointer;
+    position:absolute;
+    right:50%;
+    top:50%;
+    width:50px;
+    height:50px;
+    background-color:blue;
+    /* make this number big */
+    transition: all 0s 3s; 
+    /* transition-delay:4s; */
+  }
+
+  /* ignore */
+  .test-choice-button{
+    width:20px;
+    height:20px;
+    background-color:pink;
+  }
+  
+  .test-choice:active .test-choice-button{
+    background-color:green; 
+  }
+
+  
+  /* choice time has been activated; show choice-view and gray out the bg with an overlay  */
+  /* this isnt grabbing (" " or > */
+  /* .soft-choice-time:active > .soft-choice-screen{
+    display:flex;
+    background:green;
+    transition: all 0s 0s;
+  } */
+  /* :has(details.choice-time[open]) > .choice-screen{
+    display:flex;
+  }
+  :has(details.choice-time[open]) > .overlay{
+    display:block;
+  } */
+  /* doesnt trigger? */
+  /* :has(details.choice-time:not([open])) .overlay{
+    display:none;
+  } */
+  /* :has(details.choice-time-1[open]) .init-view{
+    display:none;
+  } */
+
+
+  /* ACTIVE TRANSITION TOGGLE NOTES */
+    /* div {
+    width: 100px;
+    height: 100px;
+    background: red;
+    transition: all 1s 40s;
+    cursor:pointer;
+  }
+  
+  div:active {
+    width: 300px;
+    height: 300px;
+    transition: all 1s 0s;
+    cursor: auto;
+  } */
+
+
+
+
 </style>
 
 
@@ -235,3 +527,9 @@
   </div>
   
   </div>
+
+
+
+
+
+  

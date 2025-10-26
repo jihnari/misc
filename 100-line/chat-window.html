@@ -1,552 +1,11 @@
-<!-- 
-  todo:
-- character images 
-- pin icon for location 
-- fix shadow on location 
-- ****get bg images 
-- make chat window a grid not just lines 
-- - not positive this is possible...? maybe with some more transparent nonsense? throw an absolute in there? 
-- - or just find a chat window img? 
-- can i make takumi box insert an after? save space and time? 
-- + takumi inject should shift character left
-- fix whatever's happening with the bg size shifting around 
-- + details/summary nonsense 
-- more details summary nonsense (new character dialogue, hide old)
-- + keep last text-box showing? 
-- back and forth capabilities? 
-- + make two kinds of takumi elements, semi permanent and disposable? 
+<!-- make sure theyre in the same directory tho  -->
+<link rel="stylesheet" href="chat-skin.css">
 
-
-rooms: (if you're desperate)
-https://www.tumblr.com/reblogablename/783668993201471488/if-you-were-ever-curious-heres-every
- -->
-
-
-
-
-<style>
-
-/* details summary nonsense and logic  */
-summary::-webkit-details-marker {display: none;}
-summary {
-  list-style: none;
-  cursor: pointer;
-}
-
-
-
-/* half baked thoughts for improving the ui */
-.text-box summary{
-  height:90%;
-  /* background:pink; */
-  color:white;
-    padding: 10px 100px;
-
-}
-/* you GOTTA do more styling here. its unstable because of it. */
-
-
-
-/* handles text rotation  */
-/* if CLOSED box follows other CLOSED box, do not show box */
-details:not([open]) ~ details{
-  display:none;
-}
-/* box starts CLOSED. when box OPENS, delete from existence */
-details[open] {display: none;}
-
-/* keeps the last dialogue box from closing */
-details[open].last {display: inline-block;}
-
-
-/* open and close pop-out; toggle name boxes */
-/* initial state: do not display */
-.pov-element{
-  display:none;
-}
-:has(details[open] + details:not([open]).pov-open) .pov-element{
-  display:block;
-}
-:has(details[open] + details:not([open]).pov-open) .target-element{
-  display:none;
-}
-
-:has(details[open] + details:not([open]).pov-close) .pov-element{
-  display:none;
-  transition-duration: 250ms;
-}
-:has(details[open] + details:not([open]).pov-close) .target-element{
-  display:block;
-}
-
-/* if pov-open: shift target character left. if pov-closed: return target character to center.(? not sure ive tested that second part) */
-/* these values have shifted, gonna have to fix. also not sure it can grab this...? */
-  :has(details[open] + details:not([open]).pov-open) .character {
-      /* margin-left:50px; */
-    margin-left:0%;
-    transition-duration: 250ms;
-  }
-  /* this transition back isnt smooth? isnt working? */
-  :has(details[open] + details:not([open]).pov-close) .character {
-    /* margin-left:110px; */
-    margin-left:5%;
-    /* transition-duration: 250ms; */
-  }
-
-
-
-/* toggle in different png states  */
-:has(details[open] + details:not([open]).eito-smile) .character{
-  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/eito2.png');
-} 
-
-/* perhaps i wont do this. perhaps ill force a view change/tab change whenever there's a new character, esp if its not just a quick cameo  */
-:has(details[open] + details:not([open]).yugamu-smile) .character{
-  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/yugamu2.png');
-} 
-:has(details[open] + details:not([open]).yugamu-talk) .character{
-  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/yugamu.png');
-} 
-
-
-
-/* this isnt working; broken image resource?  */
-:has(details[open] + details:not([open]).takumi-talk) .takumi-insert{
-  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/takumi-talk.png');
-}
-
-
-
-
-
-
-
-
-  .main-box{
-    /* width:100%;
-    max-width:1000px; */
-
-    /* width:1000px; */
-    /* this fixes some problems and causes others. dig deeper. */
-    /* or dont and margin shift to the right */
-    /* do these do anything...? */
-    max-width:95%;
-    max-width:100%;
-
-    height:500px;
-    max-height:100%; 
-
-    position:relative;
-    display:flex;
-
-    /* font-family:'Courier New', Courier, monospace;   */
-    font-family:Courier, monospace;  
-
-    overflow:hidden;
-  }
-
-  /* smth weird bad happening with the width in either this class or the one above  */
-    /* placeholder */
-    .room1{
-    background-image: url('https://ricedigital.co.uk/wp-content/uploads/2025/04/The-Hundred-Line-review-story.jpg');
-    background-repeat: no-repeat;
-    background-size: auto 500px;
-    /* width:100%; */
-
-  }
-
-  .cafeteria{
-    
-
-  }
-  .location::before{
-    content:"📍";
-
-  }
-  .location{
-    width:240px;
-    height:1.4em;
-    font-size:1.4em;
-    color:white;
-    border:white solid 1px;
-    border-bottom:white solid 2px;
-    /* this isnt quite right */
-    box-shadow: 2px 1px 2px 1px rgb(41, 41, 111);
-    margin-top:10px;
-
-    position:absolute;
-
-    /* transform:scaleX(.8) scaleY(1.2); */
-  }
-
-
-  /* extremely poor attempt at date */
-  .date{
-    width:240px;
-    font-size:2em;
-    color:white;
-
-    /* this isnt quite right */
-    margin-top:10px;
-
-    position:absolute;
-    right:0;
-
-  }
-  .date::after{
-    content:"";
-    border:white solid 1px;
-    border-radius:20px;
-    width:40px;
-    height:40px;
-  }
-
-
-  /* ok another day  */
-  .anchors-anchor{
-    /* i dont like it either ok  */
-    /* display:flex; */
-    /* position:relative; */
-  }
-
-  /* why does this MOVE */
-  .anchor{
-    /* display: inline-block; */
-    /* this causes the text box to stay in place, but the character images to shift around. i dont know why. */
-    /* perhaps if anchor were in a fixed anchor...?  */
-    align-self: flex-end;
-    width:100%;
-    margin-bottom:30px;
-
-    /* this causes takumi to hide properly, and nothing else.  */
-    /* position:relative; */
-    /* hiding this is fine now...? */
-    /* position:absolute; */
-
-    /* border:black solid 5px; */
-    /* overflow-y:hidden; */
-    /* overflow:hidden; */
-
-  }
-  .name-box{
-    color:white;
-    background-color:#3F5F6F;
-    opacity: .8;
-    width:fit-content;
-    border:solid white 1px;
-    margin-left:40px;
-    padding:3px 5px;
-    box-shadow: 0px 0px 2px 2px #B7E1EF;
-  }
-  /* this could be named better */
-  .right {
-    margin-left:auto;
-    margin-right:80px;
-  }
-
-
-  .text-box{
-    color:white;
-    background-color:#3F5F6F;
-    opacity: .8;
-    width:92%;
-    /* max-width:490px; */
-    /* max-width:auto; */
-    /* wish this worked lol  */
-    /* padding:10px 100px; */
-    padding:5px 0px;
-    height:70px;
-    border:solid white 1px;
-    /* margin:1px; */
-    margin-left:25px;
-
-    box-shadow: 0px 0px 2px 2px #B7E1EF;
-
-    /* the grid  */
-    /* horizontal */
-    background: 
-    linear-gradient(to bottom,#3F5F6F 4px,#456778 1px); 
-    background-size: 100% 5px;
-
-    /* can have two if its bg-image instead? but bgsize can still only be one thing, so idk. feels possible but more research needed. */
-    /* vertical */
-    /* background: 
-    linear-gradient(to right,#3F5F6F 4px,#456778 1px); 
-    background-size: 5px 100%; */
-
-  
-    z-index:2;
-  }
-  /* this isnt working at all */
-  .text-box::before{
-    content:"";
-
-    /* vertical grid  */
-    /* this does nothing  */
-    /* background: 
-    linear-gradient(to right,#3F5F6F 4px,#456778 1px); 
-    background-size: 5px 100%;
-    background:blue;
-    width:100%;
-    height:100%;
-    height:70px; */
-    
-  }
-
-
-  /* for the text box arrow */
-  /* somehow unfortunately anchored to either "text" or the text itself. shifts if its not there.  */
-  .text-box::after{
-    content:"";
-
-
-  border: solid #5E7683;
-  border-width: 0 2px 2px 0;
-  display: inline-block;
-  padding: 4px;
-  margin-left: 5px; 
-  transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-  /* border-left: 10px solid transparent;
-	border-right: 10px solid transparent;
-	border-top: 20px solid #555; */
-
-  box-shadow: 1px 1px 0px 0px white;
-
-  /* margin:12px 25px; */
-  position:absolute;
-  right:50px;
-  bottom:50px;
-  /* not sure why we need both margin AND right, but we do  */
-
-  /* **** give this a lower z index than the summary  */
-  
-
-}
-
-
-
-  .text{
-    /* color:white;
-    margin: 10px 100px; */
-  }
-  /* thoughts have no name box but do have takumi. will also need a margin, but the margin may already exist */
-  .thoughts{
-    /* this color may be off  */
-    color:#4DC6CF;
-    color:#54B5BE;
-  }
-  .important{
-    color:#BC4D50;
-  }
-
-
-  .character{
-    background-repeat: no-repeat;
-    background-size: 550px auto;
-    width:100%;
-    /* height:100%; */
-    /* if this number isnt big enough, weird crap happens */
-    height: 100vh;
-    /* height:auto; */
-    /* margin-bottom:-137px;
-    margin-left:110px; */
-
-    /* position:relative; */
-    /* position:flex; */
-    position:absolute;
-    margin-left:5%;
-    margin-top:-50px;
-    /* margin-right:auto; */
-  }
-  .eito{
-    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/eito.png');
-  }
-  .eito2{
-    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/eito2.png');
-  }
-  .yugamu{
-    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/yugamu.png');
-  }
-  .yugamu2{
-    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/yugamu2.png');
-
-  }
-
-  .takumi-box{
-    height:300px;
-    width:400px;
-    background-size:300px 400px;
-    transform: perspective(10px) rotatey(-1deg) skew(-20deg);
-
-    /* transform: perspective(10px);
-    transform: rotatey(-1deg);
-    transform: skew(-20deg); */
-    
-    border:solid white 3px;
-    border-top:solid white 6px;
-    border-bottom:solid white 6px;
-    box-shadow: 0px 0px 7px 3px #54B5BE;
-     /* #B7E1EF; */
-
-
-    /* background:rgb(156, 157, 186); */
-    
-
-    position:absolute;
-    right:-140px;
-    top:70px;
-
-    overflow:hidden;
-
-    z-index:0;
-  }
-  .takumi-bg{
-    background-image: url('https://ricedigital.co.uk/wp-content/uploads/2025/04/The-Hundred-Line-review-story.jpg');
-    height:700px;
-    /* max-height:100%; */
-    width:1000px;
-    /* max-width:100%; */
-    background-size:auto;
-    transform:  rotatey(1deg) skew(20deg) perspective(none);
-
-    margin-left:-110px;
-
-  }
-
-  .takumi-insert{
-    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/takumi.png');
-    background-repeat: no-repeat;
-
-    height:1000px;
-    background-size: auto 1150px;
-    margin-top:-170px;
-
-    /* toggle these back if u remove the takumi-bg */
-    /* margin-left:-100px; */
-    /* transform:  rotatey(1deg) skew(20deg) perspective(none); */
-
-
-    /* transform: perspective(none);
-    transform: rotatey(1deg);
-    transform: skew(20deg); */
-  }
-
-
-
-
-  /* lots of nonsense to possibly replace the skew thing that doesnt work on ao3 */
-
-  .box-holder{
-    height:400px;
-    width:500px;
-    padding-top:100px;
-    padding-left:50px;
-    /* i... truly thought that would help me in some way. i think maybe. i need to go to bed. */
-
-
-
-    /* position:absolute; */
-    /* right:-100px; */
-    /* top:100px;
-    left:400px; */
-
-    /* overflow:hidden; */
-
-    z-index:0;
-    background:blue;
-  }
-
-  .box1{
-    height:300px;
-    width:400px;
-    background:pink;
-    position:relative;
-    rotate: 12deg;
-
-    margin-left:20px;
-
-    border:solid white 3px;
-    border-top:solid white 6px;
-    border-bottom:solid white 6px;
-    box-shadow: 0px 0px 7px 5px #54B5BE;
-
-  }
-  .box2{
-    height:300px;
-    width:300px;
-    background:pink;
-    rotate: 70deg;
-    position:absolute;
-
-    top:-64px;
-    right:57px;
-
-    border-left:solid white 6px;
-    box-shadow: -6px -6px 7px -1px #54B5BE;
-    z-index:-1
-  }
-
-  .box5{
-    /* overflow-x: hidden; */
-    height:500px;
-    background:green;
-    rotate:12deg;
-
-
-  }
-  .box3{
-    height:300px;
-    width:300px;
-    background:orange;
-
-    rotate:12deg;
-
-    /* overflow-x: hidden; */
-    /* overflow-y:visible; */
-    margin-left:40px;
-    position:absolute;
-    left:-100px;
-
-
-  }
-  .box4{
-    height:300px;
-    width:300px;
-    background:red;
-
-    rotate:70deg;
-
-    /* position:absolute;
-    top:-62px;
-    right:58px; */
-
-
-  }
-  
-  /* this is just a test i think, not in prod */
-  .takumi-insert2{
-    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/takumi.png');
-    background-repeat: no-repeat;
-
-    height:420px;
-    background-size: auto 1000px;
-    margin-top:-120px;
-    rotate: -12deg;
-    margin-left:-100px;
-
-  }
-
-
-
-</style>
 
 <body>
   <figure>
     <p>&nbsp;</p>
     <p>&nbsp;</p>
-
-
 
         <!-- test -->
 
@@ -572,18 +31,432 @@ details[open].last {display: inline-block;}
 
 
 
+
+<!-- INITIAL SCREEN -->
+<div class="main-box">
+  <div class="room cafeteria blur">
+  </div>
+<p class="location">Cafeteria
+</p>
+
+<!-- seed scene characters -->
+<div class="character kyoshika"></div>
+<div class="takumi-box pov-element">
+  <div class="takumi-bg">
+    <div class="takumi-insert"></div>
+  </div>
+</div>
+
+
+<!-- hard choice (fix later?)-->
+<div class="choice-screen hidden hard-choice">
+  <details class="choice-button choice1">
+    <summary>
+      Yugamu
+    </summary>
+  </details>
+  <details class="choice-button choice2">
+    <summary>
+      Eito
+    </summary>
+  </details>
+  <details class="choice-button choice3">
+    <summary>
+      Shion
+    </summary>
+  </details>
+</div>
+
+
+<!-- soft choice (test) -->
+<!-- rather than handle this with an entirely separate class, should we have a softchoice toggle? -->
+<div class="choice-screen soft-choice hidden">
+<!-- <div class="soft-choice-screen hidden"> -->
+    <details class="choice-button branch1">
+      <summary>
+        Nozomi
+      </summary>
+    </details>
+    <details class="choice-button branch2">
+      <summary>
+        Momo
+      </summary>
+    </details>
+    <details class="choice-button branch3">
+      <summary>
+        Hiruko
+      </summary>
+    </details>
+    <details class="choice-button branch4">
+      <summary>
+        Kako
+      </summary>
+    </details>
+  </div>
+
+
+
+
+<div class="anchor">
+  <div class="name-box right pov-element">Takumi Sumino</div>
+  <div class="name-box target-element">Kyoshika</div>
+
+<div class="text-box">
+  <details>
+    <summary>
+      Did you have a dream about kissing me, Takumi?!
+    </summary>
+        </details>
+
+    <details class="thoughts pov-open">
+<summary>This is so embarrassing. I wish I could just disappear... But they won't believe me if I try to back out now. 
+</summary>
+    </details>
+    <details class="thoughts pov-open">
+      <summary>
+Nothing good can come from me admitting I kissed all three of them in my dreams. It might be better to say I dreamed about someone else. 
+      </summary>
+    </details>
+
+<details class="pov-open takumi-talk">
+<summary>Um... Well...</summary>
+</details>
+<details class="pov-open takumi-talk"><summary>
+I had a dream about kissing...
+</summary></details>
+
+
+<details class="thoughts pov-open">
+  <summary>
+I can't just say anyone. I don't want to say Nozomi, that might make her uncomfortable. And Momo might break me in half...
+  </summary>
+</details>
+<!-- <details class="thoughts pov-open choice-time"> -->
+<details class="thoughts pov-open soft-choice-time">
+  <summary>That just leaves...
+  </summary></details>
+
+  <!-- choice-time selected above; choice time is revealed. if soft choice, go back to dialogue? if hard choice, go to new view? only have hard choice rn  -->
+
+  <!-- soft choice attempt number 103 -->
+  <!-- <div class="hidden dialogue1">
+  <details class="thoughts pov-open">
+    <summary>
+      choice 1 text
+    </summary>
+  </details>
+  <details class="thoughts pov-open">
+    <summary>
+      more choice 1 text
+    </summary>
+    <details class="thoughts pov-open choice-toggle">
+      <summary>That just leaves...
+      </summary></details> 
+  </details>
+  </div> -->
+
+  <!-- note: choice-toggle MUST be on the same level in the same container as the choice-menu it is toggling. but putting it on the top level div means that after the first piece of dialogue is touched, it will reactivate the choice-menu (which is too early). unsure how to handle this yet. -->
+  <div class="hidden dialogue1">
+    <details class="thoughts pov-open">
+      <summary>
+        choice 1 text
+      </summary>
+    </details>
+    <details class="thoughts pov-open">
+      <summary>
+        more choice 1 text
+      </summary>
+    </details>
+      <details class="thoughts pov-open choice-toggle choice-unlock1">
+        <summary>That just leaves...
+        </summary></details> 
+    </div>
+
+
+
+  <div class="hidden dialogue2">
+    <details class="thoughts pov-open">
+      <summary>
+        choice 2 text
+      </summary>
+    </details>
+    <details class="thoughts pov-open choice-toggle choice-unlock2">
+      <summary>
+        more choice 2 text
+      </summary>
+    </details>
+    </div>
+
+    <div class="hidden dialogue3">
+      <details class="thoughts pov-open">
+        <summary>
+          choice 3 text
+        </summary>
+      </details>
+      <details class="thoughts pov-open choice-toggle choice-unlock3">
+        <summary>
+          more choice 3 text. time for the menu again.
+        </summary>
+      </details>
+    </div>
+
+    <div class="hidden dialogue4">
+      <details class="thoughts pov-open">
+        <summary>
+          choice 4 text
+        </summary>
+      </details>
+      <details class="thoughts pov-open choice-toggle choice-unlock4">
+        <summary>
+          more choice 4 text
+        </summary>
+      </details>
+      </div>
+
+
+    <div class="hidden dialogue-final">
+      <details class="thoughts pov-open">
+        <summary>
+          Hey wait, doesn't that leave only guys?!
+        </summary>
+      </details>
+      <details class="thoughts pov-open">
+        <summary>
+          That can't be right... 
+        </summary>
+      </details>
+      <details class="thoughts pov-open hard-choice-time">
+        <summary>
+          Should I talk to someone about this? 
+        </summary>
+      </details>
+      </div>
+
+
+
+
+<!-- this is now beholden to text-box next hide, which is not what we want. made a hack fix for it but im not proud.  -->
+<!-- new problem: because of the way these are laid out, the selector to delete the clicked item doesnt grab unless the previous items are already closed -->
+<!-- <div class="soft-choice-screen"> -->
+<!-- <div class="soft-choice-screen hidden">
+  <details class="choice-button branch1">
+    <summary>
+      Nozomi
+    </summary>
+  </details>
+  <details class="choice-button branch2">
+    <summary>
+      Momo
+    </summary>
+  </details>
+  <details class="choice-button branch3">
+    <summary>
+      Hiruko
+    </summary>
+  </details>
+  <details class="choice-button branch4">
+    <summary>
+      Kako
+    </summary>
+  </details>
+</div> -->
+
+<!-- <div class="test-choice hidden"> <div class="test-choice-button"></div></div>  -->
+
+
+</div>
+</div>
+
+
+      
+
+
+</div>
+
+<!-- oh right this never shows up, the single choice per interaction is seeded at the top  -->
+
+<!-- CHOICE SCREEN  -->
+<!-- consider making choice screen an a...? and then messing with active instead of hidden? -->
+<div class="main-box choice-view hidden soft-choice">
+  <div class="choice-screen">
+    <details class="choice-button choice1">
+      <summary>
+        Karua
+      </summary>
+    </details>
+    <details class="choice-button choice2">
+      <summary>
+        Momo
+      </summary>
+    </details>
+    <details class="choice-button choice3">
+      <summary>
+        Hiruko
+      </summary>
+    </details>
+    <details class="choice-button choice3">
+      <summary>
+        Kako
+      </summary>
+    </details>
+  </div>
+</div>
+
+<!-- <p>&nbsp;</p> -->
+
+<!-- CHOICE SCREEN  -->
+<!-- choice view is dead and so is this whole section  -->
+<div class="main-box choice-view hidden">
+  <!-- <div class="room blur">
+  </div> -->
+  <div class="choice-screen">
+    <details class="choice-button choice1">
+      <summary>
+        Yugamu2
+      </summary>
+    </details>
+    <details class="choice-button choice2">
+      <summary>
+        Eito
+      </summary>
+    </details>
+    <details class="choice-button choice3">
+      <summary>
+        Shion
+      </summary>
+    </details>
+
+    <!-- ideally, would have a box that says, maybe someone else...? and then eito is a choice and takumi is mad about it  -->
+
+  </div>
+</div>
+
+
+<!-- CHOICE 1 (yugamu) -->
+<div class="main-box result1 hidden">
+<!-- <div class="main-box result1"> -->
+  <div class="room biolab blur">
+  </div>
+<p class="location">Bio Lab
+</p>
+
+<div class="character yugamu"></div>
+
+  <!-- test -->
+  <div class="takumi-box pov-element">
+    <div class="takumi-bg library">
+    <div class="takumi-insert"></div>
+    </div>
+  </div>
+
+  <!-- this isnt triggering?  -->
+<div class="overlay"></div>
+<div class="choice-screen hidden">
+  <details class="choice-button branch1">
+    <summary>
+      a choice
+    </summary>
+  </details>
+  <details class="choice-button branch2">
+    <summary>
+      a second choice
+    </summary>
+  </details>
+</div>
+
+
+<div class="anchor">
+
+<div class="name-box right pov-element">Takumi Sumino</div>
+<div class="name-box target-element">Yugamu Omokage</div>
+
+
+<div class="text-box">
+  <details>
+    <summary>Hey, Takumi. Come to make some potions?</summary>
+    </details>
+    <details class="yugamu-talk">
+    <summary>Or maybe some poisons?</summary>
+    </details>
+
+    <details class="pov-open takumi-talk choice-time">
+    <summary>Actually, I came to ask a favor.</summary>
+    </details>
+
+
+    <!-- path 1 -->
+    <!-- if you wrap in a div, the first element after cant seed the current state properly. -->
+    <div class="dialogue1 hidden">
+    <details class="yugamu-talk">
+      <summary>Oh ho? <span class="important">a choice</span>, huh?</summary>
+      </details>
+      <details class="yugamu-talk">
+        <summary>Why don't you tell me more over tea?</summary>
+        </details>
+    </div>
+
+    <!-- <div class="dialogue2 hidden"> -->
+    <!-- path 2 -->
+    <details class="yugamu-talk dialogue2 hidden">
+      <summary>You're more daring than I thought, Takumi.</summary>
+      </details>
+    <!-- </div> -->
+
+</div>
+
+</div>
+</div>
+
+
+
+<!-- CHOICE 2 (eito) -->
+<div class="main-box hidden">
+  <div class="room cafeteria blur">
+  </div>
+<p class="location">Cafeteria
+</p>
+
+<div class="character eito2"></div>
+
+</div>
+
+
+<!-- <p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p> -->
+
 <!-- just solidifying placement of elements -->
-<div class="main-box room1">
-  <p class="location">Classroom 
+<!-- <div class="main-box room courtyard"> -->
+  <div class="main-box hidden result2">
+    <div class="room courtyard blur">
+    </div>
+  <p class="location">Courtyard
   </p>
   
   <!-- default (seeded) characters in the scene  -->
   <div class="character eito"></div>
+
   <div class="takumi-box pov-element">
     <div class="takumi-bg">
     <div class="takumi-insert"></div>
     </div>
   </div>
+
+
+  <!-- box test -->
+  <!-- <div class="box-holder">
+    <div class="box1">
+      <div class="takumi-insert2">
+      </div>
+      <div class="box2">
+      </div>
+    </div>
+  </div> -->
+
+
+
 
   <!-- all textbox elements (and dialogue) -->
     <div class="anchor">
@@ -594,14 +467,8 @@ details[open].last {display: inline-block;}
       
       
       <div class="text-box">
-        <!-- <div class="text">...</div> -->
-
-
-
-        <div class="text">
-
         <details>
-          <summary>Hello, Takumi.</summary>
+          <summary>Hello, Takumi. this is me testing a very long block of text to see what happens when we get to the end. hm. thats not ideal, is it.</summary>
           </details>
       
           <details>
@@ -620,8 +487,6 @@ details[open].last {display: inline-block;}
           </summary>
           </details>
 
-
-        </div>
       </div>
     </div>
   
@@ -637,29 +502,32 @@ details[open].last {display: inline-block;}
     <p>&nbsp;</p>
 
     <!-- fixing the names, in progress  -->
-    <div class="main-box room1">
-      <p class="location">Classroom 
+    <div class="main-box hidden">
+      <div class="room library">
+      </div>
+      <p class="location">Library 
       </p>
       
       <!-- <p class="date">002 DAY</p> -->
       
-      
-      
-      <!-- keeps it aligned and at the bottom but also. does some freaky nonsense. something is looking at the bottom of the screen, not just the bottom of the main-box. an absolute somewhere might fix you. might need another nested layer. -->
-      <div class="anchor">
-
-      
-        <!-- seeded target character  -->
+              <!-- seeded target character  -->
         <div class="character eito"></div>
+              <!-- test -->
+        <div class="takumi-box pov-element">
+          <div class="takumi-bg library">
+          <div class="takumi-insert"></div>
+          </div>
+        </div> 
+
+      <!-- keeps it aligned and at the bottom but also. does some freaky nonsense. something is looking at the bottom of the screen, not just the bottom of the main-box. an absolute somewhere might fix you. might need another nested layer. -->
+      <div class="anchor"> 
+ 
+      
+
         <!-- would like this to be in an after attached to the character somehow. or toggled by a details idk -->
         <div class="name-box target-element">Eito Aotsuki</div>
       
-        <!-- test -->
-        <div class="takumi-box pov-element">
-          <div class="takumi-bg">
-          <div class="takumi-insert"></div>
-          </div>
-        </div>
+
         <div class="name-box right pov-element">Takumi Sumino</div>
     
       
@@ -711,6 +579,7 @@ details[open].last {display: inline-block;}
       
             <!-- character switch somehow -->
             <!-- yugamu time? -->
+            <!-- this works, but at what cost? also doesnt do the name box text. have to have another toggle, or... something. rather just change chapters or use tabs etc -->
             <details class="yugamu-talk">
               <summary>
                 Did I hear my name? 
@@ -727,7 +596,32 @@ details[open].last {display: inline-block;}
       </div>
 
       <p>&nbsp;</p>
-      <p>&nbsp;</p>
+
+
+<!-- BLACK THINKING SCREEN (example)-->
+<div class="main-box hidden">
+  <div class="room black">
+  </div>
+  
+<div class="anchor">
+<div class="text-box">
+
+    <details class="thoughts"> 
+<summary>This is so embarrassing. I wish I could just disappear... But they won't believe me if I try to back out now. 
+</summary>
+    </details>
+    <details class="thoughts">
+      <summary>
+Nothing good can come from me admitting I kissed all three of them in my dreams. It might be better to say I dreamed about someone else. 
+      </summary>
+    </details>
+
+</div>
+</div>
+</div>
+
+
+<p>&nbsp;</p>
 
 
 
