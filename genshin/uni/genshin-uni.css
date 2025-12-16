@@ -242,6 +242,12 @@ figure {
     /* border-bottom-right-radius: 15px; */
     margin-bottom: 3px;
   }
+/* this isnt working  */
+  /* .signal-box-right + :not(.signal-box-right){
+    border-bottom-right-radius: 15px;
+    margin-bottom: 3px;
+    background: pink;
+  } */
   /* this could work for future attempts but not the current structure */
   /* .signal-box-right:first-of-type{
     background:green;

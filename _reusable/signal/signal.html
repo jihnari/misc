@@ -1,0 +1,501 @@
+<!-- stolen from genshin.css, genshin.css may be slightly more updated at any given time -->
+
+
+<!-- css -->
+<style>
+
+  
+  /*signal*/
+  /*
+  todo:
+  - could be a good person, but you wont.
+  - more name colors? eh
+  - im tempted to rename the colors 1-6
+  */
+  .signal-dot {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+    background-color: #bbb;
+  }
+  /* the ellipse collapse here only works if you wrap it in the "inline" class first, inexpliclably. fortunately, the updates dont break previous instances, they just also dont wrap. */
+  .signal-name{
+    font-size:1.1em;
+    margin-bottom: 2px;
+    
+    display: inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width:100%;
+  }
+  .signal-name-line{
+    padding-bottom:5px;
+    box-shadow: 0px 8px 8px -10px #888888;
+    white-space: nowrap;
+  }
+  .signal-arrow {
+    display: inline-block;
+    /* has this grayscale EVER done anything */
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    height: 30px;
+    width: 30px;
+    margin:0 10px 0 10px;
+  }
+  .signal-box-left0, .signal-box-left1, .signal-box-left2, .signal-box-left3 {
+    background: #e9e9e9;
+    border-width: 1px;
+    border-radius: 15px;
+    padding: 7px 14px 7px 14px;
+    color: black;
+    float: left;
+    max-width: 75%;
+    clear: both;
+    position: relative;
+  }
+  .signal-box-left1 {
+    margin-top: 10px;
+    border-bottom-left-radius: 0;
+    margin-bottom: 3px;
+  }
+  .signal-box-left2 {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    margin-bottom: 3px;
+  }
+  .signal-box-left3 {
+    border-top-left-radius: 0;
+    margin-bottom: 10px;
+  }
+  .signal-box-left0{
+    margin-top: 10px;
+  }
+  
+  .signal-box-right0, .signal-box-right1, .signal-box-right2,.signal-box-right3 {
+    border-width: 1px;
+    color: white;
+    background: #2c6bee;
+    border-radius: 15px;
+    padding: 7px 14px 7px 14px;
+    margin-bottom: 3px;
+    float: right;
+    max-width: 75%;
+    clear: both;
+    position: relative;
+  }
+  .signal-box-right1 {
+    margin-top: 10px;
+    border-bottom-right-radius: 0;
+    margin-bottom: 3px;
+  }
+  .signal-box-right2 {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    margin-bottom: 3px;
+  }
+  .signal-box-right3 {
+    border-top-right-radius: 0;
+    margin-bottom: 3px;
+  }
+  .signal-box-right0 {
+    margin-top: 10px;
+  }
+  
+  
+  
+  
+  /* testing */
+  .signal-box-right {
+    border-width: 1px;
+    color: white;
+    background: #2c6bee;
+    border-radius: 15px;
+    padding: 7px 14px 7px 14px;
+    margin-bottom: 3px;
+    float: right;
+    max-width: 75%;
+    clear: both;
+    position: relative;
+    
+    margin-top: 10px;
+    border-bottom-right-radius: 0;
+    margin-bottom: 3px;
+  }
+  
+  /* .signal-box-right ~ .signal-box-right{
+    margin-top: 10px;
+    border-bottom-right-radius: 0;
+    margin-bottom: 3px;
+    background:pink;
+  } */
+  
+  /* sibling selector your way to success...? */
+  .signal-box-right + .signal-box-right{
+    margin-top:0;
+    border-top-right-radius: 0;
+    /* border-bottom-right-radius: 15px; */
+    margin-bottom: 3px;
+  }
+/* this isnt working  */
+  /* .signal-box-right + :not(.signal-box-right){
+    border-bottom-right-radius: 15px;
+    margin-bottom: 3px;
+    background: pink;
+  } */
+  /* this could work for future attempts but not the current structure */
+  /* .signal-box-right:first-of-type{
+    background:green;
+  } */
+  
+  
+  .signal-box-left {
+    background: #e9e9e9;
+    border-width: 1px;
+    border-radius: 15px;
+    padding: 7px 14px 7px 14px;
+    color: black;
+    float: left;
+    max-width: 75%;
+    clear: both;
+    position: relative;
+    margin-top: 10px;
+    border-bottom-left-radius: 0;
+    margin-bottom: 3px;
+  }
+  .signal-box-left + .signal-box-left{
+    margin-top:0;
+    /* border-bottom-left-radius: 15px; */
+    border-top-left-radius: 0;
+    /* margin-bottom: 10px; */
+  }
+  
+  /* tmp */
+  .signal-emote{ 
+    font-size:2.5em;
+    /* margin-top:-5px; */
+    /* margin-bottom:0px; */
+  }
+  .emote{
+    font-size:2.5em;
+    background:none;
+  }
+  
+  .signal-time-right::after{
+    content:"a \0000a a \0000a x\ax ";
+  }
+  
+  /* do we need br? i want to get rid of br... */
+  .signal-time-right, .signal-time-left {
+    float: right;
+    /* display:block; */
+    font-size: .7em;
+    /* old color scheme */
+    /* color: #8eb4fd; */
+    color:#BCCFFF;
+
+    padding: 5px 0 0 0;
+  }
+  .signal-time-left {
+    color: #979797;
+  }
+
+  .
+  
+  .signal-img-left {
+    /* background: #2c6bee; */
+    border-radius: 15px;
+    border:2px solid #F6F6F6;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    /* margin-top: 10px; */
+    float: left;
+    max-width: 75%;
+    max-height:400px;
+    clear: both;
+    position: relative;
+  }
+  .signal-img-right {
+    /* margin-top: 10px; */
+    border:2px solid #F6F6F6;
+    border-radius: 15px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    margin-bottom: 3px;
+    float: right;
+    max-width: 75%;
+    max-height:400px;
+    clear: both;
+    position: relative;
+  }
+  .signal-date {
+    padding: 30px 0 5px 0;
+    color: gray;
+    font-size:.8em;
+    text-align:center;
+    clear: both;
+    position: relative;
+  }
+  .signal-call {
+    padding: 0 0 0 0;
+    color: gray;
+    font-size:.8em;
+    text-align:center;
+    clear: both;
+    position: relative;
+  }
+  .signal-call-icon{
+    height:2em;
+    margin-bottom:-5px;
+  }
+  .signal-header {
+    /* padding: 2px 0 5px 0; */
+    margin-top:-5px;
+    font-size: 1.5em;
+    text-align:center;
+    position: relative;
+  }
+  .signal-subheader {
+    /* padding: 5px 0 5px 0; */
+    margin-top:-15px;
+    font-size:.8em;
+    text-align:center;
+    position: relative;
+  }
+  .signal-big-dot {
+    margin-top: 30px;
+    position: relative;
+    /* actual irl black magic */
+    /* left: 50%;
+    transform: translate(-50%); */
+    /* nvm, the above works on everything but ao3. ao3 demands just left. */
+    /* left: 50%; */
+    /* NVM?? THE BEHAVIOR HAS CHANGED AGAIN?? IT JUST CENTERS ALL BY ITSELF NOW??? */
+  
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    background-color: #bbb;
+  }
+  .signal-misc-space{
+    height:30px;
+  }
+  .signal-unread{
+    border-top: #404040 solid 1px;
+    font-size: .8em;
+    text-align: center;
+    padding-top: 5px;
+    margin-top: 20px;
+    margin-bottom:20px;
+  }
+  
+  /*signal group chat*/
+  /*top bar is fixed in this version, legit works in this version. should fix og version also, but... probably wont.*/
+  /* hotfixed og version and i should just convert it to all use the same classes but thats too much work */
+  .signal-gc-arrow {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    height: 30px;
+    width: 30px;
+    margin:0px 10px 5px 10px;
+    display: inline-block;
+  }
+  .inline{
+    display:inline-block;
+    max-width:70%;
+  }
+  .signal-gc-dot {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom:5px;
+    background-color: #bbb;
+  }
+  .signal-gc-name{
+    font-size:1.1em;
+    margin-top:5px;
+    display: block;
+  }
+  .signal-gc-subname{
+    font-size:.9em;
+    display:block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .signal-gc-name-line{
+    padding-bottom:5px;
+    box-shadow: 0px 8px 8px -10px #888888;
+    white-space: nowrap;
+    /* text-overflow: ellipsis; */
+    overflow: hidden;
+  }
+  .sgc-name{
+    display:block;
+    font-size:0.8em;
+    font-weight:bold;
+  }
+  .sgc-cyno{
+    color:#9A82BA;
+  }
+  .sgc-collei{
+    color:#787B38;
+  }
+  .sgc-tigh{
+    color:#2A385B;
+  }
+  
+  .signal-at-right {
+    border-radius: 5px;
+    padding: 0px 5px 0px 2px;
+    color: white !important;
+    background: #1248B2;
+    text-decoration: none !important;
+    cursor: pointer;
+  }
+  .signal-at-left {
+    border-radius: 5px;
+    color: black !important;
+    padding: 0px 5px 0px 2px;
+    background: #C6C6C6;
+    text-decoration: none !important;
+    cursor: pointer;
+  }
+
+
+  .signal-new-theme .signal-time-right{
+    color:#BCCFFF;
+  }
+
+  .signal-new-theme .signal-time-left{
+
+}
+
+</style>
+
+
+
+
+<!-- html -->
+<div class="dm-container">
+  
+  <p class="signal-name-line"><img src="https://github.com/jihnari/QAB/raw/main/img/signal-arrow.jpg" class="signal-arrow"><span class="signal-dot"></span><span class="signal-name">_username_</span></p>
+
+  <!-- p sure we dont need this? weird leftover from broken code on ao3 -->
+    <!-- <p class="clear"></p> -->
+  
+
+    <!-- type one -->
+    <!-- does a sibling selector check to format the bubbles. 80% correct? can use signal-box-left/right0 and get a text box not followed by anything (should be round). and breaks when you have multiple left users (gotta add an empty class in between) -->
+  <span class=signal-box-left>
+    _text_
+    <br/><span class=signal-time-left>
+    </span></span>
+
+    <span class="signal-box-right">
+      _text_
+  <p class="signal-time-right">11:40 ✓✓
+  </p>
+  </span>
+
+  <span class="signal-box-left">
+    _text_
+  </span>
+  <span class="signal-box-left">
+    _text_
+    <br/><span class="signal-time-left">11:40
+  </span>
+  </span>
+    
+    <span class="signal-box-right">
+    <span class="emote">😭</span>
+    </span><span class="signal-box-right">
+    _text_
+  </span><span class="signal-box-right">
+    _text text long text_
+    <br/><span class="signal-time-right">Now ✓✓
+    </span>
+    </span>
+
+
+
+    <!-- unsure why this isnt working, will fix later (hopefully), working in prod -->
+</div>
+<div class="dm-container">
+<p class="signal-unread">1 unread message </p>
+<p>
+
+
+
+    <!-- type one with multiple users -->
+  <span class=signal-box-left>
+    <span class="sgc-name sgc-tigh">Tighnari</span>
+    you're not going to die 
+    <br/><span class=signal-time-left>
+    </span></span>
+    
+    <span class="signal-box-right">
+    <span class="emote">😭😭😭</span>
+    </span><span class="signal-box-right">
+    you can have my BL collection when im gone 
+  </span><span class="signal-box-right">
+    It has limited edition postcards 
+    </span>
+    
+    <span class=signal-box-left>
+      <span class="sgc-name sgc-tigh">Tighnari</span>
+      I don't want it 
+      <br/><span class=signal-time-left>
+      </span></span>
+    
+      <span class="signal-box-right">
+        it's the only thing i have to give 
+    </span>
+
+
+    <!-- type two (original, annoying, precise) -->
+  <span class=signal-box-right0>
+  on a scale from 1 to ff24 has been delayed again, how mad was he 
+  <br/><span class=signal-time-right>07:02 ✓✓
+  </span></span>
+  
+  
+  <span class=signal-box-left1>
+  It was like an egg in a microwave 
+  </span><span class=signal-box-left3>
+  Glorious 
+  <br/><span class=signal-time-left>11:21
+  </span></span>
+    
+   <p><img class="signal-img-left" src=https://static.wikia.nocookie.net/gensin-impact/images/b/b9/Sumeru_Akademiya_Emblem.png></img></p>
+  
+   <p><img class="signal-img-right" src=https://static.wikia.nocookie.net/gensin-impact/images/b/b9/Sumeru_Akademiya_Emblem.png></img></p>
+  
+  <span class=signal-box-right1>
+  smtimes ur history concerns me 
+  </span><span class=signal-box-right3>
+  who the hell actually puts an egg in a microwave 
+  <br/><span class=signal-time-right>11:40 ✓✓
+  </span></span>
+  
+  
+  
+  <span class=signal-box-left1>
+  Who DOESN'T is a much better question
+  </span><span class=signal-box-left2>
+  It's a right of passage 
+  </span><span class=signal-box-left3>
+  This is why you're so boring 
+  <br/><span class=signal-time-left>11:42
+  </span></span>
+  
+  
+  <span class=signal-box-right0>
+  ??? u gotta CLEAN IT UP aftreward no thx u psycho 
+  <br/><span class=signal-time-right>11:42 ✓✓
+  </span></span>
+  </div>

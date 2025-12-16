@@ -4,8 +4,37 @@
 
 <body>
   <figure>
+
+
     <p>&nbsp;</p>
     <p>&nbsp;</p>
+
+    <!-- black box test  -->
+    <!-- NOTE: black MUST be placed within main-box or the black screen specific styling will break -->
+    <!-- <div class="main-box black">
+      <div class="anchor">
+        <div class="name-box pov-element">Takumi Sumino</div>
+        <div class="name-box target-element">Kyoshika</div>
+        <div class="name-box-alt"></div>
+      
+      <div class="text-box">
+        <details>
+          <summary>
+            Maybe that was when it all went wrong...
+          </summary>
+          </details>
+          <details class="thoughts">
+            <summary>
+              What is she talking about?
+            </summary>
+            </details>
+
+      </div>
+      </div>
+    </div>
+
+    <p>&nbsp;</p>    
+    <p>&nbsp;</p> -->
 
         <!-- test -->
 
@@ -38,11 +67,16 @@
   </div>
 <p class="location">Cafeteria
 </p>
+<!-- <p class="date">029</p> -->
+<!-- STILL NEED A FIVE BUD -->
+<div class="clock afternoon"><p class="date"><span class="zero"></span><span class="two"></span><span class="six"></span></p></div>
+
+<!-- <details class="rotate"></details> -->
 
 <!-- seed scene characters -->
 <div class="character kyoshika"></div>
 <div class="takumi-box pov-element">
-  <div class="takumi-bg">
+  <div class="takumi-bg cafeteria">
     <div class="takumi-insert"></div>
   </div>
 </div>
@@ -102,7 +136,8 @@
   <div class="name-box target-element">Kyoshika</div>
 
 <div class="text-box">
-  <details>
+  <!-- start the clock -->
+  <details class="rotate">
     <summary>
       Did you have a dream about kissing me, Takumi?!
     </summary>
@@ -339,6 +374,8 @@ I can't just say anyone. I don't want to say Nozomi, that might make her uncomfo
   </div>
 <p class="location">Bio Lab
 </p>
+<p class="date">029</p>
+
 
 <div class="character yugamu"></div>
 
@@ -599,16 +636,25 @@ I can't just say anyone. I don't want to say Nozomi, that might make her uncomfo
 
 
 <!-- BLACK THINKING SCREEN (example)-->
-<div class="main-box hidden">
-  <div class="room black">
-  </div>
+<!-- <div class="main-box hidden"> -->
+<div class="main-box black">
+  <!-- <div class="room black">
+  </div> -->
   
 <div class="anchor">
 <div class="text-box">
+  <details class="yugamu-talk">
+    <summary>some text here</summary>
+  </details>
 
     <details class="thoughts"> 
 <summary>This is so embarrassing. I wish I could just disappear... But they won't believe me if I try to back out now. 
 </summary>
+    </details>
+    <details class="thoughts">
+      <summary>
+Nothing good can come from me admitting I kissed all three of them in my dreams. It might be better to say I dreamed about someone else. 
+      </summary>
     </details>
     <details class="thoughts">
       <summary>
@@ -620,7 +666,20 @@ Nothing good can come from me admitting I kissed all three of them in my dreams.
 </div>
 </div>
 
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
 
+    <audio></audio>
+    test
+    <p>&nbsp;</p>
+
+    <details class="audiobox" open>
+      <summary><audio controls>
+        <source src="https://assets.mixkit.co/active_storage/sfx/995/995-preview.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio> 
+      </summary>
+  </details>
 <p>&nbsp;</p>
 
 

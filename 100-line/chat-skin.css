@@ -18,15 +18,31 @@
 - move to a new view (without a hard choice)
 - disappear the location after few dialogues? 
 - icons lower res?
-
+- day counter - classes for time of day 
+- slightly transparent the date box 
+- redraw the 4 for sure 
+- MAKE ENDING TITLE SCREENS [01: Alternate Romance Route: <name>] or [01: Eito Romance Route: <name>]
+- figure out names for endings 
+- ***FINISH THE NUMBERS BRO. WHERE ARE THEY.
+- **address 2+ characters in same scene. re-code namebox slightly? 
+- code a [day x] black screen 
+- transition text a little? fade in 
 
 
 potential todo: 
 - clair de lune?
 - - get an mp3, put on github 
-- do we want days counter? would be uggo 
 - have a separate interface for selecting characters to talk to? seems like work. 
-
+- png all the numbers? 
+- redraw the numbers (kinda messy) 
+- redraw the second hand? should have a small ball on the other end
+- redraw the date box...? should have 60 tick marks :clown: 
+- character png animations? flash white, shake, shake violently, etc 
+- sfx for the character animations? might be several steps too far 
+- make day change screens? 
+- text box changes during black screen; replicate? 
+- audio....? 
+- dialogue white bar on top? half ish done, needs more circles and a lot of tweaking 
 
 
 PROBLEMS: 
@@ -58,6 +74,9 @@ done:
 - + make soft choices and hard choices? (stay in current view, move to new view)
 - + fix the math with selections and new views
 - + replace dialogue next arrow
+- + date box 
+- + do we want days counter? would be uggo 
+- + infininte tick tock for day box 
 
 
 THOUGHTS: 
@@ -72,6 +91,117 @@ its something to consider for tab view though.
 rooms: (if you're desperate)
 https://www.tumblr.com/reblogablename/783668993201471488/if-you-were-ever-curious-heres-every
  */
+
+
+ /* audio notes: 
+ <p align="center" class="video">
+    <iframe src="https://www.youtube.com/embed/sj6-LG5VpGk?autoplay=1&amp;t=1&amp;playlist=sj6-LG5VpGk&amp;loop=1" title="Stop the Pigeon Intro Opening"></iframe>
+  </p>
+
+
+ */
+
+ audio {
+  /* filter: sepia(20%) saturate(70%) grayscale(1) contrast(99%) invert(12%); */
+  /* width: 200px;
+  height: 25px; */
+  /* width:100px; */
+  height:200px;
+  /* can we overflow none this and push the ... off the edge? */
+  
+}
+audio::-webkit-media-controls-enclosure {
+  border-radius: 5px;
+  background-color: green;
+  width:100px;
+  /* background-color:transparent; */
+  transform:scale(7);
+  margin-left:300px;
+  margin-bottom:70px;
+}
+audio::-webkit-media-controls-panel{
+  /* background-color:blue; */
+  /* background-color:transparent; */
+  
+}
+
+audio::-webkit-media-controls-mute-button{
+  display:none;
+
+}
+
+audio::-webkit-media-controls-play-button{
+/* width:50px; */
+/* height:150px; */
+
+/* this works  */
+/* opacity:0; */
+
+}
+
+audio::-webkit-media-controls-timeline-container{
+  /* display:none; */
+
+}
+
+audio::-webkit-media-controls-current-time-display{
+  display:none;
+}
+
+audio::-webkit-media-controls-time-remaining-display{
+  display:none;
+}
+
+audio::-webkit-media-controls-timeline{
+  display:none;
+}
+
+audio::-webkit-media-controls-volume-slider-container{
+  display:none;
+}
+
+audio::-webkit-media-controls-volume-slider{
+  display:none;
+}
+
+audio::-webkit-media-controls-seek-back-button{
+  /* display:none; */
+}
+
+audio::-webkit-media-controls-seek-forward-button{
+  /* display:none; */
+}
+
+audio::-webkit-media-controls-fullscreen-button{
+  /* display:none; */
+
+
+}
+audio::-webkit-media-controls-overlay-enclosure{
+  /* display:none; */
+}
+
+audio::-webkit-media-controls-rewind-button{
+  /* display:none; */
+
+
+}
+
+audio::-webkit-media-controls-return-to-realtime-button{
+  /* display:none; */
+
+}
+
+audio::-webkit-media-controls-toggle-closed-captions-button{
+  /* display:none; */
+
+}
+
+.audiobox{
+  background:pink;
+  /* height:50px; */
+  padding:10px;
+}
 
 
 /* get rid of summary markers in all cases  */
@@ -95,11 +225,23 @@ summary {
   color:white;
   padding: 10px 100px 0px 100px;
   overflow-y:scroll;
+  /* transition-delay:1s; */
+  /* transition-duration: 250ms;
+  transition:height 3s ease-in; */
+
 }
+/* .text-box details[open]{
+  transition: height 150ms ease-out;
+} */
 ::-webkit-scrollbar {
     width: 0px;
     /* make scrollbar transparent */
     background: transparent; 
+}
+.text-box details{
+  /* transition-delay:1s; */
+  /* transition:1s; */
+  /* transition-duration: 250ms; */
 }
 
 
@@ -108,7 +250,6 @@ summary {
 .text-box details:not([open]) + details{
   display:none;
 }
-/* NOTE: the above might be causing takumi to close during a choice-time? */
 
 
 /* box starts CLOSED. when box OPENS, remove from existence */
@@ -126,12 +267,15 @@ summary {
   display:none;
 }
 :has(details[open] + details:not([open]).pov-open) .pov-element{
+  /* NOTE: this is untriggering, causing takumi to close during a choice-time? */
+  /* could we somehow do this in reverse, showing the view at all times unless explicitly stated? */
   display:block;
 }
 :has(details[open] + details:not([open]).pov-open) .target-element{
   display:none;
 }
 
+/* are these being used anywhere...? ive forgotten my own code  */
 :has(details[open] + details:not([open]).pov-close) .pov-element{
   display:none;
   transition-duration: 250ms;
@@ -274,17 +418,17 @@ details.thoughts summary{
     background-size: 27px 27px;
   }
   .location{
-    width:240px;
-    height:1.5em;
-    font-size:1.4em;
-    color:white;
-    border:white solid 1px;
-    border-bottom:white solid 2px;
+    width:300px;
+    height:1.3em;
+    font-size:1.7em;
+    color:#BFD3E2;
+    border:#BFD3E2 solid 1px;
+    border-bottom:#BFD3E2 solid 3px;
     /* this isnt quite right */
-    box-shadow: 2px 1px 2px 1px rgb(41, 41, 111);
+    box-shadow: 1px 1px 3px 1px rgb(41, 41, 111);
     margin-top:10px;
     /* vertical-align:bottom; */
-    padding-top:5px;
+    padding-top:4px;
 
     position:absolute;
   }
@@ -292,24 +436,114 @@ details.thoughts summary{
 
   /* DATE */
   /* extremely poor attempt at date */
+  /* make this slightly transparent */
+  /* find a better font maybe*/
   .date{
-    width:240px;
-    font-size:2em;
-    color:white;
+    /* width:240px; */
+    /* font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
+    /* font-size:3.5em; */
+    /* color:white; */
+    /* transform:scaleY(.8); */
 
     /* this isnt quite right */
-    margin-top:10px;
+
+    /* margin-right:10px; */
+
+  }
+  .morning, .afternoon, .night{
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/icon/morning.png');
+    background-repeat: no-repeat;
+
+    height:230px;
+    width:230px;
+    background-size: 230px 230px;
+
+    margin-top:0px;
+    right:0;
+    position:absolute;
+    z-index:3;
+
+    opacity:.85;
+
+  }
+  .afternoon{
+    content:"";
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/icon/afternoon.png');
+  }
+  .night{
+    content:"";
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/icon/night.png');
+  }
+  /* tick tock  */
+  .clock::before{
+    content:"";
+    
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/icon/second-hand.png');
+    background-repeat: no-repeat;
+
+    height:160px;
+    width:160px;
+    background-size: 160px 160px;
+    right:12px;
+    top:-27px;
 
     position:absolute;
-    right:0;
+
+    transform: rotate(10deg);
   }
-  .date::after{
-    content:"";
-    border:white solid 1px;
-    border-radius:20px;
-    width:40px;
+  /* runs for about 17 hours. must be re-activated during first dialogue of every view */
+  :has(details.rotate[open]) .clock::before{
+    /* transform: rotate(30000deg); */
+    transform: rotate(360000deg);
+    transition-duration:60000s;
+    transition-timing-function:steps(60000);
+  }
+
+  .date{
+    position:absolute;
+        margin-top:16px;    
+        right:25;
+        /* margin-right:-20px; */
+  }
+
+  /* numbers for date  */
+  .zero, .one, .two, .three, .four, .five, .six, .seven, .eight, .nine {
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/icon/0.png');
+    background-repeat: no-repeat;
     height:40px;
+    width:40px;
+    background-size: 40px 40px;
+    margin-left:-4px;
+    display:inline-block;
   }
+  .one{
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/icon/1.png');
+  }
+  .two{
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/icon/2.png');
+  }
+  .three{
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/icon/3.png');
+  }
+  .four{
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/icon/4.png');
+  }
+  .five{
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/icon/5.png');
+  }
+  .six{
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/icon/6.png');
+  }
+  .seven{
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/icon/7.png');
+  }
+  .eight{
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/icon/8.png');
+  }
+  .nine{
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/icon/9.png');
+  }
+  
 
 
 
@@ -326,13 +560,19 @@ details.thoughts summary{
   }
   .name-box{
     color:white;
-    background-color:#3F5F6F;
-    opacity: .8;
+    /* font-style:italic; */
+    font-weight:500;
+    /* *****change this*****  */
+    background-color:#2f4652db;
+    /* opacity: .8; */
     width:fit-content;
-    margin-left:40px;
+    /* maybe 60 */
+    margin-left:50px;
     padding:3px 5px;
     /* box-shadow: 0px 0px 2px 2px #B7E1EF; */
-    box-shadow: 0px 0px 2px 1px white;
+    border:solid #c2e1e7 1px;
+    z-index:2;
+
 
   }
   /* reuse name-box for the current pov character by shifting name-box to the right. usecase: class="right name-box" */
@@ -343,34 +583,47 @@ details.thoughts summary{
   }
 
   .text-box{
-    color:white;
-    background-color:#3F5F6F;
-    opacity: .9;
-    padding:5px 0px;
-    height:70px;
-    border:solid white 1px;
+    color:#BFD3E2;
+    padding:5px 1px;
+    height:80px;
+    border:solid #93D4E1 1px;
+    /* border-top: double white 5px; */
     margin-left:30px;
     margin-right:30px;
 
-    box-shadow: 0px 0px 2px 2px #B7E1EF;
-
+    /* box-shadow: 0px 0px 1px 1px #B7E1EF; */
+    box-shadow: 0px 0px 1px 1px #93D4E1;
     /* the grid  */
     /* horizontal */
-    background: 
+    /* background: 
     linear-gradient(to bottom,#3F5F6F 7px,#456778 1px); 
-    background-size: 100% 8px;
+    background-size: 100% 8px; */
+
+    /* the grid (take 2) */
+    /* background: #36505e; */
+    /* this is closer  */
+    background:#2f4652db;
+    background-repeat: repeat;
+    background-image:
+      linear-gradient(180deg, #2b5469db 10%, transparent 10%),
+      linear-gradient(270deg, #2b5469db 10%, transparent 10%);
+    background-size:
+      8px 8px,
+      8px 8px;
+    
   
     z-index:2;
     position:relative;
   }
   /* the only purpose of this is for the grid in the bg */
-  .text-box::before{
+  /* should be able to roll this into the main class?  update: done */
+  .ttext-box::before{
     content:"";
 
     /* vertical (grid)  */
-    background: 
-    linear-gradient(to right,#3F5F6F 7px,#456778 1px); 
+    background: linear-gradient(to right,#3F5F6F 7px,#456778 1px); 
     background-size: 8px 100%;
+
     width:100%;
     height:100%;
     position:absolute;
@@ -378,6 +631,86 @@ details.thoughts summary{
     top:0;
     z-index:-1;
   }
+  /* top bar, white with tick marks */
+  .text-box::before{
+    content:"";
+    display:block;
+    width: 100%;
+    height:10px;
+    background: #FFFFFF;
+    /* background-repeat: repeat; */
+    /* background-image:
+      linear-gradient(0deg, transparent 45%, #3F5F6F 45%, #3F5F6F 55%, transparent 55%),
+      linear-gradient(90deg, #3F5F6F 10%, transparent 10%, transparent 90%, #3F5F6F 90%); */
+
+      /** Circles topmost, then the tick-boxes, then the white stripe **/
+background-image: 
+/* circles (24 of these suckers) */
+/* first set  */
+radial-gradient( circle, transparent 20%, #3F5F6F 70%, transparent 0%), radial-gradient( circle, transparent 20%, #3F5F6F 70%, transparent 0%), radial-gradient( circle, transparent 20%, #3F5F6F 70%, transparent 0%), radial-gradient( circle, transparent 20%, #3F5F6F 70%, transparent 0%), radial-gradient( circle, transparent 20%, #3F5F6F 70%, transparent 0%), radial-gradient( circle, transparent 20%, #3F5F6F 70%, transparent 0%),
+/* second set */
+radial-gradient( circle, transparent 20%, #3F5F6F 70%, transparent 0%), radial-gradient( circle, transparent 20%, #3F5F6F 70%, transparent 0%), radial-gradient( circle, transparent 20%, #3F5F6F 70%, transparent 0%), radial-gradient( circle, transparent 20%, #3F5F6F 70%, transparent 0%), radial-gradient( circle, transparent 20%, #3F5F6F 70%, transparent 0%), radial-gradient( circle, transparent 20%, #3F5F6F 70%, transparent 0%),
+/* third set */
+radial-gradient( circle, transparent 20%, #3F5F6F 70%, transparent 0%), radial-gradient( circle, transparent 20%, #3F5F6F 70%, transparent 0%), radial-gradient( circle, transparent 20%, #3F5F6F 70%, transparent 0%), radial-gradient( circle, transparent 20%, #3F5F6F 70%, transparent 0%), radial-gradient( circle, transparent 20%, #3F5F6F 70%, transparent 0%), radial-gradient( circle, transparent 20%, #3F5F6F 70%, transparent 0%),
+/* fourth set */
+radial-gradient( circle, transparent 20%, #3F5F6F 70%, transparent 0%), radial-gradient( circle, transparent 20%, #3F5F6F 70%, transparent 0%), radial-gradient( circle, transparent 20%, #3F5F6F 70%, transparent 0%), radial-gradient( circle, transparent 20%, #3F5F6F 70%, transparent 0%), radial-gradient( circle, transparent 20%, #3F5F6F 70%, transparent 0%), radial-gradient( circle, transparent 20%, #3F5F6F 70%, transparent 0%),
+/* tick marks */
+linear-gradient(to left, transparent 90%, #3F5F6F 1%),
+linear-gradient(to top, transparent 90%, #3F5F6F 1%)
+;
+
+background-size: 
+/* circles */
+/* first set */
+2px 2px, 2px 2px, 2px 2px, 2px 2px, 2px 2px, 2px 2px, 
+/* second set */
+2px 2px, 2px 2px, 2px 2px, 2px 2px, 2px 2px, 2px 2px, 
+/* third set */
+2px 2px, 2px 2px, 2px 2px, 2px 2px, 2px 2px, 2px 2px, 
+/* fourth set */
+2px 2px, 2px 2px, 2px 2px, 2px 2px, 2px 2px, 2px 2px, 
+/* tick marks */
+8px 2px, 
+/* white bar  */
+100% 10px
+   ;
+
+background-position: 
+/* circles */
+/* first set */
+2% 1px, 2% 7px, 4% 1px, 4% 7px, 6% 1px, 6% 7px,
+/* second set */
+17% 1px, 17% 7px, 19% 1px, 19% 7px, 21% 1px, 21% 7px,
+/* third set */ /* third and fourth should be inverse of the first two */
+79% 1px, 79% 7px, 81% 1px, 81% 7px, 83% 1px, 83% 7px,
+/* fourth set */
+94% 1px, 94% 7px, 96% 1px, 96% 7px, 98% 1px, 98% 7px,
+/* tick marks */
+ left 4.5px /* as far down as you need to put the bar of tick-marks*/
+ , left 5px;
+background-repeat: 
+/* circles */
+/* first set */
+  no-repeat,  no-repeat, no-repeat, no-repeat, no-repeat, no-repeat,
+  /* second set */
+  no-repeat,  no-repeat, no-repeat, no-repeat, no-repeat, no-repeat,
+  /* third set */
+  no-repeat,  no-repeat, no-repeat, no-repeat, no-repeat, no-repeat,
+/* fourth set */
+no-repeat,  no-repeat, no-repeat, no-repeat, no-repeat, no-repeat,
+  /* tick marks */
+ repeat-x, no-repeat;
+
+    /* background-size:
+    3px 3px,
+      2px 2.5px,
+      8px 5px; */
+
+
+
+      margin-top:-4px;
+  }
+
 
   /* text box "next" arrow */
   .text-box::after{
@@ -406,9 +739,109 @@ details.thoughts summary{
 
 
 
+  /* BLACK SCREEN STYLING  */
+  /* requires: 
+  - .black to be parent
+  - .name-box-alt to be added
+  - alter text-box style; +kill top bar  
+  - thats it ig  
+  */
+
+  /* this should be more gray? and fade out at the top and bottom. somehow.  */
+  .black .text-box{
+    width:100%;
+    color:#BFD3E2;
+    /* opacity: .8; */
+    padding:25px 0px;
+    height:65px;
+    margin:0;
+    border:none;
+    /* box-shadow:none; */
+    box-shadow: 0px -5px 6px 3px #203037d7;
+    
+
+    /* #456778d7 */
+    background: linear-gradient(rgba(0,0,0, 0) 0%, #76868bd7 40%, #4c4f50d7 60%,rgba(0,0,0, 0) 90%, rgba(0, 0, 0, 0) 100%);
+  }
+  /* kill the white topbar  */
+  .black .text-box::before{
+    background:none;
+  }
+
+  .black .anchor{
+    position:relative;
+  }
+  /* rename */
+  .name-box-alt{
+    top:28;
+    /* margin:0; */
+    margin-left:30px;
+    border-bottom:solid white 1px; 
+    width:85%;
+    position:absolute;
+    /* margin-top:-10px; */
+
+    /* this isnt working */
+    z-index:3;
+    padding:0px 10px;
+  }
+
+   /* i think this just makes the name box not show up?  */
+  .black .name-box{
+    top:10;
+    
+    /* margin:0; */
+    background:none;
+    box-shadow:none;
+    position:absolute;
+    /* margin-top:-10px; */
+
+    /* this isnt working */
+    z-index:3;
+    padding:0px 10px;
+  }
+  .black .name-box-alt::after{
+    content:"";
+    border-right:white 2px solid;
+    width:5px;
+    height:13px;
+    position:absolute;
+    margin-top:1px;
+    right:0;
+  }
+  .black .name-box-alt::before{
+    content:"";
+    border-left:white 2px solid;
+    border-bottom:white 2px solid;
+    width:5px;
+    height:8px;
+    position:absolute;
+    margin-top:-8.5px;
+    left:-5;
+  }
+  /* check canon for proper styling, but this might be all  */
+  :has(details[open] + details:not([open]).narration) .name-box{
+    display:none;
+    }
+    /* details.narration summary{
+      color:rgb(149, 236, 255) !important;
+    } */
+
+
+
+
   /* CHARACTER */
   /* specifically the character that pov is talking to  */
   /* problem: the setup only works for eito. he's too tall. it leaves everyone else falling out of the scene.  */
+  /* ***THOUGHT
+  attach name-box content to character somehow? 
+  .eito .name-box {content=eito;}
+  or something...? 
+
+  could rearrange some stuff and instead of a different class for each expression, it's 
+  .eito .smile{background=eitosmile.png}
+  .takumi .smile{background=takumismile.png}
+  */
   .character{
     background-repeat: no-repeat;
     background-size: 550px auto;
