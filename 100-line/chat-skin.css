@@ -6,49 +6,44 @@
 
 
   todo:
-- REMOVE location...? doesnt exist in chat view, only in transitory views.
-- - maybe have location remove itself after arrival
 - fix shadow on location 
 - **fix takumi skew for ao3 
-- fix logic for soft choices 
+- ****fix logic for soft choices 
 - **clean up your code (in progress) 
 - pick better names for classes? 
 - make text not selectable? keeps getting highlighted funny 
 - text across the board should maybe be a bit bigger? 
 - move to a new view (without a hard choice)
-- disappear the location after few dialogues? 
 - icons lower res?
-- day counter - classes for time of day 
 - slightly transparent the date box 
 - redraw the 4 for sure 
-- MAKE ENDING TITLE SCREENS [01: Alternate Romance Route: <name>] or [01: Eito Romance Route: <name>]
-- figure out names for endings 
 - ***FINISH THE NUMBERS BRO. WHERE ARE THEY.
-- **address 2+ characters in same scene. re-code namebox slightly? 
-- code a [day x] black screen 
+- clean up day ++ screen (maybe draw day)
 - transition text a little? fade in 
 
 
 potential todo: 
 - clair de lune?
 - - get an mp3, put on github 
-- have a separate interface for selecting characters to talk to? seems like work. 
-- png all the numbers? 
+- have a separate interface for selecting characters to talk to? seems like work. (we're not doing that)
+- + png all the numbers? 
 - redraw the numbers (kinda messy) 
 - redraw the second hand? should have a small ball on the other end
 - redraw the date box...? should have 60 tick marks :clown: 
 - character png animations? flash white, shake, shake violently, etc 
-- sfx for the character animations? might be several steps too far 
-- make day change screens? 
+- - https://codepen.io/mackerel-cheese/pen/KwMQjrq
+- sfx for the character animations? might be several steps too far (only possible if u figure out clair de lune. but if you figure out that, its possible. you will however have to get audio files from somewhere) 
 - text box changes during black screen; replicate? 
 - audio....? 
 - dialogue white bar on top? half ish done, needs more circles and a lot of tweaking 
 
 
 PROBLEMS: 
-- main-box is too big, idk what happened. cap differently?  
-- some weirdness after an overlay (text-box margin-right increases or smth)
-- shion doesnt have a name at this point. could just leave him ??? the whole time? 
+- main-box is too big, idk what happened. cap differently?  (i think i fixed this?) 
+- some weirdness after an overlay (text-box margin-right increases or smth) 
+- + shion doesnt have a name at this point. could just leave him ??? the whole time? (yes i think u gotta) 
+- takumi disappears during choice time 
+- generating the script (cant worry about it too much until theres an existing script tho. hopefully soon.) 
 
 
 done: 
@@ -77,6 +72,14 @@ done:
 - + date box 
 - + do we want days counter? would be uggo 
 - + infininte tick tock for day box 
+- + REMOVE location...? doesnt exist in chat view, only in transitory views.
+- - + maybe have location remove itself after arrival
+- + disappear the location after few dialogues? 
+- + day counter - classes for time of day 
+- + MAKE ENDING TITLE SCREENS [01: Alternate Romance Route: <name>] or [01: Eito Romance Route: <name>] (update: this is just the black screen)
+- + figure out names for endings 
+- + address 2+ characters in same scene. re-code namebox slightly? 
+- + code a [day x] black screen. might just have to draw it. (this has a rough draft)
 
 
 THOUGHTS: 
@@ -103,104 +106,131 @@ https://www.tumblr.com/reblogablename/783668993201471488/if-you-were-ever-curiou
 
  audio {
   /* filter: sepia(20%) saturate(70%) grayscale(1) contrast(99%) invert(12%); */
-  /* width: 200px;
-  height: 25px; */
-  /* width:100px; */
-  height:200px;
+
+  /* filter:contrast(.2); */
+
+  position:absolute;
+  height:100px;
+  transform: scale(5,1.5);
+
+  width:100%;
   /* can we overflow none this and push the ... off the edge? */
+  /* opacity:0; */
+
+  /* background-color: blue; */
+
+
   
 }
 audio::-webkit-media-controls-enclosure {
   border-radius: 5px;
   background-color: green;
   width:100px;
-  /* background-color:transparent; */
   transform:scale(7);
   margin-left:300px;
   margin-bottom:70px;
 }
-audio::-webkit-media-controls-panel{
-  /* background-color:blue; */
-  /* background-color:transparent; */
-  
-}
-
-audio::-webkit-media-controls-mute-button{
+/* audio::-webkit-media-controls-mute-button{
   display:none;
-
 }
-
-audio::-webkit-media-controls-play-button{
-/* width:50px; */
-/* height:150px; */
-
-/* this works  */
-/* opacity:0; */
-
-}
-
-audio::-webkit-media-controls-timeline-container{
-  /* display:none; */
-
-}
-
 audio::-webkit-media-controls-current-time-display{
   display:none;
 }
-
 audio::-webkit-media-controls-time-remaining-display{
   display:none;
 }
-
 audio::-webkit-media-controls-timeline{
   display:none;
 }
-
 audio::-webkit-media-controls-volume-slider-container{
   display:none;
 }
-
 audio::-webkit-media-controls-volume-slider{
   display:none;
-}
+} */
 
-audio::-webkit-media-controls-seek-back-button{
-  /* display:none; */
-}
-
-audio::-webkit-media-controls-seek-forward-button{
-  /* display:none; */
-}
-
-audio::-webkit-media-controls-fullscreen-button{
-  /* display:none; */
-
-
-}
-audio::-webkit-media-controls-overlay-enclosure{
-  /* display:none; */
-}
-
-audio::-webkit-media-controls-rewind-button{
-  /* display:none; */
-
-
-}
-
-audio::-webkit-media-controls-return-to-realtime-button{
-  /* display:none; */
-
-}
-
-audio::-webkit-media-controls-toggle-closed-captions-button{
-  /* display:none; */
-
-}
 
 .audiobox{
   background:pink;
-  /* height:50px; */
+  height:80px;
   padding:10px;
+}
+
+/* use infinite active/delay trick  */
+.audiohacking audio{
+  /* width:100%; */
+   /* height:100%; */
+   /* height:200px; */
+   /* padding */
+   /* transition-delay:3s; 
+   transition-duration:1s;
+   transition:all; */
+}
+.audiohacking:hover{
+  /* display:none; */
+  /* transition-delay:3s;  */
+  filter:contrast(.2);
+  zoom:1.2;
+  /* z-index:-2; */
+
+  transition-duration:1s;
+  transition-delay:2s; 
+  transition:all;
+  
+
+}
+
+/* note:
+transition-delay for :active means the transition won't even START until the mouse click has been held for that long. hover could be used to hack around this, but cant trigger audio start. */
+.boxcheck{
+  height:30px;
+  width:50px;
+  background:green;
+  /* transition-duration:1s; */
+
+  /* for infinity hack, make this number REAL BIG and set :state number to be 0/small */
+  transition-delay:4s;
+}
+.boxcheck:hover{
+  /* transition:all; */
+  height:60px;
+  width:80px;
+
+  /* only affects return-to-base-state duration */
+  transition-duration:3s;
+
+  /* delays to start, returns immediately (or whatever base class is set to. default is 0.) */
+  transition-delay:0s;
+}
+.text-box:active .boxcheck{
+  background:teal;
+  /* transition-delay:1s; */
+  transition-duration:0s;
+}
+.text-box .boxcheck{
+  /* transinion-delay */
+
+  /* make this number big */
+  transition-duration:3s;
+}
+
+
+.shoutaudioT {
+  width: 30px;
+  height: 130px;
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute; */
+  transform: scale(5,1.5);
+  transform-origin: top left;
+  left: -3px;
+  top: 0px;
+  /* might need to be highter  */
+  z-index: 1;
+  /* does this save us?  */
+  /* opacity: 0; */
+  background:green;
 }
 
 
@@ -270,19 +300,38 @@ summary {
   /* NOTE: this is untriggering, causing takumi to close during a choice-time? */
   /* could we somehow do this in reverse, showing the view at all times unless explicitly stated? */
   display:block;
+
+  /* potentially, trying to fix the issue with takumi disappearing, disappeared the name box forever? literally where is it */
 }
 :has(details[open] + details:not([open]).pov-open) .target-element{
   display:none;
 }
 
+/* for more than two characters in a scene */
+.target2, .target3{
+  display:none;
+}
+:has(details[open] + details:not([open]).target2-open) .target2{
+  display:block;
+}
+:has(details[open] + details:not([open]).target3-open) .target3{
+  display:block;
+}
+:has(details[open] + details:not([open]).target2-open) .target-element{
+  display:none;
+}
+:has(details[open] + details:not([open]).target3-open) .target-element{
+  display:none;
+}
+
 /* are these being used anywhere...? ive forgotten my own code  */
-:has(details[open] + details:not([open]).pov-close) .pov-element{
+/* :has(details[open] + details:not([open]).pov-close) .pov-element{
   display:none;
   transition-duration: 250ms;
 }
 :has(details[open] + details:not([open]).pov-close) .target-element{
   display:block;
-}
+} */
 
 /* if pov-open: shift target character left. if pov-closed: return target character to center.(? not sure ive tested that second part) */
 :has(details[open] + details:not([open]).pov-open) .character{
@@ -432,6 +481,10 @@ details.thoughts summary{
 
     position:absolute;
   }
+  :has(details[open] + details:not([open]).location-close) .location{
+    display:none;
+  }
+  /* fade out?  */
 
 
   /* DATE */
@@ -501,9 +554,9 @@ details.thoughts summary{
 
   .date{
     position:absolute;
-        margin-top:16px;    
-        right:25;
-        /* margin-right:-20px; */
+    margin-top:16px;    
+    right:25;
+    /* margin-right:-20px; */
   }
 
   /* numbers for date  */
@@ -545,6 +598,56 @@ details.thoughts summary{
   }
   
 
+  /* day increment */
+  .new-day{
+    /* position:absolute; */
+    /* margin-left:auto;
+    margin-right:auto; */
+    /* text-align:center; */
+    /* display:block; */
+    /* display:inline-block; */
+    display: flex;
+    /* horizontal center (working) */
+    align-items: center;
+
+    /* vertical center  */
+    justify-content: center;
+    width:100%;
+    
+
+  }
+  .new-day-day{
+    /* display:inline-block; */
+    color:white;
+    /* font-weight:bold; */
+    font-family: Arial, Helvetica, sans-serif;  
+    font-size:4em;
+    margin-top:100px;
+    margin-right:60px;
+
+
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/icon/new-day.png');
+    background-repeat: no-repeat;
+    height:100px;
+    width:100px;
+    background-size: 100px 100px;
+  }
+  .zoom{
+    transform:scale(2);
+  }
+  .line{
+    border-bottom:solid 2px #5E5E5E; 
+    /* border-image:linear-gradient(to left, transparent 90%, blue 5%); */
+    /* border-image: linear-gradient(to right, #5E5E5E 0% white 100%) 1; */
+    /* display:block; */
+    /* width:40%; */
+    width:380px;
+    position:absolute;
+    margin-top:105px;
+    margin-left:30px;
+
+
+  }
 
 
   /* TEXT BOX */
@@ -571,7 +674,9 @@ details.thoughts summary{
     padding:3px 5px;
     /* box-shadow: 0px 0px 2px 2px #B7E1EF; */
     border:solid #c2e1e7 1px;
+    
     z-index:2;
+    position:relative;
 
 
   }
@@ -1196,6 +1301,22 @@ no-repeat,  no-repeat, no-repeat, no-repeat, no-repeat, no-repeat,
 
 
 
+
+
+
+
+
+
+
+
+
+/* ridiculous transitions, ie png hacking */
+.jump{ 
+
+}
+:has(details[open] + details:not([open]).jump) .character{
+  
+}
 
 
 

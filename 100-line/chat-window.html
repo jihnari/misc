@@ -1,9 +1,24 @@
+<!-- todo: 
+  - should takumi's bg also be blurred? (add blur)
+  - clock needs to be reseeded every time or no?
+  - 
+ -->
+
+
 <!-- make sure theyre in the same directory tho  -->
 <link rel="stylesheet" href="chat-skin.css">
 
 
 <body>
   <figure>
+
+    <!-- DAY++ SCREEN-->
+<!-- <div class="main-box hidden"> -->
+<div class="main-box black">
+  <div class="new-day"><p class="line"><p class="new-day-day">Day</p><p class="zoom"></span><span class="two"></span><span class="six"></span></p></p></div>
+
+
+</div>
 
 
     <p>&nbsp;</p>
@@ -59,6 +74,7 @@
         </div> -->
 
 
+        <!-- test from file -->
 
 
 <!-- INITIAL SCREEN -->
@@ -131,17 +147,29 @@
 
 
 
-<div class="anchor">
+<div class="anchor"> 
   <div class="name-box right pov-element">Takumi Sumino</div>
-  <div class="name-box target-element">Kyoshika</div>
+  <div class="name-box target-element">Kyoshika Magadori</div>
+  <!-- <div class="name-box target2">Kurara Oosuzuki</div> -->
+  <!-- <div class="name-box target3">Nozomi Kirifuji</div> -->
+  <div class="name-box target2">Yugamu Omokage</div>
+
 
 <div class="text-box">
   <!-- start the clock -->
   <details class="rotate">
     <summary>
+      <audio class="audiohacking" controls>
+        <source src="https://archive.org/download/ClairDeLune_182/Debussy_Clair_de_Lune.mp3" type="audio/mpeg">
+        <!-- <source src="https://static.wixstatic.com/mp3/88864f_36db1b7c4c114b7483eb24b4f24e6054.mp3" type="audio/mpeg"> -->
+      </audio> 
       Did you have a dream about kissing me, Takumi?!
     </summary>
-        </details>
+  </details>
+
+  <details class="yugamu-talk target2-open location-close">
+    <summary>Or maybe you had a dream about kissing me?</summary>
+  </details>
 
     <details class="thoughts pov-open">
 <summary>This is so embarrassing. I wish I could just disappear... But they won't believe me if I try to back out now. 
@@ -301,11 +329,6 @@ I can't just say anyone. I don't want to say Nozomi, that might make her uncomfo
 
 </div>
 </div>
-
-
-      
-
-
 </div>
 
 <!-- oh right this never shows up, the single choice per interaction is seeded at the top  -->
@@ -368,6 +391,7 @@ I can't just say anyone. I don't want to say Nozomi, that might make her uncomfo
 
 
 <!-- CHOICE 1 (yugamu) -->
+<!-- does this need to be hidden or did we write a check for this? -->
 <div class="main-box result1 hidden">
 <!-- <div class="main-box result1"> -->
   <div class="room biolab blur">
@@ -669,18 +693,66 @@ Nothing good can come from me admitting I kissed all three of them in my dreams.
     <p>&nbsp;</p>
     <p>&nbsp;</p>
 
-    <audio></audio>
+    <!-- <audio></audio> -->
     test
     <p>&nbsp;</p>
+    <div class="text-box">
+    <div class="boxcheck"></div>
+    </div>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <div class="text-box">
+      <audio  class="audiohacking" controls autoplay>
+        <source src="https://archive.org/download/ClairDeLune_182/Debussy_Clair_de_Lune.mp3" type="audio/mpeg">
+      </audio> 
+      
+    </div>
+
+    <p>&nbsp;</p>
+
+
+    <!-- i dont think this has to be in a details box. i think this can just be overlayed in a text box. then it disappears. just gotta make it the same size. -->
+    <!-- <div class="audiohacking"> -->
+      <!-- <audio  controls> -->
+      <audio  class="audiohacking" controls>
+      <source src="https://archive.org/download/ClairDeLune_182/Debussy_Clair_de_Lune.mp3" type="audio/mpeg">
+    </audio> 
+    <!-- </div> -->
+
+
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
 
     <details class="audiobox" open>
-      <summary><audio controls>
-        <source src="https://assets.mixkit.co/active_storage/sfx/995/995-preview.mp3" type="audio/mpeg">
+      <!-- <summary><audio src="https://archive.org/download/ClairDeLune_182/Debussy_Clair_de_Lune.mp3" type="audio/mpeg"></audio> 
+      </summary> -->
+  </details>
+
+
+  <!-- <p>&nbsp;</p>
+  <p>&nbsp;</p> -->
+
+  <!-- find some silence on 4shared or smth -->
+  <iframe src="https://archive.org/download/ClairDeLune_182/Debussy_Clair_de_Lune.mp3" allow="autoplay" id="audio"></iframe>
+
+    <details class="audiobox" open>
+      <summary><audio class="audiohacking" controls>
+        <source src="https://archive.org/download/ClairDeLune_182/Debussy_Clair_de_Lune.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
       </audio> 
       </summary>
   </details>
 <p>&nbsp;</p>
+
+<!-- <audio class="shoutaudioT" src="https://static.wixstatic.com/mp3/88864f_36db1b7c4c114b7483eb24b4f24e6054.mp3" crossorigin="anonymous" preload="metadata" controls="controls"></audio> -->
+
 
 
 

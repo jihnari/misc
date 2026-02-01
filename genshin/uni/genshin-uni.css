@@ -1574,7 +1574,8 @@ max-width: 80%;
 /* white-space: nowrap; */
 height:2.2em;
 /* text-overflow: ellipsis; */
-margin-left:55px;
+/* can i delete this without consequence? **** */
+/* margin-left:55px; */
 overflow: hidden;
 }
 .gmail-send-time{
@@ -1606,6 +1607,7 @@ padding-left:50px;
 }
 .gmail-subject {
   font-size: 1.5em;
+  line-height:1.5em;
 }
 .gmail-hr{
   border-bottom: 1px solid #EDEEEF;
@@ -1655,6 +1657,13 @@ padding-left:50px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+.gmail-list{
+  padding-left:20px;
+
+}
+.gmail-list::before{
+  content:"•";
 }
 
 
