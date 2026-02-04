@@ -157,6 +157,16 @@
     color:#3258c2;
   }
   
+  .phone-bg-pic-collei{
+    background: url("https://raw.githubusercontent.com/jihnari/misc/main/genshin/uni/img/phone-bgs/tighs-bg.png") no-repeat;
+
+    /* failsafe */
+    background-color:#e5e5e5;
+    background-size:400px 600px;
+    color:#3258c2;
+  }
+
+
   .phone-alarm-x{
     height: 50px;
     width: 50px;
@@ -500,6 +510,60 @@ display:none;
 
   <figure>
 
+    <!-- simple version  -->
+    <!-- phone notif screen -->
+<div class="phone-container phone-on phone-bg-pic-collei">
+  <p class="phone-time">9:22</p>
+  <p class="phone-date">Tue, Jan 14</p>
+
+  <div class="phone-notif-container">
+    
+  <!-- weather notif -->
+  <div class="phone-notif weather-notif immortal-notif ">
+    <p>28° — Sumeru City </p>
+    <p class="phone-weather-icons"><span>Feels like: 34°</span> <span>30°/38°</span></p>
+    <p class="phone-weather-icons"><span>☴ 8 mph</span><span>🜄 60%</span><span>☼ 3</span><span>🜁 21</span></p>
+  </div>
+
+  
+  <!-- text notif -->
+  <div class="phone-notif notif-sms">
+    <p class="phone-notif-header">Cyno <span class="phone-notif-time">10:10 AM</span></p>
+    <p>Call me </p>
+  </div>
+
+    <!-- signal notif -->
+    <div class="phone-notif notif-signal">
+      <p class="phone-notif-header">Lunch Plans <span class="phone-notif-time">10:12 AM</span></p>
+      <p><strong>Collei</strong> ok but are you sure  </p>
+    </div>
+
+  <!-- calendar notif -->
+  <div class="phone-notif notif-calendar">
+    <p class="phone-notif-header">Forestry Hike </p>
+    <p>Today 1:00 PM</p>
+  </div>
+
+
+    <!-- <div class="mortal-notif"> -->
+<details class="notif-die mortal-notif">
+  <summary>
+    <div class="phone-notif notif-private-browser">
+      <p class="phone-notif-header ">Close private tabs? <span class="phone-notif-time">1:23 PM</span></p>
+      <p>Tap or swipe this notification to close private tabs.</p>
+    </div>
+  </summary>  
+</details>
+
+  </div>
+  <div class="phone-notif-settings"> <details class="clear-function"><summary><span class="clear-button">Clear</span></summary></details> </div>
+</div>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+
+
 <!-- phone notifs -->
 <div class="phone-container phone-on phone-bg-pic-tigh">
   <p class="phone-time">9:22</p>
@@ -590,9 +654,6 @@ display:none;
 </div>
 
 <p>&nbsp;</p>
-  
-
-
 <p>&nbsp;</p>
 
 <!-- phone notifs -->

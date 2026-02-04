@@ -100,7 +100,7 @@
 
 <!-- hard choice (fix later?)-->
 <div class="choice-screen hidden hard-choice">
-  <details class="choice-button choice1">
+  <details class="choice-button choice1 move-to-next">
     <summary>
       Yugamu
     </summary>
@@ -159,10 +159,9 @@
   <!-- start the clock -->
   <details class="rotate">
     <summary>
-      <audio class="audiohacking" controls>
+      <!-- <audio class="audiohacking" controls>
         <source src="https://archive.org/download/ClairDeLune_182/Debussy_Clair_de_Lune.mp3" type="audio/mpeg">
-        <!-- <source src="https://static.wixstatic.com/mp3/88864f_36db1b7c4c114b7483eb24b4f24e6054.mp3" type="audio/mpeg"> -->
-      </audio> 
+      </audio>  -->
       Did you have a dream about kissing me, Takumi?!
     </summary>
   </details>
@@ -175,7 +174,7 @@
 <summary>This is so embarrassing. I wish I could just disappear... But they won't believe me if I try to back out now. 
 </summary>
     </details>
-    <details class="thoughts pov-open">
+    <details class="thoughts">
       <summary>
 Nothing good can come from me admitting I kissed all three of them in my dreams. It might be better to say I dreamed about someone else. 
       </summary>
@@ -184,7 +183,7 @@ Nothing good can come from me admitting I kissed all three of them in my dreams.
 <details class="pov-open takumi-talk">
 <summary>Um... Well...</summary>
 </details>
-<details class="pov-open takumi-talk"><summary>
+<details class="pov-open takumi-talk yugamu-talk "><summary>
 I had a dream about kissing...
 </summary></details>
 
@@ -219,7 +218,7 @@ I can't just say anyone. I don't want to say Nozomi, that might make her uncomfo
   </div> -->
 
   <!-- note: choice-toggle MUST be on the same level in the same container as the choice-menu it is toggling. but putting it on the top level div means that after the first piece of dialogue is touched, it will reactivate the choice-menu (which is too early). unsure how to handle this yet. -->
-  <div class="hidden dialogue1">
+  <!-- <div class="hidden dialogue1">
     <details class="thoughts pov-open">
       <summary>
         choice 1 text
@@ -233,11 +232,28 @@ I can't just say anyone. I don't want to say Nozomi, that might make her uncomfo
       <details class="thoughts pov-open choice-toggle choice-unlock1">
         <summary>That just leaves...
         </summary></details> 
-    </div>
+    </div> -->
+
+    <!-- <div class="hidden dialogue1"> -->
+      <details class="thoughts pov-open hidden dialogue1">
+        <summary>
+          choice 1 text
+        </summary>
+      </details>
+      <details class="thoughts pov-open">
+        <summary>
+          more choice 1 text
+        </summary>
+      </details>
+        <details class="thoughts pov-open choice-toggle choice-unlock1">
+          <summary>That just leaves...
+          </summary></details> 
+      <!-- </div> -->
+  
 
 
 
-  <div class="hidden dialogue2">
+  <!-- <div class="hidden dialogue2">
     <details class="thoughts pov-open">
       <summary>
         choice 2 text
@@ -248,9 +264,21 @@ I can't just say anyone. I don't want to say Nozomi, that might make her uncomfo
         more choice 2 text
       </summary>
     </details>
-    </div>
+    </div> -->
 
-    <div class="hidden dialogue3">
+      <details class="thoughts pov-open hidden dialogue2">
+        <summary>
+          choice 2 text
+        </summary>
+      </details>
+      <details class="thoughts pov-open choice-toggle choice-unlock2">
+        <summary>
+          more choice 2 text
+        </summary>
+      </details>
+
+
+    <!-- <div class="hidden dialogue3">
       <details class="thoughts pov-open">
         <summary>
           choice 3 text
@@ -261,10 +289,21 @@ I can't just say anyone. I don't want to say Nozomi, that might make her uncomfo
           more choice 3 text. time for the menu again.
         </summary>
       </details>
-    </div>
+    </div> -->
 
-    <div class="hidden dialogue4">
-      <details class="thoughts pov-open">
+      <details class="thoughts pov-open hidden dialogue3">
+        <summary>
+          choice 3 text
+        </summary>
+      </details>
+      <details class="thoughts pov-open choice-toggle choice-unlock3">
+        <summary>
+          more choice 3 text. time for the menu again.
+        </summary>
+      </details>
+
+      <!-- <div class="hidden dialogue4"> -->
+      <details class="thoughts pov-open hidden dialogue4">
         <summary>
           choice 4 text
         </summary>
@@ -273,12 +312,12 @@ I can't just say anyone. I don't want to say Nozomi, that might make her uncomfo
         <summary>
           more choice 4 text
         </summary>
-      </details>
-      </div>
+      </details> 
+    <!-- </div> -->
 
 
-    <div class="hidden dialogue-final">
-      <details class="thoughts pov-open">
+    <!-- <div class="hidden dialogue-final"> -->
+      <details class="thoughts pov-open hidden dialogue-final">
         <summary>
           Hey wait, doesn't that leave only guys?!
         </summary>
@@ -293,7 +332,7 @@ I can't just say anyone. I don't want to say Nozomi, that might make her uncomfo
           Should I talk to someone about this? 
         </summary>
       </details>
-      </div>
+      <!-- </div> -->
 
 
 
@@ -471,7 +510,7 @@ I can't just say anyone. I don't want to say Nozomi, that might make her uncomfo
 
 
 <!-- CHOICE 2 (eito) -->
-<div class="main-box hidden">
+<div class="main-box hidden next-view">
   <div class="room cafeteria blur">
   </div>
 <p class="location">Cafeteria
@@ -653,6 +692,14 @@ I can't just say anyone. I don't want to say Nozomi, that might make her uncomfo
       
         </div>
       </div>
+
+
+
+    
+
+
+
+
       
       </div>
 
@@ -664,6 +711,21 @@ I can't just say anyone. I don't want to say Nozomi, that might make her uncomfo
 <div class="main-box black">
   <!-- <div class="room black">
   </div> -->
+
+  <!-- hard choice -->
+<!-- move-to-next is broken here for some reason  -->
+<div class="choice-screen hard-choice hidden">
+  <details class="choice-button route1 move-to-next">
+    <summary>
+      The Bio Lab
+    </summary>
+  </details>
+  <details class="choice-button route2 move-to-next">
+    <summary>
+      The Roof
+    </summary>
+  </details>
+</div>
   
 <div class="anchor">
 <div class="text-box">
@@ -671,7 +733,7 @@ I can't just say anyone. I don't want to say Nozomi, that might make her uncomfo
     <summary>some text here</summary>
   </details>
 
-    <details class="thoughts"> 
+    <details class="thoughts hard-choice-time"> 
 <summary>This is so embarrassing. I wish I could just disappear... But they won't believe me if I try to back out now. 
 </summary>
     </details>
@@ -701,7 +763,7 @@ Nothing good can come from me admitting I kissed all three of them in my dreams.
     </div>
 
     <p>&nbsp;</p>
-    <p>&nbsp;</p>
+    <p>&nbsp;</p> 
 
     <div class="text-box">
       <audio  class="audiohacking" controls autoplay>

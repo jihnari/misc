@@ -1,0 +1,711 @@
+<link rel="stylesheet" href="chat-skin.css">
+
+<!-- notes: 
+-  "thoughts" does not require pov-open or target2 etc, but is coded to kill the stuff around it if its there. thoughts would ONLY require pov-open if the first thing takumi does upon arriving to a scene is "thoughts", as pov-open brings takumi-box to display:flex. (but the current behavior of takumi-box is to stay open forever once open)
+- script says thought, code says thoughts. python parser accounts for that but just making a note here anyway. 
+- narration DOES exist but i dont think its every used? test during a black room ig 
+ -->
+
+
+
+ <!-- an: 
+
+  there is no going back. there is only forward!! i initially wanted to have a log like the game does, but it would literally double the word count (and also be a ton of effort to try and code). 
+
+  pot;
+  for the first choice menu: it's a. little broken. maybe go in order,,, 
+
+  i have no CGs and as such when the screen goes black i need you to just picture a CG in your mind's eye. work with me here. i didnt have time to also learn art on top of this. 
+
+
+-->
+
+
+<body>
+  <figure>
+    <p>&nbsp;</p>
+
+    <!-- pot. make this disappear once a choice is made (to prevent breaking). tell user to reload to use again. one save point per run.  -->
+<div class="save-point"> 
+    save points: <br/><br/>
+
+      <details class="choice-button route01">
+        <summary>
+          yugamu > bio
+        </summary>
+      </details>
+      <details class="choice-button route01-1">
+        <summary>
+          yugamu > bio > yes
+        </summary>
+      </details>
+      <details class="choice-button route01-2">
+        <summary>
+          yugamu > bio > no
+        </summary>
+      </details>
+      <details class="choice-button route2">
+        <summary>
+          Eito
+        </summary>
+      </details>
+      <details class="choice-button route3">
+        <summary>
+          Shion
+        </summary>
+      </details>
+
+</div>
+
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+
+<!-- INITIAL SCREEN -->
+<div class="main-box init-box">
+  <div class="room cafeteria blur">
+  </div>
+<p class="location">Cafeteria
+</p>
+<!-- <p class="date">029</p> -->
+<!-- STILL NEED A FIVE BUD -->
+<div class="clock afternoon"><p class="date"><span class="zero"></span><span class="two"></span><span class="five"></span></p></div>
+
+<!-- <details class="rotate"></details> -->
+
+<!-- seed scene characters -->
+<!-- <div class="character kyoshika"></div> -->
+<div class="character kyoshika"></div>
+<div class="takumi-box pov-element">
+  <div class="takumi-bg cafeteria">
+    <div class="takumi-insert"></div>
+  </div>
+</div>
+
+
+<!-- hard choice (fix later?)-->
+<div class="choice-screen hidden hard-choice">
+  <details class="choice-button route1">
+    <summary>
+      Yugamu
+    </summary>
+  </details>
+  <details class="choice-button route2">
+    <summary>
+      Eito
+    </summary>
+  </details>
+  <details class="choice-button route3">
+    <summary>
+      Shion
+    </summary>
+  </details>
+</div>
+
+
+<!-- soft choice -->
+<div class="choice-screen soft-choice hidden">
+    <details class="choice-button branch1">
+      <summary>
+        Nozomi
+      </summary>
+    </details>
+    <details class="choice-button branch2">
+      <summary>
+        Momo
+      </summary>
+    </details>
+    <details class="choice-button branch3">
+      <summary>
+        Hiruko
+      </summary>
+    </details>
+    <details class="choice-button branch4">
+      <summary>
+        Kako
+      </summary>
+    </details>
+  </div>
+
+
+<div class="anchor"> 
+  <div class="hidden name-box right pov-element">Takumi Sumino</div>
+  <div class="name-box target-element">Kyoshika Magadori</div>
+  <div class="name-box target2">Kurara Oosuzuki</div>
+  <div class="name-box target3">Tsubasa Kawana</div>
+
+
+<div class="text-box">
+
+  <!-- start the clock -->
+  <details class="rotate">
+    <summary>More importantly!</summary> 
+    </details> 
+    
+    <details class="kyoshika-talk location-close">
+    <summary>Did you have a dream about kissing me, Sir Takumi?!</summary>
+    </details>
+    
+    <details class="kyoshika-talk takumi-embarassed3 pov-open">
+    <summary>I, uh...</summary>
+    </details>
+    
+    <details class="kyoshika-talk takumi-embarassed3">
+    <summary>Then we're bound by fate! It's as simple as that.</summary>
+    </details>
+    
+    <details class="kyoshika-talk takumi-embarassed-side1 pov-open">
+    <summary>Well...</summary>
+    </details>
+    
+    <details class="target3-open tsubasa-worried takumi-embarassed-side1">
+    <summary>Huh?! Did you really have a dream about HER?!</summary>
+    </details>
+    
+    <details class="target2-open kurara-pissed takumi-embarassed-side1">
+    <summary>WHAT?! That can't be right, you must have been dreaming about me!</summary>
+    </details>
+    
+    <details class="kurara-pissed takumi-embarassed-side thoughts">
+    <summary>This is so embarrassing. I wish I could just disappear... But they won't believe me if I try to back out now.</summary>
+    </details>
+    
+    <details class="target2-open kurara-pissed takumi-think-stressed pov-open thoughts">
+    <summary>Nothing good can come from me admitting I kissed all three of them in my dreams. It might be better to say I dreamed about someone else.</summary>
+    </details>
+    
+    <details class="target2-open kurara-pissed takumi-embarassed1 pov-open">
+    <summary>Um... Well...</summary>
+    </details>
+    
+    <details class="target2-open kurara-pissed takumi-embarassed1 pov-open">
+    <summary>I had a dream about kissing...</summary>
+    </details>
+    
+    <details class="target2-open kurara-pissed takumi-think pov-open thoughts soft-choice-time">
+    <summary>I can't just say anyone. I should think about this carefully.</summary>
+    </details>
+    
+
+    
+  <!-- <div class="hidden dialogue1"> -->
+    <!-- <details open></details> -->
+    <details class="target2-open kurara-pissed takumi-think-dark pov-open thoughts choice-unlock1 hidden dialogue1">
+    <summary>I really don't think of her that way. I don't want to give her the wrong idea, or make her uncomfortable.</summary>
+    </details>
+  <!-- </div> -->
+    
+  <!-- <div class="hidden dialogue2"> -->
+    <!-- <details open></details> -->
+    <details class="target2-open kurara-pissed takumi-think-stressed pov-open thoughts choice-unlock2 hidden dialogue2">
+    <summary>Momo might actually break me in half. Definitely not worth it.</summary>
+    </details>
+  <!-- </div> -->
+    
+  <!-- <div class="hidden dialogue3"> -->
+    <!-- <details open></details> -->
+    <details class="target2-open kurara-pissed takumi-think pov-open thoughts hidden dialogue3">
+    <summary>I could say Hiruko but...</summary>
+    </details>
+    
+    <details class="target2-open kurara-pissed takumi-hurt pov-open thoughts">
+    <summary>Just thinking about it makes my head hurt really badly for some reason. Maybe because she was with me when we fell off the roof?</summary>
+    </details>
+    
+    <details class="target2-open kurara-pissed takumi-hurt pov-open thoughts choice-unlock3">
+    <summary>Whatever it is, something is telling me I should pick someone else.</summary>
+    </details>
+  <!-- </div> -->
+    
+  <!-- <div class="hidden dialogue4"> -->
+    <!-- <details open></details> -->
+    <details class="target2-open kurara-pissed takumi-think pov-open thoughts hidden dialogue4">
+    <summary>Kako...</summary>
+    </details>
+    
+    <details class="target2-open kurara-pissed takumi-think-stressed pov-open thoughts choice-unlock4">
+    <summary>If Ima ever found out I said anything about kissing her, falling off a roof would be the least of my problems...</summary>
+    </details>
+  <!-- </div> -->
+    
+  <!-- <div class="hidden dialogue-final"> -->
+    <details class="target2-open kurara-pissed takumi-embarassed3 pov-open thoughts hidden dialogue-final">
+    <summary>Wait, doesn't that mean there's only guys left?!</summary>
+    </details>
+    
+    <details class="target2-open kurara-argue takumi-embarassed3 ">
+    <summary>Well?! We're waiting!!</summary>
+    </details>
+    
+    <details class="target2-open kurara-argue takumi-embarassed pov-open">
+    <summary>Um...!</summary>
+    </details>
+    
+    <details class="target2-open kurara-argue takumi-embarassed3 pov-open thoughts">
+    <summary>Ugh...!</summary>
+    </details>
+    
+    <details class="target2-open kurara-argue takumi-think-stressed pov-open thoughts">
+    <summary>Maybe I should say someone so ridiculous they have to drop it.</summary>
+    </details>
+    
+    <details class="target2-open kurara-argue takumi-think-stressed pov-open thoughts hard-choice-time">
+    <summary>Who should I say...!?</summary>
+    </details>
+
+
+
+    <!-- YUGAMU ROUTE: START -->
+    <!-- cant reuse dialogue1 unless u get reeaalll specific *** -->
+    <details class="kurara-argue takumi-think thoughts hidden route1-open">
+    <summary>Yugamu is the only one I can think of that wouldn't be mad about being used like this.</summary> 
+    </details> 
+    
+    <details class="kurara-argue takumi-resolved pov-open">
+    <summary>I had a dream about... Yugamu.</summary> 
+    </details> 
+    
+    <details class="kurara-argue takumi-talk-sweat pov-open">
+    <summary>See? Dreams don't really mean any&mdash;</summary> 
+    </details> 
+    
+    <details class="kyoshika-embarassed  ">
+    <summary>What?! Then we have to go ask Sir Yugamu at once!</summary>
+    </details>
+    
+    <details class="kyoshika-embarassed takumi-embarassed3 pov-open">
+    <summary>Huh!?</summary>
+    </details>
+    
+    <details class="tsubasa-disappointed target3-open ">
+    <summary>Oh... I didn't know you felt that way, Takumi.</summary>
+    </details>
+    
+    <details class="kurara-worried target2-open ">
+    <summary>You had a dream about that freak!?</summary>
+    </details>
+    
+    <details class="kurara-point target2-open ">
+    <summary>Explain yourself!!</summary>
+    </details>
+    
+    <details class="kurara-point takumi-ohno pov-open">
+    <summary>I can't explain myself, it was just a dream!</summary>
+    </details>
+    
+    <details class="kurara-point takumi-ohno thoughts pov-open">
+    <summary>This isn't going how I planned at all...!</summary>
+    </details>
+    
+    <details class="tsubasa-disappointed target3-open ">
+    <summary>I don't really get what you see in him, but... </summary>
+    </details>
+    
+    <details class="tsubasa-smile target3-open ">
+    <summary>I'll support your relationship with Yugamu, Takumi!</summary>
+    </details>
+    
+    <!-- ****GO TO NEW ROOM -->
+    <details class="tsubasa-smile takumi-no thoughts pov-open choice1 move-to-next">
+    <summary>I don't want support for that.</summary>
+    </details>
+
+
+    <!-- </div> -->
+
+
+
+
+    <!-- EITO ROUTE: START -->
+    <!-- remove the divs actually? move classes to first details -->
+    <div class="hidden route2">
+
+
+      
+    </div>
+
+
+
+
+
+    <!-- SHION ROUTE: START -->
+    <!-- remove the divs actually? move classes to first details -->
+    <div class="hidden route3">
+
+
+
+      
+    </div>
+
+</div></div></div>
+
+
+
+
+
+
+
+<!-- YUGAMU ROUTE  -->
+<!-- CHOICE 1 (yugamu) -->
+
+<!-- move to black-->
+<div class="main-box hidden result1 black">
+
+<!-- hard choice -->
+<!-- move-to-next is broken here for some reason? works for single view but not nested view  -->
+<div class="choice-screen hard-choice hidden">
+  <details class="choice-button route01">
+    <summary>
+      The Bio Lab
+    </summary>
+  </details>
+  <details class="choice-button route02">
+    <summary>
+      The Roof
+    </summary>
+  </details>
+</div>
+  
+<div class="anchor">
+<div class="text-box">
+    
+    <details class="  thoughts">
+    <summary>The commotion continued for a while after that.</summary>
+    </details>
+    
+    <details class="  thoughts">
+    <summary>Kyoshika tried to leave and find Yugamu, to ask him if he'd had a dream about me. Tsubasa managed to convince her that it would be a lot more meaningful coming from me.</summary>
+    </details>
+    
+    <details class="  thoughts">
+    <summary>All three of them looked at me, clearly expecting me to go talk to Yugamu about my "feelings".</summary>
+    </details>
+    
+    <details class="  thoughts">
+    <summary>I don't want to do this... But I don't want him hearing about it from someone else either.</summary>
+    </details>
+    
+    <details class="  thoughts">
+    <summary>I guess I should go talk to him...</summary>
+    </details>
+    
+    <details class="thoughts hard-choice-time">
+    <summary>Where should I check first?</summary>
+    </details>
+    
+
+</div></div></div>
+
+
+
+<!-- does this need to be hidden or did we write a check for this? -->
+<!-- use a specific route name probably -->
+<!-- next view is a lie im just testing  -->
+<div class="main-box route01-room hidden">
+  <!-- <div class="main-box result1"> -->
+    <div class="room biolab blur">
+    </div>
+  <p class="location">Bio Lab
+  </p>
+
+  <!-- ***fix date, supposed to be 25  -->
+  <div class="clock afternoon"><p class="date"><span class="zero"></span><span class="two"></span><span class="five"></span></p></div>
+  
+  
+  <!-- seed characters  -->
+  <div class="character yugamu"></div>
+  <div class="takumi-box pov-element">
+    <div class="takumi-bg cafeteria">
+      <div class="takumi-insert"></div>
+    </div>
+  </div>
+
+
+  <!-- character name boxes -->
+  <div class="anchor"> 
+  <div class="name-box right pov-element">Takumi Sumino</div>
+  <div class="name-box target-element">Yugamu Omokage</div>
+
+
+  <!-- text box container -->
+  <div class="text-box">
+
+  <!-- scene dialogue -->
+  <!-- remember to start clock -->
+  <details class="yugamu-talk  rotate">
+  <summary>Hey, Takumi. Come to make some pois- I mean potions? </summary>
+  </details>
+  
+  <details class="yugamu-talk takumi-talk-sweat pov-open">
+  <summary>H-Hey, Yugamu. Actually, I... had something I wanted to talk to you about. </summary>
+  </details>
+  
+  <details class="yugamu-talk takumi-talk-sweat pov-open">
+  <summary>...</summary>
+  </details>
+  
+  <details class="yugamu-talk takumi-talk-sweat ">
+  <summary>Yes? I'm listening. </summary>
+  </details>
+  
+  <details class="yugamu-talk takumi-embarassed-side-talk pov-open">
+  <summary>Well, actually...</summary>
+  </details>
+  
+  <details class="yugamu-talk takumi-embarassed-side pov-open">
+  <summary>...</summary>
+  </details>
+  
+  <details class="yugamu-wait takumi-embarassed-side ">
+  <summary>...?</summary>
+  </details>
+  
+  <details class="yugamu-wait takumi-embarassed-side thoughts">
+  <summary>This is a lot more embarrassing than I thought it would be. </summary>
+  </details>
+  
+  <details class="yugamu-wait takumi-embarassed-side thoughts">
+  <summary>But I have to tell him before someone else does and he gets the wrong idea. </summary>
+  </details>
+  
+  <details class="yugamu-wait takumi-resolved pov-open">
+  <summary>There was a misunderstanding with the girls, and now they think I like you. </summary>
+  </details>
+  
+  <details class="yugamu-wait takumi-embarassed1 pov-open">
+  <summary>But I don't! I mean, I do like you, Yugamu, but not in that way. </summary>
+  </details>
+  
+  <details class="yugamu-wait takumi-embarassed-side1 pov-open">
+  <summary>Sorry, this isn't coming out right. </summary>
+  </details>
+  
+  <details class="yugamu-hmm takumi-embarassed-side1 ">
+  <summary>Hmm... </summary>
+  </details>
+  
+  <details class="yugamu-talk takumi-embarassed-side1 move-to-next">
+  <summary>How about you start from the beginning? </summary>
+  </details>
+  
+  
+  </div></div></div>
+  <!-- end of current room-->
+  
+  
+  <!-- move to black-->
+  <div class="main-box black hidden next-view">
+  
+    <div class="anchor">
+  <div class="text-box">
+  <details class="  thoughts">
+  <summary>I explained to Yugamu how Tsubasa, Karua, and Kyoshika all had dreams about kissing me, and I had dreams about kissing all three of them.</summary>
+  </details>
+  
+  <details class="thoughts move-to-next">
+  <summary>But they were already at each other's throats, and telling them the truth about my dreams would just create problems. So... I lied. </summary>
+  </details>
+  
+  
+  </div></div></div>
+  <!-- end of current room-->
+  
+  
+  <!-- move to biolab-->
+  <div class="main-box hidden next-view">
+    <div class="room biolab blur">
+    </div>
+  <p class="location">Bio Lab
+  </p>
+  <!-- update date -->
+  <div class="clock afternoon"><p class="date"><span class="zero"></span><span class="two"></span><span class="six"></span></p></div>
+  
+    <!-- seed scene characters -->
+    <div class="character yugamu"></div>
+    <div class="takumi-box pov-element">
+      <div class="takumi-bg biolab">
+      <div class="takumi-insert"></div>
+      </div>
+    </div>
+  
+
+    <!-- choice code goes here (if applicable)  -->
+    <div class="choice-screen hard-choice hidden">
+      <details class="choice-button route01-1">
+        <summary>
+          Yes
+        </summary>
+      </details>
+      <details class="choice-button route01-2">
+        <summary>
+          No
+        </summary>
+      </details>
+    </div>
+  
+  
+  <div class="anchor">
+  <div class="name-box right pov-element">Takumi Sumino</div>
+  <div class="name-box target-element">Yugamu Omokage</div>
+  
+  <div class="text-box">
+  
+  <details class="yugamu-neutral takumi-resolved pov-open">
+  <summary>I'm really sorry about this, Yugamu. I'm sure it'll blow over in a few days. </summary>
+  </details>
+  
+  <details class="yugamu-talk takumi-resolved ">
+  <summary>Oh, I'm not worried about that. </summary>
+  </details>
+  
+  <details class="yugamu-talk takumi-huh pov-open">
+  <summary>You aren't?</summary>
+  </details>
+  
+  <details class="yugamu-smug takumi-huh ">
+  <summary>I'm more interested to hear why you said you had a dream about me. </summary>
+  </details>
+  
+  <details class="yugamu-smug takumi-huh pov-open">
+  <summary>Huh?</summary>
+  </details>
+  
+  <details class="yugamu-explain takumi-huh ">
+  <summary>You could have said anyone else, but you chose me. Why? </summary>
+  </details>
+  
+  <details class="yugamu-explain takumi-considering pov-open">
+  <summary>Out of everybody, I thought you'd be...</summary>
+  </details>
+  
+  <details class="yugamu-explain takumi-considering ">
+  <summary>Yes?</summary>
+  </details>
+  
+  <details class="yugamu-explain takumi-embarassed-side1 pov-open">
+  <summary>I thought you'd be the least upset about it. </summary>
+  </details>
+  
+  <details class="yugamu-explain takumi-talk-sweat pov-open">
+  <summary>You're really open about... this sort of thing. </summary>
+  </details>
+  
+  <details class="yugamu-cough takumi-talk-sweat ">
+  <summary>You mean love and attraction? </summary>
+  </details>
+  
+  <details class="yugamu-cough takumi-embarassed-side1 pov-open">
+  <summary>Yeah, I guess. </summary>
+  </details>
+  
+  <details class="yugamu-cough takumi-explain pov-open">
+  <summary>Back on the TRC, I didn't have anyone to talk to about things like crushes and love or whatever. </summary>
+  </details>
+  
+  <details class="yugamu-cough takumi-explain thoughts">
+  <summary>It's not like I could talk to Karua about any of that stuff...</summary>
+  </details>
+  
+  <details class="yugamu-cough takumi-talk-sweat pov-open">
+  <summary>Maybe that's why it still seems so embarrassing. </summary>
+  </details>
+  
+  <details class="yugamu-cough takumi-talk-sweat pov-open">
+  <summary>I've always admired how forward you are about... all of it. </summary>
+  </details>
+  
+  <details class="yugamu-excite takumi-talk-sweat ">
+  <summary>Oh, Takumi...! </summary>
+  </details>
+  
+  <details class="yugamu-excite takumi-resolved pov-open">
+  <summary>...</summary>
+  </details>
+  
+  <details class="yugamu-excite takumi-resolved pov-open">
+  <summary>Don't make it weird. </summary>
+  </details>
+  
+  <details class="yugamu-smug takumi-resolved ">
+  <summary>You're the one who told a bunch of girls you had a dream about kissing me. </summary>
+  </details>
+  
+  <details class="yugamu-smug takumi-embarassed1 pov-open">
+  <summary>I said I was sorry about that. </summary>
+  </details>
+  
+  <details class="yugamu-smile takumi-embarassed1 ">
+  <summary>Hehehe. </summary>
+  </details>
+  
+  <details class="yugamu-think takumi-embarassed1 ">
+  <summary>But are you sure that's the only reason? </summary>
+  </details>
+  
+  <details class="yugamu-think takumi-embarassed pov-open">
+  <summary>What do you mean? </summary>
+  </details>
+  
+  <details class="yugamu-think takumi-embarassed ">
+  <summary>You've never thought about kissing me?</summary>
+  </details>
+  
+  <details class="yugamu-explain takumi-embarassed ">
+  <summary>I've thought about kissing you, you know. </summary>
+  </details>
+  
+  <details class="yugamu-explain takumi-embarassed3 pov-open">
+  <summary>What?! </summary>
+  </details>
+  
+  <details class="yugamu-hug takumi-embarassed3 ">
+  <summary>Oh, don't look so scandalized. It can't be helped, we're young and hormonal, and you're all so cute. </summary>
+  </details>
+  
+  <details class="yugamu-hug takumi-embarassed3 pov-open">
+  <summary>... </summary>
+  </details>
+  
+  <details class="yugamu-explain takumi-embarassed3 hard-choice-time">
+  <summary>Are you certain you didn't say you had a dream about kissing me because subconsciously, you'd like to try it? </summary>
+  </details>
+
+  <!-- doesn't change rooms so it's a hard choice but u dont go anywhere -->
+
+  <!-- YES -->
+  <!-- add route01-1-open and hidden to next dialogue box -->
+  
+
+
+
+
+  <!-- NO -->
+  <!-- add route01-2-open and hidden to next dialogue box -->
+
+
+
+</div></div></div>
+
+
+
+
+
+
+<!-- EITO ROUTE -->
+
+
+
+
+<!-- SHION ROUTE  -->
+
+
+
+
+
+
+
+
+
+</figure>
+</body>
