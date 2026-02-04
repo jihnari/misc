@@ -8,18 +8,24 @@
   todo:
 - fix shadow on location 
 - **fix takumi skew for ao3 
-- ****fix logic for soft choices 
 - **clean up your code (in progress) 
-- pick better names for classes? 
+- pick better names for classes? (maybe too late for that) 
 - make text not selectable? keeps getting highlighted funny 
 - text across the board should maybe be a bit bigger? 
-- move to a new view (without a hard choice)
+- move to a new view (without a hard choice) (done?)
 - icons lower res?
 - slightly transparent the date box 
 - redraw the 4 for sure 
-- ***FINISH THE NUMBERS BRO. WHERE ARE THEY.
+- ***FINISH THE NUMBERS BRO. 
 - clean up day ++ screen (maybe draw day)
 - transition text a little? fade in 
+- test on ao3
+- make it possible to jump routes? 
+
+ao3 errors: 
+- takumi skew
+- clock steps cant be 600000
+- choice-screen, rbg value hates that 
 
 
 potential todo: 
@@ -80,6 +86,7 @@ done:
 - + figure out names for endings 
 - + address 2+ characters in same scene. re-code namebox slightly? 
 - + code a [day x] black screen. might just have to draw it. (this has a rough draft)
+- + fix logic for soft choices 
 
 
 THOUGHTS: 
@@ -103,6 +110,15 @@ https://www.tumblr.com/reblogablename/783668993201471488/if-you-were-ever-curiou
 
 
  */
+
+ /* ao3 fixes */
+ details{
+  margin:0;
+ }
+
+
+
+
 
  audio {
   /* filter: sepia(20%) saturate(70%) grayscale(1) contrast(99%) invert(12%); */
@@ -215,25 +231,6 @@ transition-delay for :active means the transition won't even START until the mou
 }
 
 
-.shoutaudioT {
-  width: 30px;
-  height: 130px;
-  /* display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute; */
-  transform: scale(5,1.5);
-  transform-origin: top left;
-  left: -3px;
-  top: 0px;
-  /* might need to be highter  */
-  z-index: 1;
-  /* does this save us?  */
-  /* opacity: 0; */
-  background:green;
-}
-
-
 /* get rid of summary markers in all cases  */
 summary::-webkit-details-marker {display: none;}
 summary {
@@ -243,8 +240,24 @@ summary {
 
 
 /* move to next view */
+/* i don't think this is used at all? and im not sure we can use it. its not specific enough, except if the view follows directly. */
 :has(details.move-to-next[open]) > .next-view{
   display:flex;
+}
+/* untested *** */
+/* i think this works fine actually. need to test for multiple nested views tho prob  */
+.main-box:has(details.move-to-next[open]){
+  display:none !important; 
+}
+
+/* for skipping to the end, once youve finished an ending */
+/* cant get you there exactly but can get you close (the nearest room change in the route) */
+.jumpto:has(details.eito-route[open]) .eito-route-savepoint1{
+  display:flex;
+  /* or something  */
+}
+.save-point:has(details[open]) ~ .init-box{
+  display:none;
 }
 
 
@@ -255,23 +268,11 @@ summary {
   color:white;
   padding: 10px 100px 0px 100px;
   overflow-y:scroll;
-  /* transition-delay:1s; */
-  /* transition-duration: 250ms;
-  transition:height 3s ease-in; */
-
 }
-/* .text-box details[open]{
-  transition: height 150ms ease-out;
-} */
 ::-webkit-scrollbar {
     width: 0px;
-    /* make scrollbar transparent */
+    /* make scrollbar go away */
     background: transparent; 
-}
-.text-box details{
-  /* transition-delay:1s; */
-  /* transition:1s; */
-  /* transition-duration: 250ms; */
 }
 
 
@@ -281,9 +282,15 @@ summary {
   display:none;
 }
 
-
 /* box starts CLOSED. when box OPENS, remove from existence */
 .text-box details[open] {display: none;}
+/* EXCEPTION: choice time(s)  */
+/* this got close but then the text persisted in a bad way  */
+/* .text-box details[open].soft-choice-time, .text-box details[open].hard-choice-time {display: inline-block;}
+.text-box details[open].soft-choice-time + details{display: none;} */
+
+/* can we target "things in hidden" and make a reverse exception instead? */
+
 
 /* keeps the last dialogue box from closing (not currently in use) */
 .text-box details[open].last {display: inline-block;}
@@ -293,16 +300,17 @@ summary {
 /* initial state: do not display takumi (should this be handled with hidden instead? maybe. */
 /* update: the popout displays regardless of hidden, this MUST be set. idk why. probably some details open rules im not taking into consideration.  */
 .pov-element{
-  /* toggle this back**** */
   display:none;
 }
 :has(details[open] + details:not([open]).pov-open) .pov-element{
-  /* NOTE: this is untriggering, causing takumi to close during a choice-time? */
-  /* could we somehow do this in reverse, showing the view at all times unless explicitly stated? */
   display:block;
-
-  /* potentially, trying to fix the issue with takumi disappearing, disappeared the name box forever? literally where is it */
 }
+
+:has(details[open].pov-open) .takumi-box{
+  display:block;
+}
+
+/* this only disappears the namebox */
 :has(details[open] + details:not([open]).pov-open) .target-element{
   display:none;
 }
@@ -323,6 +331,12 @@ summary {
 :has(details[open] + details:not([open]).target3-open) .target-element{
   display:none;
 }
+:has(details[open] + details:not([open]).pov-open) .target3{
+  display:none;
+}
+:has(details[open] + details:not([open]).pov-open) .target2{
+  display:none;
+}
 
 /* are these being used anywhere...? ive forgotten my own code  */
 /* :has(details[open] + details:not([open]).pov-close) .pov-element{
@@ -337,6 +351,9 @@ summary {
 :has(details[open] + details:not([open]).pov-open) .character{
   margin-left:5%;
 }
+:has(details[open].pov-open) .character{
+  margin-left:5%;
+}
 
 
 
@@ -347,6 +364,11 @@ display:none;
 details.thoughts summary{
   color:rgb(149, 236, 255) !important;
 }
+/* weird exception */
+/* should grab this at a different point but idk that point rn */
+/* :has(details[open].soft-choice-time) .name-box{
+  display:none;
+} */
 
 /* "important" text */
 /* rename this? */
@@ -356,28 +378,162 @@ details.thoughts summary{
 
 
 /* ALL CHARACTER PNG TOGGLES HERE  */
+/* eito */
 :has(details[open] + details:not([open]).eito-smile) .character{
   background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/eito2.png');
-} 
+}
 :has(details[open] + details:not([open]).eito-talk) .character{
   background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/eito.png');
-} 
+}
+
+/* yugamu */
 :has(details[open] + details:not([open]).yugamu-smile) .character{
-  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/yugamu.png');
-} 
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/yugamu/yugamu-smile.png');
+}
 :has(details[open] + details:not([open]).yugamu-talk) .character{
-  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/yugamu2.png');
-} 
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/yugamu/yugamu-talk.png');
+}:has(details[open] + details:not([open]).yugamu-cough) .character{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/yugamu/yugamu-cough.png');
+}:has(details[open] + details:not([open]).yugamu-excite) .character{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/yugamu/yugamu-excite.png');
+}:has(details[open] + details:not([open]).yugamu-explain) .character{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/yugamu/yugamu-explain.png');
+}:has(details[open] + details:not([open]).yugamu-giveup) .character{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/yugamu/yugamu-giveup.png');
+}:has(details[open] + details:not([open]).yugamu-hmm) .character{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/yugamu/yugamu-hmm.png');
+}:has(details[open] + details:not([open]).yugamu-hug) .character{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/yugamu/yugamu-hug.png');
+}:has(details[open] + details:not([open]).yugamu-neutral) .character{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/yugamu/yugamu-neutral.png');
+}:has(details[open] + details:not([open]).yugamu-sigh) .character{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/yugamu/yugamu-sigh.png');
+}:has(details[open] + details:not([open]).yugamu-smug) .character{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/yugamu/yugamu-smug.png');
+}:has(details[open] + details:not([open]).yugamu-think) .character{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/yugamu/yugamu-think.png');
+}:has(details[open] + details:not([open]).yugamu-wait) .character{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/yugamu/yugamu-wait.png');
+}
+
+
+/* shion */
+
+
+
+/* the girls  */
+:has(details[open] + details:not([open]).kyoshika-talk) .character{
+   background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/kyoshika/kyoshika-talk.png');
+}:has(details[open] + details:not([open]).kyoshika-scared) .character{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/kyoshika/kyoshika-scared.png');
+}:has(details[open] + details:not([open]).kyoshika-embarassed) .character{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/kyoshika/kyoshika-embarassed.png');
+}:has(details[open] + details:not([open]).kyoshika-worried) .character{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/kyoshika/kyoshika-worried.png');
+}
+
+/* for all non-kyoshika you'll have to set margin offset here  */
+:has(details[open] + details:not([open]).tsubasa-worried) .character{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/tsubasa/tsubasa-worried.png');
+  top: -160px;
+}:has(details[open] + details:not([open]).tsubasa-disappointed) .character{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/tsubasa/tsubasa-disappointed.png');
+  top: -160px;
+}:has(details[open] + details:not([open]).tsubasa-insist) .character{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/tsubasa/tsubasa-insist.png');
+  top: -160px;
+}:has(details[open] + details:not([open]).tsubasa-smile) .character{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/tsubasa/tsubasa-smile.png');
+  top: -160px;
+}
+:has(details[open] + details:not([open]).kurara-pissed) .character{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/kurara/kurara-pissed.png');
+  top: -180px;
+}
+:has(details[open] + details:not([open]).kurara-argue) .character{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/kurara/kurara-argue.png');
+  top: -180px;
+}
+:has(details[open] + details:not([open]).kurara-disarmed) .character{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/kurara/kurara-disarmed.png');
+  top: -180px;
+}:has(details[open] + details:not([open]).kurara-giveup) .character{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/kurara/kurara-giveup.png');
+  top: -180px;
+}:has(details[open] + details:not([open]).kurara-pissed-max) .character{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/kurara/kurara-pissed-max.png');
+  top: -180px;
+}:has(details[open] + details:not([open]).kurara-point) .character{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/kurara/kurara-point.png');
+  top: -180px;
+}:has(details[open] + details:not([open]).kurara-think) .character{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/kurara/kurara-think.png');
+  top: -180px;
+}:has(details[open] + details:not([open]).kurara-worried) .character{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/kurara/kurara-worried.png');
+  top: -180px;
+}
+
 
 
 /* TAKUMI STATES (also a character png toggle, in spirit (but not in class) */
 :has(details[open] + details:not([open]).takumi-talk) .takumi-insert{
   background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/takumi-talk.png');
 }
+:has(details[open] + details:not([open]).takumi-embarassed1) .takumi-insert{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/takumi/takumi-embarassed1.png');
+}
+:has(details[open] + details:not([open]).takumi-embarassed) .takumi-insert{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/takumi/takumi-embarassed.png');
+}
+:has(details[open] + details:not([open]).takumi-embarassed3) .takumi-insert{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/takumi/takumi-embarassed3.png');
+}
+:has(details[open] + details:not([open]).takumi-embarassed-side) .takumi-insert{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/takumi/takumi-embarassed-side.png');
+}
+:has(details[open] + details:not([open]).takumi-embarassed-side1) .takumi-insert{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/takumi/takumi-embarassed-side1.png');
+}
+:has(details[open] + details:not([open]).takumi-embarassed-side-talk) .takumi-insert{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/takumi/takumi-embarassed-side-talk.png');
+}
+:has(details[open] + details:not([open]).takumi-think-stressed) .takumi-insert{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/takumi/takumi-think-stressed.png');
+}
+:has(details[open] + details:not([open]).takumi-think) .takumi-insert{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/takumi/takumi-think.png');
+}
+:has(details[open] + details:not([open]).takumi-think-dark) .takumi-insert{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/takumi/takumi-think-dark.png');
+}
 
-/* more takumi here (in the future) */
-
-
+:has(details[open] + details:not([open]).takumi-explain) .takumi-insert{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/takumi/takumi-explain.png');
+}
+:has(details[open] + details:not([open]).takumi-explain-sweat) .takumi-insert{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/takumi/takumi-explain-sweat.png');
+}
+:has(details[open] + details:not([open]).takumi-huh) .takumi-insert{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/takumi/takumi-huh.png');
+}
+:has(details[open] + details:not([open]).takumi-neutral) .takumi-insert{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/takumi/takumi-neutral.png');
+}
+:has(details[open] + details:not([open]).takumi-no) .takumi-insert{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/takumi/takumi-no.png');
+}
+:has(details[open] + details:not([open]).takumi-nono) .takumi-insert{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/takumi/takumi-nono.png');
+}:has(details[open] + details:not([open]).takumi-ohno) .takumi-insert{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/takumi/takumi-ohno.png');
+}:has(details[open] + details:not([open]).takumi-resolved) .takumi-insert{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/takumi/takumi-resolved.png');
+}:has(details[open] + details:not([open]).takumi-sweat) .takumi-insert{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/takumi/takumi-sweat.png');
+}:has(details[open] + details:not([open]).takumi-talk-sweat) .takumi-insert{
+  background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/takumi/takumi-talk-sweat.png');
+}
 
 
 
@@ -440,6 +596,12 @@ details.thoughts summary{
   .library{
     background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/bg/Library.png');
   }
+  .defenseroom{
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/bg/Defense_Room_Door.png');
+  }
+  .roof{
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/bg/Rooftop.png');
+  }
   /* for thinking scenes or transitions  */
   .black{
     background: black;
@@ -480,9 +642,19 @@ details.thoughts summary{
     padding-top:4px;
 
     position:absolute;
+    /* idk really long  */
+    transition-duration:20000000s;
+
+    /* make text non selectable  */
+    -webkit-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;
   }
   :has(details[open] + details:not([open]).location-close) .location{
-    display:none;
+    /* display:none; */
+    transition:all;
+    opacity:0;
+    transition-duration: 2s;
   }
   /* fade out?  */
 
@@ -549,7 +721,9 @@ details.thoughts summary{
     /* transform: rotate(30000deg); */
     transform: rotate(360000deg);
     transition-duration:60000s;
-    transition-timing-function:steps(60000);
+    /* no steps for me :( */
+    /* transition-timing-function:steps(60000); */
+    /* transition-timing-function:steps-start; */
   }
 
   .date{
@@ -631,6 +805,9 @@ details.thoughts summary{
     height:100px;
     width:100px;
     background-size: 100px 100px;
+
+    /* weird ao3 fixes: */
+    word-wrap:none;
   }
   .zoom{
     transform:scale(2);
@@ -678,6 +855,10 @@ details.thoughts summary{
     z-index:2;
     position:relative;
 
+    /* make text non selectable  */
+    -webkit-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 
 
   }
   /* reuse name-box for the current pov character by shifting name-box to the right. usecase: class="right name-box" */
@@ -719,6 +900,11 @@ details.thoughts summary{
   
     z-index:2;
     position:relative;
+
+    /* make text non selectable  */
+    -webkit-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 
   }
   /* the only purpose of this is for the grid in the bg */
   /* should be able to roll this into the main class?  update: done */
@@ -925,6 +1111,7 @@ no-repeat,  no-repeat, no-repeat, no-repeat, no-repeat, no-repeat,
     left:-5;
   }
   /* check canon for proper styling, but this might be all  */
+  /* i think we ended up not doing this? narration is the same as thoughts, just with no takumi-open (pov-open) */
   :has(details[open] + details:not([open]).narration) .name-box{
     display:none;
     }
@@ -968,13 +1155,30 @@ no-repeat,  no-repeat, no-repeat, no-repeat, no-repeat, no-repeat,
     top:-90px;
   }
   .yugamu{
-    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/yugamu.png');
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/yugamu/yugamu-talk.png');
     top:-120px;
   }
 
   .kyoshika{
-    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/kyoshika/t_pic_chr013_1011.png');
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/kyoshika/kyoshika-embarassed.png');
   }
+
+  /* no wait not these? these are useless?  */
+  /* .kyoshika-talk{
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/kyoshika/kyoshika-talk.png');
+  }
+  .kyoshika-embarassed{
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/kyoshika/kyoshika-embarassed.png');
+  }
+  .tsubasa-worried{
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/tsubasa/tsubasa-worried.png');
+  }
+  .kurara-pissed{
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/kurara/kurara-pissed.png');
+  }
+  .kurara-argue{
+    background-image: url('https://raw.githubusercontent.com/jihnari/misc/main/100-line/img/char/kurara/kurara-argue.png');
+  } */
 
 
   /* POV CHARACTER */
@@ -1067,9 +1271,10 @@ no-repeat,  no-repeat, no-repeat, no-repeat, no-repeat, no-repeat,
     position:absolute;
     z-index:3;
 
-    /* make this number really big */
-    /* we're no longer using infinite active hack. might need a transition for other reasons later. */
-    /* transition: all 0s 400s; */
+    /* make text non selectable  */
+    -webkit-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;
   }
 
   /* rename to button? */
@@ -1154,25 +1359,8 @@ no-repeat,  no-repeat, no-repeat, no-repeat, no-repeat, no-repeat,
 } */
 
 
-  /* fix this; current view should disappear. shouldnt have to name every view. */
-  /* should just be able to say .main-box:has(blah) .main-box{die}? */
-  /* :has(details.choice-button[open]) .init-view{
-    display:none; 
-  } */
-  /* test */
-  .main-box:has(.hard-choice details.choice-button[open]){
-    display:none; 
-  }
-  /* .hard-choice:has(details.choice-button[open]) .main-box{
-    display:none; 
-  } */
-  /* .main-view:not(:has(.hard-choice details.choice-button:not([open]))) { display: none;} */
-
-  /* ok we may have to name every single view, which would. kind of suck. but its better than nothing? hm. is it.  */
-  /* thought:  */
-  /* [class^="main-box"] */
-  /* this doesnt work  */
-  /* :has(details.choice-button[open]) .main-box{
+  /* causes current viet to disapear after a hard choice has been made; this is not going to work for 90% of the fic. ***fix later. all you really have to do is rename this to "go away" and then when it opens, kill the view. this may exist already.*/
+  /* .main-box:has(.hard-choice details.choice-button[open]){
     display:none; 
   } */
 
@@ -1182,6 +1370,12 @@ no-repeat,  no-repeat, no-repeat, no-repeat, no-repeat, no-repeat,
   /* open corresponding dialogue for selected choice*/
   .main-box:has(details.branch1[open]) .dialogue1, .main-box:has(details.branch2[open]) .dialogue2, .main-box:has(details.branch3[open]) .dialogue3, .main-box:has(details.branch4[open]) .dialogue4{
     display:block;
+  }
+  /* TESTING *** */ 
+  /* rotating text out */
+  /* this works? but the mutex is still broken. so. */
+  .main-box:has(details.dialogue1[open]) .dialogue1, .main-box:has(details.dialogue2[open]) .dialogue2, .main-box:has(details.dialogue3[open]) .dialogue3, .main-box:has(details.dialogue4[open]) .dialogue4, .main-box:has(details.dialogue-final[open]) .dialogue-final {
+    display:none !important;
   }
 
   /* hide choice-button of already selected choice  */
@@ -1211,7 +1405,8 @@ no-repeat,  no-repeat, no-repeat, no-repeat, no-repeat, no-repeat,
 
   /* ***this logic ONLY works if the user chooses the boxes 1-4 in order. fix later. */
   /* i think if these were hyper specific, the code would atually work */
-  .main-box:has(details.branch1[open]) > .soft-choice{
+  /* it does but at what cost */
+  /* .main-box:has(details.branch1[open]) > .soft-choice{
     display:none;
   }
   .main-box:has(details.choice-unlock1[open]) > .soft-choice{
@@ -1234,7 +1429,134 @@ no-repeat,  no-repeat, no-repeat, no-repeat, no-repeat, no-repeat,
   }
   .main-box:has(details.choice-unlock4[open]) > .soft-choice{
     display:flex;
+  }  */
+
+  /* i hate myself and also css */
+  /* 1 */
+  .main-box:has(details.branch1[open]) > .soft-choice{
+    display:none;
   }
+  .main-box:has(details.choice-unlock1[open]) > .soft-choice{
+    display:flex;
+  } 
+
+  /* 12 13 14 23 24 34*/
+  .main-box:has(details.branch1[open] + details.branch2[open]) > .soft-choice{
+    display:none;
+  }
+  .main-box:has(details.branch1[open] + details.branch3[open]) > .soft-choice{
+    display:none;
+  }  
+  .main-box:has(details.branch1[open] + details.branch4[open]) > .soft-choice{
+    display:none;
+  }
+  .main-box:has(details.branch2[open] + details.branch3[open]) > .soft-choice{
+    display:none;
+  }  
+  .main-box:has(details.branch2[open] + details.branch4[open]) > .soft-choice{
+    display:none;
+  }  
+  .main-box:has(details.branch3[open] + details.branch4[open]) > .soft-choice{
+    display:none;
+  }
+  /* 123 124 134 234*/
+  .main-box:has(details.branch1[open] + details.branch2[open] + details.branch3[open]) > .soft-choice{
+    display:none;
+  }
+  .main-box:has(details.branch1[open] + details.branch2[open] + details.branch4[open]) > .soft-choice{
+    display:none;
+  }
+  .main-box:has(details.branch1[open] + details.branch3[open] + details.branch4[open]) > .soft-choice{
+    display:none;
+  }
+  .main-box:has(details.branch2[open] + details.branch3[open] + details.branch4[open]) > .soft-choice{
+    display:none;
+  }
+  /* 124 is still broken maybe? specifically 124. 24 is also broken. 241 
+  broken: 
+  124
+  24
+  42
+  241 
+  31
+   */
+
+  /* 1234 */
+  .main-box:has(details.branch1[open] + details.branch2[open] + details.branch3[open] + details.branch4[open]) > .soft-choice{
+    display:none;
+  }
+
+
+/* 12 13 14 23 24 34*/
+  .main-box:has(details.choice-unlock1[open] ~ details.choice-unlock2[open]) > .soft-choice{
+    display:flex;
+  } 
+  .main-box:has(details.choice-unlock1[open] ~ details.choice-unlock3[open]) > .soft-choice{
+    display:flex;
+  } 
+  .main-box:has(details.choice-unlock1[open] ~ details.choice-unlock4[open]) > .soft-choice{
+    display:flex;
+  } 
+  .main-box:has(details.choice-unlock2[open] ~ details.choice-unlock3[open]) > .soft-choice{
+    display:flex;
+  } 
+  .main-box:has(details.choice-unlock2[open] ~ details.choice-unlock4[open]) > .soft-choice{
+    display:flex;
+  } 
+  .main-box:has(details.choice-unlock3[open] ~ details.choice-unlock4[open]) > .soft-choice{
+    display:flex;
+  } 
+
+  /* 123 124 134 234*/
+  .main-box:has(details.choice-unlock1[open] ~ details.choice-unlock2[open] ~ details.choice-unlock3[open]) > .soft-choice{
+    display:flex;
+  } 
+  .main-box:has(details.choice-unlock1[open] ~ details.choice-unlock2[open] ~ details.choice-unlock4[open]) > .soft-choice{
+    display:flex;
+  } 
+  .main-box:has(details.choice-unlock1[open] ~ details.choice-unlock3[open] ~ details.choice-unlock4[open]) > .soft-choice{
+    display:flex;
+  } 
+  .main-box:has(details.choice-unlock2[open] ~ details.choice-unlock3[open] ~ details.choice-unlock4[open]) > .soft-choice{
+    display:flex;
+  } 
+
+  /* 2 3 4 */
+  .main-box:has(details.branch2[open]) > .soft-choice{
+    display:none;
+  }     
+  .main-box:has(details.choice-unlock2[open]) > .soft-choice{
+    display:flex;
+  }   
+  .main-box:has(details.branch3[open]) > .soft-choice{
+    display:none;
+  }
+  .main-box:has(details.choice-unlock3[open]) > .soft-choice{
+    display:flex;
+  }
+  .main-box:has(details.branch4[open]) > .soft-choice{
+    display:none;
+  }
+  .main-box:has(details.choice-unlock4[open]) > .soft-choice{
+    display:flex;
+  } 
+
+  /* rules are bottom down  */
+
+
+  /* .main-box:has(details.choice-unlock[open]) > .soft-choice{
+    display:flex !important;
+  } 
+
+  .main-box:has(details.choice-button[open]) > .soft-choice{
+    display:none;
+  } */
+
+
+  /* this makes it go away fine but wont let it come back  */
+  /* .main-box:has(.soft-choice > details[open]) .soft-choice{
+    display:none;
+  } */
 
   /* could do it backwards? might be more stable? */
   /* .soft-choice:has(.branch1[open]){
@@ -1265,6 +1587,7 @@ no-repeat,  no-repeat, no-repeat, no-repeat, no-repeat, no-repeat,
 
 
   /* final toggle, youve unlocked the mutex */
+  /* not sure these work, but something above does (the ~) */
   /* display final unlocked dialogue */
   .main-box:has(details.choice-unlock1[open]):has(details.choice-unlock2[open]):has(details.choice-unlock3[open]):has(details.choice-unlock4[open]) .dialogue-final {
     display:block;
@@ -1301,16 +1624,47 @@ no-repeat,  no-repeat, no-repeat, no-repeat, no-repeat, no-repeat,
 
 
 
+ 
+  /* dont have to get super specific with hard choice*/
+  /* can we combine these into one line */
+  .main-box:has(.hard-choice details.route1[open]) > .hard-choice{
+    display:none;
+  }
+  .main-box:has(.hard-choice details.route2[open]) > .hard-choice{
+    display:none;
+  }      
+  .main-box:has(.hard-choice details.route3[open]) > .hard-choice{
+    display:none;
+  }
+
+  /* display route text */
+  .main-box:has(details.route1[open]) .route1-open,.main-box:has(details.route2[open]) .route2-open,.main-box:has(details.route3[open]) .route3-open{
+    display:block;
+  }  
+  .main-box:has(details.route1-open[open]) .route1-open,.main-box:has(details.route2-open[open]) .route2-open,.main-box:has(details.route3-open[open]) .route3-open{
+    display:none !important;
+  }
 
 
+  /* room changing routes */
+  .main-box:has(details.route01[open]){
+    display:none; 
+  }
+  :has(details.route01[open]) > .route01-room{
+    display:flex;
+  }
 
-
-
-
+  .main-box:has(details.route01-1[open]){
+    display:none; 
+  }
+  :has(details.route01-1[open]) > .route01-1-room{
+    display:flex;
+  }
 
 
 
 /* ridiculous transitions, ie png hacking */
+/* giving up on this i think  */
 .jump{ 
 
 }

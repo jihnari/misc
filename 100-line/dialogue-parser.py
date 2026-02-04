@@ -73,7 +73,7 @@ def txt_to_csv(txtfile):
 
       # room changes, > 
       elif ">" in row:
-        print("ROOM")
+        # print("ROOM")
         # room = row[0].replace('>', '')
         # room = room.replace(' ', '')
         # buffer.append(row + "\n")
@@ -83,24 +83,26 @@ def txt_to_csv(txtfile):
       # else if dialogue 
       else: 
         # print(charname)
-        # row = row.replace(',', '\\,')
         row = row.replace('\n', '')
         row = "\"" + row + "\"\n"
-        # if takumi
+
         if "takumi" in charname:
           # print("TAKUMI")
-          # buffer.append("\n,takumi,pov-open," + row + "\n")
           buffer += ",takumi-talk,pov-open," + row 
 
         elif "thought" in charname:
           # print("THOUGHT")
-          # buffer.append("\n,takumi,thought," + row + "\n")
-          buffer += ",takumi-base,thought," + row
+          # no longer need pov-open for this 
+          buffer += ",takumi-base,thoughts," + row
+          # 🤡
+
+        elif "narration" in charname:
+          # print("THOUGHT")
+          buffer += ",,thoughts," + row
 
         # if not takumi
         else: 
           # print(charname)
-          # buffer.append(charname + ",,," + row + "\n")
           buffer += charname + "-talk,,," + row
           
     # exit forever loop, print to file 
@@ -108,6 +110,7 @@ def txt_to_csv(txtfile):
     with open("output.csv", 'w') as f:
       # print(buffer, file=f)
       f.write(buffer)
+      print(buffer)
       
     # this was a fun thought but actually we need to do a lot of editing to the csv file first. like, so much. every emotion change. 
     # csv_to_html("output.csv")
@@ -155,41 +158,45 @@ def csv_to_html(filename):
         # see: new 135
         if ">" in row[0]:
           # close out current room
-          output +=("\n<\\div><\\div><\\div>\n<!-- end of current room-->\n\n\n")
+          output +=("\n</div></div></div>\n<!-- end of current room-->\n\n\n")
 
           room = row[0].replace('>', '')
           room = room.replace(' ', '')
-          # could have a switch statement for the room name. maybe should. would it save you time? probably not. 
-          roomname=row[0]
-          if room == "biolab":
+          roomname=room
+          # name the room properly (might ditch this)
+          if "biolab" in room:
             roomname="Bio Lab"
-          if room == "library":
+          if "library" in room:
             roomname="Library"
-
-          # whoops. if room == black, do a whole different thing, huh. 
-          # or do you...? cant remember how its set up, black might supress the room title/clock/etc. ...no it might not supress the clock. 
-          if room == "black":
-            # room
-            pass
+          if "defenseroom" in room:
+            roomname="Defense Room Door"
 
 
-          # could have another switch statement lol
+
+          # full name characters for their boxes
           character = row[1].replace(' ', '')
           charactername=character
-          if character == "yugamu":
+          if "yugamu" in charactername:
             charactername="Yugamu Omokage"
-          if character == "eito":
+          if "eito" in charactername:
             charactername="Eito Aotsuki"
-          if character == "shion":
+          if "shion" in charactername:
             charactername="???"
-          if character == "kako":
+          if "kako" in charactername:
             charactername="Kako Tsukumo"
 
-          # test output
-          # output+=(room + roomname + character + charactername + "/n")
-            
+          # if room == black, do a trunkated room
+          if "black" in room:
+            # not sure if valid, but should be close ish
+            output+=("<!-- move to " + room + "-->\n<div class=\"main-box black hidden\">\n\n  <!-- seed scene characters -->\n  <div class=\"character " + character + "\"></div>\n  <div class=\"takumi-box pov-element\">\n    <div class=\"takumi-bg " + room + "\">\n    <div class=\"takumi-insert\"></div>\n    </div>\n  </div>\n\n  <!-- choice code goes here (if applicable)  -->\n\n\n<div class=\"anchor\">\n<div class=\"name-box right pov-element\">Takumi Sumino</div>\n<div class=\"name-box target-element\">" + charactername + "</div>\n\n<div class=\"text-box\">\n ")
 
-          output+=("<!-- move to " + room + "-->\n<div class=\"main-box hidden\">\n  <div class=\"room " + room + " blur\">\n  </div>\n<p class=\"location\">" + roomname + "\n</p>\n<!-- update date -->\n<div class=\"clock afternoon\"><p class=\"date\"><span class=\"zero\"></span><span class=\"two\"></span><span class=\"six\"></span></p></div>\n\n  <!-- seed scene characters -->\n  <div class=\"character " + character + "\"></div>\n  <div class=\"takumi-box pov-element\">\n    <div class=\"takumi-bg " + room + "\">\n    <div class=\"takumi-insert\"></div>\n    </div>\n  </div>\n\n  <!-- choice code goes here (if applicable)  -->\n\n\n<div class=\"anchor\">\n<div class=\"name-box right pov-element\">Takumi Sumino</div>\n<div class=\"name-box target-element\">" + charactername + "</div>\n\n<div class=\"text-box\">\n ")
+          elif "day" in room:
+            output+=("\n\n<!-- day++ -->\n\n\n")
+          
+
+          # for all other rooms
+          else:
+            output+=("<!-- move to " + room + "-->\n<div class=\"main-box hidden\">\n  <div class=\"room " + room + " blur\">\n  </div>\n<p class=\"location\">" + roomname + "\n</p>\n<!-- update date -->\n<div class=\"clock afternoon\"><p class=\"date\"><span class=\"zero\"></span><span class=\"two\"></span><span class=\"six\"></span></p></div>\n\n  <!-- seed scene characters -->\n  <div class=\"character " + character + "\"></div>\n  <div class=\"takumi-box pov-element\">\n    <div class=\"takumi-bg " + room + "\">\n    <div class=\"takumi-insert\"></div>\n    </div>\n  </div>\n\n  <!-- choice code goes here (if applicable)  -->\n\n\n<div class=\"anchor\">\n<div class=\"name-box right pov-element\">Takumi Sumino</div>\n<div class=\"name-box target-element\">" + charactername + "</div>\n\n<div class=\"text-box\">\n ")
 
 
         # line of dialogue, normal text

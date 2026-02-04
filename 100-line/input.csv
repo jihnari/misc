@@ -1,26 +1,51 @@
-kyoshika-embarassed,,,More importantly!
-kyoshika-talk,,,"Did you have a dream about kissing me, Sir Takumi?!"
-kyoshika-talk,takumi-embarassed3,pov-open,"I, uh..."
-kyoshika-talk,takumi-embarassed3,,Then we're bound by fate! It's as simple as that.
-kyoshika-talk,takumi-talk,pov-open,Well...
-tsubasa-worried,takumi-talk,,Huh?! Did you really have a dream about HER?!
-kurara-pissed,takumi-talk,,"WHAT?! That can't be right, you must have been dreaming about me!"
-kurara-pissed,takumi-embarassed-side,thought,This is so embarrassing. I wish I could just disappear... But they won't believe me if I try to back out now.
-kurara-pissed,takumi-think-stressed,thought,Nothing good can come from me admitting I kissed all three of them in my dreams. It might be better to say I dreamed about someone else.
-kurara-pissed,takumi-embarassed1,pov-open,Um... Well...
-kurara-pissed,takumi-embarassed1,pov-open,I had a dream about kissing...
-kurara-pissed,takumi-think,thought,I can't just say anyone. I should think about this carefully.
-kurara-pissed,takumi-think,,[choices]
-kurara-pissed,takumi-think-dark,thought,"I really don't think of her that way. I don't want to give her the wrong idea, or make her uncomfortable."
-kurara-pissed,takumi-think-stressed,thought,Momo might actually break me in half. Definitely not worth it.
-kurara-pissed,takumi-think,thought,I could say Hiruko but...
-kurara-pissed,takumi-hurt,thought,Just thinking about it makes my head hurt really badly for some reason. Maybe because she was with me when we fell off the roof?
-kurara-pissed,takumi-hurt,thought,"Whatever it is, something is telling me I should pick someone else."
-kurara-pissed,takumi-think,thought,Kako...
-kurara-pissed,takumi-think-stressed,thought,"If Ima ever found out I said anything about kissing her, falling off a roof would be the least of my problems..."
-kurara-pissed,takumi-embarassed3,thought,"Wait, doesn't that mean there's only guys left?!"
-kurara-argue,takumi-embarassed3,,Well?! We're waiting!!
-kurara-argue,takumi-embarassed,pov-open,Um...!
-kurara-argue,takumi-embarassed3,thought,Ugh...!
-kurara-argue,takumi-think-stressed,thought,Maybe I should say someone so ridiculous they have to drop it.
-kurara-argue,takumi-think-stressed,thought,Who should I say...!?
+yugamu-talk,,,"Hey, Takumi. Come to make some pois- I mean potions? "
+yugamu-talk,takumi-talk-sweat,pov-open,"H-Hey, Yugamu. Actually, I... had something I wanted to talk to you about. "
+yugamu-talk,takumi-talk-sweat,pov-open,...
+yugamu-talk,takumi-talk-sweat,,Yes? I'm listening. 
+yugamu-talk,takumi-embarassed-side-talk,pov-open,"Well, actually..."
+yugamu-talk,takumi-embarassed-side,pov-open,...
+yugamu-wait,takumi-embarassed-side,,...?
+yugamu-wait,takumi-embarassed-side,thoughts,This is a lot more embarrassing than I thought it would be. 
+yugamu-wait,takumi-embarassed-side,thoughts,But I have to tell him before someone else does and he gets the wrong idea. 
+yugamu-wait,takumi-resolved,pov-open,"There was a misunderstanding with the girls, and now they think I like you. "
+yugamu-wait,takumi-embarassed1,pov-open,"But I don't! I mean, I do like you, Yugamu, but not in that way. "
+yugamu-wait,takumi-embarassed-side1,pov-open,"Sorry, this isn't coming out right. "
+yugamu-hmm,takumi-embarassed-side1,,Hmm... 
+yugamu-talk,takumi-embarassed-side1,,How about you start from the beginning? 
+> black,,,
+,,thoughts,"I explained to Yugamu how Tsubasa, Karua, and Kyoshika all had dreams about kissing me, and I had dreams about kissing all three of them."
+,,thoughts,"But they were already at each other's throats, and telling them the truth about my dreams would just create problems. So... I lied. "
+> biolab,,,
+yugamu-neutral,takumi-resolved,pov-open,"I'm really sorry about this, Yugamu. I'm sure it'll blow over in a few days. "
+yugamu-talk,takumi-resolved,,"Oh, I'm not worried about that. "
+yugamu-talk,takumi-huh,pov-open,You aren't?
+yugamu-smug,takumi-huh,,I'm more interested to hear why you said you had a dream about me. 
+yugamu-smug,takumi-huh,pov-open,Huh?
+yugamu-explain,takumi-huh,,"You could have said anyone else, but you chose me. Why? "
+yugamu-explain,takumi-considering,pov-open,"Out of everybody, I thought you'd be..."
+yugamu-explain,takumi-considering,,Yes?
+yugamu-explain,takumi-embarassed-side1,pov-open,I thought you'd be the least upset about it. 
+yugamu-explain,takumi-talk-sweat,pov-open,You're really open about... this sort of thing. 
+yugamu-cough,takumi-talk-sweat,,You mean love and attraction? 
+yugamu-cough,takumi-embarassed-side1,pov-open,"Yeah, I guess. "
+yugamu-cough,takumi-explain,pov-open,"Back on the TRC, I didn't have anyone to talk to about things like crushes and love or whatever. "
+yugamu-cough,takumi-explain,thoughts,It's not like I could talk to Karua about any of that stuff...
+yugamu-cough,takumi-talk-sweat,pov-open,Maybe that's why it still seems so embarrassing. 
+yugamu-cough,takumi-talk-sweat,pov-open,I've always admired how forward you are about... all of it. 
+yugamu-excite,takumi-talk-sweat,,"Oh, Takumi...! "
+yugamu-excite,takumi-resolved,pov-open,...
+yugamu-excite,takumi-resolved,pov-open,Don't make it weird. 
+yugamu-smug,takumi-resolved,,You're the one who told a bunch of girls you had a dream about kissing me. 
+yugamu-smug,takumi-embarassed1,pov-open,I said I was sorry about that. 
+yugamu-smile,takumi-embarassed1,,Hehehe. 
+yugamu-think,takumi-embarassed1,,But are you sure that's the only reason? 
+yugamu-think,takumi-embarassed,pov-open,What do you mean? 
+yugamu-think,takumi-embarassed,,You've never thought about kissing me?
+yugamu-explain,takumi-embarassed,,"I've thought about kissing you, you know. "
+yugamu-explain,takumi-embarassed3,pov-open,What?! 
+yugamu-hug,takumi-embarassed3,,"Oh, don't look so scandalized. It can't be helped, we're young and hormonal, and you're all so cute. "
+yugamu-hug,takumi-embarassed3,pov-open,... 
+yugamu-explain,takumi-embarassed3,,"Are you certain you didn't say you had a dream about kissing me because subconsciously, you'd like to try it? "
+,,,[choice]
+,,,yes
+,,,no
