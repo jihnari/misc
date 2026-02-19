@@ -1,0 +1,178 @@
+<!-- rewrite this at some point (hate tables) -->
+
+<style>
+  /* base class */
+.dm-container {
+  display: table;
+  margin: auto;
+  max-width: 95%;
+  min-width: 95%;
+}
+/* prob dont need these */
+.clear {
+  clear: both;
+}
+.clear2{
+  overflow: auto;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+
+/* sms */
+.sms-box-left, .sms-box-right{
+  border-width: 1px;
+  border-radius: 18px;
+  padding: 10px 15px 8px 15px;
+  max-width: 75%;
+  margin-top: 10px;
+  clear: both;
+  position: relative;
+}
+.sms-box-left {
+  color: black;
+  background: #f2f3f5;
+  float: left;
+}
+.sms-box-right {
+  color: #174ea3;
+  background: #d2e4fb;
+  float: right;
+}
+.sms-time {
+  text-align: center;
+  color: #5f6267;
+  clear: both;
+  padding-top: 10px;
+  margin-bottom: -10px;
+}
+.sms-border {
+  box-shadow: 0px 8px 10px -10px #888888;
+  padding-bottom: 10px;
+  background: white;
+}
+.sms-name-header {
+  font-size: 1.2em;
+  font-weight: bold;
+  padding-left:10px;
+  color: #424242;
+}
+.sms-not-delivered-text{
+  color:red;
+  font-size: .8em;
+
+  float: right;
+  margin-top: 5px;
+  clear: both;
+  position: relative;
+}
+.sms-view-all{
+  padding-top: 10px;
+  border-top: #5f6267 solid 1px;
+}
+.sms-block-container{
+  text-align: center;
+  margin-top:30px;
+  margin-bottom: 20px;
+}
+.sms-block{
+  color:black;
+  font-size: 1em;
+  border:#000 solid 1px;
+  background-color: white;
+  border-radius: 15px;
+  padding: 5px 14px;
+}
+.zero-out{
+  margin:0;
+}
+
+
+/* to block a friend */
+.phone-notif{
+    width:300px;
+
+    background-color:lightgray;
+    border-radius:15px;
+    color:black;
+    padding:5px 20px 40px 45px;
+    margin:5px 10px 5px 5px;
+    position:relative;
+  }
+
+  
+  .notif-blocked .phone-notif-header::before{
+    background: url("https://raw.githubusercontent.com/jihnari/misc/main/_reusable/phonescreen/img/cancel-icon.png") no-repeat;
+    background-color:maroon;
+    background-size:15px 15px;
+    background-position: center;
+  }
+  .phone-notif-header{
+    font-weight:bold;
+    overflow:hidden;
+    margin-bottom:-10px;
+    /* margin-top:0; */
+  }
+  .notif-blocked::after{
+    content:"Unblock";
+    position:absolute;
+    color:maroon;
+    right:10;
+    bottom:10;
+    cursor:pointer;
+
+  }
+  .phone-notif-header::before{
+    content:"";
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background-color:gray;
+  
+    display:inline-block;
+    position:absolute;
+    /* margin-top:1px; */
+    margin-left:-35px;
+  }
+
+
+
+
+  </style>
+
+  <!-- text:_participants_:_date_ -->
+[Text messaging application on the phone belonging to _name_.]
+<p>&nbsp;</p><p>&nbsp;</p>
+
+<div class="dm-container">
+
+<!-- top bar -->
+<p class="sms-border"><i class="left-arrow"></i><span class="sms-name-header">&nbsp;&nbsp;_contact_</span></p>
+
+  <p class="sms-time">This message is from an unsaved number. Beware of smishing and phishing. </p>
+
+<p class="sms-block-container"><span class="sms-block">Block number </span></p>
+
+<p class="sms-time">Today &bull; 16:02</p>
+<p>
+
+<!-- left -->
+<span class="sms-box-left">
+</span>
+
+<!-- right -->
+<span class="sms-box-right">
+</span>
+
+
+
+</p></div>
+
+  <!-- text notif -->
+  <div class="phone-notif notif-blocked">
+    <p class="phone-notif-header">Blocked </p>
+    <p>Unable to recieve messages from this sender</p>
+  </div>
